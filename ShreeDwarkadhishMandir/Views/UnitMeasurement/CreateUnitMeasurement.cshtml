@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Unit of Measurement";
+}
+
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8 PaddingTop">
+        <div class="card">
+            <div class="card-header">
+                <strong>Unit of Measurement</strong>
+            </div>
+
+            <div class="card-body card-block">
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                    <input type="hidden" id="Id" name="Id" class="form-control">
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="UnitDescription" class="control-label mb-1">Unit description</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="UnitDescription" name="UnitDescription" type="text" placeholder="Enter unit description i.e.: Kilogram" class="form-control">
+                            <small class="help-block form-text">Please Enter Unit description.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="UnitAbbreviation" class="control-label mb-1">Unit Symbol</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="UnitAbbreviation" name="UnitAbbreviation" type="text" placeholder="Enter unit abbreviation i.e.: kg" class="form-control">
+                            <small class="help-block form-text">Please Enter Unit Symbol.</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label"></label>
+                        </div>
+                        <div class="col col-md-9">
+                            <div class="form-check">
+                                <div class="checkbox">
+                                    <label for="IsActive" class="form-check-label ">
+                                        <input type="checkbox" id="IsActive" name="IsActive" class="form-check-input">Is Active
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button id="Save" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"> </i> Save
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"> </i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/UnitMeasurement/UnitMeasurement" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+<script src="~/js/CreateUnitMeasurement.js"></script>

@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Account Transaction";
+}
+
+<div class="row PaddingTop">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <strong>Account</strong> Transaction
+            </div>
+
+            <div class="card-body">
+                <div class="row form-group" style="display:none">
+                    <div class="col col-md-3">
+                        <label for="Mandir" class="form-control-label">Mandir</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="Mandir" id="Mandir" class="form-control"></select>
+                        <small class="help-block form-text">Please select mandir.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="CreditAccount" class="form-control-label">Credit Account</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="CreditAccount" id="CreditAccount" class="form-control"></select>
+                        <small class="help-block form-text">Please select credit account.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="DebitAccount" class="form-control-label">Debit Account</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="DebitAccount" id="DebitAccount" class="form-control"></select>
+                        <small class="help-block form-text">Please select debit account.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="TransactionDate" class="form-control-label">Date of Transaction</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="TransactionDate" name="TransactionDate" type="text" placeholder="Enter Date" class="form-control DarshanDate">
+                        <small class="help-block form-text">Please enter date of Transaction.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="TransactionAmount" class="control-label mb-1">Transaction Amount</label>
+                    </div>
+                    <div class="col col-md-9">
+                        <input id="TransactionAmount" name="TransactionAmount" type="text" placeholder="₹ 0000.00" class="form-control money">
+                        <small class="help-block form-text">Please enter Transaction Amount.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="Voucher" class="control-label mb-1">Voucher</label>
+                    </div>
+                    <div class="col col-md-9">
+                        <input id="Voucher" name="Voucher" type="text" placeholder="0" class="form-control">
+                        <small class="help-block form-text">Please enter Voucher.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="Description" class="control-label mb-1">Description</label>
+                    </div>
+                    <div class="col col-md-9">
+                        <textarea name="Description" id="Description" rows="9" placeholder="Description..." class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button id="Save" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"></i> Save
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"></i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/AccountHead/AccountHeadList" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+
+<script src="~/js/AccountTransaction.js"></script>
+

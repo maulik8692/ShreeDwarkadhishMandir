@@ -1,0 +1,41 @@
+﻿.textcenter {
+    text-align: center;
+}
+
+.bgWhite {
+    background-color: #FFF !important;
+}
+
+.textright {
+    text-align: right;
+}
+
+.textleft {
+    text-align: left;
+}
+
+.minheight500 {
+    min-height: 500px;
+}
+
+.minheight750 {
+    min-height: 750px;
+}
+
+.m-15 {
+    margin: 15px;
+}
+
+.vl {
+    border-left: 1px solid gray;
+    position: absolute;
+    left: 50%;
+    margin-left: -3px;
+    top: 0;
+}
+
+.bradius7 {
+    border-radius: 7px !important;
+}
+
+

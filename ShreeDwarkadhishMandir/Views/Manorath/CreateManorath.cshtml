@@ -1,0 +1,138 @@
+﻿@{
+    ViewBag.Title = "Manorath";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
+}
+
+<div class="row PaddingTop">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <strong>Manorath</strong>
+            </div>
+
+            <div class="card-body">
+                <input type="hidden" id="Id" name="Id" class="form-control">
+
+                <div class="row form-group" style="display:none;">
+                    <div class="col col-md-3">
+                        <label for="Mandir" class="form-control-label">Mandir</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="Mandir" id="Mandir" class="form-control"></select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="ManorathType" class="form-control-label">Manorath Type</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="ManorathType" id="ManorathType" class="form-control">
+                            <option value="0">Please select Manorath Type</option>
+                            <option value="1">Regular Bhet</option>
+                            <option value="2">Darshan</option>
+                            <option value="3">Manorath</option>
+                            <option value="4">Kayami Manorath</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row form-group Darshan">
+                    <div class="col col-md-3">
+                        <label for="Darshan" class="form-control-label">Darshan</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="Darshan" id="Darshan" class="form-control"></select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="ManorathName" class="form-control-label">Manorath Name</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="ManorathName" name="ManorathName" placeholder="Manorath Name" class="form-control">
+                        <small class="help-block form-text">Manorath Name.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="Nyochhawar" class="control-label mb-1">Nyochhawar</label>
+                    </div>
+                    <div class="col col-md-9">
+                        <input id="Nyochhawar" name="Nyochhawar" type="text" placeholder="₹ 1000.00" class="form-control money">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="CashAccount" class="form-control-label">Cash Account</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="CashAccount" id="CashAccount" class="form-control"></select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="ChequeAccount" class="form-control-label">Cheque Account</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="ChequeAccount" id="ChequeAccount" class="form-control"></select>
+                    </div>
+                </div>
+
+                <div class="row form-group notFunds">
+                    <div class="col col-md-3">
+                        <label for="VaishnavAccount" class="form-control-label">Vaishnav Account</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="VaishnavAccount" id="VaishnavAccount" class="form-control"></select>
+                    </div>
+                </div>
+
+                <div class="row form-group Funds">
+                    <div class="col col-md-3">
+                        <label for="FundsAccount" class="form-control-label">Funds Account</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="FundsAccount" id="FundsAccount" class="form-control"></select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label class=" form-control-label"></label>
+                    </div>
+                    <div class="col col-md-9">
+                        <div class="form-check">
+                            <div class="checkbox">
+                                <label for="IsActive" class="form-check-label ">
+                                    <input type="checkbox" id="IsActive" name="IsActive" class="form-check-input">Is Active
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-footer">
+                <button id="Save" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"></i> Save
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"></i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/Manorath/Manorath" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+
+<script src="~/js/CreateManorath.js?@casheCleaner"></script>

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C51C0F7F-3032-40D7-88BE-61F4BA464A30}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AdoDotNetDal</RootNamespace>
+    <AssemblyName>AdoDotNetDal</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractDal.cs" />
+    <Compile Include="AccountGroupDal.cs" />
+    <Compile Include="AccountHeadDal.cs" />
+    <Compile Include="AccountHeadDropdownDal.cs" />
+    <Compile Include="AccountTransaction.cs" />
+    <Compile Include="AnnexureDal.cs" />
+    <Compile Include="AppConfigurationDal.cs" />
+    <Compile Include="ApplicationUserDal.cs" />
+    <Compile Include="AuthenticationUserDal.cs" />
+    <Compile Include="BalanceSheetDal.cs" />
+    <Compile Include="BhandarCategoryDal.cs" />
+    <Compile Include="BhandarDal.cs" />
+    <Compile Include="BhandarTransactionDal.cs" />
+    <Compile Include="CityDal.cs" />
+    <Compile Include="CommunicationDal.cs" />
+    <Compile Include="CountryDal.cs" />
+    <Compile Include="DarshanDal.cs" />
+    <Compile Include="DashboardDal.cs" />
+    <Compile Include="DefaultGroupsDal.cs" />
+    <Compile Include="EmailConfigurationDal.cs" />
+    <Compile Include="EmailLogDal.cs" />
+    <Compile Include="IncomeExpenditureDal.cs" />
+    <Compile Include="MandirDal.cs" />
+    <Compile Include="MandirVoucherDal.cs" />
+    <Compile Include="ManorathDal.cs" />
+    <Compile Include="OccupationDal.cs" />
+    <Compile Include="PadhramaniRequestDal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReceiptDal.cs" />
+    <Compile Include="SamagriBhandarDal.cs" />
+    <Compile Include="SamagriMasterDal.cs" />
+    <Compile Include="ServiceStatusDal.cs" />
+    <Compile Include="StateDal.cs" />
+    <Compile Include="SupplierDal.cs" />
+    <Compile Include="TemplateADO.cs" />
+    <Compile Include="UnitOfMeasurementDal.cs" />
+    <Compile Include="UserTypeDal.cs" />
+    <Compile Include="VaishnavDal.cs" />
+    <Compile Include="VillageDal.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLayer\CommonLayer.csproj">
+      <Project>{6044197f-fdcd-4c49-a4ec-5ede0b3c8427}</Project>
+      <Name>CommonLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FactoryMiddleLayer\FactoryMiddleLayer.csproj">
+      <Project>{cfc190fe-7123-43eb-afbc-242332d16350}</Project>
+      <Name>FactoryMiddleLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InterfaceDal\InterfaceDal.csproj">
+      <Project>{B65C6CF3-B9FA-4B75-B5C4-94C7FAB87B57}</Project>
+      <Name>InterfaceDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InterfaceUser\InterfaceMiddleLayer.csproj">
+      <Project>{b97b4da2-ade7-4cd9-a482-b5fdea2ff922}</Project>
+      <Name>InterfaceMiddleLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

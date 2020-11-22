@@ -1,0 +1,34 @@
+﻿@model ShreeDwarkadhishMandir.Models.BalanceSheetRequest
+
+@{
+    ViewBag.Title = "BalanceSheetDetails";
+}
+@Html.HiddenFor(model => model.Id)
+
+<div>
+    <div class="container">
+        <div class="row m-t-10 m-b-10">
+            <div class="col-md-6 col-lg-12 text-center">
+                <h3 id="GroupName"> <span id="FinancialYear"></span></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-1"></div>
+            <div class="col-md-6 col-lg-10">
+                <div id="divBalanceSheetDetails" class="row">
+                    
+                </div>
+                @*<div class="bradius7 bgWhite p-l-10 minheight750">
+            <div class="col-md-6 col-lg-12 p-t-10 text-center">
+                <h4 >Liabilities</h4>
+                <hr />
+                <div ></div>
+            </div>
+        </div>*@
+            </div>
+            <div class="col-md-6 col-lg-1"></div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/underscore.js"></script>
+<script src="~/js/BalanceSheetDetails.js"></script>

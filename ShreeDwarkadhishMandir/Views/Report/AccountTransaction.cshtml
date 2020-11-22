@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "AccountTransaction";
+}
+
+
+<div class="row PaddingTop">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <strong>Account </strong>Transaction
+            </div>
+            <div class="card-body">
+
+                <div class="row form-group" style="display:none">
+                    <div class="col col-md-3">
+                        <label for="Mandir" class="form-control-label">Mandir</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="Mandir" id="Mandir" class="form-control"></select>
+                        <small class="help-block form-text">Please select mandir.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="TransactionAccount" class="form-control-label">Transaction Account</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="TransactionAccount" id="TransactionAccount" class="form-control"></select>
+                        <small class="help-block form-text">Please selectTransaction Account.</small>
+                    </div>
+                </div>
+
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="TransactionFromDate" class="form-control-label">Transaction From Date</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="TransactionFromDate" name="TransactionFromDate" type="text" placeholder="Enter Date" class="form-control TransactionDate">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="TransactionToDate" class="form-control-label">Transaction To Date</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="TransactionToDate" name="TransactionToDate" type="text" placeholder="Enter Date" class="form-control TransactionDate">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <button id="Search" style="width:20%" type="button" class="btn blueBackground btn-sm">
+                    <i class="fa fa-search"></i> Search
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"></i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/Report/ReportList" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+
+<script src="~/js/TransactionReport.js"></script>

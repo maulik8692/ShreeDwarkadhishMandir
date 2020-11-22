@@ -1,0 +1,237 @@
+﻿@{
+    ViewBag.Title = "Account Head";
+}
+
+<div class="row PaddingTop">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <strong>Account</strong> Head
+            </div>
+
+            <div class="card-body">
+                <input type="hidden" id="Id" name="Id" class="form-control">
+
+                <div class="row form-group" style="display:none;">
+                    <div class="col col-md-3">
+                        <label for="Mandir" class="form-control-label">Mandir</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="Mandir" id="Mandir" class="form-control"></select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="AccountGroup" class="form-control-label">Account Group</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="AccountGroup" id="AccountGroup" class="form-control"></select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="AccountName" class="form-control-label">Account Name</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="AccountName" name="AccountName" placeholder="Account Name" class="form-control">
+                        <small class="help-block form-text">Account Name.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="Alias" class="form-control-label">Alias Name</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="Alias" name="Alias" placeholder="Alias Name" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row form-group bank">
+                    <div class="col col-md-3">
+                        <label for="AccountHolderName" class="form-control-label">Account Holder Name</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="AccountHolderName" name="AccountHolderName" placeholder="Account Holder Name" class="form-control">
+                        <small class="help-block form-text">Account Holder Name.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group bank">
+                    <div class="col col-md-3">
+                        <label for="BankName" class="form-control-label">Bank Name</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="BankName" name="BankName" type="text" placeholder="Bank Name" class="form-control">
+                        <small class="help-block form-text">Please enter Bank Name.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group bank">
+                    <div class="col col-md-3">
+                        <label for="BankAddress" class="form-control-label">Bank Address</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <textarea name="BankAddress" id="BankAddress" rows="9" placeholder="Bank Address..." class="form-control"></textarea>
+                        <small class="help-block form-text">Please enter Bank Address.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group bank">
+                    <div class="col col-md-3">
+                        <label for="IFSCCode" class="control-label mb-1">IFSC Code</label>
+                    </div>
+                    <div class="col col-md-9">
+                        <input id="IFSCCode" name="IFSCCode" type="text" placeholder="IFSC Code" class="form-control">
+                        <small class="help-block form-text">Please enter IFSC Code.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group bank fixedDeposite">
+                    <div class="col col-md-3">
+                        <label for="AccountNumber" class="form-control-label">Account Number</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="AccountNumber" name="AccountNumber" type="text" placeholder="Account Number" class="form-control">
+                        <small class="help-block form-text">Please enter Account Number.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group bank">
+                    <div class="col col-md-3">
+                        <label for="BankBranch" class="form-control-label">Bank Branch</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="BankBranch" name="BankBranch" type="text" placeholder="Bank Branch" class="form-control">
+                        <small class="help-block form-text">Please enter Bank Branch.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group fixedDeposite">
+                    <div class="col col-md-3">
+                        <label for="DateOfIssue" class="form-control-label">Date of issue</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="DateOfIssue" name="DateOfIssue" type="text" placeholder="Enter Date" class="form-control DarshanDate">
+                        <small class="help-block form-text">Please enter Date of issue.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group fixedDeposite">
+                    <div class="col col-md-3">
+                        <label for="DateOfMaturity" class="form-control-label">Date of maturity</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="DateOfMaturity" name="DateOfMaturity" type="text" placeholder="Enter Date" class="form-control DarshanDate">
+                        <small class="help-block form-text">Please enter Date of maturity.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group fixedDeposite">
+                    <div class="col col-md-3">
+                        <label for="RateOfInterest" class="form-control-label">Rate of  interest</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="RateOfInterest" name="RateOfInterest" type="text" placeholder="00.00[%]" maxlength="8" class="form-control interest">
+                        <small class="help-block form-text">Please enter Rate of interest.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group fixedDeposite">
+                    <div class="col col-md-3">
+                        <label for="MaturityAmount" class="control-label mb-1">Maturity Amount</label>
+                    </div>
+                    <div class="col col-md-9">
+                        <input id="MaturityAmount" name="MaturityAmount" type="text" placeholder="₹ 1000.00" class="form-control money">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="AnnexureOrder" class="control-label mb-1">Annexure Order</label>
+                    </div>
+                    <div class="col col-md-9">
+                        <input id="AnnexureOrder" name="AnnexureOrder" type="text" placeholder="0" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="AnnexureName" class="control-label mb-1">Annexure Name</label>
+                    </div>
+                    <div class="col col-md-9">
+                        <input id="AnnexureName" name="AnnexureName" type="text" placeholder="" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="BalanceAmount" class="control-label mb-1">Balance / Amount</label>
+                    </div>
+                    <div class="col col-md-6">
+                        <input id="BalanceAmount" name="BalanceAmount" type="text" placeholder="₹ 1000.00" class="form-control money">
+                    </div>
+                    <div class="col col-md-3">
+                        <div class="form-check-inline form-check">
+                            <label for="Credit" class="form-check-label">
+                                <input type="radio" checked id="Credit" name="TransactionType" value="Credit" class="form-check-input">Credit
+                            </label>
+                            <label for="Debit" class="form-check-label" style="margin-left:10px;">
+                                <input type="radio" checked id="Debit" name="TransactionType" value="Debit" class="form-check-input">Debit
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label class=" form-control-label"></label>
+                    </div>
+                    <div class="col col-md-9">
+                        <div class="form-check">
+                            <div class="checkbox">
+                                <label for="IsActive" class="form-check-label ">
+                                    <input type="checkbox" id="IsActive" name="IsActive" class="form-check-input">Is Active
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label class=" form-control-label"></label>
+                    </div>
+                    <div class="col col-md-9">
+                        <div class="form-check">
+                            <div class="checkbox">
+                                <label for="IsEditable" class="form-check-label ">
+                                    <input type="checkbox" id="IsEditable" name="IsEditable" checked class="form-check-input">Is Editable
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button id="Save" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"></i> Save
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"></i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/AccountHead/AccountHead" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+
+<script src="~/js/CreateAccountHead.js"></script>

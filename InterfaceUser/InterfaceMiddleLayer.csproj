@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B97B4DA2-ADE7-4CD9-A482-B5FDEA2FF922}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InterfaceMiddleLayer</RootNamespace>
+    <AssemblyName>InterfaceMiddleLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationUserBase.cs" />
+    <Compile Include="IAccountGroup.cs" />
+    <Compile Include="IAccountHead.cs" />
+    <Compile Include="IAccountHeadDropdown.cs" />
+    <Compile Include="IAccountTransaction.cs" />
+    <Compile Include="IAnnexure.cs" />
+    <Compile Include="IAppConfiguration.cs" />
+    <Compile Include="IBalanceSheet.cs" />
+    <Compile Include="IBhandar.cs" />
+    <Compile Include="IBhandarCategory.cs" />
+    <Compile Include="IBhandarTransaction.cs" />
+    <Compile Include="ICity.cs" />
+    <Compile Include="ICommunication.cs" />
+    <Compile Include="ICountry.cs" />
+    <Compile Include="IDarshan.cs" />
+    <Compile Include="IApplicationUser.cs" />
+    <Compile Include="IDashboard.cs" />
+    <Compile Include="IDefaultGroups.cs" />
+    <Compile Include="IEmailConfiguration.cs" />
+    <Compile Include="IEmailLog.cs" />
+    <Compile Include="IIncomeAndExpenditure.cs" />
+    <Compile Include="IMandir.cs" />
+    <Compile Include="IMandirVoucher.cs" />
+    <Compile Include="IManorath.cs" />
+    <Compile Include="IOccupation.cs" />
+    <Compile Include="InterfaceTemple.cs" />
+    <Compile Include="IPadhramaniRequest.cs" />
+    <Compile Include="IReceipt.cs" />
+    <Compile Include="ISamagriBhandarDetail.cs" />
+    <Compile Include="ISamagriMaster.cs" />
+    <Compile Include="ISamagriTransaction.cs" />
+    <Compile Include="IServiceStatus.cs" />
+    <Compile Include="IState.cs" />
+    <Compile Include="ISupplier.cs" />
+    <Compile Include="IUnitOfMeasurement.cs" />
+    <Compile Include="IUserType.cs" />
+    <Compile Include="IVaishnav.cs" />
+    <Compile Include="IValidation.cs" />
+    <Compile Include="IVillage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

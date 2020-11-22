@@ -1,0 +1,371 @@
+﻿
+@{
+    ViewBag.Title = "Vaishnav";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
+}
+
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8 PaddingTop">
+        <div class="card">
+            <div class="card-header">
+                <strong>Vaishnav</strong>
+            </div>
+
+            <div class="card-body card-block">
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                    <input type="hidden" id="Id" name="Id" class="form-control">
+
+                    <div class="btn btn-secondary btn-lg btn-block" style="margin-bottom:20px;">
+                        <strong>Personal</strong> Detail
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="MobileNo" class="form-control-label">Mobile Number</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="MobileNo" name="MobileNo" placeholder="Contact Number" class="form-control">
+                            <small class="help-block form-text">Please enter your contact mobile number without country code and +,-,(,) sign.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="FirstName" class="control-label mb-1">First Name</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="FirstName" name="FirstName" type="text" placeholder="Enter First Name" class="form-control">
+                            <small class="help-block form-text">Please Enter First Name.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="MiddleName" class="control-label mb-1">Middle Name</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="MiddleName" name="MiddleName" type="text" placeholder="Enter Middle Name" class="form-control">
+                            <small class="help-block form-text">Please Enter Middle Name.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="LastName" class="control-label mb-1">Last Name</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="LastName" name="LastName" type="text" placeholder="Enter Last Name" class="form-control">
+                            <small class="help-block form-text">Please Enter Last Name.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="Nickname" class="control-label mb-1">Nickname</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="Nickname" name="Nickname" type="text" placeholder="Enter Nickname" class="form-control">
+                            <small class="help-block form-text">Please Enter Nickname.</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="DateOfBirth" class="form-control-label">Date of Birth</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="DateOfBirth" name="DateOfBirth" readonly="readonly" type="text" placeholder="Date of Birth" class="form-control DarshanDate">
+                            <small class="help-block form-text">Please enter date of birth.</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group Personal">
+                        <div class="col col-md-3">
+                            <label class="form-control-label">Gender</label>
+                        </div>
+                        <div class="col col-md-9">
+                            <div class="form-check-inline form-check">
+                                <label for="Male" class="form-check-label">
+                                    <input type="radio" id="Male" name="Gender" value="Male" class="form-check-input">Male
+                                </label>
+                                <label for="Female" class="form-check-label" style="margin-left:10px;">
+                                    <input type="radio" id="Female" name="Gender" value="Female" class="form-check-input">Female
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group Personal">
+                        <div class="col col-md-3">
+                            <label for="MaritalStatus" class="form-control-label">Marital Status</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="MaritalStatus" id="MaritalStatus" class="form-control">
+                                <option value="">Please select Marital Status</option>
+                                <option value="Single">Single</option>
+                                <option value="Engaged">Engaged</option>
+                                <option value="Married">Married</option>
+                                <option value="Widowed">Widowed</option>
+                                <option value="Separated">Separated</option>
+                                <option value="Divorced">Divorced</option>
+                            </select>
+                            <small class="help-block form-text">Please select Marital Status</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group Personal">
+                        <div class="col col-md-3">
+                            <label for="BloodGroup" class="form-control-label">Blood Group</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="BloodGroup" id="BloodGroup" class="form-control">
+                                <option value="0">Please select Blood Group</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                            <small class="help-block form-text">Please select Blood Group</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="AlternateNumber" class="control-label mb-1">Alternate Number</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="AlternateNumber" name="AlternateNumber" placeholder="Enter Alternate Number" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="Email" class="control-label mb-1">Email</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="email" id="email" name="email" placeholder="Enter Email" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row form-group Personal">
+                        <div class="col col-md-3">
+                            <label for="Country" class="form-control-label">Country</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="Country" id="Country" class="form-control">
+                                <option value="0">Please select Country</option>
+                            </select>
+                            <small class="help-block form-text">Please select Country</small>
+                        </div>
+                    </div>
+
+                    <div id="stateDiv" class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="State" class="form-control-label">State</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="State" id="State" class="form-control">
+                                <option value="0">Please select State</option>
+                            </select>
+                            <small class="help-block form-text">Please select State</small>
+                        </div>
+                    </div>
+
+                    <div id="cityDiv" class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="City" class="form-control-label">City</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="City" id="City" class="form-control">
+                                <option value="0">Please select City</option>
+                            </select>
+                            <small class="help-block form-text">Please select City</small>
+                        </div>
+                    </div>
+
+                    <div id="VillageDiv" class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="Village" class="form-control-label">Village</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="Village" id="Village" class="form-control">
+                                <option value="0">Please select Village</option>
+                            </select>
+                            <small class="help-block form-text">Please select Village</small>
+                        </div>
+                    </div>
+
+                    <div id="AddressDiv" class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="Address" class="form-control-label">Address</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <textarea name="Address" id="Address" rows="9" placeholder="Address..." class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <div id="PincodeDiv" class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="PostalCode" class="form-control-label">Postal Code</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="PostalCode" name="PostalCode" placeholder="Postal Code" class="form-control">
+                            <small class="help-block form-text">Please enter Postal Code</small>
+                        </div>
+                    </div>
+
+                    <div class="btn btn-secondary btn-lg btn-block" style="margin-bottom:20px;">
+                        <strong>Occupation</strong> Detail
+                    </div>
+
+                    <div class="row form-group Occupation">
+                        <div class="col col-md-3">
+                            <label for="Occupation" class="form-control-label">Occupation</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="Occupation" id="Occupation" class="form-control">
+                                <option value="0">Please select Occupation</option>
+                            </select>
+                            <small class="help-block form-text">Please select Occupation</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group Occupation">
+                        <div class="col col-md-3">
+                            <label for="OccupationDetail" class="form-control-label">Occupation Detail</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="OccupationDetail" name="OccupationDetail" type="text" placeholder="Occupation Detail" class="form-control">
+                            <small class="help-block form-text">Please enter Occupation Detail</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group Occupation">
+                        <div class="col col-md-3">
+                            <label for="OccupationCountry" class="form-control-label">Occupation Country</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="OccupationCountry" id="OccupationCountry" class="form-control">
+                                <option value="0">Please select Occupation Country</option>
+                            </select>
+                            <small class="help-block form-text">Please select Occupation Country</small>
+                        </div>
+                    </div>
+
+                    <div id="OccupationStateDiv" class="row form-group Occupation">
+                        <div class="col col-md-3">
+                            <label for="OccupationState" class="form-control-label">Occupation State</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="OccupationState" id="OccupationState" class="form-control">
+                                <option value="0">Please select Occupation State</option>
+                            </select>
+                            <small class="help-block form-text">Please select Occupation State</small>
+                        </div>
+                    </div>
+
+                    <div id="OccupationCityDiv" class="row form-group Occupation">
+                        <div class="col col-md-3">
+                            <label for="OccupationCity" class="form-control-label">Occupation City</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="OccupationCity" id="OccupationCity" class="form-control">
+                                <option value="0">Please select Occupation City</option>
+                            </select>
+                            <small class="help-block form-text">Please select Occupation City</small>
+                        </div>
+                    </div>
+
+                    <div id="OccupationVillageDiv" class="row form-group Occupation">
+                        <div class="col col-md-3">
+                            <label for="OccupationVillage" class="form-control-label">Occupation Village</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="OccupationVillage" id="OccupationVillage" class="form-control">
+                                <option value="0">Please select Occupation Village</option>
+                            </select>
+                            <small class="help-block form-text">Please select Village</small>
+                        </div>
+                    </div>
+
+                    <div id="OccupationAddressDiv" class="row form-group Occupation">
+                        <div class="col col-md-3">
+                            <label for="OccupationAddress" class="form-control-label">Occupation Address</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <textarea name="OccupationAddress" id="OccupationAddress" rows="9" placeholder="Address..." class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <div id="OccupationPincodeDiv" class="row form-group Occupation">
+                        <div class="col col-md-3">
+                            <label for="OccupationPostalCode" class="form-control-label">Occupation Postal Code</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="OccupationPostalCode" name="OccupationPostalCode" placeholder="Occupation Postal Code" class="form-control">
+                            <small class="help-block form-text">Please enter Occupation Postal Code</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="OfficePhone" class="control-label mb-1">Office Phone Number</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="OfficePhone" name="OfficePhone" placeholder="Enter Office Phone Number" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="btn btn-secondary btn-lg btn-block" style="margin-bottom:20px;">
+                        <strong>General</strong> Detail
+                    </div>
+
+                    <div class="row form-group General">
+                        <div class="col col-md-3">
+                            <label for="AddtionalNote" class="form-control-label">Additional Note</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <textarea name="AddtionalNote" id="AddtionalNote" rows="9" placeholder="Let's know if you can do any seve to mandir.." class="form-control"></textarea>
+                            <small class="help-block form-text">Let's know if you can do any seve to mandir..</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label"></label>
+                        </div>
+                        <div class="col col-md-9">
+                            <div class="form-check">
+                                <div class="checkbox">
+                                    <label for="IsActive" class="form-check-label ">
+                                        <input type="checkbox" id="IsActive" name="IsActive" class="form-check-input">Is Active
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button id="Save" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"></i> Save
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"></i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/Vaishnav/VaishnavJan" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+<script src="~/js/Vaishnav.js?@casheCleaner"></script>

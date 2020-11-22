@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Vaishnav";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
+}
+
+<div>
+    <div class="card-footer PaddingRight PaddingLeft" style="background-color:#00000000 !important;border-top: 1px solid rgba(0,0,0,0);">
+        @*<button id="Save" type="submit" class="btn blueBackground btn-sm">
+            <i class="fa fa-search"></i> Search
+        </button>*@
+        <input type="text" id="VaishnavId" name="VaishnavId" placeholder="Please Enter vaishnav Id" class="btn-sm"/>
+        <a id="reset" href="/Vaishnav/Vaishnav" class="btn blueBackground btn-sm">
+            <i class="fa fa-plus"></i> New Vaishnav     
+        </a>
+        <a id="reset" href="/Padhramani/Padhramani" class="btn blueBackground btn-sm">
+            <i class="fa fa-plus"></i> Padhramani
+        </a>
+    </div>
+
+    @*<div class="row PaddingTop PaddingRight PaddingLeft">
+            <div class="col-lg-12">
+                <div class="table-responsive table--no-card m-b-30">
+                    <table id="VaishnavList" style="width:100%" class="table table-borderless table-striped table-mandir"></table>
+                </div>
+            </div>
+        </div>*@
+
+    <div class="col-lg-12">
+        <div id="divVaishnav" class="table-responsive table--no-card m-b-30">
+            <table id="VaishnavList" class="table table-borderless table-striped table-mandir"></table>
+            <div id="pager"></div>
+
+        </div>
+    </div>
+
+</div>
+<script src="~/js/VaishnavJan.js?@casheCleaner"></script>

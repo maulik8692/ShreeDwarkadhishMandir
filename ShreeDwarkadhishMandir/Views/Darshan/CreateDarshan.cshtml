@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "CreateDarshan";
+}
+
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8 PaddingTop">
+        <div class="card">
+            <div class="card-header">
+                <strong>Darshan</strong> Time
+            </div>
+            <div class="card-body card-block">
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <div class="row form-group">
+                        <div class="col col-md-2">
+                            <label for="Mandir" class="form-control-label">From Date</label>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <input type="text" id="FromDate" nameFromDateManglaFrom" placeholder="dd-M-yy" class="form-control DarshanDate">
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <label for="Mandir" class="form-control-label">To Date</label>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <input type="text" id="ToDate" name="ToDate" placeholder="dd-M-yy" class="form-control DarshanDate">
+                        </div>
+                    </div>
+
+                    <div class="row form-group" style="background-color: #f7f7f7;    font-weight: 600;">
+                        <div class="col col-md-2">
+                            <label for="Mandir" class="form-control-label">Darshan Name</label>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <label for="Mandir" class="form-control-label">Start Time</label>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <label for="Mandir" class="form-control-label">Close Time</label>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <label for="Mandir" class="form-control-label">Additional Note</label>
+                        </div>
+                    </div>
+                    <div id="darshanForm">
+
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button id="Save" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"></i> Save
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"></i> Reset
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+<link href="~/css/jquery-ui-timepicker-addon.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-timepicker-addon.min.js"></script>
+<script src="~/js/CreateDarshan.js"></script>

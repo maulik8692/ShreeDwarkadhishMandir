@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Padhramani";
+}
+<style>
+    .ui-widget.ui-widget-content {
+        border: 0px solid #c5c5c5 !important
+    }
+    /*.ui-jqgrid tr.ui-row-ltr td {
+         border-right-width: 1px !important;
+    }*/
+    .ui-jqgrid tr.jqgrow td {
+        word-wrap: break-word; /* IE 5.5+ and CSS3 */
+        white-space: pre-wrap; /* CSS3 */
+        white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+        white-space: -pre-wrap; /* Opera 4-6 */
+        white-space: -o-pre-wrap; /* Opera 7 */
+        overflow: hidden;
+        height: auto;
+        vertical-align: middle;
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+    /*.ui-jqgrid tr.jqgrow td { white-space: normal !important; height: auto; vertical-align: text-top; padding-top: 2px; }*/
+    th.ui-th-column div {
+        word-wrap: break-word; /* IE 5.5+ and CSS3 */
+        white-space: pre-wrap; /* CSS3 */
+        white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+        white-space: -pre-wrap; /* Opera 4-6 */
+        white-space: -o-pre-wrap; /* Opera 7 */
+        overflow: hidden;
+        height: auto;
+        vertical-align: middle;
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+
+    .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, .ui-button:hover, .ui-button:focus {
+        border: 0px solid #ccc !important;
+        /*background-image: -moz-linear-gradient(90deg, #ff2300 0%, #FF7600 100%);
+        background-image: -webkit-linear-gradient(90deg, #ff2300 0%, #FF7600 100%);
+        background-image: -ms-linear-gradient(90deg, #ff2300 0%, #FF7600 100%);*/
+        font-weight: normal;
+        color: #FFFFFF
+    }
+
+</style>
+
+<div>
+    <div class="card-footer PaddingRight PaddingLeft" style="background-color:#00000000 !important;border-top: 1px solid rgba(0,0,0,0);">
+        @*<button id="Save" type="submit" class="btn blueBackground btn-sm" style="display:none">
+            <i class="fa fa-search"></i> Search
+        </button>*@
+        <a id="reset" href="/Padhramani/PadhramaniRequest" class="btn blueBackground btn-sm">
+            <i class="fa fa-plus"></i> New Padhramani Request
+        </a>
+    </div>
+
+    <div class="row PaddingTop PaddingRight PaddingLeft">
+        <div class="col-lg-12">
+            <div id="divpadhramni" class="table-responsive table--no-card m-b-30">
+                <table id="padhramni" class="table table-borderless table-striped table-mandir"></table>
+                <div id="pager"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/Padhramani.js"></script>

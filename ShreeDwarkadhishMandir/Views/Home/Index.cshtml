@@ -1,0 +1,134 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+<!-- STATISTIC-->
+<section class="statistic statistic2">
+    <div class="container">
+        <div class="row">
+            <a href="/Vaishnav/VaishnavJan" class="col-md-6 col-lg-3">
+                <div>
+                    <div class="statistic__item statistic__item--green">
+                        <h2 id="Vaishnavs" class="number">0</h2>
+                        <span class="desc">Vaishnav</span>
+                        <div class="icon">
+                            <i class="zmdi zmdi-account-o"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a id="bhet" class="col-md-6 col-lg-3" style="cursor: pointer;">
+                <div>
+                    <div class="statistic__item statistic__item--orange">
+                        <h2 id="Bhet" class="number">0</h2>
+                        <span class="desc">Todays Bhet</span>
+                        <div class="icon">
+                            <i class="zmdi zmdi-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="#ManorathOfToday" class="col-md-6 col-lg-3">
+                <div>
+                    <div class="statistic__item statistic__item--blue">
+                        <h2 id="Manorath" class="number">0</h2>
+                        <span class="desc">Today's Manorath</span>
+                        <div class="icon">
+                            <i class="zmdi zmdi-calendar-note"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="statistic__item statistic__item--red">
+                    <h2 id="Balance" class="number">0</h2>
+                    <span class="desc">Balance</span>
+                    <div class="icon">
+                        <i class="fa fa-inr"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- END STATISTIC-->
+<!-- STATISTIC CHART-->
+<section class="statistic-chart">
+    <div class="container">
+        @*<div class="row">
+                <div class="col-md-12">
+                    <h3 class="title-5 m-b-35">Information</h3>
+                </div>
+            </div>*@
+        <div class="row">
+            @*<div class="col-md-6 col-lg-4">
+                    <!-- CHART-->
+                    <div class="statistic-chart-1">
+                            <h3 class="title-3 m-b-30">Remain Samgri</h3>
+                            <div class="chart-wrap">
+                                <canvas id="widgetChart5"></canvas>
+                            </div>
+                            <div class="statistic-chart-1-note">
+                                <span class="big">10,368</span>
+                                <span>/ 16220 items sold</span>
+                            </div>
+                        </div>
+                    <!-- END CHART-->
+                </div>*@
+            <div class="col-md-6 col-lg-4">
+                <!-- TOP CAMPAIGN-->
+                <div class="top-campaign" style="padding: 25px !important;">
+                    <h3 class="title-3 m-b-30">Darshan</h3>
+                    <div class="table-responsive">
+                        <table class="table table-top-Darshan" id="DarshanTime"></table>
+                    </div>
+                </div>
+                <!-- END TOP CAMPAIGN-->
+            </div>
+            <div class="col-md-6 col-lg-8">
+                <h3 id="ManorathOfToday" class="title-5 m-b-35">Manorath</h3>
+                <div class="table-responsive table-responsive-data2">
+                    <table class="table table-data2" id="ManorathListForToday"></table>
+                </div>
+                <!-- CHART PERCENT-->
+                @*<div class="chart-percent-2">
+                        <h3 class="title-3 m-b-30">chart by %</h3>
+                        <div class="chart-wrap">
+                            <canvas id="percent-chart2"></canvas>
+                            <div id="chartjs-tooltip">
+                                <table></table>
+                            </div>
+                        </div>
+                        <div class="chart-info">
+                            <div class="chart-note">
+                                <span class="dot dot--blue"></span>
+                                <span>products</span>
+                            </div>
+                            <div class="chart-note">
+                                <span class="dot dot--red"></span>
+                                <span>Services</span>
+                            </div>
+                        </div>
+                    </div>*@
+                <!-- END CHART PERCENT-->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END STATISTIC CHART-->
+<!-- DATA TABLE-->
+@*<section class="p-t-20">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 id="ManorathOfToday" class="title-5 m-b-35">Manorath</h3>
+                    <div class="table-responsive table-responsive-data2">
+                        <table class="table table-data2" id="ManorathListForToday" ></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>*@
+<!-- END DATA TABLE-->
+<script src="~/js/Home.js"></script>

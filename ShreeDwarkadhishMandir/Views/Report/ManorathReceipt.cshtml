@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "ManorathReceipt";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
+}
+
+<div class="row PaddingTop">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <strong>Manorath </strong>Receipt
+            </div>
+            <div class="card-body">
+
+                <div class="row form-group display-none">
+                    <div class="col col-md-3">
+                        <label for="Mandir" class="form-control-label">Mandir</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="Mandir" id="Mandir" class="form-control"></select>
+                        <small class="help-block form-text">Please select mandir.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="ManorathType" class="form-control-label">Manorath Type</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="ManorathType" id="ManorathType" class="form-control"></select>
+                        <small class="help-block form-text">Please select manorath type.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="ManorathFromDate" class="form-control-label">Manorath From Date</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="ManorathFromDate" name="ManorathFromDate" type="text" placeholder="Enter Date" class="form-control ManorathDate">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="ManorathToDate" class="form-control-label">Manorath To Date</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="ManorathToDate" name="ManorathToDate" type="text" placeholder="Enter Date" class="form-control ManorathDate">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="CreatedFromDate" class="form-control-label">Created From Date</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="CreatedFromDate" name="CreatedFromDate" type="text" placeholder="Enter Date" class="form-control CreatedDate">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="CreatedToDate" class="form-control-label">Created To Date</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="CreatedToDate" name="CreatedToDate" type="text" placeholder="Enter Date" class="form-control CreatedDate">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label class=" form-control-label"></label>
+                    </div>
+                    <div class="col col-md-9">
+                        <div class="form-check">
+                            <div class="checkbox">
+                                <label for="OnlyManorath" class="form-check-label ">
+                                    <input type="checkbox" id="OnlyManorath" name="OnlyManorath" class="form-check-input">Display Only Manorath
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <button id="Search" style="width:20%" type="button" class="btn blueBackground btn-sm">
+                    <i class="fa fa-search"></i> Search
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"></i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/Report/ReportList" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+<script src="~/js/ManorathReceipt.js?@casheCleaner"></script>

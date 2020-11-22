@@ -1,0 +1,248 @@
+﻿
+@{
+    ViewBag.Title = "Padhramani Request";
+}
+
+<div class="row PersonalDetail">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8 PaddingTop">
+        <div class="card">
+            <div class="card-header">
+                <strong>Padhramani</strong> Request
+            </div>
+
+            <div class="card-body card-block">
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                    <input type="hidden" id="Id" name="Id" class="form-control">
+
+                    <div class="btn btn-secondary btn-lg btn-block" style="margin-bottom:20px;">
+                        <strong>Personal</strong> Detail
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="MobileNo" class="form-control-label">Mobile Number</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <label id="MobileNo" name="MobileNo" class="form-control"></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="FirstName" class="control-label mb-1">First Name</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <label id="FirstName" name="FirstName" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="LastName" class="control-label mb-1">Last Name</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <label id="LastName" name="LastName" class="form-control"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="Email" class="control-label mb-1">Email</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <label id="email" name="email" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="row form-group General">
+                        <div class="col col-md-3">
+                            <label for="VaishnavAddress" class="form-control-label">Your Address</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <textarea name="VaishnavAddress" readonly="readonly" id="VaishnavAddress" cols='60' rows='8' placeholder="Let's know if you can do any seve to mandir.." class="form-control">This is my statement one.&#13;&#10;This is my statement2</textarea>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label"></label>
+                        </div>
+                        <div class="col col-md-9">
+                            <div class="form-check">
+                                <div class="checkbox">
+                                    <label for="ChangeAddress" class="form-check-label ">
+                                        <input type="checkbox" id="ChangeAddress" name="ChangeAddress" class="form-check-input">Change above Addrees ?
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="Address">
+                        <div class="row form-group Address">
+                            <div class="col col-md-3">
+                                <label for="Country" class="form-control-label">Country</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select name="Country" id="Country" class="form-control">
+                                    <option value="0">Please select Country</option>
+                                </select>
+                                <small class="help-block form-text">Please select Country</small>
+                            </div>
+                        </div>
+
+                        <div id="stateDiv" class="row form-group Address">
+                            <div class="col col-md-3">
+                                <label for="State" class="form-control-label">State</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select name="State" id="State" class="form-control">
+                                    <option value="0">Please select State</option>
+                                </select>
+                                <small class="help-block form-text">Please select State</small>
+                            </div>
+                        </div>
+
+                        <div id="cityDiv" class="row form-group Address">
+                            <div class="col col-md-3">
+                                <label for="City" class="form-control-label">City</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select name="City" id="City" class="form-control">
+                                    <option value="0">Please select City</option>
+                                </select>
+                                <small class="help-block form-text">Please select City</small>
+                            </div>
+                        </div>
+
+                        <div id="VillageDiv" class="row form-group Address">
+                            <div class="col col-md-3">
+                                <label for="Village" class="form-control-label">Village</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select name="Village" id="Village" class="form-control">
+                                    <option value="0">Please select Village</option>
+                                </select>
+                                <small class="help-block form-text">Please select Village</small>
+                            </div>
+                        </div>
+
+                        <div id="AddressDiv" class="row form-group Address">
+                            <div class="col col-md-3">
+                                <label for="Address" class="form-control-label">Address</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <textarea name="Address" id="Address" rows="9" placeholder="Address..." class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        <div id="PincodeDiv" class="row form-group Address">
+                            <div class="col col-md-3">
+                                <label for="PostalCode" class="form-control-label">Postal Code</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="text" id="PostalCode" name="PostalCode" placeholder="Postal Code" class="form-control">
+                                <small class="help-block form-text">Please enter Postal Code</small>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button id="SendRequest" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-location-arrow"></i> Send Request
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+<div id='SearchVaishnav' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body card-block">
+                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                <div class="row form-group">
+                                    <div class="col col-md-12">
+                                        <label for="VaishnavId" class="form-control-label">Vaishnav Id</label>
+                                    </div>
+                                    <div class="col-12 col-md-12">
+                                        <input type="text" id="VaishnavId" name="VaishnavId" placeholder="Vaishnav Id" class="form-control">
+                                        <small class="help-block form-text">Please enter your Vaishnav Id.</small>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            <button id="Search" type="submit" class="btn blueBackground btn-sm">
+                                <i class="fa  fa-search"></i> Search
+                            </button>
+
+                            <button id="Cancel" type="reset" class="btn blueBackground btn-sm">
+                                <i class="fa fa-times"></i> Cancel
+                            </button>
+                            <a href="/Vaishnav/Vaishnav" class="btn blueBackground btn-sm">
+                                Haven't registered yet <i class="fa fa-exclamation"></i>
+                            </a>
+                            <button id="RequestForgot" style="margin-top:5px" type="reset" class="btn blueBackground btn-sm">
+                                Forgot Vaishnav Id <i class="fa fa-question"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id='ForgotId' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body card-block">
+                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                <div class="row form-group">
+                                    <div class="col col-md-12">
+                                        <label for="VaishnavId" class="form-control-label">Vaishnav Id</label>
+                                    </div>
+                                    <div class="col-12 col-md-12">
+                                        <input type="text" id="VaishnavId" name="VaishnavId" placeholder="Vaishnav Id" class="form-control">
+                                        <small class="help-block form-text">Please enter your Vaishnav Id.</small>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            <button id="ForgotRequest" type="submit" class="btn blueBackground btn-sm">
+                                <i class="fa fa-mail-forward"></i> Send to register email id
+                            </button>
+
+                            <button id="ForgotCancel" type="reset" class="btn blueBackground btn-sm">
+                                <i class="fa fa-times"></i> Cancel
+                            </button>
+                            <a href="/Vaishnav/Vaishnav" style="margin-top:10px" class="btn blueBackground btn-sm">
+                                Haven't registered yet <i class="fa fa-exclamation"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/js/PadhramaniRequest.js"></script>

@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Communication";
+}
+<script src="~/ckeditor/ckeditor.js"></script>
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8 PaddingTop">
+        <div class="card">
+            <div class="card-header">
+                <strong>Communication</strong>
+            </div>
+
+            <div class="card-body card-block">
+                <div class="form-group row">
+                    <div class="col col-md-3">
+                        <label for="EmailSubject" class="control-label mb-1">Email Subject</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-12 col-md-12">
+                        <input id="EmailSubject" name="EmailSubject" type="text" placeholder="Email Subject" class="form-control">
+                        <small class="help-block form-text">Please Email Subject.</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col col-md-3">
+                        <label for="EmailContent" class="control-label mb-1">Email Content</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col col-md-12">
+                        @Html.TextArea("EmailContent", new { @class = "ckeditor", @id = "EmailContent" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-footer">
+                <button id="Save" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"> </i> Save
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"> </i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/Bhandar/Bhandar" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+@*@Html.TextArea("editor1", new { @class = "ckeditor", @id = "sampleEditor1"})*@
+
+<script src="~/js/Communication.js"></script>

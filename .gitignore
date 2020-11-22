@@ -1,0 +1,26 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/AdoDotNetDal/bin
+/AdoDotNetDal/obj
+/ApplicationUser/bin
+/ApplicationUser/obj
+/CommonLayer/bin
+/CommonLayer/obj
+/EmailSender/bin
+/EmailSender/obj
+/FactoryDal/bin
+/FactoryDal/obj
+/FactoryMiddleLayer/bin
+/FactoryMiddleLayer/obj
+/InterfaceDal/bin
+/InterfaceDal/obj
+/InterfaceUser/bin
+/InterfaceUser/obj
+/ShreeDwarkadhishMandir/bin
+/ShreeDwarkadhishMandir/ExceptionDetailsFile
+/ShreeDwarkadhishMandir/obj
+/ValidationAlgorithms/bin
+/ValidationAlgorithms/obj

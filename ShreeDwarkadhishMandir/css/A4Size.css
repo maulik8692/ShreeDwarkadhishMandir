@@ -1,0 +1,19 @@
+﻿body {
+    /*background: #ffd800;*/
+    background-image: -moz-linear-gradient(180deg, #ffa901 0%,#fee600 50%, #ffad01 100%);
+    background-image: -webkit-linear-gradient(180deg, #ffa901 0%,#fee600 50%, #ffad01 100%);
+    background-image: -ms-linear-gradient(180deg, #ffa901 0%,#fee600 50%, #ffad01 100%);
+}
+.A4 {
+    background: white;
+    width: 21cm;
+    /*height: 29.7cm;*/
+    display: block;
+    margin: 0 auto;
+    padding: 10px 25px;
+    margin-bottom: 0.5cm;
+    box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+    overflow-y: hidden;
+    box-sizing: border-box;
+    font-size: 12pt;
+}

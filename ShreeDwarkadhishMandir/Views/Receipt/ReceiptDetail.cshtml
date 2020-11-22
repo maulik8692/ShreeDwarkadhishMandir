@@ -1,0 +1,172 @@
+﻿
+@{
+    Layout = null;
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Receipt</title>
+    <link href="~/Content/Card.css" rel="stylesheet" />
+    <!-- Normalize or reset CSS with your favorite library -->
+    <link href="~/Content/PrintPaper/normalize.min.css" rel="stylesheet" />
+    <!-- Load paper.css for happy printing -->
+    <link href="~/Content/PrintPaper/Paper.css" rel="stylesheet" />
+    <style>
+        .m-t-2 {
+            margin-top: 2px !important;
+        }
+
+        .m-t-5 {
+            margin-top: 5px !important;
+        }
+
+        .width-100 {
+            width: 100% !important;
+        }
+
+        .width-20 {
+            width: 20% !important;
+        }
+
+        .MandirIMage {
+            height: 100px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .border-0 {
+            border: 0px !important;
+        }
+
+        .text-center {
+            text-align: center !important;
+        }
+
+        f-12 {
+            font-size: 12 px !important;
+        }
+
+        f-14 {
+            font-size: 12 px !important;
+        }
+    </style>
+</head>
+<body class="A5 landscape">
+
+    <!-- Each sheet element should have the class "sheet" -->
+    <!-- "padding-**mm" is optional: you can set 10, 15, 20 or 25 -->
+    <section class="sheet padding-10mm">
+        <table class="border-0 width-100">
+            <tbody>
+                <tr>
+                    <td class="width-20">
+                        @*<img id="ImageUrl" class="MandirIMage" src="" />*@
+                        <img id="Logo" class="MandirIMage" src="~/images/Logo.png" />
+                    </td>
+                    <td class="text-center">
+                        <div>
+                            <div class="f-12" id="MandirHeader"></div>
+                            <div class="m-t-5 f-14"><strong id="GurudevName"></strong></div>
+                            <div class="m-t-5 f-14"><strong id="MandirName"></strong></div>
+                            <div class="m-t-5 f-14"><strong id="RegistrationNumber"></strong></div>
+                            <div class="m-t-5 f-12" id="MandirAddress"></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="        background-image: linear-gradient(to left, #ffa901 1%, #fee600 50%, #ffad01 100%),linear-gradient(to left, #ffa901 1%, #fee600 50%, #ffad01 100%);
+        background-size: 100% 3px;
+        background-position: 0% 0%, 0% 100%;
+        background-repeat: no-repeat; /* other demo stuff */
+        height: 2px;
+        line-height: 50px;
+        background-color: #222;
+        color: white;
+        text-align: center;">&nbsp;</div>
+        <div>
+            <table style="        height: 2px;
+        width: 100%;
+        color: #0a0a0a !important;
+        line-height: 50px;
+        margin-top: 10px;
+        border-collapse: collapse;">
+                <tbody>
+                    <tr>
+                        <td style="        padding: 0px 10px;
+        width: 70%;
+        text-align: left;">
+                            Receipt No: <span id="ReceiptNo"></span>
+                        </td>
+                        <td style="        padding: 0px 10px;
+        width: 30%;
+        text-align: right;">
+                            Date: <span id="ReceiptCreatedDate"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="        padding: 0px 10px;
+        width: 70%;
+        border: 1px solid #000000;
+        text-align: center;">
+                            <strong>Description</strong>
+                        </td>
+                        <td style="        padding: 0px 10px;
+        width: 30%;
+        border: 1px solid #000000;
+        text-align: center;">
+                            <strong>Amount (CR)</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="        padding: 0px 10px;
+        width: 70%;
+        border: 1px solid #000000;">
+                            <div style="        min-height: 200px !important;">
+                                <span id="ManorathName"></span>
+                                @*<span id="ManorathiName"> by Shree Maulik Shah</span>
+                                    <span id="ManorathDate"> on date 20-oct-2018</span>*@
+
+                                <span id="ManorathiName"></span>
+                                <span id="ManorathDate"></span>
+                            </div>
+                        </td>
+                        <td style="        padding: 0px 10px;
+        width: 30%;
+        border: 1px solid #000000;
+        text-align: right;">
+                            <div id="Nek" style="        min-height: 200px !important;"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="        padding: 0px 10px;
+        width: 70%;
+        border: 1px solid #000000;
+        text-align: right;">
+                            <strong>Total</strong>
+                        </td>
+                        <td style="        padding: 0px 10px;
+        width: 30%;
+        border: 1px solid #000000;
+        text-align: right;">
+                            <strong id="TotalNek"></strong>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            &nbsp;
+        </div>
+    </section>
+</body>
+</html>
+<script src="~/vendor/jquery-3.2.1.min.js"></script>
+<script src="~/vendor/bootstrap-4.1/popper.min.js"></script>
+<script src="~/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+<script src="~/js/date.format.js?@casheCleaner"></script>
+<script src="~/js/Common.js?@casheCleaner"></script>
+<script src="~/js/ReceiptDetail.js?@casheCleaner"></script>

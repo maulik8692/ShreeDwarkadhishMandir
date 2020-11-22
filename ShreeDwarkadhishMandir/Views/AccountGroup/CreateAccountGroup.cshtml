@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "AccountGroup";
+}
+
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8 PaddingTop">
+        <div class="card">
+            <div class="card-header">
+                <strong>AccountGroup</strong>
+            </div>
+
+            <div class="card-body card-block">
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                    <input type="hidden" id="Id" name="Id" class="form-control">
+                    <input type="hidden" id="AccountGroupId" name="AccountGroupId" class="form-control">
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="GroupName" class="control-label mb-1">Group Name</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="GroupName" name="GroupName" type="text" placeholder="Enter Group name" class="form-control">
+                            <small class="help-block form-text">Please Enter Group Name.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="AliasName" class="control-label mb-1">Alias Name</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="AliasName" name="AliasName" type="text" placeholder="Enter Alias name" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row form-group Personal">
+                        <div class="col col-md-3">
+                            <label for="DefaultGroup" class="form-control-label">Main Groups</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="DefaultGroup" id="DefaultGroup" class="form-control">
+                                <option value="0">Please select Main Groups</option>
+                            </select>
+                            <small class="help-block form-text">Please select Main Groups</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group Personal">
+                        <div class="col col-md-3">
+                            <label for="GroupType" class="form-control-label">Group Type</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="GroupType" id="GroupType" class="form-control">
+                                <option value="0">Regular</option>
+                                <option value="1">Bank Account</option>
+                                <option value="2">Fixed Deposit</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label"></label>
+                        </div>
+                        <div class="col col-md-9">
+                            <div class="form-check">
+                                <div class="checkbox">
+                                    <label for="IsActive" class="form-check-label ">
+                                        <input type="checkbox" id="IsActive" name="IsActive" class="form-check-input">Is Active
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label"></label>
+                        </div>
+                        <div class="col col-md-9">
+                            <div class="form-check">
+                                <div class="checkbox">
+                                    <label for="IsEditable" class="form-check-label ">
+                                        <input type="checkbox" id="IsEditable" name="IsEditable" class="form-check-input">Is Editable
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button id="Save" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"></i> Save
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"></i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/AccountGroup/AccountGroup" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+<script src="~/js/CreateAccountGroup.js"></script>

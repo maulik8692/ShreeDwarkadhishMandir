@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Income Expenditure";
+}
+<div>
+    <div class="container">
+        <div class="row m-t-10 m-b-10">
+            <div class="col-md-6 col-lg-12 text-center">
+                <h3>Income over Expenditure<span id="FinancialYear"></span></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <div class="bradius7 bgWhite p-l-10 minheight750">
+                    <div class="col-md-6 col-lg-12 p-t-10 text-center">
+                        <h5>Income</h5>
+                        <hr />
+                    </div>
+                    <div id="divIncome" class="row">
+
+                    </div>
+                    <div id="TotalLeft" class="col-md-6 col-lg-12 p-b-10">
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="bradius7 bgWhite minheight750">
+                    <div class="col-md-6 col-lg-12 p-t-10 text-center">
+                        <h5>Expenditure</h5>
+                        <hr />
+                    </div>
+                    <div id="divExpenditure" class="row">
+
+                    </div>
+                    <div id="TotalRight" class="col-md-6 col-lg-12 p-b-10">
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/js/IncomeExpenditure.js"></script>
+<script src="~/Scripts/underscore.js"></script>

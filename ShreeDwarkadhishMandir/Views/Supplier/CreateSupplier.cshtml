@@ -1,0 +1,156 @@
+﻿@{
+    ViewBag.Title = "Supplier";
+}
+
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8 PaddingTop">
+        <div class="card">
+            <div class="card-header">
+                <strong>Supplier</strong>
+            </div>
+
+            <div class="card-body card-block">
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                    <input type="hidden" id="Id" name="Id" class="form-control">
+                    <input type="hidden" id="SupplierId" name="SupplierId" class="form-control">
+
+                    <div class="row form-group" style="display:none;">
+                        <div class="col col-md-3">
+                            <label for="Mandir" class="form-control-label">Mandir</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="Mandir" id="Mandir" class="form-control"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="SupplierName" class="control-label mb-1">Supplier Name</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="SupplierName" name="SupplierName" type="text" placeholder="Enter Supplier name" class="form-control">
+                            <small class="help-block form-text">Please Enter Supplier Name.</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="MobileNo" class="form-control-label">Mobile Number</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="MobileNo" name="MobileNo" placeholder="Contact Number" class="form-control">
+                            <small class="help-block form-text">Please enter your contact mobile number without country code and +,-,(,) sign.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="Email" class="control-label mb-1">Email</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="email" id="email" name="email" placeholder="Enter Email" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row form-group Personal">
+                        <div class="col col-md-3">
+                            <label for="Country" class="form-control-label">Country</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="Country" id="Country" class="form-control">
+                                <option value="0">Please select Country</option>
+                            </select>
+                            <small class="help-block form-text">Please select Country</small>
+                        </div>
+                    </div>
+
+                    <div id="stateDiv" class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="State" class="form-control-label">State</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="State" id="State" class="form-control">
+                                <option value="0">Please select State</option>
+                            </select>
+                            <small class="help-block form-text">Please select State</small>
+                        </div>
+                    </div>
+
+                    <div id="cityDiv" class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="City" class="form-control-label">City</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="City" id="City" class="form-control">
+                                <option value="0">Please select City</option>
+                            </select>
+                            <small class="help-block form-text">Please select City</small>
+                        </div>
+                    </div>
+
+                    <div id="VillageDiv" class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="Village" class="form-control-label">Village</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="Village" id="Village" class="form-control">
+                                <option value="0">Please select Village</option>
+                            </select>
+                            <small class="help-block form-text">Please select Village</small>
+                        </div>
+                    </div>
+
+                    <div id="AddressDiv" class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="Address" class="form-control-label">Address</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <textarea name="Address" id="Address" rows="9" placeholder="Address..." class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <div id="PincodeDiv" class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="PostalCode" class="form-control-label">Postal Code</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="PostalCode" name="PostalCode" placeholder="Postal Code" class="form-control">
+                            <small class="help-block form-text">Please enter Postal Code</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label"></label>
+                        </div>
+                        <div class="col col-md-9">
+                            <div class="form-check">
+                                <div class="checkbox">
+                                    <label for="IsActive" class="form-check-label ">
+                                        <input type="checkbox" id="IsActive" name="IsActive" class="form-check-input">Is Active
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button id="Save" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"></i> Save
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"></i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/Supplier/Supplier" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+<script src="~/js/CreateSupplier.js"></script>

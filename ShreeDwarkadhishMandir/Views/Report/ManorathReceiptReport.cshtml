@@ -1,0 +1,57 @@
+﻿@model ShreeDwarkadhishMandir.Models.ReceiptRequest
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ManorathReceiptReport</title>
+    <link href="~/css/font-face.css" rel="stylesheet" media="all">
+    <link href="~/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="~/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="~/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="~/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <link href="~/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="~/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="~/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="~/css/theme.css" rel="stylesheet" media="all">
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+    <link href="~/css/A4Card.css" rel="stylesheet" />
+    <link href="~/css/A4Size.css" rel="stylesheet" />
+
+    <script src="~/vendor/jquery-3.2.1.min.js"></script>
+    <script src="~/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="~/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <script src="~/Scripts/datatables.min.js"></script>
+    <script src="~/js/date.format.js"></script>
+    <script src="~/js/ManorathReceiptReport.js"></script>
+
+</head>
+<body style="overflow-x: hidden;">
+    @Html.HiddenFor(model => model.MandirId)
+    @Html.HiddenFor(model => model.FromDate)
+    @Html.HiddenFor(model => model.ToDate)
+    @Html.HiddenFor(model => model.ManorathFromDate)
+    @Html.HiddenFor(model => model.ManorathToDate)
+    @Html.HiddenFor(model => model.AccountId)
+    @Html.HiddenFor(model => model.CreatedBy)
+    @Html.HiddenFor(model => model.OnlyManorath)
+    <div>
+        <div class="row PaddingTop PaddingRight PaddingLeft">
+            <div class="col-lg-12">
+                <div class="table-responsive table--no-card m-b-30">
+                    <table id="ManorathReceiptReport" style="width:100%" class="table table-borderless table-striped table-mandir">
+                       
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

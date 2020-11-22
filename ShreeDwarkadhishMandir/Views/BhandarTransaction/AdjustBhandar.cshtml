@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "Adjust Bhandar";
+}
+
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8 PaddingTop">
+        <div class="card">
+            <div class="card-header">
+                <strong>Adjust </strong>Bhandar
+            </div>
+
+            <div class="card-body card-block">
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                    <input type="hidden" id="Id" name="Id" class="form-control">
+
+                    <div class="row form-group" style="display:none">
+                        <div class="col col-md-3">
+                            <label for="Mandir" class="form-control-label">Mandir</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="Mandir" id="Mandir" class="form-control"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col col-md-3">
+                            <label for="BhandarName" class="control-label mb-1">Bhandar Name</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="BhandarName" name="BhandarName" type="text" placeholder="Enter Bhandar Name" class="form-control">
+                            <small class="help-block form-text">Please Enter Bhandar Name.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col col-md-3">
+                            <label for="Balance" class="control-label mb-1">Current Bhandar Balance</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input readonly id="Balance" name="Balance" type="text" placeholder="Enter Bhandar Balance" class="form-control bhandar">
+                            <small class="help-block form-text">Please Enter Bhandar Balance.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col col-md-3">
+                            <label for="TransactionAmount" class="control-label mb-1">Amount for Transaction</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="TransactionAmount" name="TransactionAmount" type="text" placeholder="00.00000" class="form-control bhandar">
+                            <small class="help-block form-text">Please Enter amount for Transaction.</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class="form-control-label">Transaction Type</label>
+                        </div>
+                        <div class="col col-md-9">
+                            <div class="form-check-inline form-check">
+                                <label for="Credit" class="form-check-label">
+                                    <input type="radio" id="Credit" name="TransactionType" value="Credit" class="form-check-input">Credit to Bhandar
+                                </label>
+                                <label for="Debit" class="form-check-label" style="margin-left:10px;">
+                                    <input type="radio" id="Debit" name="TransactionType" value="Debit" class="form-check-input">Debit from Bhandar
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group CreditTransaction">
+                        <div class="col col-md-3">
+                            <label for="Supplier" class="form-control-label">Purchase from</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="Supplier" id="Supplier" class="form-control"></select>
+                            <small class="help-block form-text">Please select Purchase from.</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group CreditTransaction">
+                        <div class="col col-md-3">
+                            <label for="PurchaseAmount" class="control-label mb-1">Purchase Amount</label>
+                        </div>
+                        <div class="col col-md-9">
+                            <input id="PurchaseAmount" name="PurchaseAmount" type="text" placeholder="₹ 0000.00" class="form-control money">
+                            <small class="help-block form-text">Please enter Purchase Amount.</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group CreditTransaction">
+                        <div class="col col-md-3">
+                            <label for="PaymentAccountHead" class="form-control-label">Payment from account</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="PaymentAccountHead" id="PaymentAccountHead" class="form-control"></select>
+                            <small class="help-block form-text">Please select Payment from account.</small>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row form-group DebitTransaction">
+                        <div class="col col-md-3">
+                            <label for="DebitTransactionNote" class="form-control-label">Debit Transaction Note</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <textarea name="DebitTransactionNote" id="DebitTransactionNote" rows="9" placeholder="Let's know if you can do any seve to mandir.." class="form-control"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button id="Save" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"> </i> Save
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"> </i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/Bhandar/Bhandar" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+<script src="~/js/AdjustBhandar.js"></script>

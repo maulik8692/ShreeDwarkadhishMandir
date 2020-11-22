@@ -1,0 +1,263 @@
+﻿
+@{
+    ViewBag.Title = "ભેટ";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
+}
+
+<div class="row PaddingTop">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <strong>ભેટ </strong>
+            </div>
+
+            <div class="card-body">
+
+                <input type="hidden" id="Manorath" name="Manorath">
+
+                <div class="row form-group" style="display:none">
+                    <div class="col col-md-3">
+                        <label for="Mandir" class="form-control-label">Mandir</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="Mandir" id="Mandir" class="form-control"></select>
+                        <small class="help-block form-text">Please select mandir.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="ManorathType" class="form-control-label">Manorath Type</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="ManorathType" id="ManorathType" class="form-control"></select>
+                        <small class="help-block form-text">Please select manorath type.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="ManorathDate" class="form-control-label">Manorath Date</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="ManorathDate" name="ManorathDate" type="text" placeholder="Enter Date" class="form-control DarshanDate">
+                        <small class="help-block form-text">Please enter Manorath Date.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="Nek" class="form-control-label">Nyochavar</label>
+                    </div>
+                    <div class="col-12 col-md-5">
+                        <input id="Nek" name="Nek" type="text" placeholder="₹ 1000.00" class="form-control money">
+                        <small class="help-block form-text">Please enter Nyochavar.</small>
+                    </div>
+                    <div class="col col-md-4">
+                        <div class="form-check-inline form-check">
+                            <label for="Cash" class="form-check-label">
+                                <input type="radio" id="Cash" name="TransactionType" value="Cash" class="form-check-input">Cash
+                            </label>
+                            <label for="Cheque" class="form-check-label" style="margin-left:10px;">
+                                <input type="radio" id="Cheque" name="TransactionType" value="Cheque" class="form-check-input">Bank Cheque
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row form-group Cheque">
+                    <div class="col col-md-3">
+                        <label for="ChequeBank" class="form-control-label">Bank Name</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="ChequeBank" name="ChequeBank" placeholder="Please Enter Cheque Bank Name" class="form-control">
+                        <small class="help-block form-text">Please enter Cheque Bank Name.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group Cheque">
+                    <div class="col col-md-3">
+                        <label for="ChequeBranch" class="form-control-label">Bank Branch</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="ChequeBranch" name="ChequeBranch" placeholder="Please Enter Cheque Bank Name" class="form-control">
+                        <small class="help-block form-text">Please enter Cheque Bank Branch.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group Cheque">
+                    <div class="col col-md-3">
+                        <label for="ChequeNumber" class="form-control-label">Cheque Number</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="ChequeNumber" name="ChequeNumber" placeholder="Please Enter Cheque Number" class="form-control">
+                        <small class="help-block form-text">Please enter Cheque Number.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group Cheque">
+                    <div class="col col-md-3">
+                        <label for="ChequeDate" class="form-control-label">Cheque Date</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="ChequeDate" name="ChequeDate" type="text" placeholder="Enter Date" class="form-control DarshanDate">
+                        <small class="help-block form-text">Please enter Cheque Date.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group" style="display:none">
+                    <div class="col col-md-3">
+                        <label for="ChequeStatus" class="form-control-label">cheque status</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="ChequeStatus" id="ChequeStatus" class="form-control">
+                            <option selected value="1">Clearing</option>
+                            <option value="2">Cleared</option>
+                        </select>
+                        <small class="help-block form-text">Please select Cheque Status.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group salabadi">
+                    <div class="col col-md-3">
+                        <label for="ManorathTithi" class="form-control-label">Manorath Tithi</label>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <select name="ManorathMonth" id="ManorathMonth" class="form-control">
+                            <option value="">-------માસ-------</option>
+                            <option value="કારતક">કારતક</option>
+                            <option value="માગશર">માગશર</option>
+                            <option value="પોષ">પોષ</option>
+                            <option value="મહા">મહા</option>
+                            <option value="ફાગણ">ફાગણ</option>
+                            <option value="ચૈત્ર">ચૈત્ર</option>
+                            <option value="વૈશાખ">વૈશાખ</option>
+                            <option value="જેઠ">જેઠ</option>
+                            <option value="અષાઢ">અષાઢ</option>
+                            <option value="શ્રાવણ">શ્રાવણ</option>
+                            <option value="ભાદરવો">ભાદરવો</option>
+                            <option value="આસો">આસો</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-3">
+                        <select name="ManorathPaksh" id="ManorathPaksh" class="form-control">
+                            <option value="">-------પક્ષ-------</option>
+                            <option value="શુક્લ પક્ષ">શુક્લ પક્ષ</option>
+                            <option value="કૃષ્ણ પક્ષ">કૃષ્ણ પક્ષ</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-3">
+                        <select name="ManorathTithi" id="ManorathTithi" class="form-control">
+                            <option value="">-------તિથિ-------</option>
+                            <option value="એકમ">એકમ</option>
+                            <option value="બીજ">બીજ</option>
+                            <option value="ત્રીજ">ત્રીજ</option>
+                            <option value="ચોથ">ચોથ</option>
+                            <option value="પાંચમ">પાંચમ</option>
+                            <option value="છઠ">છઠ</option>
+                            <option value="સાતમ">સાતમ</option>
+                            <option value="આઠમ">આઠમ</option>
+                            <option value="નોમ">નોમ</option>
+                            <option value="દશમ">દશમ</option>
+                            <option value="અગિયારશ">અગિયારશ</option>
+                            <option value="બારસ">બારસ</option>
+                            <option value="તેરસ">તેરસ</option>
+                            <option value="ચૌદસ">ચૌદસ</option>
+                            <option value="પૂનમ">પૂનમ</option>
+                            <option value="અમાસ">અમાસ</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="VaishnavId" class="form-control-label">Vaishnav Id</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="hidden" id="VaishnavId" name="VaishnavId">
+                        <input type="text" id="VaishnavIds" name="VaishnavIds" placeholder="Please Enter vaishnav Id" class="form-control">
+                        <small class="help-block form-text">Please enter vaishnav Id if not register then <a href="/Vaishnav/Vaishnav">Click here</a></small>
+                    </div>
+                </div>
+
+                <div class="row form-group Manorathi">
+                    <div class="col col-md-3">
+                        <label for="ManorathiName" class="form-control-label">Manorathi Name</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="ManorathiName" name="ManorathiName" placeholder="Please Enter Manorathi Name" class="Manorathi form-control">
+                        <small class="help-block form-text">Please enter manorathi name.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group Manorathi">
+                    <div class="col col-md-3">
+                        <label for="Email" class="form-control-label">Email</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="email" id="email" name="email" placeholder="Enter Email" class="Manorathi form-control">
+                        <small class="help-block form-text">Please enter Email.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group Manorathi">
+                    <div class="col col-md-3">
+                        <label for="MobileNo" class="form-control-label">Phone No</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="MobileNo" name="MobileNo" type="text" placeholder="Enter Phone No" maxlength="15" class="Manorathi form-control phone">
+                        <small class="help-block form-text">Please enter Phone No.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="Description" class="form-control-label">Description</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="Description" name="Description" type="text" placeholder="Enter Description(optional)" maxlength="15" class="form-control">
+                        <small class="help-block form-text">Please enter Description.</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-footer">
+                <button id="Save" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"></i> Save &amp; new
+                </button>
+                <button id="Saveprint" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"></i> Save &amp; print
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"></i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/Receipt/ReceiptList" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 NekAmount">
+        <div class="card">
+            <button type="button" class="btn btn-success row form-group Nek">1</button>
+            <button type="button" class="btn btn-success row form-group Nek">10</button>
+            <button type="button" class="btn btn-success row form-group Nek">20</button>
+            <button type="button" class="btn btn-success row form-group Nek">25</button>
+            <button type="button" class="btn btn-success row form-group Nek">50</button>
+            <button type="button" class="btn btn-success row form-group Nek">100</button>
+            <button type="button" class="btn btn-success row form-group Nek">200</button>
+            <button type="button" class="btn btn-success row form-group Nek">500</button>
+            <button type="button" class="btn btn-success row form-group Nek">1000</button>
+            <button type="button" class="btn btn-success row form-group Nek">5000</button>
+            <button type="button" class="btn btn-success row form-group Nek">10000</button>
+        </div>
+    </div>
+</div>
+
+@*<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>*@
+<script src="~/js/CreateReceipt.js?@casheCleaner"></script>

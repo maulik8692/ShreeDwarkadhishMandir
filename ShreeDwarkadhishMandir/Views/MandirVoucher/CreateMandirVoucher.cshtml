@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "CreateMandirVoucher";
+}
+
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8 PaddingTop">
+        <div class="card">
+            <div class="card-header">
+                <strong>MandirVoucher</strong>
+            </div>
+
+            <div class="card-body card-block">
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                    <input type="hidden" id="Id" name="Id" class="form-control">
+
+                    <div class="row form-group" style="display:none">
+                        <div class="col col-md-3">
+                            <label for="Mandir" class="form-control-label">Mandir</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="Mandir" id="Mandir" class="form-control"></select>
+                            <small class="help-block form-text">Please select mandir.</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="VoucherAccount" class="form-control-label">Voucher Account</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="VoucherAccount" id="VoucherAccount" class="form-control"></select>
+                            <small class="help-block form-text">Please select Voucher Account.</small>
+                        </div>
+                    </div>
+
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="VoucherDate" class="form-control-label">VoucherDate</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="VoucherDate" name="VoucherDate" type="text" placeholder="Voucher Date" class="form-control DarshanDate">
+                            <small class="help-block form-text">Please enter date of Voucher.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="VoucherNo" class="control-label mb-1">Voucher No</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="VoucherNo" name="VoucherNo" type="text" placeholder="Enter Voucher No" class="form-control number">
+                            <small class="help-block form-text">Please Enter Voucher No.</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="VoucherAmount" class="form-control-label">Voucher Amount</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input type="text" id="VoucherAmount" name="VoucherAmount" placeholder="Voucher Amount" class="form-control money">
+                            <small class="help-block form-text">Please enter Voucher Amount.</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="Description" class="control-label mb-1">Description</label>
+                        </div>
+                        <div class="col col-md-9">
+                            <textarea name="Description" id="Description" rows="9" placeholder="Description..." class="form-control"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button id="Save" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"></i> Save
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"></i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/MandirVoucher/MandirVoucher" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+<script src="~/js/CreateMandirVoucher.js"></script>
