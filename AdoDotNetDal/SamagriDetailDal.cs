@@ -11,41 +11,41 @@ using System.Threading.Tasks;
 
 namespace AdoDotNetDal
 {
-    public class SamagriBhandarDal : TemplateADO<ISamagriBhandarDetail>
+    public class SamagriDetailDal : TemplateADO<ISamagriDetail>
     {
-        public SamagriBhandarDal(string _connectionString) : base(_connectionString)
+        public SamagriDetailDal(string _connectionString) : base(_connectionString)
         {
         }
 
-        protected override void AddCommand(ISamagriBhandarDetail anyType)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override bool CheckDataCommand(ISamagriBhandarDetail anyObject)
+        protected override void AddCommand(ISamagriDetail anyType)
         {
             throw new NotImplementedException();
         }
 
-        protected override List<ISamagriBhandarDetail> DropdownWithSearchCommand<T>(T anyObject)
+        protected override bool CheckDataCommand(ISamagriDetail anyObject)
         {
             throw new NotImplementedException();
         }
 
-        protected override ISamagriBhandarDetail GetDetailCommand<T>(T anyObject)
+        protected override List<ISamagriDetail> DropdownWithSearchCommand<T>(T anyObject)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override ISamagriDetail GetDetailCommand<T>(T anyObject)
         {
             throw new NotImplementedException();
             
         }
 
-        protected override List<ISamagriBhandarDetail> GetReportCommand<T>(T anyObject)
+        protected override List<ISamagriDetail> GetReportCommand<T>(T anyObject)
         {
             throw new NotImplementedException();
         }
 
-        protected override void SaveCommand(ISamagriBhandarDetail anyType)
+        protected override void SaveCommand(ISamagriDetail anyType)
         {
-            cmd.CommandText = "SaveSamagriBhandarDetail";
+            cmd.CommandText = "SaveSamagriDetail";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Id", anyType.Id);
             cmd.Parameters.AddWithValue("@SamagriId", anyType.SamagriId);
@@ -60,19 +60,19 @@ namespace AdoDotNetDal
             cmd.ExecuteNonQuery();
         }
 
-        protected override ISamagriBhandarDetail SaveWithReturnCommand(ISamagriBhandarDetail anyType)
+        protected override ISamagriDetail SaveWithReturnCommand(ISamagriDetail anyType)
         {
             throw new NotImplementedException();
         }
 
-        protected override List<ISamagriBhandarDetail> SearchCommand()
+        protected override List<ISamagriDetail> SearchCommand()
         {
             throw new NotImplementedException();
         }
 
-        protected override List<ISamagriBhandarDetail> SearchCommand<T>(T anyObject)
+        protected override List<ISamagriDetail> SearchCommand<T>(T anyObject)
         {
-            ISamagriBhandarDetail samagriRequest = anyObject as ISamagriBhandarDetail;
+            ISamagriDetail samagriRequest = anyObject as ISamagriDetail;
 
             cmd.CommandText = "GetSamagriDetailByMasterId";
             cmd.CommandType = CommandType.StoredProcedure;
@@ -80,10 +80,10 @@ namespace AdoDotNetDal
             SqlDataReader dr = null;
             dr = cmd.ExecuteReader();
 
-            List<ISamagriBhandarDetail> samagris = new List<ISamagriBhandarDetail>();
+            List<ISamagriDetail> samagris = new List<ISamagriDetail>();
             while (dr.Read())
             {
-                ISamagriBhandarDetail samagri = Factory<ISamagriBhandarDetail>.Create("SamagriBhandar");
+                ISamagriDetail samagri = Factory<ISamagriDetail>.Create("SamagriDetail");
                 samagri.Id = dr["Id"].ToInt();
                 samagri.NoOfUnit = dr["NoOfUnit"].ToDecimal();
                 samagri.UnitId = dr["UnitId"].ToInt();
@@ -98,7 +98,7 @@ namespace AdoDotNetDal
             return samagris;
         }
 
-        protected override void UpdateCommand(ISamagriBhandarDetail anyType)
+        protected override void UpdateCommand(ISamagriDetail anyType)
         {
             throw new NotImplementedException();
         }

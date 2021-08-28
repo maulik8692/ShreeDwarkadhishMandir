@@ -7,35 +7,27 @@ using System.Threading.Tasks;
 
 namespace MiddleLayer
 {
-    public class Bhandar : IBhandar
+    public class BhandarGroup : IBhandarGroup
     {
-        private IValidation<IBhandar> validation = null;
+        private IValidation<IBhandarGroup> validation = null;
 
         public int Id { get; set; }
         public int MandirId { get; set; }
         public string Name { get; set; }
-        public int UnitId { get; set; }
-        public string UnitAbbreviation { get; set; }
-        public string UnitDescription { get; set; }
-        public int BhandarCategoryId { get; set; }
-        public string CategoryName { get; set; }
-        public decimal Balance { get; set; }
-        public int CreatedBy { get; set; }
-        public bool IsActive { get; set; }
+        public string GroupCode { get; set; }
         public string Description { get; set; }
+        public bool IsJewellery { get; set; }
+        public bool IsSamagri { get; set; }
+        public bool IsActive { get; set; }
+        public int CreatedBy { get; set; }
         public int UpdatedBy { get; set; }
         public int DeletedBy { get; set; }
         public DateTime UpdatedOn { get; set; }
         public DateTime DeletedOn { get; set; }
         public DateTime CreatedOn { get; set; }
         public bool IsDeleted { get; set; }
-        public int Total { get; set; }
-        public int Page { get; set; }
-        public int Records { get; set; }
-        public int PageNumber { get; set; }
-        public int PageSize { get; set; }
 
-        public Bhandar(IValidation<IBhandar> _validation)
+        public BhandarGroup(IValidation<IBhandarGroup> _validation)
         {
             validation = _validation;
         }

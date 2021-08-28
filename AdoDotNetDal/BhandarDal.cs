@@ -66,10 +66,10 @@ namespace AdoDotNetDal
             {
                 IBhandar bhandar = Factory<IBhandar>.Create("Bhandar");
                 bhandar.Id = dr["Id"].ToInt();
-                bhandar.MandirId = dr["MandirId"].ToInt();
+                //bhandar.MandirId = dr["MandirId"].ToInt();
                 bhandar.Name = dr["Name"].ToString();
                 bhandar.UnitId = dr["UnitId"].ToInt();
-                bhandar.CategoryId = dr["CategoryId"].ToInt();
+                bhandar.BhandarCategoryId = dr["CategoryId"].ToInt();
                 bhandar.Balance = dr["Balance"].ToDecimal();
                 bhandar.CreatedBy = dr["CreatedBy"].ToInt();
                 bhandar.IsActive = dr["IsActive"].ToBool();
@@ -92,10 +92,10 @@ namespace AdoDotNetDal
             cmd.CommandText = "SaveBhandar";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Id", anyType.Id);
-            cmd.Parameters.AddWithValue("@MandirId", anyType.MandirId);
+            //cmd.Parameters.AddWithValue("@MandirId", anyType.MandirId);
             cmd.Parameters.AddWithValue("@Name", anyType.Name);
             cmd.Parameters.AddWithValue("@UnitId", anyType.UnitId);
-            cmd.Parameters.AddWithValue("@CategoryId", anyType.CategoryId);
+            cmd.Parameters.AddWithValue("@CategoryId", anyType.BhandarCategoryId);
             cmd.Parameters.AddWithValue("@Balance", anyType.Balance);
             cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
             cmd.Parameters.AddWithValue("@IsActive", anyType.IsActive);
@@ -128,10 +128,10 @@ namespace AdoDotNetDal
             {
                 IBhandar bhandar = Factory<IBhandar>.Create("Bhandar");
                 bhandar.Id = dr["Id"].ToInt();
-                bhandar.MandirId = dr["MandirId"].ToInt();
+                //bhandar.MandirId = dr["MandirId"].ToInt();
                 bhandar.Name = dr["Name"].ToString();
                 bhandar.UnitId = dr["UnitId"].ToInt();
-                bhandar.CategoryId = dr["CategoryId"].ToInt();
+                bhandar.BhandarCategoryId = dr["CategoryId"].ToInt();
                 bhandar.Balance = dr["Balance"].ToDecimal();
                 bhandar.CreatedBy = dr["CreatedBy"].ToInt();
                 bhandar.IsActive = dr["IsActive"].ToBool();

@@ -11,30 +11,30 @@ using System.Threading.Tasks;
 
 namespace AdoDotNetDal
 {
-    public class SamagriMasterDal : TemplateADO<ISamagriMaster>
+    public class SamagriDal : TemplateADO<ISamagri>
     {
-        public SamagriMasterDal(string _connectionString) : base(_connectionString)
+        public SamagriDal(string _connectionString) : base(_connectionString)
         {
         }
 
-        protected override void AddCommand(ISamagriMaster anyType)
+        protected override void AddCommand(ISamagri anyType)
         {
             throw new NotImplementedException();
         }
 
-        protected override bool CheckDataCommand(ISamagriMaster anyObject)
+        protected override bool CheckDataCommand(ISamagri anyObject)
         {
             throw new NotImplementedException();
         }
 
-        protected override List<ISamagriMaster> DropdownWithSearchCommand<T>(T anyObject)
+        protected override List<ISamagri> DropdownWithSearchCommand<T>(T anyObject)
         {
             throw new NotImplementedException();
         }
 
-        protected override ISamagriMaster GetDetailCommand<T>(T anyObject)
+        protected override ISamagri GetDetailCommand<T>(T anyObject)
         {
-            ISamagriMaster samagriRequest = anyObject as ISamagriMaster;
+            ISamagri samagriRequest = anyObject as ISamagri;
 
             cmd.CommandText = "GetSamagriDetail";
             cmd.CommandType = CommandType.StoredProcedure;
@@ -42,10 +42,10 @@ namespace AdoDotNetDal
             SqlDataReader dr = null;
             dr = cmd.ExecuteReader();
 
-            List<ISamagriMaster> samagris = new List<ISamagriMaster>();
+            List<ISamagri> samagris = new List<ISamagri>();
             while (dr.Read())
             {
-                ISamagriMaster samagri = Factory<ISamagriMaster>.Create("Samagri");
+                ISamagri samagri = Factory<ISamagri>.Create("Samagri");
                 samagri.Id = dr["Id"].ToInt();
                 samagri.Name = dr["Name"].ToString();
                 samagri.Description = dr["Description"].ToString();
@@ -62,17 +62,17 @@ namespace AdoDotNetDal
             return samagris.FirstOrDefault() ;
         }
 
-        protected override List<ISamagriMaster> GetReportCommand<T>(T anyObject)
+        protected override List<ISamagri> GetReportCommand<T>(T anyObject)
         {
             throw new NotImplementedException();
         }
 
-        protected override void SaveCommand(ISamagriMaster anyType)
+        protected override void SaveCommand(ISamagri anyType)
         {
             throw new NotImplementedException();
         }
 
-        protected override ISamagriMaster SaveWithReturnCommand(ISamagriMaster anyType)
+        protected override ISamagri SaveWithReturnCommand(ISamagri anyType)
         {
             cmd.CommandText = "SaveSamagri";
             cmd.CommandType = CommandType.StoredProcedure;
@@ -86,10 +86,10 @@ namespace AdoDotNetDal
             SqlDataReader dr = null;
             dr = cmd.ExecuteReader();
 
-            List<ISamagriMaster> receiptBases = new List<ISamagriMaster>();
+            List<ISamagri> receiptBases = new List<ISamagri>();
             while (dr.Read())
             {
-                ISamagriMaster receiptBase = Factory<ISamagriMaster>.Create("Samagri");
+                ISamagri receiptBase = Factory<ISamagri>.Create("Samagri");
                 receiptBase.Id = dr["Id"].ToInt();
                 receiptBases.Add(receiptBase);
             }
@@ -97,14 +97,14 @@ namespace AdoDotNetDal
             return receiptBases.FirstOrDefault();
         }
 
-        protected override List<ISamagriMaster> SearchCommand()
+        protected override List<ISamagri> SearchCommand()
         {
             throw new NotImplementedException();
         }
 
-        protected override List<ISamagriMaster> SearchCommand<T>(T anyObject)
+        protected override List<ISamagri> SearchCommand<T>(T anyObject)
         {
-            ISamagriMaster samagriRequest = anyObject as ISamagriMaster;
+            ISamagri samagriRequest = anyObject as ISamagri;
 
             cmd.CommandText = "GetSamagris";
             cmd.CommandType = CommandType.StoredProcedure;
@@ -113,10 +113,10 @@ namespace AdoDotNetDal
             SqlDataReader dr = null;
             dr = cmd.ExecuteReader();
 
-            List<ISamagriMaster> samagris = new List<ISamagriMaster>();
+            List<ISamagri> samagris = new List<ISamagri>();
             while (dr.Read())
             {
-                ISamagriMaster samagri = Factory<ISamagriMaster>.Create("Samagri");
+                ISamagri samagri = Factory<ISamagri>.Create("Samagri");
                 samagri.Id = dr["Id"].ToInt();
                 samagri.Name = dr["Name"].ToString();
                 samagri.UnitId = dr["UnitId"].ToInt();
@@ -138,7 +138,7 @@ namespace AdoDotNetDal
             return samagris;
         }
 
-        protected override void UpdateCommand(ISamagriMaster anyType)
+        protected override void UpdateCommand(ISamagri anyType)
         {
             throw new NotImplementedException();
         }

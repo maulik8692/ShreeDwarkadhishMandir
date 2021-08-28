@@ -1,7 +1,7 @@
 ﻿var UnitMeasurement = [];
 var BhandarForDropdown = [];
 var SamagriDetail = {};
-var samagriBhandar = [];
+var SamagriDetail = [];
 
 $(document).ready(function () {
     Reset();
@@ -9,16 +9,16 @@ $(document).ready(function () {
         SaveSamagri();
     });
 
-    $("#NewSamagriBhandar").click(function (e) {
-        ResetSamagriBhandar(null);
+    $("#NewSamagriDetail").click(function (e) {
+        ResetSamagriDetail(null);
         var nextId = 0;
         var isNew = $('#IsNew').is(":checked")
-        if (isNew === true && samagriBhandar.length > 0) {
+        if (isNew === true && SamagriDetail.length > 0) {
             nextId = Math.max.apply(Math, samagriBhandar.map(function (o) { return o.Id; })) + 1
         } else if (isNew === true) {
             nextId = 1
         }
-        $('#SamagriBhandarId').val(nextId);
+        $('#SamagriDetailId').val(nextId);
         $('#scrollmodal').modal('show');
     });
 
@@ -169,12 +169,12 @@ function GetSamagriBhandarList() {
 
 function GetSamagriBhandar(id) {
 
-    var samagriBhandarDetail = samagriBhandar.find(x => x.Id === parseInt(id));
-    ResetSamagriBhandar(samagriBhandarDetail);
-    $('#BhandarNoOfUnit').val(samagriBhandarDetail.NoOfUnit.toFixed(4));
+    var SamagriDetail = samagriBhandar.find(x => x.Id === parseInt(id));
+    ResetSamagriBhandar(SamagriDetail);
+    $('#BhandarNoOfUnit').val(SamagriDetail.NoOfUnit.toFixed(4));
     $('#SamagriBhandarId').val(id);
-    $('#IsNew').prop('checked', samagriBhandarDetail.IsNew);
-    $('#SamagriBhandarIsActive').prop('checked', samagriBhandarDetail.IsActive);
+    $('#IsNew').prop('checked', SamagriDetail.IsNew);
+    $('#SamagriBhandarIsActive').prop('checked', SamagriDetail.IsActive);
     $('#scrollmodal').modal('show');
 }
 
@@ -240,7 +240,7 @@ function SetSamagriUOM() {
     }
 }
 
-function SetSamagriBhandarUOM(samagriBhandarDetail) {
+function SetSamagriBhandarUOM(SamagriDetail) {
     $("#SamagriBhandarUOM").empty();
 
     $("<option />", {
@@ -256,16 +256,16 @@ function SetSamagriBhandarUOM(samagriBhandarDetail) {
         }).appendTo("#SamagriBhandarUOM");
     });
 
-    if (samagriBhandarDetail !== null && samagriBhandarDetail !== "undefined" && typeof samagriBhandarDetail.UnitId !== "undefined" && samagriBhandarDetail.UnitId !== 0) {
+    if (SamagriDetail !== null && SamagriDetail !== "undefined" && typeof SamagriDetail.UnitId !== "undefined" && SamagriDetail.UnitId !== 0) {
         $('#SamagriBhandarUOM').prop('disabled', true);
-        $("#SamagriBhandarUOM").val(samagriBhandarDetail.UnitId);
+        $("#SamagriBhandarUOM").val(SamagriDetail.UnitId);
     }
     else {
         $('#SamagriBhandarUOM').prop('disabled', false);
     }
 }
 
-function SetBhandarDropdown(samagriBhandarDetail) {
+function SetBhandarDropdown(SamagriDetail) {
     $("#Bhandar").empty();
 
     $("<option />", {
@@ -281,9 +281,9 @@ function SetBhandarDropdown(samagriBhandarDetail) {
         }).appendTo("#Bhandar");
     });
 
-    if (samagriBhandarDetail !== null && samagriBhandarDetail !== "undefined" && typeof samagriBhandarDetail.BhandarId !== "undefined" && samagriBhandarDetail.BhandarId !== 0) {
+    if (SamagriDetail !== null && SamagriDetail !== "undefined" && typeof SamagriDetail.BhandarId !== "undefined" && SamagriDetail.BhandarId !== 0) {
         $('#Bhandar').prop('disabled', true);
-        $("#Bhandar").val(samagriBhandarDetail.BhandarId);
+        $("#Bhandar").val(SamagriDetail.BhandarId);
     }
     else {
         $('#Bhandar').prop('disabled', false);
@@ -324,12 +324,12 @@ function Reset() {
     GetBhandar();
 }
 
-function ResetSamagriBhandar(samagriBhandarDetail) {
-    SetSamagriBhandarUOM(samagriBhandarDetail);
-    SetBhandarDropdown(samagriBhandarDetail);
+function ResetSamagriBhandar(SamagriDetail) {
+    SetSamagriBhandarUOM(SamagriDetail);
+    SetBhandarDropdown(SamagriDetail);
     $('#BhandarNoOfUnit').val('');
     $('#SamagriBhandarIsActive').prop('checked', false);
-    if (samagriBhandarDetail === null) {
+    if (SamagriDetail === null) {
         $('#IsNew').prop('checked', true);
     } else {
         $('#IsNew').prop('checked', false);
@@ -357,15 +357,15 @@ function GetBhandar() {
 function SaveSamagriBhandar() {
 
     var SamagriBhandarId = parseInt($('#SamagriBhandarId').val());
-    var samagriBhandarDetail = samagriBhandar.find(x => x.Id === parseInt(SamagriBhandarId));
-    samagriBhandarDetail = {}
-    samagriBhandarDetail.UnitId = $("#SamagriBhandarUOM").val();
-    samagriBhandarDetail.BhandarId = $("#Bhandar").val();
-    samagriBhandarDetail.NoOfUnit = parseFloat($('#BhandarNoOfUnit').val());
+    var SamagriDetail = samagriBhandar.find(x => x.Id === parseInt(SamagriBhandarId));
+    SamagriDetail = {}
+    SamagriDetail.UnitId = $("#SamagriBhandarUOM").val();
+    SamagriDetail.BhandarId = $("#Bhandar").val();
+    SamagriDetail.NoOfUnit = parseFloat($('#BhandarNoOfUnit').val());
 
     $.ajax({
-        url: "/Samagri/ValidateSamagriBhandarDetail",
-        data: JSON.stringify(samagriBhandarDetail),
+        url: "/Samagri/ValidateSamagriDetail",
+        data: JSON.stringify(SamagriDetail),
         dataType: "json",
         type: "POST",
         contentType: "application/json; charset=utf-8",
@@ -377,14 +377,14 @@ function SaveSamagriBhandar() {
                 samagriBhandar = data;
             }
 
-            samagriBhandarDetail.Id = parseInt($('#SamagriBhandarId').val());
-            samagriBhandarDetail.IsNew = $('#IsNew').is(":checked");
-            samagriBhandarDetail.IsActive = $('#SamagriBhandarIsActive').is(":checked");
-            samagriBhandarDetail.UnitAbbreviation = UnitMeasurement.find(x => x.Id === parseInt(samagriBhandarDetail.UnitId)).UnitAbbreviation;
-            samagriBhandarDetail.UnitDescription = UnitMeasurement.find(x => x.Id === parseInt(samagriBhandarDetail.UnitId)).UnitDescription;
-            samagriBhandarDetail.BhandarName = $("#Bhandar option:selected").text();
+            SamagriDetail.Id = parseInt($('#SamagriBhandarId').val());
+            SamagriDetail.IsNew = $('#IsNew').is(":checked");
+            SamagriDetail.IsActive = $('#SamagriBhandarIsActive').is(":checked");
+            SamagriDetail.UnitAbbreviation = UnitMeasurement.find(x => x.Id === parseInt(SamagriDetail.UnitId)).UnitAbbreviation;
+            SamagriDetail.UnitDescription = UnitMeasurement.find(x => x.Id === parseInt(SamagriDetail.UnitId)).UnitDescription;
+            SamagriDetail.BhandarName = $("#Bhandar option:selected").text();
 
-            samagriBhandar.push(samagriBhandarDetail);
+            samagriBhandar.push(SamagriDetail);
 
             $('#scrollmodal').modal('hide');
             SetSamagriBhandarList();

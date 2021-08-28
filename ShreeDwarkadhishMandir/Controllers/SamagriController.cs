@@ -34,15 +34,15 @@ namespace ShreeDwarkadhishMandir.Controllers
         {
             try
             {
-                ISamagriMaster SamagriRequest = Factory<ISamagriMaster>.Create("Samagri");
+                ISamagri SamagriRequest = Factory<ISamagri>.Create("Samagri");
                 SamagriRequest.PageNumber = page;
                 SamagriRequest.PageSize = rows;
 
-                IRepository<ISamagriMaster> dal = FactoryDalLayer<IRepository<ISamagriMaster>>.Create("Samagri");
+                IRepository<ISamagri> dal = FactoryDalLayer<IRepository<ISamagri>>.Create("Samagri");
 
-                List<ISamagriMaster> Samagris = dal.Search(SamagriRequest);
+                List<ISamagri> Samagris = dal.Search(SamagriRequest);
 
-                JqGridResponse<ISamagriMaster> jsonData = new JqGridResponse<ISamagriMaster>();
+                JqGridResponse<ISamagri> jsonData = new JqGridResponse<ISamagri>();
                 jsonData.total = Samagris.IsNotNullList() ? Samagris.First().Page : 0;
                 jsonData.page = page;
                 jsonData.records = Samagris.IsNotNullList() ? Samagris.First().Total : 1;
@@ -53,11 +53,11 @@ namespace ShreeDwarkadhishMandir.Controllers
             catch (Exception ex)
             {
                 Log.Write(ex);
-                JqGridResponse<ISamagriMaster> jsonData = new JqGridResponse<ISamagriMaster>();
+                JqGridResponse<ISamagri> jsonData = new JqGridResponse<ISamagri>();
                 jsonData.total = 1;
                 jsonData.page = page;
                 jsonData.records = 0;
-                jsonData.rows = new List<ISamagriMaster>();
+                jsonData.rows = new List<ISamagri>();
                 return Json(jsonData, JsonRequestBehavior.AllowGet);
             }
         }
@@ -77,12 +77,12 @@ namespace ShreeDwarkadhishMandir.Controllers
         {
             try
             {
-                ISamagriMaster samagri = Factory<ISamagriMaster>.Create("Samagri");
+                ISamagri samagri = Factory<ISamagri>.Create("Samagri");
                 samagri.Id = samagriRequest.Id;
 
-                IRepository<ISamagriMaster> dal = FactoryDalLayer<IRepository<ISamagriMaster>>.Create("Samagri");
+                IRepository<ISamagri> dal = FactoryDalLayer<IRepository<ISamagri>>.Create("Samagri");
 
-                ISamagriMaster samagris = dal.GetDetail(samagri);
+                ISamagri samagris = dal.GetDetail(samagri);
 
                 return Json(samagris, JsonRequestBehavior.AllowGet);
             }
@@ -98,7 +98,7 @@ namespace ShreeDwarkadhishMandir.Controllers
         {
             try
             {
-                ISamagriMaster samagri = Factory<ISamagriMaster>.Create("Samagri");
+                ISamagri samagri = Factory<ISamagri>.Create("Samagri");
                 samagri.Id = samagriRequest.Id;
                 samagri.Name = samagriRequest.Name;
                 samagri.Description = samagriRequest.Description;
@@ -109,32 +109,32 @@ namespace ShreeDwarkadhishMandir.Controllers
                 samagri.IsActive = samagriRequest.IsActive;
                 samagri.Validate();
                 samagri.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
-                if (samagriRequest.SamagriBhandarRequest.IsNullList())
+                if (samagriRequest.SamagriDetailRequest.IsNullList())
                 {
                     throw new Exception("Please enter samagri bhandar details.");
                 }
 
-                IRepository<ISamagriMaster> dal = FactoryDalLayer<IRepository<ISamagriMaster>>.Create("Samagri");
-                ISamagriMaster samagris = dal.SaveWithReturn(samagri);
+                IRepository<ISamagri> dal = FactoryDalLayer<IRepository<ISamagri>>.Create("Samagri");
+                ISamagri samagris = dal.SaveWithReturn(samagri);
 
                 if (samagris.Id > 0)
                 {
-                    foreach (var item in samagriRequest.SamagriBhandarRequest.Where(x => (x.IsNew && x.IsActive) || (!x.IsNew)))
+                    foreach (var item in samagriRequest.SamagriDetailRequest.Where(x => (x.IsNew && x.IsActive) || (!x.IsNew)))
                     {
-                        ISamagriBhandarDetail samagriBhandar = Factory<ISamagriBhandarDetail>.Create("SamagriBhandar");
-                        samagriBhandar.Id = item.IsNew && item.IsActive ? 0 : item.Id;
-                        samagriBhandar.SamagriId = samagris.Id;
-                        samagriBhandar.BhandarId = item.BhandarId;
-                        samagriBhandar.UnitId = item.UnitId;
-                        samagriBhandar.NoOfUnit = item.NoOfUnit;
-                        samagriBhandar.NoOfSamagri = samagri.NoOfUnit;
-                        samagriBhandar.UnitPerSamagri = item.UnitPerSamagri;
-                        samagriBhandar.MinStockValidation = samagri.MinStockValidation;
-                        samagriBhandar.CreatedBy = samagri.CreatedBy;
-                        samagriBhandar.IsActive = item.IsActive;
+                        ISamagriDetail samagriDetail = Factory<ISamagriDetail>.Create("SamagriBhandar");
+                        samagriDetail.Id = item.IsNew && item.IsActive ? 0 : item.Id;
+                        samagriDetail.SamagriId = samagris.Id;
+                        samagriDetail.BhandarId = item.BhandarId;
+                        samagriDetail.UnitId = item.UnitId;
+                        samagriDetail.NoOfUnit = item.NoOfUnit;
+                        samagriDetail.NoOfSamagri = samagri.NoOfUnit;
+                        samagriDetail.UnitPerSamagri = item.UnitPerSamagri;
+                        samagriDetail.MinStockValidation = samagri.MinStockValidation;
+                        samagriDetail.CreatedBy = samagri.CreatedBy;
+                        //samagriDetail.IsActive = item.IsActive;
 
-                        IRepository<ISamagriBhandarDetail> detail = FactoryDalLayer<IRepository<ISamagriBhandarDetail>>.Create("SamagriBhandar");
-                        detail.Save(samagriBhandar);
+                        IRepository<ISamagriDetail> detail = FactoryDalLayer<IRepository<ISamagriDetail>>.Create("SamagriDetail");
+                        detail.Save(samagriDetail);
                     }
                 }
 
@@ -148,16 +148,16 @@ namespace ShreeDwarkadhishMandir.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetSamagriBhandarList(SamagriBhandarRequest samagriBhandarRequest)
+        public ActionResult GetSamagriDetailList(SamagriDetailRequest SamagriDetailRequest)
         {
             try
             {
-                ISamagriBhandarDetail samagri = Factory<ISamagriBhandarDetail>.Create("SamagriBhandar");
-                samagri.SamagriId = samagriBhandarRequest.SamagriId;
+                ISamagriDetail samagri = Factory<ISamagriDetail>.Create("SamagriDetail");
+                samagri.SamagriId = SamagriDetailRequest.SamagriId;
 
-                IRepository<ISamagriBhandarDetail> dal = FactoryDalLayer<IRepository<ISamagriBhandarDetail>>.Create("SamagriBhandar");
+                IRepository<ISamagriDetail> dal = FactoryDalLayer<IRepository<ISamagriDetail>>.Create("SamagriDetail");
 
-                List<ISamagriBhandarDetail> samagris = dal.Search(samagri);
+                List<ISamagriDetail> samagris = dal.Search(samagri);
 
                 return Json(samagris, JsonRequestBehavior.AllowGet);
             }
@@ -169,14 +169,14 @@ namespace ShreeDwarkadhishMandir.Controllers
         }
 
         [HttpPost]
-        public ActionResult ValidateSamagriBhandarDetail(SamagriBhandarRequest samagriBhandarDetail)
+        public ActionResult ValidateSamagriDetail(SamagriDetailRequest SamagriDetail)
         {
             try
             {
-                ISamagriBhandarDetail samagri = Factory<ISamagriBhandarDetail>.Create("SamagriBhandar");
-                samagri.UnitId = samagriBhandarDetail.UnitId;
-                samagri.BhandarId = samagriBhandarDetail.BhandarId;
-                samagri.NoOfUnit = samagriBhandarDetail.NoOfUnit;
+                ISamagriDetail samagri = Factory<ISamagriDetail>.Create("SamagriDetail");
+                samagri.UnitId = SamagriDetail.UnitId;
+                samagri.BhandarId = SamagriDetail.BhandarId;
+                samagri.NoOfUnit = SamagriDetail.NoOfUnit;
                 samagri.Validate();
 
                 return Json("Validation done.", JsonRequestBehavior.AllowGet);

@@ -51,8 +51,8 @@ namespace FactoryDal
                 ObjectsofOurProjects.RegisterType<IRepository<IUnitOfMeasurement>, UnitOfMeasurementDal>("UnitOfMeasurement");
 
                 ObjectsofOurProjects.RegisterType<IRepository<ICommunication>, CommunicationDal>("Communication");
-                ObjectsofOurProjects.RegisterType<IRepository<ISamagriMaster>, SamagriMasterDal>("Samagri");
-                ObjectsofOurProjects.RegisterType<IRepository<ISamagriBhandarDetail>, SamagriBhandarDal>("SamagriBhandar");
+                ObjectsofOurProjects.RegisterType<IRepository<ISamagri>, SamagriDal>("Samagri");
+                ObjectsofOurProjects.RegisterType<IRepository<ISamagriDetail>, SamagriDetailDal>("SamagriDetail");
                 ObjectsofOurProjects.RegisterType<IRepository<IEmailLog>, EmailLogDal>("EmailLog");
                 ObjectsofOurProjects.RegisterType<IRepository<IDashboard>, DashboardDal>("Dashboard");
                 ObjectsofOurProjects.RegisterType<IRepository<IDefaultGroups>, DefaultGroupsDal>("DefaultGroups");

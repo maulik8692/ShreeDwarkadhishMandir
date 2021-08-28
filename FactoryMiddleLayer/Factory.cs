@@ -52,17 +52,20 @@ namespace FactoryMiddleLayer
                 //ObjectsofOurProjects.RegisterType<ReceiptBase, DarshanReceipt>
                 //   ("DarshanReceipt", new InjectionConstructor(new ValidationManorathReceipt()));
 
+                ObjectsofOurProjects.RegisterType<IBhandarGroup, BhandarGroup>
+                  ("BhandarGroup", new InjectionConstructor(new ValidationBhandarGroup()));
+
                 ObjectsofOurProjects.RegisterType<IBhandar, Bhandar>
                   ("Bhandar", new InjectionConstructor(new ValidationBhandar()));
 
                 ObjectsofOurProjects.RegisterType<IBhandarTransaction, BhandarTransaction>
                   ("BhandarTransaction", new InjectionConstructor(new ValidationBhandarTransaction()));
 
-                ObjectsofOurProjects.RegisterType<ISamagriMaster, SamagriMaster>
-                ("Samagri", new InjectionConstructor(new ValidationSamagriMaster()));
+                ObjectsofOurProjects.RegisterType<ISamagri, Samagri>
+                ("Samagri", new InjectionConstructor(new ValidationSamagri()));
 
-                ObjectsofOurProjects.RegisterType<ISamagriBhandarDetail, SamagriBhandarDetail>
-                ("SamagriBhandar", new InjectionConstructor(new ValidationSamagriBhandarDetail()));
+                ObjectsofOurProjects.RegisterType<ISamagriDetail, SamagriDetail>
+                ("SamagriDetail", new InjectionConstructor(new ValidationSamagriDetail()));
 
                 ObjectsofOurProjects.RegisterType<IDarshan, Darshan>
                     ("Darshan", new InjectionConstructor(new ValidationDarshan()));

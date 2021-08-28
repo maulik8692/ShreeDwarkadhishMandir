@@ -12,8 +12,17 @@ namespace InterfaceMiddleLayer
         int Page { get; set; }
         int Records { get; set; }
         int Id { get; set; }
-        string CategoryName { get; set; }
+        int GroupId { get; set; }
+        string Name { get; set; }
+        string CategoryCode { get; set; }
+        string Description { get; set; }
         int CreatedBy { get; set; }
+        int UpdatedBy { get; set; }
+        int DeletedBy { get; set; }
+        DateTime UpdatedOn { get; set; }
+        DateTime DeletedOn { get; set; }
+        DateTime CreatedOn { get; set; }
+        bool IsDeleted { get; set; }
         bool IsActive { get; set; }
         int PageNumber { get; set; }
         int PageSize { get; set; }

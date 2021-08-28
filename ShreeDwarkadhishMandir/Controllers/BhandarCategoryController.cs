@@ -113,7 +113,7 @@ namespace ShreeDwarkadhishMandir.Controllers
             try
             {
                 IBhandarCategory bhandarCategoryRequest = Factory<IBhandarCategory>.Create("BhandarCategory");
-                bhandarCategoryRequest.CategoryName = bhandarCategory.CategoryName;
+                bhandarCategoryRequest.Name = bhandarCategory.Name;
                 bhandarCategoryRequest.Id = bhandarCategory.Id;
                 bhandarCategoryRequest.IsActive = bhandarCategory.IsActive;
                 bhandarCategoryRequest.Validate();

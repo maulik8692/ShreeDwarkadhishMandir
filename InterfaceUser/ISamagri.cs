@@ -6,24 +6,32 @@ using System.Threading.Tasks;
 
 namespace InterfaceMiddleLayer
 {
-    public interface ISamagriMaster
+    public interface ISamagri
     {
         int Id { get; set; }
+        int BhandarId { get; set; }
         string Name { get; set; }
         string Description { get; set; }
+        string Recipe { get; set; }
         int UnitId { get; set; }
         decimal NoOfUnit { get; set; }
         decimal Balance { get; set; }
         decimal MinStockValidation { get; set; }
         int CreatedBy { get; set; }
         bool IsActive { get; set; }
+        DateTime CreatedOn { get; set; }
+        DateTime UpdatedOn { get; set; }
+        int UpdatedBy { get; set; }
+        DateTime DeletedOn { get; set; }
+        int DeletedBy { get; set; }
+        int IsDeleted { get; set; }
         int PageNumber { get; set; }
         int PageSize { get; set; }
         int Page { get; set; }
         int Total { get; set; }
         string UnitDescription { get; set; }
         string UnitAbbreviation { get; set; }
-
+       
         void Validate();
     }
 }

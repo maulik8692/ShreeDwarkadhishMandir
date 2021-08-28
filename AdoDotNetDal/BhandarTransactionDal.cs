@@ -65,12 +65,11 @@ namespace AdoDotNetDal
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@BhandarId", anyType.BhandarId);
             cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
-            cmd.Parameters.AddWithValue("@Credit", anyType.Credit);
-            cmd.Parameters.AddWithValue("@Debit", anyType.Debit);
+            cmd.Parameters.AddWithValue("@Credit", anyType.StockTransactionQuantity);
             cmd.Parameters.AddWithValue("@SupplierId", anyType.SupplierId);
             cmd.Parameters.AddWithValue("@PurchasingPrice", anyType.PurchasingPrice);
-            cmd.Parameters.AddWithValue("@PaymentAccountHead", anyType.PaymentAccountHead);
-            cmd.Parameters.AddWithValue("@Notes ", anyType.Notes);
+            cmd.Parameters.AddWithValue("@PaymentAccountHead", anyType.PaymentAccountHeadId);
+            cmd.Parameters.AddWithValue("@Notes ", anyType.Description);
             cmd.ExecuteNonQuery();
         }
 

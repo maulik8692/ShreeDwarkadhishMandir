@@ -51,6 +51,7 @@
     <Compile Include="IBalanceSheet.cs" />
     <Compile Include="IBhandar.cs" />
     <Compile Include="IBhandarCategory.cs" />
+    <Compile Include="IBhandarGroup.cs" />
     <Compile Include="IBhandarTransaction.cs" />
     <Compile Include="ICity.cs" />
     <Compile Include="ICommunication.cs" />
@@ -69,8 +70,8 @@
     <Compile Include="InterfaceTemple.cs" />
     <Compile Include="IPadhramaniRequest.cs" />
     <Compile Include="IReceipt.cs" />
-    <Compile Include="ISamagriBhandarDetail.cs" />
-    <Compile Include="ISamagriMaster.cs" />
+    <Compile Include="ISamagriDetail.cs" />
+    <Compile Include="ISamagri.cs" />
     <Compile Include="ISamagriTransaction.cs" />
     <Compile Include="IServiceStatus.cs" />
     <Compile Include="IState.cs" />

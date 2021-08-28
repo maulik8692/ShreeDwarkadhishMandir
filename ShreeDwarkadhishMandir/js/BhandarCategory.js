@@ -13,10 +13,10 @@ function GetDetail() {
             mtype: 'Get',
             hoverrows: false,
             colNames: [
-                'Id', 'CategoryName', 'Edit'],
+                'Id', 'Name', 'Edit'],
             colModel: [
                 { name: 'Id', index: 'Id', align: 'left', key: true, hidden: true, sortable: false },
-                { name: 'CategoryName', index: 'CategoryName', align: 'left', sortable: false },
+                { name: 'Name', index: 'Name', align: 'left', sortable: false },
                 { name: 'editoperation', index: 'editoperation', align: 'center', width: 40, sortable: false, formatter: EditBhandarCategory },
             ],
             pager: jQuery('#pager'),

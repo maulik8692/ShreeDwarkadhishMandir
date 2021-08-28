@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ShreeDwarkadhishMandir.Models
 {
-    public class SamagriBhandarRequest
+    public class SamagriDetailRequest
     {
         public int Id { get; set; }
         public int SamagriId { get; set; }

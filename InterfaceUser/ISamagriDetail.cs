@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InterfaceMiddleLayer
 {
-    public interface ISamagriBhandarDetail
+    public interface ISamagriDetail
     {
         int Id { get; set; }
         int SamagriId { get; set; }
@@ -20,7 +20,13 @@ namespace InterfaceMiddleLayer
         int CreatedBy { get; set; }
         string UnitAbbreviation { get; set; }
         string UnitDescription { get; set; }
-        bool IsActive { get; set; }
+        decimal Quantity { get; set; }
+        DateTime CreatedOn { get; set; }
+        DateTime UpdatedOn { get; set; }
+        int UpdatedBy { get; set; }
+        DateTime DeletedOn { get; set; }
+        int DeletedBy { get; set; }
+        int IsDeleted { get; set; }
         void Validate();
     }
 }

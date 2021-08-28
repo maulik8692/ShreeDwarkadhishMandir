@@ -8,15 +8,14 @@ using System.Threading.Tasks;
 
 namespace ValidationAlgorithms
 {
-    public class ValidationBhandarCategory : IValidation<IBhandarCategory>
+    public class ValidationBhandarGroup : IValidation<IBhandarGroup>
     {
-        public void Validate(IBhandarCategory anyType)
+        public void Validate(IBhandarGroup anyType)
         {
             if (anyType.Name.IsExactLength(0))
             {
-                throw new Exception("Category name is require.");
+                throw new Exception("Name is require.");
             }
         }
-
     }
 }

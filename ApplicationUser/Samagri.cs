@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MiddleLayer
 {
-    public class SamagriMaster : ISamagriMaster
+    public class Samagri : ISamagri
     {
-        private IValidation<ISamagriMaster> validation = null;
+        private IValidation<ISamagri> validation = null;
 
         public int Id { get; set; }
         public string Name { get; set; }
@@ -26,8 +26,16 @@ namespace MiddleLayer
         public int Total { get; set; }
         public string UnitDescription { get; set; }
         public string UnitAbbreviation { get; set; }
+        public int BhandarId { get; set; }
+        public string Recipe { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime UpdatedOn { get; set; }
+        public int UpdatedBy { get; set; }
+        public DateTime DeletedOn { get; set; }
+        public int DeletedBy { get; set; }
+        public int IsDeleted { get; set; }
 
-        public SamagriMaster(IValidation<ISamagriMaster> _validation)
+        public Samagri(IValidation<ISamagri> _validation)
         {
             validation = _validation;
         }

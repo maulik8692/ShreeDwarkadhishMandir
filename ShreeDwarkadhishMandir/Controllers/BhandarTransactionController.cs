@@ -32,12 +32,12 @@ namespace ShreeDwarkadhishMandir.Controllers
             {
                 IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
                 bhandarTransaction.BhandarId = bhandarTransactionRequest.BhandarId;
-                bhandarTransaction.Credit = bhandarTransactionRequest.Credit;
-                bhandarTransaction.Debit = bhandarTransactionRequest.Debit;
+                bhandarTransaction.StockTransactionQuantity = bhandarTransactionRequest.Credit;
+                //bhandarTransaction.Debit = bhandarTransactionRequest.Debit;
                 bhandarTransaction.SupplierId = bhandarTransactionRequest.SupplierId;
-                bhandarTransaction.PaymentAccountHead = bhandarTransactionRequest.PaymentAccountHead;
+                bhandarTransaction.PaymentAccountHeadId = bhandarTransactionRequest.PaymentAccountHead;
                 bhandarTransaction.PurchasingPrice = bhandarTransactionRequest.PurchasingPrice;
-                bhandarTransaction.Notes = bhandarTransactionRequest.Notes;
+                bhandarTransaction.Description = bhandarTransactionRequest.Notes;
                 bhandarTransaction.Validate();
                 bhandarTransaction.CreatedBy  = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
 

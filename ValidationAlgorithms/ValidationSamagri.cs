@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ValidationAlgorithms
 {
-    public class ValidationSamagriMaster : IValidation<ISamagriMaster>
+    public class ValidationSamagri : IValidation<ISamagri>
     {
-        public void Validate(ISamagriMaster anyType)
+        public void Validate(ISamagri anyType)
         {
             if (anyType.Name.IsExactLength(0))
             {

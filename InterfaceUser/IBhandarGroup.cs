@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 
 namespace InterfaceMiddleLayer
 {
-    public interface IBhandar
+    public interface IBhandarGroup
     {
         int Id { get; set; }
+        int MandirId { get; set; }
         string Name { get; set; }
+        string GroupCode { get; set; }
         string Description { get; set; }
-        int UnitId { get; set; }
-        string UnitAbbreviation { get; set; }
-        string UnitDescription { get; set; }
-        int BhandarCategoryId { get; set; }
-        string CategoryName { get; set; }
-        decimal Balance { get; set; }
+        bool IsJewellery { get; set; }
+        bool IsSamagri { get; set; }
         bool IsActive { get; set; }
         int CreatedBy { get; set; }
         int UpdatedBy { get; set; }
@@ -25,12 +23,6 @@ namespace InterfaceMiddleLayer
         DateTime DeletedOn { get; set; }
         DateTime CreatedOn { get; set; }
         bool IsDeleted { get; set; }
-        int Total { get; set; }
-        int Page { get; set; }
-        int Records { get; set; }
-        int PageNumber { get; set; }
-        int PageSize { get; set; }
         void Validate();
-
     }
 }

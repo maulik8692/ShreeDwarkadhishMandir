@@ -158,6 +158,7 @@
     <Compile Include="Models\ApplicationUserRequest.cs" />
     <Compile Include="Models\BalanceSheetRequest.cs" />
     <Compile Include="Models\BhandarCategoryRequest.cs" />
+    <Compile Include="Models\BhandarGroupRequest.cs" />
     <Compile Include="Models\JqGridResponse.cs" />
     <Compile Include="Models\BhandarRequest.cs" />
     <Compile Include="Models\BhandarTransactionRequest.cs" />
@@ -175,7 +176,7 @@
     <Compile Include="Models\ManorathRequest.cs" />
     <Compile Include="Models\PadhramaniJsonRequest.cs" />
     <Compile Include="Models\ReceiptRequest.cs" />
-    <Compile Include="Models\SamagriBhandarRequest.cs" />
+    <Compile Include="Models\SamagriDetailRequest.cs" />
     <Compile Include="Models\SamagriRequest.cs" />
     <Compile Include="Models\SupplierRequest.cs" />
     <Compile Include="Models\UnitMeasurementRequest.cs" />
@@ -1159,7 +1160,7 @@
     <Content Include="Views\Report\AccountTransaction.cshtml" />
     <Content Include="Views\Report\AccountTransactionReport.cshtml" />
     <Content Include="Views\Samagri\Samagri.cshtml" />
-    <Content Include="Views\Samagri\SamagriBhandarDetail.cshtml" />
+    <Content Include="Views\Samagri\SamagriDetail.cshtml" />
     <Content Include="Views\Samagri\CreateSamagri.cshtml" />
     <Content Include="Views\Communication\Communication.cshtml" />
     <Content Include="Views\AccountGroup\AccountGroup.cshtml" />

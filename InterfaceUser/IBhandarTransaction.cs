@@ -8,15 +8,21 @@ namespace InterfaceMiddleLayer
 {
     public interface IBhandarTransaction
     {
+        int Id { get; set; }
         int BhandarId { get; set; }
-        int CreatedBy { get; set; }
-        decimal Credit { get; set; }
-        decimal Debit { get; set; }
-
+        int StoreId { get; set; }
+        int BhandarTransactionCodeId { get; set; }
+        int UnitId { get; set; }
         int SupplierId { get; set; }
-        int PaymentAccountHead { get; set; }
+        int SamagriId { get; set; }
         decimal PurchasingPrice { get; set; }
-        string Notes { get; set; }
+        int CreatedOn { get; set; }
+        int CreatedBy { get; set; }
+        int JewelleryUnitId { get; set; }
+        decimal JewelleryQuantity { get; set; }
+        decimal StockTransactionQuantity { get; set; }
+        int PaymentAccountHeadId { get; set; }
+        string Description { get; set; }
 
         void Validate();
     }

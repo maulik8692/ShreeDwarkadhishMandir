@@ -40,7 +40,7 @@ namespace AdoDotNetDal
             {
                 IBhandarCategory BhandarCategory = Factory<IBhandarCategory>.Create("BhandarCategory");
                 BhandarCategory.Id = dr["Id"].ToInt();
-                BhandarCategory.CategoryName = dr["CategoryName"].ToString();
+                BhandarCategory.Name = dr["CategoryName"].ToString();
                 bhandarCategories.Add(BhandarCategory);
             }
 
@@ -63,7 +63,7 @@ namespace AdoDotNetDal
             {
                 IBhandarCategory BhandarCategory = Factory<IBhandarCategory>.Create("BhandarCategory");
                 BhandarCategory.Id = dr["Id"].ToInt();
-                BhandarCategory.CategoryName = dr["CategoryName"].ToString();
+                BhandarCategory.Name = dr["CategoryName"].ToString();
                 BhandarCategory.IsActive = dr["IsActive"].ToBool();
                 bhandarCategories.Add(BhandarCategory);
             }
@@ -81,7 +81,7 @@ namespace AdoDotNetDal
             cmd.CommandText = "SaveBhandarCategory";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Id", anyType.Id);
-            cmd.Parameters.AddWithValue("@CategoryName", anyType.CategoryName);
+            cmd.Parameters.AddWithValue("@CategoryName", anyType.Name);
             cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
             cmd.Parameters.AddWithValue("@IsActive", anyType.IsActive);
             cmd.ExecuteNonQuery();
@@ -114,7 +114,7 @@ namespace AdoDotNetDal
             {
                 IBhandarCategory BhandarCategory = Factory<IBhandarCategory>.Create("BhandarCategory");
                 BhandarCategory.Id = dr["Id"].ToInt();
-                BhandarCategory.CategoryName = dr["CategoryName"].ToString();
+                BhandarCategory.Name = dr["CategoryName"].ToString();
                 BhandarCategory.IsActive = dr["IsActive"].ToBool();
                 BhandarCategory.Total = dr["total"].ToInt();
                 BhandarCategory.Page = dr["page"].ToInt();

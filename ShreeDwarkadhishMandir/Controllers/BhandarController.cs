@@ -114,10 +114,10 @@ namespace ShreeDwarkadhishMandir.Controllers
             {
                 IBhandar BhandarRequest = Factory<IBhandar>.Create("Bhandar");
                 BhandarRequest.Id = Bhandar.Id;
-                BhandarRequest.MandirId = Bhandar.MandirId;
+                //BhandarRequest.MandirId = Bhandar.MandirId;
                 BhandarRequest.Name = Bhandar.Name;
                 BhandarRequest.UnitId = Bhandar.UnitId;
-                BhandarRequest.CategoryId = Bhandar.CategoryId;
+                BhandarRequest.BhandarCategoryId = Bhandar.CategoryId;
                 BhandarRequest.Balance = Bhandar.Balance;
                 BhandarRequest.IsActive = Bhandar.IsActive;
                 BhandarRequest.Validate();

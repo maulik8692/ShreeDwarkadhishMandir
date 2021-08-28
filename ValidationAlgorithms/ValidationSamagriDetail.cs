@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ValidationAlgorithms
 {
-    public class ValidationSamagriBhandarDetail : IValidation<ISamagriBhandarDetail>
+    public class ValidationSamagriDetail : IValidation<ISamagriDetail>
     {
-        public void Validate(ISamagriBhandarDetail anyType)
+        public void Validate(ISamagriDetail anyType)
         {
             if (!anyType.UnitId.IsNotZero())
             {

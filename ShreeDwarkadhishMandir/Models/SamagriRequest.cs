@@ -7,7 +7,7 @@ namespace ShreeDwarkadhishMandir.Models
 {
     public class SamagriRequest
     {
-        public List<SamagriBhandarRequest> SamagriBhandarRequest { get; set; }
+        public List<SamagriDetailRequest> SamagriDetailRequest { get; set; }
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

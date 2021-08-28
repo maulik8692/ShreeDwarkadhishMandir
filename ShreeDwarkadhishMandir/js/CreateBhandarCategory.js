@@ -15,7 +15,7 @@ function SaveForm() {
     showProgress();
     var bhandarCategory = {
         Id: parseInt($('#Id').val()),
-        CategoryName: $('#CategoryName').val(),
+        Name: $('#Name').val(),
         IsActive: $('#IsActive').is(":checked")
     };
 
@@ -46,7 +46,7 @@ function GetDetail() {
         showProgress();
         var bhandarCategory = {
             Id: parseInt($('#Id').val()),
-            CategoryName: '',
+            Name: '',
             IsActive: false
         };
 
@@ -74,12 +74,12 @@ function GetDetail() {
 }
 
 function setdetail() {
-    $('#CategoryName').val(BhandarCategoryDetail.CategoryName);
+    $('#Name').val(BhandarCategoryDetail.Name);
     $('#IsActive').prop('checked', BhandarCategoryDetail.IsActive);
 }
 
 function ResetForm() {
-    $('#CategoryName').val('');
+    $('#Name').val('');
     $('#IsActive').prop('checked', false);
     GetDetail();
 }

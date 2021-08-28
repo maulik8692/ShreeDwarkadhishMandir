@@ -20,7 +20,7 @@ namespace ValidationAlgorithms
             {
                 throw new Exception("Please select unit of measurement.");
             }
-            if (!anyType.CategoryId.IsNotZero())
+            if (!anyType.BhandarCategoryId.IsNotZero())
             {
                 throw new Exception("Please select category.");
             }
