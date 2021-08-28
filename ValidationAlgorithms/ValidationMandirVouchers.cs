@@ -16,7 +16,7 @@ namespace ValidationAlgorithms
             {
                 throw new Exception("Voucher no is require.");
             }
-            if (!anyType.VoucherDate.IsDate())
+            if (anyType.VoucherDate.IsMinDate())
             {
                 throw new Exception("Voucher date is require.");
             }

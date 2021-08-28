@@ -48,10 +48,20 @@
 
                 <div class="row form-group">
                     <div class="col col-md-3">
+                        <label for="Description" class="form-control-label">Receipt No.</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="Description" name="Description" type="text" placeholder="Enter Description(optional)" maxlength="15" class="form-control">
+                        <small class="help-block form-text">Please enter Receipt No.</small>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
                         <label for="Nek" class="form-control-label">Nyochavar</label>
                     </div>
                     <div class="col-12 col-md-5">
-                        <input id="Nek" name="Nek" type="text" placeholder="₹ 1000.00" class="form-control money">
+                        <input id="Nek" name="Nek" type="text" placeholder="₹ 1000.00" class="form-control money OnSave">
                         <small class="help-block form-text">Please enter Nyochavar.</small>
                     </div>
                     <div class="col col-md-4">
@@ -188,7 +198,7 @@
                         <label for="ManorathiName" class="form-control-label">Manorathi Name</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="text" id="ManorathiName" name="ManorathiName" placeholder="Please Enter Manorathi Name" class="Manorathi form-control">
+                        <input type="text" id="ManorathiName" name="ManorathiName" placeholder="Please Enter Manorathi Name" class="Manorathi form-control OnSave">
                         <small class="help-block form-text">Please enter manorathi name.</small>
                     </div>
                 </div>
@@ -213,15 +223,7 @@
                     </div>
                 </div>
 
-                <div class="row form-group">
-                    <div class="col col-md-3">
-                        <label for="Description" class="form-control-label">Description</label>
-                    </div>
-                    <div class="col-12 col-md-9">
-                        <input id="Description" name="Description" type="text" placeholder="Enter Description(optional)" maxlength="15" class="form-control">
-                        <small class="help-block form-text">Please enter Description.</small>
-                    </div>
-                </div>
+
 
             </div>
 

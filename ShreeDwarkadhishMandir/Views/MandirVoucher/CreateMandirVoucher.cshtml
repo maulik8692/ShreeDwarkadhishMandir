@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "CreateMandirVoucher";
+    string cacheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
 <div class="row">
@@ -22,6 +23,22 @@
                         <div class="col-12 col-md-9">
                             <select name="Mandir" id="Mandir" class="form-control"></select>
                             <small class="help-block form-text">Please select mandir.</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="VoucherType" class="control-label mb-1">Voucher Type</label>
+                        </div>
+                        <div class="col col-md-9">
+                            <div class="form-check-inline form-check">
+                                <label for="Credit" class="form-check-label">
+                                    <input type="radio" checked id="Credit" name="VoucherType" value="Borrow" class="form-check-input">ઉધાર વાઉચર
+                                </label>
+                                <label for="Debit" class="form-check-label" style="margin-left:10px;">
+                                    <input type="radio" id="Debit" name="VoucherType" value="Deposit" class="form-check-input">જમા વાઉચર
+                                </label>
+                            </div>
                         </div>
                     </div>
 
@@ -92,4 +109,4 @@
     <div class="col-lg-2"></div>
 </div>
 
-<script src="~/js/CreateMandirVoucher.js"></script>
+<script src="~/js/CreateMandirVoucher.js?@cacheCleaner"></script>

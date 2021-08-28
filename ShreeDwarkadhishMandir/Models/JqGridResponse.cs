@@ -11,5 +11,6 @@ namespace ShreeDwarkadhishMandir.Models
         public int page { get; set; }
         public int records { get; set; }
         public List<T> rows { get; set; }
+
     }
 }

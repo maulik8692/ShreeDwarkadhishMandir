@@ -31,7 +31,7 @@ namespace MiddleLayer
         public string AccountName { get; set; }
         public string DisplayVoucherDate { get; set; }
         public string DispalyAmount { get; set; }
-
+        public string VoucherType { get; set; }
         public void Validate()
         {
             validation.Validate(this);

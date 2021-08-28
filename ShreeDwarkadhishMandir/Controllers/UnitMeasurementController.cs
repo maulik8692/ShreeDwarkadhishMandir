@@ -60,11 +60,11 @@ namespace ShreeDwarkadhishMandir.Controllers
 
                 JqGridResponse<IUnitOfMeasurement> jsonData = new JqGridResponse<IUnitOfMeasurement>();
                 // Total Page
-                jsonData.total = unitMeasurements.IsNotNull() ? unitMeasurements.First().Page : 0; //unitMeasurements.IsNotNull() ? unitMeasurements.First().Total : 0;
+                jsonData.total = unitMeasurements.IsNotNullList() ? unitMeasurements.First().Page : 0; //unitMeasurements.IsNotNull() ? unitMeasurements.First().Total : 0;
                 // Current Page
                 jsonData.page = page;//unitMeasurements.IsNotNull() ? unitMeasurements.First().Page : 1;
                 //
-                jsonData.records = unitMeasurements.IsNotNull() ? unitMeasurements.First().Total : 1;
+                jsonData.records = unitMeasurements.IsNotNullList() ? unitMeasurements.First().Total : 1;
                 jsonData.rows = unitMeasurements;
 
                 return Json(jsonData, JsonRequestBehavior.AllowGet);
@@ -72,7 +72,12 @@ namespace ShreeDwarkadhishMandir.Controllers
             catch (Exception ex)
             {
                 Log.Write(ex);
-                throw;
+                JqGridResponse<IUnitOfMeasurement> jsonData = new JqGridResponse<IUnitOfMeasurement>();
+                jsonData.total = 1;
+                jsonData.page = page;
+                jsonData.records = 0;
+                jsonData.rows = new List<IUnitOfMeasurement>();
+                return Json(jsonData, JsonRequestBehavior.AllowGet);
             }
         }
 

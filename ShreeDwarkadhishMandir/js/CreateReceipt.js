@@ -13,6 +13,13 @@ $(document).ready(function () {
         changeYear: true,
     });
 
+    $('.OnSave').keypress(function (e) {
+        var keycode = (e.keyCode ? e.keyCode : e.which);
+        if (keycode == '13') {
+            SaveForm(false);
+        }
+    });
+
     $("#VaishnavIds").on('keyup change', function () {
         if (this.value.length === 0) {
             $('.Manorathi').attr("disabled", false);
@@ -44,8 +51,6 @@ $(document).ready(function () {
 
     $(".Nek").click(function (e) {
 
-        console.log($('#Nek').val());
-        debugger;
         var totalNek = $('#Nek').val() !== '' && $('#Nek').val() !== '₹ ' ? parseFloat($('#Nek').val().substr(2).replace(/,/g, '')) : 0;
         console.log(totalNek);
         totalNek = totalNek + parseFloat($(this).text());
@@ -106,7 +111,7 @@ function ManorathTypeCHanged() {
         $('#Manorath').val(ManorathType);
         if (Nyochavar > 0) {
             $('#Nek').val(Nyochavar);
-            $('#Nek').prop('readonly', true);
+            //$('#Nek').prop('readonly', true);
             $(".Nek").hide();
 
         }
@@ -311,10 +316,12 @@ function SaveForm(allowprint) {
                     }
 
                 } else {
-                    alert('Receipt generated successfully.');
+                    alert('Receipt No ' + parseInt(reportParamObj.Description)+' generated successfully.');
+                    ResetForm();
                     //$('#Nek').val('');
-                    $("#Description").val(parseInt($("#Description").val())+ 1);
+                    $("#Description").val(parseInt(reportParamObj.Description)+ 1);
                     $('#ManorathiName').val('Vaishnav');
+                    $("#ManorathDate").val(reportParamObj.ManorathDate);
                 }
                 //window.location.href = '/Receipt/Receipt';
             }

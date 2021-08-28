@@ -6,14 +6,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Learning\Temple\published</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Mandir\Backup\Publish\New</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AdoDotNetDal.dll">
-      <publishTime>09/02/2019 12:35:40</publishTime>
+      <publishTime>08/22/2021 12:15:03</publishTime>
     </File>
     <File Include="bin/AdoDotNetDal.pdb">
-      <publishTime>09/02/2019 12:35:40</publishTime>
+      <publishTime>08/22/2021 12:15:03</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>09/10/2013 16:29:20</publishTime>
@@ -22,43 +22,43 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>09/02/2019 12:36:22</publishTime>
+      <publishTime>08/22/2021 12:15:27</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>09/02/2019 12:36:22</publishTime>
+      <publishTime>08/22/2021 12:15:27</publishTime>
     </File>
     <File Include="bin/CommonLayer.dll">
-      <publishTime>09/02/2019 12:35:38</publishTime>
+      <publishTime>08/22/2021 12:15:02</publishTime>
     </File>
     <File Include="bin/CommonLayer.pdb">
-      <publishTime>09/02/2019 12:35:38</publishTime>
+      <publishTime>08/22/2021 12:15:02</publishTime>
     </File>
     <File Include="bin/FactoryDal.dll">
-      <publishTime>09/02/2019 12:35:41</publishTime>
+      <publishTime>08/22/2021 12:15:03</publishTime>
     </File>
     <File Include="bin/FactoryDal.pdb">
-      <publishTime>09/02/2019 12:35:41</publishTime>
+      <publishTime>08/22/2021 12:15:03</publishTime>
     </File>
     <File Include="bin/FactoryMiddleLayer.dll">
-      <publishTime>09/02/2019 12:35:39</publishTime>
+      <publishTime>08/22/2021 12:15:03</publishTime>
     </File>
     <File Include="bin/FactoryMiddleLayer.pdb">
-      <publishTime>09/02/2019 12:35:39</publishTime>
+      <publishTime>08/22/2021 12:15:03</publishTime>
     </File>
     <File Include="bin/InterfaceDal.dll">
-      <publishTime>09/02/2019 12:35:36</publishTime>
+      <publishTime>08/22/2021 12:15:02</publishTime>
     </File>
     <File Include="bin/InterfaceDal.dll.config">
       <publishTime>12/04/2018 21:21:15</publishTime>
     </File>
     <File Include="bin/InterfaceDal.pdb">
-      <publishTime>09/02/2019 12:35:36</publishTime>
+      <publishTime>08/22/2021 12:15:02</publishTime>
     </File>
     <File Include="bin/InterfaceMiddleLayer.dll">
-      <publishTime>09/02/2019 12:35:36</publishTime>
+      <publishTime>08/22/2021 12:15:02</publishTime>
     </File>
     <File Include="bin/InterfaceMiddleLayer.pdb">
-      <publishTime>09/02/2019 12:35:36</publishTime>
+      <publishTime>08/22/2021 12:15:02</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>09/05/2018 16:10:50</publishTime>
@@ -67,10 +67,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/23/2012 15:23:58</publishTime>
     </File>
     <File Include="bin/MiddleLayer.dll">
-      <publishTime>09/02/2019 12:35:37</publishTime>
+      <publishTime>08/22/2021 12:15:02</publishTime>
     </File>
     <File Include="bin/MiddleLayer.pdb">
-      <publishTime>09/02/2019 12:35:37</publishTime>
+      <publishTime>08/22/2021 12:15:02</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>11/27/2018 18:07:34</publishTime>
@@ -157,10 +157,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2016 21:50:24</publishTime>
     </File>
     <File Include="bin/ShreeDwarkadhishMandir.dll">
-      <publishTime>09/02/2019 12:35:56</publishTime>
+      <publishTime>08/22/2021 12:15:16</publishTime>
     </File>
     <File Include="bin/ShreeDwarkadhishMandir.pdb">
-      <publishTime>09/02/2019 12:35:56</publishTime>
+      <publishTime>08/22/2021 12:15:16</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>11/28/2018 13:00:36</publishTime>
@@ -205,10 +205,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/18/2018 19:15:06</publishTime>
     </File>
     <File Include="bin/ValidationAlgorithms.dll">
-      <publishTime>09/02/2019 12:35:39</publishTime>
+      <publishTime>08/22/2021 12:15:02</publishTime>
     </File>
     <File Include="bin/ValidationAlgorithms.pdb">
-      <publishTime>09/02/2019 12:35:39</publishTime>
+      <publishTime>08/22/2021 12:15:02</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 13:57:34</publishTime>
@@ -1852,13 +1852,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/12/2018 00:41:20</publishTime>
     </File>
     <File Include="js/CreateMandirVoucher.js">
-      <publishTime>09/01/2019 15:57:21</publishTime>
+      <publishTime>01/30/2021 16:34:15</publishTime>
     </File>
     <File Include="js/CreateManorath.js">
       <publishTime>06/27/2019 22:04:53</publishTime>
     </File>
     <File Include="js/CreateReceipt.js">
-      <publishTime>06/26/2019 22:22:02</publishTime>
+      <publishTime>01/31/2021 11:42:19</publishTime>
     </File>
     <File Include="js/CreateSamagri.js">
       <publishTime>12/03/2018 00:22:52</publishTime>
@@ -1879,7 +1879,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/14/2019 23:11:21</publishTime>
     </File>
     <File Include="js/IncomeExpenditure.js">
-      <publishTime>04/13/2019 21:26:46</publishTime>
+      <publishTime>10/21/2020 21:40:52</publishTime>
     </File>
     <File Include="js/Login.js">
       <publishTime>10/01/2018 21:51:28</publishTime>
@@ -1894,7 +1894,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2018 22:49:25</publishTime>
     </File>
     <File Include="js/MandirVoucher.js">
-      <publishTime>09/01/2019 15:51:23</publishTime>
+      <publishTime>01/30/2021 16:46:44</publishTime>
     </File>
     <File Include="js/Manorath.js">
       <publishTime>04/23/2019 22:06:21</publishTime>
@@ -1945,7 +1945,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/13/2019 16:11:22</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>09/02/2019 12:36:07</publishTime>
+      <publishTime>08/22/2021 12:15:23</publishTime>
     </File>
     <File Include="Scripts/bootstrap.bundle.js">
       <publishTime>04/13/2019 16:11:21</publishTime>
@@ -3078,6 +3078,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Darshan/DarshanTime.cshtml">
       <publishTime>08/15/2018 14:10:33</publishTime>
     </File>
+    <File Include="Views/Error/Error.cshtml">
+      <publishTime>08/22/2020 19:37:49</publishTime>
+    </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>11/14/2018 20:42:10</publishTime>
     </File>
@@ -3091,7 +3094,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/17/2019 21:09:53</publishTime>
     </File>
     <File Include="Views/MandirVoucher/CreateMandirVoucher.cshtml">
-      <publishTime>09/01/2019 15:24:01</publishTime>
+      <publishTime>01/30/2021 16:35:56</publishTime>
     </File>
     <File Include="Views/MandirVoucher/MandirVoucher.cshtml">
       <publishTime>09/01/2019 15:49:26</publishTime>
@@ -3109,7 +3112,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/23/2018 13:55:20</publishTime>
     </File>
     <File Include="Views/Receipt/Receipt.cshtml">
-      <publishTime>06/26/2019 22:12:02</publishTime>
+      <publishTime>01/31/2021 11:41:44</publishTime>
     </File>
     <File Include="Views/Receipt/ReceiptDetail.cshtml">
       <publishTime>07/21/2019 13:38:46</publishTime>
@@ -3127,13 +3130,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/15/2019 23:23:34</publishTime>
     </File>
     <File Include="Views/Report/BalanceSheet.cshtml">
-      <publishTime>03/29/2019 22:05:00</publishTime>
+      <publishTime>10/16/2020 22:47:19</publishTime>
     </File>
     <File Include="Views/Report/BalanceSheetDetails.cshtml">
       <publishTime>04/24/2019 00:07:06</publishTime>
     </File>
     <File Include="Views/Report/IncomeExpenditure.cshtml">
-      <publishTime>04/13/2019 21:26:11</publishTime>
+      <publishTime>10/16/2020 22:47:17</publishTime>
     </File>
     <File Include="Views/Report/ManorathReceipt.cshtml">
       <publishTime>07/14/2019 20:45:23</publishTime>
@@ -3184,7 +3187,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/29/2018 14:21:34</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/04/2019 00:05:38</publishTime>
+      <publishTime>08/22/2021 12:15:19</publishTime>
     </File>
   </ItemGroup>
 </Project>

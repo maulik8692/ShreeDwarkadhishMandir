@@ -73,9 +73,9 @@ namespace ShreeDwarkadhishMandir.Controllers
                 List<IMandirVoucher> MandirVouchers = dal.Search(MandirVoucherRequest);
 
                 JqGridResponse<IMandirVoucher> jsonData = new JqGridResponse<IMandirVoucher>();
-                jsonData.total = MandirVouchers.IsNotNull() ? MandirVouchers.First().Page : 1;
+                jsonData.total = MandirVouchers.IsNotNullList() ? MandirVouchers.First().Page : 1;
                 jsonData.page = page;
-                jsonData.records = MandirVouchers.IsNotNull() ? MandirVouchers.First().Total : 1;
+                jsonData.records = MandirVouchers.IsNotNullList() ? MandirVouchers.First().Total : 1;
                 jsonData.rows = MandirVouchers;
 
                 return Json(jsonData, JsonRequestBehavior.AllowGet);
@@ -83,7 +83,12 @@ namespace ShreeDwarkadhishMandir.Controllers
             catch (Exception ex)
             {
                 Log.Write(ex);
-                throw;
+                JqGridResponse<IMandirVoucher> jsonData = new JqGridResponse<IMandirVoucher>();
+                jsonData.total = 1;
+                jsonData.page = page;
+                jsonData.records = 0;
+                jsonData.rows = new List<IMandirVoucher>();
+                return Json(jsonData, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -108,6 +113,7 @@ namespace ShreeDwarkadhishMandir.Controllers
                 MandirVoucherRequest.AccountId = mandirVoucherRequest.AccountId;
                 MandirVoucherRequest.VoucherAmount = mandirVoucherRequest.VoucherAmount;
                 MandirVoucherRequest.Description = mandirVoucherRequest.Description;
+                MandirVoucherRequest.VoucherType = mandirVoucherRequest.VoucherType;
                 MandirVoucherRequest.Validate();
                 MandirVoucherRequest.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
 

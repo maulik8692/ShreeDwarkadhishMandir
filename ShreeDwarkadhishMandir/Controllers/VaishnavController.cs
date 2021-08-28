@@ -180,9 +180,9 @@ namespace ShreeDwarkadhishMandir.Controllers
                 }
 
                 JqGridResponse<IVaishnav> jsonData = new JqGridResponse<IVaishnav>();
-                jsonData.total = vaishnavs.IsNotNull() ? vaishnavs.First().Page : 1;
+                jsonData.total = vaishnavs.IsNotNullList() ? vaishnavs.First().Page : 1;
                 jsonData.page = page;
-                jsonData.records = vaishnavs.IsNotNull() ? vaishnavs.First().Total : 1;
+                jsonData.records = vaishnavs.IsNotNullList() ? vaishnavs.First().Total : 1;
                 jsonData.rows = vaishnavs;
 
                 return Json(jsonData, JsonRequestBehavior.AllowGet);

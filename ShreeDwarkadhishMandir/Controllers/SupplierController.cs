@@ -78,9 +78,9 @@ namespace ShreeDwarkadhishMandir.Controllers
                 List<ISupplier> suppliers = dal.Search(SupplierRequest);
 
                 JqGridResponse<ISupplier> jsonData = new JqGridResponse<ISupplier>();
-                jsonData.total = suppliers.IsNotNull() ? suppliers.First().Page : 1;
+                jsonData.total = suppliers.IsNotNullList() ? suppliers.First().Page : 1;
                 jsonData.page = page;
-                jsonData.records = suppliers.IsNotNull() ? suppliers.First().Total : 1;
+                jsonData.records = suppliers.IsNotNullList() ? suppliers.First().Total : 1;
                 jsonData.rows = suppliers;
 
                 return Json(jsonData, JsonRequestBehavior.AllowGet);
@@ -88,7 +88,12 @@ namespace ShreeDwarkadhishMandir.Controllers
             catch (Exception ex)
             {
                 Log.Write(ex);
-                throw;
+                JqGridResponse<ISupplier> jsonData = new JqGridResponse<ISupplier>();
+                jsonData.total = 1;
+                jsonData.page = page;
+                jsonData.records = 0;
+                jsonData.rows = new List<ISupplier>();
+                return Json(jsonData, JsonRequestBehavior.AllowGet);
             }
         }
 

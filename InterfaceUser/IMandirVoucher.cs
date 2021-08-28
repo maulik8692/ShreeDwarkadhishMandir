@@ -23,7 +23,7 @@ namespace InterfaceMiddleLayer
         string AccountName { get; set; }
         string DisplayVoucherDate { get; set; }
         string DispalyAmount { get; set; }
-
+        string VoucherType { get; set; }
         void Validate();
     }
 }

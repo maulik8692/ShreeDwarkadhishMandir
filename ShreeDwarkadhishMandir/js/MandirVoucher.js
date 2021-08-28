@@ -13,13 +13,14 @@ function GetDetail() {
             mtype: 'Get',
             hoverrows: false,
             colNames: [
-                'Id','Voucher No', 'Account Name', 'Voucher Amount', 'Display Voucher Date'],
+                'Id', 'Voucher No', 'Voucher Type', 'Account Name', 'Voucher Amount', 'Display Voucher Date'],
             colModel: [
                 { name: 'Id', index: 'Id', align: 'left', key: true, hidden: true, sortable: false },
                 { name: 'VoucherNo', index: 'VoucherNo', align: 'right', sortable: false },
+                { name: 'VoucherType', index: 'VoucherType', align: 'left', sortable: false },
                 { name: 'AccountName', index: 'AccountName', align: 'left', sortable: false },
                 { name: 'DispalyAmount', index: 'DispalyAmount', align: 'right', sortable: false },
-                { name: 'DisplayVoucherDate', index: 'DisplayVoucherDate', align: 'left', sortable: false}
+                { name: 'DisplayVoucherDate', index: 'DisplayVoucherDate', align: 'left', sortable: false }
             ],
             pager: jQuery('#pager'),
             rowNum: 50,

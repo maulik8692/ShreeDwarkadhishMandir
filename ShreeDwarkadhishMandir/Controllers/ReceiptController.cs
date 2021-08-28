@@ -135,9 +135,9 @@ namespace ShreeDwarkadhishMandir.Controllers
                 List<IReceipt> IReceiptResponse = dal.Search(IReceipt);
 
                 JqGridResponse<IReceipt> jsonData = new JqGridResponse<IReceipt>();
-                jsonData.total = IReceiptResponse.IsNotNull() ? IReceiptResponse.First().Page : 0;
-                jsonData.page = page;//IReceiptResponse.IsNotNull() ? IReceiptResponse.First().Page : 1;
-                jsonData.records = IReceiptResponse.IsNotNull() ? IReceiptResponse.First().Total : 1;
+                jsonData.total = IReceiptResponse.IsNotNullList() ? IReceiptResponse.First().Page : 0;
+                jsonData.page = page;
+                jsonData.records = IReceiptResponse.IsNotNullList() ? IReceiptResponse.First().Total : 1;
                 jsonData.rows = IReceiptResponse;
                 return Json(jsonData, JsonRequestBehavior.AllowGet);
             }
@@ -146,7 +146,7 @@ namespace ShreeDwarkadhishMandir.Controllers
                 Log.Write(ex);
                 JqGridResponse<IReceipt> jsonData = new JqGridResponse<IReceipt>();
                 jsonData.total = 1;
-                jsonData.page = page;//IReceiptResponse.IsNotNull() ? IReceiptResponse.First().Page : 1;
+                jsonData.page = page;
                 jsonData.records = 0;
                 jsonData.rows = new List<IReceipt>();
                 return Json(jsonData, JsonRequestBehavior.AllowGet);

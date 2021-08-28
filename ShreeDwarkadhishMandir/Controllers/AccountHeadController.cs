@@ -121,9 +121,9 @@ namespace ShreeDwarkadhishMandir.Controllers
                 List<IAccountHead> suppliers = dal.Search(SupplierRequest);
 
                 JqGridResponse<IAccountHead> jsonData = new JqGridResponse<IAccountHead>();
-                jsonData.total = suppliers.IsNotNull() ? suppliers.First().Page : 1;
+                jsonData.total = suppliers.IsNotNullList() ? suppliers.First().Page : 1;
                 jsonData.page = page;
-                jsonData.records = suppliers.IsNotNull() ? suppliers.First().Total : 1;
+                jsonData.records = suppliers.IsNotNullList() ? suppliers.First().Total : 1;
 
                 jsonData.rows = suppliers;
 
@@ -134,7 +134,7 @@ namespace ShreeDwarkadhishMandir.Controllers
                 Log.Write(ex);
                 JqGridResponse<IAccountHead> jsonData = new JqGridResponse<IAccountHead>();
                 jsonData.total = 1;
-                jsonData.page = page;//IReceiptResponse.IsNotNull() ? IReceiptResponse.First().Page : 1;
+                jsonData.page = page;
                 jsonData.records = 0;
                 jsonData.rows = new List<IAccountHead>();
                 return Json(jsonData, JsonRequestBehavior.AllowGet);

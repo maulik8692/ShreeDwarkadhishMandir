@@ -158,7 +158,7 @@
     <Compile Include="Models\ApplicationUserRequest.cs" />
     <Compile Include="Models\BalanceSheetRequest.cs" />
     <Compile Include="Models\BhandarCategoryRequest.cs" />
-    <Compile Include="Models\BhandarCategoryResponse.cs" />
+    <Compile Include="Models\JqGridResponse.cs" />
     <Compile Include="Models\BhandarRequest.cs" />
     <Compile Include="Models\BhandarTransactionRequest.cs" />
     <Compile Include="Models\CommunicationRequest.cs" />

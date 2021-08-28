@@ -21,5 +21,6 @@ namespace ShreeDwarkadhishMandir.Models
         public int Id { get; set; }
         public string AccountName { get; set; }
         public string DisplayVoucherDate { get; set; }
+        public string VoucherType { get; set; }
     }
 }

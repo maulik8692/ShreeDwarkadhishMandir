@@ -291,6 +291,17 @@ namespace CommonLayer
         }
 
         /// <summary>
+        /// Check if the current list is not equal to null
+        /// </summary>
+        /// <param name="value">The object to check</param>
+        /// <returns>true is the value is not null</returns>
+        public static bool IsNotNullList(this List<object> value)
+        {
+            return (value != null && value.Count > 0);
+        }
+
+
+        /// <summary>
         /// Inverse of <see cref="IsNotNull"/> method
         /// </summary>
         /// <param name="value">The object to check</param>
@@ -366,6 +377,11 @@ namespace CommonLayer
         #region " DateTime "
 
         #region " IsDate "
+
+        public static bool IsMinDate(this DateTime value)
+        {
+            return value == DateTime.MinValue;
+        }
 
         public static bool IsDate(this object value)
         {

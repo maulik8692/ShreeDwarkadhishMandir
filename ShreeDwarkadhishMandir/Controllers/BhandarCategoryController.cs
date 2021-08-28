@@ -78,9 +78,9 @@ namespace ShreeDwarkadhishMandir.Controllers
                 List<IBhandarCategory> bhandarCategories = dal.Search(bhandarCategoryRequest);
 
                 JqGridResponse<IBhandarCategory> jsonData = new JqGridResponse<IBhandarCategory>();
-                jsonData.total = bhandarCategories.IsNotNull() ? bhandarCategories.First().Total : 0;
-                jsonData.page = bhandarCategories.IsNotNull() ? bhandarCategories.First().Page : 1;
-                jsonData.records = bhandarCategories.IsNotNull() ? bhandarCategories.First().Page : 1;
+                jsonData.total = bhandarCategories.IsNotNullList() ? bhandarCategories.First().Total : 0;
+                jsonData.page = bhandarCategories.IsNotNullList() ? bhandarCategories.First().Page : 1;
+                jsonData.records = bhandarCategories.IsNotNullList() ? bhandarCategories.First().Page : 1;
                 jsonData.rows = bhandarCategories;
 
                 return Json(jsonData, JsonRequestBehavior.AllowGet);
@@ -88,7 +88,12 @@ namespace ShreeDwarkadhishMandir.Controllers
             catch (Exception ex)
             {
                 Log.Write(ex);
-                throw;
+                JqGridResponse<IBhandarCategory> jsonData = new JqGridResponse<IBhandarCategory>();
+                jsonData.total = 1;
+                jsonData.page = page;
+                jsonData.records = 0;
+                jsonData.rows = new List<IBhandarCategory>();
+                return Json(jsonData, JsonRequestBehavior.AllowGet);
             }
         }
 

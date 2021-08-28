@@ -49,9 +49,9 @@ namespace ShreeDwarkadhishMandir.Controllers
                 List<IAccountGroup> AccountGroups = dal.Search(AccountGroupRequest);
 
                 JqGridResponse<IAccountGroup> jsonData = new JqGridResponse<IAccountGroup>();
-                jsonData.total = AccountGroups.IsNotNull() ? AccountGroups.First().Total : 0;
-                jsonData.page = AccountGroups.IsNotNull() ? AccountGroups.First().Page : 1;
-                jsonData.records = AccountGroups.IsNotNull() ? AccountGroups.First().Page : 1;
+                jsonData.total = AccountGroups.IsNotNullList() ? AccountGroups.First().Total : 0;
+                jsonData.page = AccountGroups.IsNotNullList() ? AccountGroups.First().Page : 1;
+                jsonData.records = AccountGroups.IsNotNullList() ? AccountGroups.First().Page : 1;
                 jsonData.rows = AccountGroups;
 
                 return Json(jsonData, JsonRequestBehavior.AllowGet);
@@ -61,7 +61,7 @@ namespace ShreeDwarkadhishMandir.Controllers
                 Log.Write(ex);
                 JqGridResponse<IAccountGroup> jsonData = new JqGridResponse<IAccountGroup>();
                 jsonData.total = 1;
-                jsonData.page = page;//IReceiptResponse.IsNotNull() ? IReceiptResponse.First().Page : 1;
+                jsonData.page = page;
                 jsonData.records = 0;
                 jsonData.rows = new List<IAccountGroup>();
                 return Json(jsonData, JsonRequestBehavior.AllowGet);

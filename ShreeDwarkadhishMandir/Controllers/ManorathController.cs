@@ -115,7 +115,12 @@ namespace ShreeDwarkadhishMandir.Controllers
             catch (Exception ex)
             {
                 Log.Write(ex);
-                throw;
+                JqGridResponse<IManorath> jsonData = new JqGridResponse<IManorath>();
+                jsonData.total = 1;
+                jsonData.page = page;
+                jsonData.records = 0;
+                jsonData.rows = new List<IManorath>();
+                return Json(jsonData, JsonRequestBehavior.AllowGet);
             }
         }
 

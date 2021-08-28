@@ -52,6 +52,7 @@ namespace AdoDotNetDal
             cmd.Parameters.AddWithValue("@VoucherAmount", anyType.VoucherAmount);
             cmd.Parameters.AddWithValue("@Description", anyType.Description);
             cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
+            cmd.Parameters.AddWithValue("@VoucherType", anyType.VoucherType);
             cmd.ExecuteNonQuery();
         }
 
@@ -84,6 +85,7 @@ namespace AdoDotNetDal
                 MandirVoucherRequest.Id = dr["Id"].ToInt();
                 MandirVoucherRequest.AccountName = dr["AccountName"].ToString();
                 MandirVoucherRequest.VoucherAmount = dr["VoucherAmount"].ToDouble();
+                MandirVoucherRequest.VoucherType = dr["VoucherType"].ToString();
                 MandirVoucherRequest.DispalyAmount = "₹" + MandirVoucherRequest.VoucherAmount.ToString("0.00");
                 MandirVoucherRequest.DisplayVoucherDate = dr["DisplayVoucherDate"].ToString();
                 MandirVoucherRequest.VoucherNo = dr["VoucherNo"].ToInt();

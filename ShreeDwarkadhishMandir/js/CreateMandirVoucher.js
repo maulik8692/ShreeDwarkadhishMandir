@@ -8,6 +8,13 @@
 
     ResetForm();
 
+    $('#VoucherAmount').keypress(function (e) {
+        var keycode = (e.keyCode ? e.keyCode : e.which);
+        if (keycode == '13') {
+            SaveAccountHead();
+        }
+    });
+
     $("#Save").click(function (e) {
         SaveAccountHead();
     });
@@ -19,11 +26,6 @@
     $("#Mandir").change(function () {
         GetAccountHeadDropdown(0, '');
     });
-
-    $("#CreditAccount").change(function () {
-
-    
-    });
 });
 
 
@@ -34,10 +36,10 @@ function SaveAccountHead() {
         AccountId: parseInt($("#VoucherAccount option:selected").val()),
         VoucherNo: $('#VoucherNo').val(),
         VoucherDate: $('#VoucherDate').val(),
-        Description: ($('#Description').val() !== '' ? ("Voucher No :" + $('#VoucherNo').val() + " => ") : "") + $('#Description').val(),
+        VoucherType: $("input[name='VoucherType']:checked").val(),
+        Description: "Voucher No :" + $('#VoucherNo').val() + ($('#Description').val() !== '' ? " => " + $('#Description').val() : ""),
         VoucherAmount: $('#VoucherAmount').val() !== '' ? parseFloat($('#VoucherAmount').val().substr(2).replace(/,/g, '')) : 0
     };
-
     $.ajax({
         type: "POST",
         url: "/MandirVoucher/CreateMandirVoucher/",
@@ -46,8 +48,10 @@ function SaveAccountHead() {
         data: JSON.stringify(mandirVoucherRequest),
         success: function (result) {
             ResetForm();
-            if (!confirm('Transaction has been saved successfully. Do you want to add one more transaction?')) {
-                window.location.href = '/MandirVoucher/CreateMandirVoucher';
+            if (confirm('Voucher has been saved successfully. Do you want to add one more Voucher?')) {
+                $('#VoucherNo').val(parseInt(mandirVoucherRequest.VoucherNo) + 1);
+                $('#VoucherDate').val(mandirVoucherRequest.VoucherDate);
+                $("#VoucherAccount").focus();
             }
 
             hideProgress();
@@ -96,7 +100,7 @@ function GetAccountHeadDropdown(accountId, NatureOfGroup) {
 
                 $("<option />", {
                     val: 0,
-                    text: 'Please Select Credit Account'
+                    text: 'Please Select Voucher Account'
                 }).appendTo("#VoucherAccount");
 
                 $(jsondata).each(function () {

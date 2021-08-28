@@ -43,9 +43,9 @@ namespace ShreeDwarkadhishMandir.Controllers
                 List<ISamagriMaster> Samagris = dal.Search(SamagriRequest);
 
                 JqGridResponse<ISamagriMaster> jsonData = new JqGridResponse<ISamagriMaster>();
-                jsonData.total = Samagris.IsNotNull() ? Samagris.First().Page : 0;
+                jsonData.total = Samagris.IsNotNullList() ? Samagris.First().Page : 0;
                 jsonData.page = page;
-                jsonData.records = Samagris.IsNotNull() ? Samagris.First().Total : 1;
+                jsonData.records = Samagris.IsNotNullList() ? Samagris.First().Total : 1;
                 jsonData.rows = Samagris;
 
                 return Json(jsonData, JsonRequestBehavior.AllowGet);
@@ -53,7 +53,12 @@ namespace ShreeDwarkadhishMandir.Controllers
             catch (Exception ex)
             {
                 Log.Write(ex);
-                throw;
+                JqGridResponse<ISamagriMaster> jsonData = new JqGridResponse<ISamagriMaster>();
+                jsonData.total = 1;
+                jsonData.page = page;
+                jsonData.records = 0;
+                jsonData.rows = new List<ISamagriMaster>();
+                return Json(jsonData, JsonRequestBehavior.AllowGet);
             }
         }
 
