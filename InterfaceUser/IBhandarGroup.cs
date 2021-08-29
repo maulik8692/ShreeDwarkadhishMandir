@@ -23,6 +23,11 @@ namespace InterfaceMiddleLayer
         DateTime DeletedOn { get; set; }
         DateTime CreatedOn { get; set; }
         bool IsDeleted { get; set; }
+        int Total { get; set; }
+        int Page { get; set; }
+        int Records { get; set; }
+        int PageNumber { get; set; }
+        int PageSize { get; set; }
         void Validate();
     }
 }

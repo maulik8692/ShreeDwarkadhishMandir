@@ -129,6 +129,7 @@
     <Compile Include="Controllers\ApplicationUserController.cs" />
     <Compile Include="Controllers\BhandarCategoryController.cs" />
     <Compile Include="Controllers\BhandarController.cs" />
+    <Compile Include="Controllers\BhandarGroupController.cs" />
     <Compile Include="Controllers\BhandarTransactionController.cs" />
     <Compile Include="Controllers\CommunicationController.cs" />
     <Compile Include="Controllers\ConfigurationController.cs" />
@@ -625,6 +626,7 @@
     <Content Include="js\BalanceSheetDetails.js" />
     <Content Include="js\Bhandar.js" />
     <Content Include="js\BhandarCategory.js" />
+    <Content Include="js\BhandarGroup.js" />
     <Content Include="js\Common.js" />
     <Content Include="js\CreateAccountHead.js" />
     <Content Include="js\Communication.js" />
@@ -633,6 +635,7 @@
     <Content Include="js\CreateAccountTransaction.js" />
     <Content Include="js\CreateBhandar.js" />
     <Content Include="js\CreateBhandarCategory.js" />
+    <Content Include="js\CreateBhandarGroup.js" />
     <Content Include="js\CreateBhetType.js" />
     <Content Include="js\CreateFixedDeposit.js" />
     <Content Include="js\CreateDarshan.js" />
@@ -1183,6 +1186,8 @@
     <Content Include="Views\MandirVoucher\MandirVoucher.cshtml" />
     <Content Include="Views\MandirVoucher\CreateMandirVoucher.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
+    <Content Include="Views\BhandarGroup\BhandarGroup.cshtml" />
+    <Content Include="Views\BhandarGroup\CreateBhandarGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

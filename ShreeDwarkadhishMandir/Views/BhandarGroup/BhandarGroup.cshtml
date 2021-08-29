@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Bhandar Group";
+}
+
+<div class="row PaddingTop PaddingRight PaddingLeft">
+    <div class="form-group row col-lg-12" style="margin-bottom:10px;">
+        <div class="col col-md-4">
+            <label></label>
+        </div>
+        <div class="col col-md-4">
+            <label></label>
+        </div>
+        <div class="col col-md-4">
+            <a href="/BhandarGroup/CreateBhandarGroup" style="float:right;" class="btn btn-primary"><i class="fa fa-plus "></i> Add</a>
+            @*<a href="/BhandarCategory/CreateBhandarCategory" style="float:right;margin-right:15px;" class="btn btn-primary"><i class="fa fa-adjust"></i> Balance Adjustment</a>*@
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div id="divBhandarGroup" class="table-responsive table--no-card m-b-30">
+            <table id="bhandarGroup" class="table table-borderless table-striped table-mandir"></table>
+            <div id="pager"></div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/js/BhandarGroup.js"></script>

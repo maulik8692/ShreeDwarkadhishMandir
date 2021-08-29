@@ -25,3 +25,5 @@
 /ValidationAlgorithms/bin
 /ValidationAlgorithms/obj
 /SQLDatabase/obj/Debug
+/SQLDatabase/SQLDatabase.dbmdl
+/SQLDatabase/SQLDatabase.jfm

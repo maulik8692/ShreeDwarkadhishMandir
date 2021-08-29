@@ -29,57 +29,54 @@ namespace AdoDotNetDal
 
         protected override List<IBhandarGroup> DropdownWithSearchCommand<T>(T anyObject)
         {
-            //cmd.CommandText = "GetBhandarsForDropdown";
-            //cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "GetBhandarGroupDropdown";
+            cmd.CommandType = CommandType.StoredProcedure;
 
-            //SqlDataReader dr = null;
-            //dr = cmd.ExecuteReader();
+            SqlDataReader dr = null;
+            dr = cmd.ExecuteReader();
 
-            List<IBhandarGroup> bhandars = new List<IBhandarGroup>();
-            //while (dr.Read())
-            //{
-            //    IBhandarGroup bhandar = Factory<IBhandarGroup>.Create("Bhandar");
-            //    bhandar.Id = dr["Id"].ToInt();
-            //    bhandar.Name = dr["Name"].ToString();
-            //    bhandar.Balance = dr["Balance"].ToDecimal();
-            //    bhandar.UnitAbbreviation = dr["UnitAbbreviation"].ToString();
-            //    bhandar.UnitDescription = dr["UnitDescription"].ToString();
-            //    bhandars.Add(bhandar);
-            //}
+            List<IBhandarGroup> bhandarGroups = new List<IBhandarGroup>();
+            while (dr.Read())
+            {
+                IBhandarGroup bhandarGroup = Factory<IBhandarGroup>.Create("BhandarGroup");
+                bhandarGroup.Id = dr["Id"].ToInt();
+                bhandarGroup.Name = dr["Name"].ToString();
+                bhandarGroup.MandirId = dr["MandirId"].ToInt();
+                bhandarGroup.GroupCode = dr["GroupCode"].ToString();
+                bhandarGroup.Description = dr["Description"].ToString();
+                bhandarGroup.IsJewellery = dr["IsJewellery"].ToBool();
+                bhandarGroup.IsSamagri = dr["IsSamagri"].ToBool();
+                bhandarGroups.Add(bhandarGroup);
+            }
 
-            return bhandars;
+            return bhandarGroups;
         }
 
         protected override IBhandarGroup GetDetailCommand<T>(T anyObject)
         {
-            //IBhandarGroup supplierRequest = anyObject as IBhandarGroup;
+            IBhandarGroup bhandarGroupRequest = anyObject as IBhandarGroup;
 
-            //cmd.CommandText = "GetBhandarById";
-            //cmd.CommandType = CommandType.StoredProcedure;
-            //cmd.Parameters.AddWithValue("@Id", supplierRequest.Id);
+            cmd.CommandText = "GetBhandarGroupById";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Id", bhandarGroupRequest.Id);
+            SqlDataReader dr = cmd.ExecuteReader();
 
-            //SqlDataReader dr = null;
-            //dr = cmd.ExecuteReader();
+            List<IBhandarGroup> bhandarGroups = new List<IBhandarGroup>();
+            while (dr.Read())
+            {
+                IBhandarGroup bhandarGroup = Factory<IBhandarGroup>.Create("BhandarGroup");
+                bhandarGroup.Id = dr["Id"].ToInt();
+                bhandarGroup.MandirId = dr["MandirId"].ToInt();
+                bhandarGroup.Name = dr["Name"].ToString();
+                bhandarGroup.GroupCode = dr["GroupCode"].ToString();
+                bhandarGroup.Description = dr["Description"].ToString();
+                bhandarGroup.IsJewellery = dr["IsJewellery"].ToBool();
+                bhandarGroup.IsSamagri = dr["IsSamagri"].ToBool();
+                bhandarGroup.IsActive = dr["IsActive"].ToBool();
+                bhandarGroups.Add(bhandarGroup);
+            }
 
-            List<IBhandarGroup> bhandars = new List<IBhandarGroup>();
-            //while (dr.Read())
-            //{
-            //    IBhandarGroup bhandar = Factory<IBhandarGroup>.Create("Bhandar");
-            //    bhandar.Id = dr["Id"].ToInt();
-            //    bhandar.MandirId = dr["MandirId"].ToInt();
-            //    bhandar.Name = dr["Name"].ToString();
-            //    bhandar.UnitId = dr["UnitId"].ToInt();
-            //    bhandar.CategoryId = dr["CategoryId"].ToInt();
-            //    bhandar.Balance = dr["Balance"].ToDecimal();
-            //    bhandar.CreatedBy = dr["CreatedBy"].ToInt();
-            //    bhandar.IsActive = dr["IsActive"].ToBool();
-            //    bhandar.CategoryName = dr["CategoryName"].ToString();
-            //    bhandar.UnitAbbreviation = dr["UnitAbbreviation"].ToString();
-            //    bhandar.UnitDescription = dr["UnitDescription"].ToString();
-            //    bhandars.Add(bhandar);
-            //}
-
-            return bhandars.FirstOrDefault();
+            return bhandarGroups.FirstOrDefault();
         }
 
         protected override List<IBhandarGroup> GetReportCommand<T>(T anyObject)
@@ -89,17 +86,19 @@ namespace AdoDotNetDal
 
         protected override void SaveCommand(IBhandarGroup anyType)
         {
-            //cmd.CommandText = "SaveBhandar";
-            //cmd.CommandType = CommandType.StoredProcedure;
-            //cmd.Parameters.AddWithValue("@Id", anyType.Id);
-            //cmd.Parameters.AddWithValue("@MandirId", anyType.MandirId);
-            //cmd.Parameters.AddWithValue("@Name", anyType.Name);
-            //cmd.Parameters.AddWithValue("@UnitId", anyType.UnitId);
-            //cmd.Parameters.AddWithValue("@CategoryId", anyType.CategoryId);
-            //cmd.Parameters.AddWithValue("@Balance", anyType.Balance);
-            //cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
-            //cmd.Parameters.AddWithValue("@IsActive", anyType.IsActive);
-            //cmd.ExecuteNonQuery();
+            cmd.CommandText = "SaveBhandarGroup";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Id", anyType.Id);
+            cmd.Parameters.AddWithValue("@MandirId", anyType.MandirId);
+            cmd.Parameters.AddWithValue("@Name", anyType.Name);
+            cmd.Parameters.AddWithValue("@GroupCode", anyType.GroupCode);
+            cmd.Parameters.AddWithValue("@Description", anyType.Description);
+            cmd.Parameters.AddWithValue("@IsJewellery", anyType.IsJewellery);
+            cmd.Parameters.AddWithValue("@IsSamagri", anyType.IsSamagri);
+            cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
+            cmd.Parameters.AddWithValue("@IsActive", anyType.IsActive);
+            cmd.Parameters.AddWithValue("@IsDeleted", anyType.IsDeleted);
+            cmd.ExecuteNonQuery();
         }
 
         protected override IBhandarGroup SaveWithReturnCommand(IBhandarGroup anyType)
@@ -114,36 +113,36 @@ namespace AdoDotNetDal
 
         protected override List<IBhandarGroup> SearchCommand<T>(T anyObject)
         {
-            IBhandarGroup supplierRequest = anyObject as IBhandarGroup;
+            IBhandarGroup bhandarGroupRequest = anyObject as IBhandarGroup;
 
-            //cmd.CommandText = "GetBhandars";
-            //cmd.CommandType = CommandType.StoredProcedure;
-            //cmd.Parameters.AddWithValue("@PageNumber", supplierRequest.PageNumber);
-            //cmd.Parameters.AddWithValue("@PageSize", supplierRequest.PageSize);
-            //SqlDataReader dr = null;
-            //dr = cmd.ExecuteReader();
+            cmd.CommandText = "GetBhandarGroups";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@PageNumber", bhandarGroupRequest.PageNumber);
+            cmd.Parameters.AddWithValue("@PageSize", bhandarGroupRequest.PageSize);
+            cmd.Parameters.AddWithValue("@MandirId", bhandarGroupRequest.MandirId);
+            cmd.Parameters.AddWithValue("@Name", bhandarGroupRequest.Name);
+            SqlDataReader dr = null;
+            dr = cmd.ExecuteReader();
 
-            List<IBhandarGroup> bhandars = new List<IBhandarGroup>();
-            //while (dr.Read())
-            //{
-            //    IBhandarGroup bhandar = Factory<IBhandarGroup>.Create("Bhandar");
-            //    bhandar.Id = dr["Id"].ToInt();
-            //    bhandar.MandirId = dr["MandirId"].ToInt();
-            //    bhandar.Name = dr["Name"].ToString();
-            //    bhandar.UnitId = dr["UnitId"].ToInt();
-            //    bhandar.CategoryId = dr["CategoryId"].ToInt();
-            //    bhandar.Balance = dr["Balance"].ToDecimal();
-            //    bhandar.CreatedBy = dr["CreatedBy"].ToInt();
-            //    bhandar.IsActive = dr["IsActive"].ToBool();
-            //    bhandar.CategoryName = dr["CategoryName"].ToString();
-            //    bhandar.UnitAbbreviation = dr["UnitAbbreviation"].ToString();
-            //    bhandar.UnitDescription = dr["UnitDescription"].ToString();
-            //    bhandar.Page = dr["page"].ToInt();
-            //    bhandar.Total = dr["total"].ToInt();
-            //    bhandars.Add(bhandar);
-            //}
+            List<IBhandarGroup> bhandarGroups = new List<IBhandarGroup>();
+            while (dr.Read())
+            {
+                IBhandarGroup bhandarGroup = Factory<IBhandarGroup>.Create("BhandarGroup");
+                bhandarGroup.Id = dr["Id"].ToInt();
+                bhandarGroup.MandirId = dr["MandirId"].ToInt();
+                bhandarGroup.Name = dr["Name"].ToString();
+                bhandarGroup.GroupCode = dr["GroupCode"].ToString();
+                bhandarGroup.Description = dr["Description"].ToString();
+                bhandarGroup.IsJewellery = dr["IsJewellery"].ToBool();
+                bhandarGroup.IsSamagri = dr["IsSamagri"].ToBool();
+                bhandarGroup.IsActive = dr["IsActive"].ToBool();
+                bhandarGroup.Page = dr["page"].ToInt();
+                bhandarGroup.Records = dr["records"].ToInt();
+                bhandarGroup.Total = dr["total"].ToInt();
+                bhandarGroups.Add(bhandarGroup);
+            }
 
-            return bhandars;
+            return bhandarGroups;
         }
 
         protected override void UpdateCommand(IBhandarGroup anyType)

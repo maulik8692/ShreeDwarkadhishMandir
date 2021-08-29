@@ -14,7 +14,7 @@ namespace ValidationAlgorithms
         {
             if (anyType.Name.IsExactLength(0))
             {
-                throw new Exception("Name is require.");
+                throw new ArgumentException("Name is require.");
             }
         }
     }

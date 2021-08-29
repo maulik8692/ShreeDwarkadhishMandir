@@ -56,7 +56,7 @@ namespace AdoDotNetDal
             cmd.Parameters.AddWithValue("@UnitPerSamagri", anyType.UnitPerSamagri);
             cmd.Parameters.AddWithValue("@MinStockValidation", anyType.MinStockValidation);
             cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
-            cmd.Parameters.AddWithValue("@IsActive", anyType.IsActive);
+            //cmd.Parameters.AddWithValue("@IsActive", anyType.IsActive);
             cmd.ExecuteNonQuery();
         }
 
@@ -91,7 +91,7 @@ namespace AdoDotNetDal
                 samagri.UnitDescription = dr["UnitDescription"].ToString();
                 samagri.BhandarId = dr["BhandarId"].ToInt();
                 samagri.BhandarName = dr["BhandarName"].ToString();
-                samagri.IsActive = dr["IsActive"].ToBool();
+                //samagri.IsActive = dr["IsActive"].ToBool();
                 samagris.Add(samagri);
             }
 

@@ -26,6 +26,11 @@ namespace MiddleLayer
         public DateTime DeletedOn { get; set; }
         public DateTime CreatedOn { get; set; }
         public bool IsDeleted { get; set; }
+        public int Total { get; set; }
+        public int Page { get; set; }
+        public int Records { get; set; }
+        public int PageNumber { get; set; }
+        public int PageSize { get; set; }
 
         public BhandarGroup(IValidation<IBhandarGroup> _validation)
         {
