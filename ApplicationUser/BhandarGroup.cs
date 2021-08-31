@@ -18,6 +18,7 @@ namespace MiddleLayer
         public string Description { get; set; }
         public bool IsJewellery { get; set; }
         public bool IsSamagri { get; set; }
+        public bool IsBhandar { get; set; }
         public bool IsActive { get; set; }
         public int CreatedBy { get; set; }
         public int UpdatedBy { get; set; }

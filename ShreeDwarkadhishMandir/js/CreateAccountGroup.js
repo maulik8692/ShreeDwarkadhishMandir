@@ -247,7 +247,7 @@ function GetDetail() {
 }
 
 function setdetail() {
-    debugger;
+    
     $('#GroupName').val(AccountGroupDetail.GroupName);
     $('#AliasName').val(AccountGroupDetail.AliasName);
     $('#AccountGroupId').val(AccountGroupDetail.Id);

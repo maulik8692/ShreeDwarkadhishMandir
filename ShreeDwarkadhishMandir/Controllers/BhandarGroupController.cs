@@ -36,6 +36,24 @@ namespace ShreeDwarkadhishMandir.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetBhandarGroupDropdown()
+        {
+            try
+            {
+                IRepository<IBhandarGroup> dal = FactoryDalLayer<IRepository<IBhandarGroup>>.Create("BhandarGroup");
+
+                List<IBhandarGroup> bhandarGroups = dal.DropdownWithSearch(0);
+
+                return Json(bhandarGroups, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Log.Write(ex);
+                return new HttpStatusCodeResult(410, ex.Message);
+            }
+        }
+
+        [HttpPost]
         public ActionResult BhandarGroupDetail(BhandarGroupRequest bhandarGroup)
         {
             try
@@ -104,6 +122,7 @@ namespace ShreeDwarkadhishMandir.Controllers
                 BhandarRequest.IsActive = bhandarGroup.IsActive;
                 BhandarRequest.IsJewellery = bhandarGroup.IsJewellery;
                 BhandarRequest.IsSamagri = bhandarGroup.IsSamagri;
+                BhandarRequest.IsBhandar = bhandarGroup.IsBhandar;
                 BhandarRequest.Validate();
                 BhandarRequest.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
 

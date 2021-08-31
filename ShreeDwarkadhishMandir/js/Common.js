@@ -19,6 +19,16 @@
         oncleared: function () { self.Value(''); }
     });
 
+    $('.Units').inputmask("numeric", {
+        radixPoint: ".",
+        groupSeparator: ",",
+        digits: 5,
+        autoGroup: true,
+        //prefix: '₹ ', //Space after $, this will not truncate the first character.
+        rightAlign: false,
+        oncleared: function () { self.Value(''); }
+    });
+
     $('.bhandar1').inputmask("numeric", {
         radixPoint: ".",
         groupSeparator: ",",

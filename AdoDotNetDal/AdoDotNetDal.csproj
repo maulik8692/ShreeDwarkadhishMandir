@@ -76,6 +76,7 @@
     <Compile Include="StateDal.cs" />
     <Compile Include="SupplierDal.cs" />
     <Compile Include="TemplateADO.cs" />
+    <Compile Include="UnitConversionDal.cs" />
     <Compile Include="UnitOfMeasurementDal.cs" />
     <Compile Include="UserTypeDal.cs" />
     <Compile Include="VaishnavDal.cs" />

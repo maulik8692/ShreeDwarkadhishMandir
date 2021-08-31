@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Unit Conversion";
+}
+
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8 PaddingTop">
+        <div class="card">
+            <div class="card-header">
+                <strong>Unit Conversion</strong>
+            </div>
+
+            <div class="card-body card-block">
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                    <input type="hidden" id="Id" name="Id" class="form-control">
+
+                    <div class="row form-group">
+                        <div class="col-12 col-md-6 textcenter">
+                            <label for="MainUnit" class="form-control-label">First Unit</label>
+                        </div>
+                        <div class="col-12 col-md-6 textcenter">
+                            <label for="ConversionUnit" class="form-control-label">Second Unit</label>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-12 col-md-5">
+                            <select name="MainUnit" id="MainUnit" class="form-control select2 select2-hidden-accessible searchableDropdown"></select>
+                        </div>
+                        <div class="col-12 col-md-2 textcenter">
+                            <label for="ConversionDescription" class="form-control-label "></label>
+                        </div>
+                        <div class="col-12 col-md-5">
+                            <select name="ConversionUnit" id="ConversionUnit" class="form-control select2 select2-hidden-accessible searchableDropdown"></select>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-5 textcenter">
+                            <input id="MainUnitQuantity" name="MainUnitQuantity" type="text" value="1.00000" readonly="readonly" disabled="disabled" class="form-control Units" />
+                        </div>
+                        <div class="col-12 col-md-2 textcenter">
+                            <label for="ConversionDescription" class="form-control-label ">=</label>
+                        </div>
+                        <div class="col-12 col-md-5">
+                            <input id="ConversionUnitQuantity" name="ConversionUnitQuantity" type="text" placeholder="0000.00000" class="form-control Units">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-12 col-md-12">
+                            <label for="MainUnit" class="form-control-label text-danger">Please ensure Unit Conversion given is right as you cannot edit or delete it after save.</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button id="Save" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"> </i> Save
+                </button>
+                <button id="SaveNew" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"> </i> Save &amp; New
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"> </i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/UnitConversion/UnitConversion" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+<script src="~/js/CreateUnitConversion.js"></script>

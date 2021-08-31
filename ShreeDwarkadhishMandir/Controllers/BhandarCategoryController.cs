@@ -72,13 +72,14 @@ namespace ShreeDwarkadhishMandir.Controllers
                 IBhandarCategory bhandarCategoryRequest = Factory<IBhandarCategory>.Create("BhandarCategory");
                 bhandarCategoryRequest.PageNumber = page;
                 bhandarCategoryRequest.PageSize = rows;
+                bhandarCategoryRequest.Name = string.Empty;
 
                 IRepository<IBhandarCategory> dal = FactoryDalLayer<IRepository<IBhandarCategory>>.Create("BhandarCategory");
 
                 List<IBhandarCategory> bhandarCategories = dal.Search(bhandarCategoryRequest);
 
                 JqGridResponse<IBhandarCategory> jsonData = new JqGridResponse<IBhandarCategory>();
-                jsonData.total = bhandarCategories.IsNotNullList() ? bhandarCategories.First().Total : 0;
+                jsonData.total = bhandarCategories.IsNotNullList() ? bhandarCategories.First().Total : 1;
                 jsonData.page = bhandarCategories.IsNotNullList() ? bhandarCategories.First().Page : 1;
                 jsonData.records = bhandarCategories.IsNotNullList() ? bhandarCategories.First().Page : 1;
                 jsonData.rows = bhandarCategories;
@@ -89,10 +90,10 @@ namespace ShreeDwarkadhishMandir.Controllers
             {
                 Log.Write(ex);
                 JqGridResponse<IBhandarCategory> jsonData = new JqGridResponse<IBhandarCategory>();
-                jsonData.total = 1;
-                jsonData.page = page;
-                jsonData.records = 0;
-                jsonData.rows = new List<IBhandarCategory>();
+                //jsonData.total = 1;
+                //jsonData.page = page;
+                //jsonData.records = 0;
+                //jsonData.rows = new List<IBhandarCategory>();
                 return Json(jsonData, JsonRequestBehavior.AllowGet);
             }
         }
@@ -114,6 +115,9 @@ namespace ShreeDwarkadhishMandir.Controllers
             {
                 IBhandarCategory bhandarCategoryRequest = Factory<IBhandarCategory>.Create("BhandarCategory");
                 bhandarCategoryRequest.Name = bhandarCategory.Name;
+                bhandarCategoryRequest.CategoryCode = bhandarCategory.CategoryCode;
+                bhandarCategoryRequest.GroupId = bhandarCategory.GroupId;
+                bhandarCategoryRequest.Description = bhandarCategory.Description;
                 bhandarCategoryRequest.Id = bhandarCategory.Id;
                 bhandarCategoryRequest.IsActive = bhandarCategory.IsActive;
                 bhandarCategoryRequest.Validate();
@@ -122,7 +126,7 @@ namespace ShreeDwarkadhishMandir.Controllers
                 IRepository<IBhandarCategory> dal = FactoryDalLayer<IRepository<IBhandarCategory>>.Create("BhandarCategory");
                 dal.Save(bhandarCategoryRequest);
 
-                return View();
+                return Json("Bhandar Group saved successfully.", JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

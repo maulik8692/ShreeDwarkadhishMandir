@@ -14,6 +14,7 @@ namespace InterfaceMiddleLayer
         int Id { get; set; }
         int GroupId { get; set; }
         string Name { get; set; }
+        string GroupName { get; set; }
         string CategoryCode { get; set; }
         string Description { get; set; }
         int CreatedBy { get; set; }

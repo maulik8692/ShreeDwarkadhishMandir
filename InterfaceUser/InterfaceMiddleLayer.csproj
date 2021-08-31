@@ -76,6 +76,7 @@
     <Compile Include="IServiceStatus.cs" />
     <Compile Include="IState.cs" />
     <Compile Include="ISupplier.cs" />
+    <Compile Include="IUnitConversion.cs" />
     <Compile Include="IUnitOfMeasurement.cs" />
     <Compile Include="IUserType.cs" />
     <Compile Include="IVaishnav.cs" />

@@ -40,7 +40,7 @@ namespace AdoDotNetDal
             {
                 IBhandarCategory BhandarCategory = Factory<IBhandarCategory>.Create("BhandarCategory");
                 BhandarCategory.Id = dr["Id"].ToInt();
-                BhandarCategory.Name = dr["CategoryName"].ToString();
+                BhandarCategory.Name = dr["Name"].ToString();
                 bhandarCategories.Add(BhandarCategory);
             }
 
@@ -63,7 +63,10 @@ namespace AdoDotNetDal
             {
                 IBhandarCategory BhandarCategory = Factory<IBhandarCategory>.Create("BhandarCategory");
                 BhandarCategory.Id = dr["Id"].ToInt();
-                BhandarCategory.Name = dr["CategoryName"].ToString();
+                BhandarCategory.GroupId = dr["GroupId"].ToInt();
+                BhandarCategory.Name = dr["Name"].ToString();
+                BhandarCategory.CategoryCode = dr["CategoryCode"].ToString();
+                BhandarCategory.Description = dr["Description"].ToString();
                 BhandarCategory.IsActive = dr["IsActive"].ToBool();
                 bhandarCategories.Add(BhandarCategory);
             }
@@ -81,9 +84,13 @@ namespace AdoDotNetDal
             cmd.CommandText = "SaveBhandarCategory";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Id", anyType.Id);
-            cmd.Parameters.AddWithValue("@CategoryName", anyType.Name);
+            cmd.Parameters.AddWithValue("@Name", anyType.Name);
+            cmd.Parameters.AddWithValue("@GroupId", anyType.GroupId);
+            cmd.Parameters.AddWithValue("@CategoryCode", anyType.CategoryCode);
+            cmd.Parameters.AddWithValue("@Description", anyType.Description);
             cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
             cmd.Parameters.AddWithValue("@IsActive", anyType.IsActive);
+            cmd.Parameters.AddWithValue("@IsDeleted", anyType.IsDeleted);
             cmd.ExecuteNonQuery();
         }
 
@@ -105,6 +112,7 @@ namespace AdoDotNetDal
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@PageNumber", bhandarCategoryRequest.PageNumber);
             cmd.Parameters.AddWithValue("@PageSize", bhandarCategoryRequest.PageSize);
+            cmd.Parameters.AddWithValue("@Name", bhandarCategoryRequest.Name);
 
             SqlDataReader dr = null;
             dr = cmd.ExecuteReader();
@@ -114,7 +122,9 @@ namespace AdoDotNetDal
             {
                 IBhandarCategory BhandarCategory = Factory<IBhandarCategory>.Create("BhandarCategory");
                 BhandarCategory.Id = dr["Id"].ToInt();
-                BhandarCategory.Name = dr["CategoryName"].ToString();
+                BhandarCategory.Name = dr["Name"].ToString();
+                BhandarCategory.GroupName = dr["GroupName"].ToString();
+                BhandarCategory.CategoryCode = dr["CategoryCode"].ToString();
                 BhandarCategory.IsActive = dr["IsActive"].ToBool();
                 BhandarCategory.Total = dr["total"].ToInt();
                 BhandarCategory.Page = dr["page"].ToInt();

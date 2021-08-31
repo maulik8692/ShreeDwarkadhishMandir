@@ -80,7 +80,7 @@ function SaveAccountHead() {
 }
 
 function GetAccountHeadDropdown(accountId, NatureOfGroup) {
-    debugger;
+    
     var accountDropdownRequest = {
         AccountId: accountId,
         NatureOfGroup: NatureOfGroup,

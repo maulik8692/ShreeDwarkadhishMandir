@@ -47,7 +47,7 @@ function LoadMandir() {
                             title: "Edit",
                             "width": "10%",
                             render: function (data, type, row) {
-                                debugger;
+                                
                                 return '<a href="/Mandir/Mandir?Id=' + row.Id + '"><i class="fas fa-edit"></i></a>';
                             },
                             className: "dt-body-Center"

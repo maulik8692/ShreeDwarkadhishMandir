@@ -89,6 +89,8 @@ namespace FactoryMiddleLayer
 
                 ObjectsofOurProjects.RegisterType<IUnitOfMeasurement, UnitOfMeasurement>
                 ("UnitOfMeasurement", new InjectionConstructor(new ValidationUnitOfMeasurement()));
+                ObjectsofOurProjects.RegisterType<IUnitConversion, UnitConversion>
+                ("UnitConversion", new InjectionConstructor(new ValidationUnitConversion()));
 
                 ObjectsofOurProjects.RegisterType<IBhandarCategory, BhandarCategory>
                 ("BhandarCategory", new InjectionConstructor(new ValidationBhandarCategory()));

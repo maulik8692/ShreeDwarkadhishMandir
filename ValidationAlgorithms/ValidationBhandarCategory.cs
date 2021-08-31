@@ -12,6 +12,10 @@ namespace ValidationAlgorithms
     {
         public void Validate(IBhandarCategory anyType)
         {
+            if (!anyType.GroupId.IsNotZero())
+            {
+                throw new Exception("Category Group must be selected.");
+            }
             if (anyType.Name.IsExactLength(0))
             {
                 throw new Exception("Category name is require.");

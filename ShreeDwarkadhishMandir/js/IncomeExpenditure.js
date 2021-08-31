@@ -9,7 +9,7 @@ function LoadIncomExpenditure() {
         type: "POST",
         contentType: "application/json; charset=utf-8",
         success: function (jsondata) {
-            debugger;
+            
             if (jsondata !== null && jsondata.length > 0) {
                 $('#divIncome').html('');
                 $('#divExpenditure').html('');

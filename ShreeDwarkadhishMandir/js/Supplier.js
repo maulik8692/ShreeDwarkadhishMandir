@@ -52,6 +52,6 @@ function SetStyle() {
 }
 
 function EditSupplier(cellvalue, options, rowObject) {
-    debugger;
+    
     return "<div><a href=/Supplier/CreateSupplier?Id=" + rowObject.SupplierId + "><i class='fa fa-edit'></i></a></div>";
 }

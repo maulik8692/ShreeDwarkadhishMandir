@@ -42,6 +42,7 @@ namespace AdoDotNetDal
                 unitOfMeasurement.Id = dr["Id"].ToInt();
                 unitOfMeasurement.UnitAbbreviation = dr["UnitAbbreviation"].ToString();
                 unitOfMeasurement.UnitDescription = dr["UnitDescription"].ToString();
+                unitOfMeasurement.IsActive = dr["IsActive"].ToBool();
 
                 unitOfMeasurements.Add(unitOfMeasurement);
             }

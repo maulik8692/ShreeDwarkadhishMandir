@@ -11,11 +11,50 @@ $(document).ready(function () {
     });
 });
 
+function GetBhandarGroupDropdown() {
+    $.ajax({
+        url: "/BhandarGroup/GetBhandarGroupDropdown",
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        success: function (jsondata) {
+            $("#BhandarGroup").empty();
+
+            $("<option />", {
+                val: 0,
+                text: 'Please Select Bhandar Group'
+            }).appendTo("#BhandarGroup");
+
+            $(jsondata).each(function () {
+
+                $("<option />", {
+                    val: this.Id,
+                    text: this.Name
+                }).appendTo("#BhandarGroup");
+            });
+
+            if (typeof BhandarCategoryDetail.GroupId !== "undefined" && BhandarCategoryDetail.GroupId !== 0) {
+                $("#BhandarGroup").val(BhandarCategoryDetail.GroupId);
+            }
+            hideProgress();
+        },
+        error: function (xhr) {
+            alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+
+            hideProgress();
+        }
+    });
+}
+
 function SaveForm() {
     showProgress();
+    
     var bhandarCategory = {
         Id: parseInt($('#Id').val()),
         Name: $('#Name').val(),
+        Description: $('#Description').val(),
+        CategoryCode: $('#CategoryCode').val(),
+        GroupId: parseInt($("#BhandarGroup").val()),
         IsActive: $('#IsActive').is(":checked")
     };
 
@@ -57,9 +96,9 @@ function GetDetail() {
             type: "POST",
             contentType: "application/json; charset=utf-8",
             success: function (jsondata) {
-                BhandarCategoryDetail  = jsondata;
+                BhandarCategoryDetail = jsondata;
+                GetBhandarGroupDropdown();
                 setdetail();
-
             },
             error: function (xhr, httpStatusMessage, customErrorMessage) {
                 if (xhr.status === 410) {
@@ -69,12 +108,18 @@ function GetDetail() {
             },
         });
     }
+    else {
+        $('#IsActive').prop('checked', true);
+        GetBhandarGroupDropdown();
+    }
 
     hideProgress();
 }
 
 function setdetail() {
     $('#Name').val(BhandarCategoryDetail.Name);
+    $('#CategoryCode').val(BhandarCategoryDetail.CategoryCode);
+    $('#Description').val(BhandarCategoryDetail.Description);
     $('#IsActive').prop('checked', BhandarCategoryDetail.IsActive);
 }
 

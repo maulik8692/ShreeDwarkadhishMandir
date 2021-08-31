@@ -80,6 +80,7 @@
     <Compile Include="Supplier.cs" />
     <Compile Include="SystemAdministrator.cs" />
     <Compile Include="Temple.cs" />
+    <Compile Include="UnitConversion.cs" />
     <Compile Include="UnitOfMeasurement.cs" />
     <Compile Include="UserType.cs" />
     <Compile Include="Vaishnav.cs" />

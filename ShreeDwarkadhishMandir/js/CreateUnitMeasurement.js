@@ -7,11 +7,14 @@ $(document).ready(function () {
     });
 
     $("#Save").click(function (e) {
-        SaveForm();
+        SaveForm(false);
+    });
+    $("#SaveNew").click(function (e) {
+        SaveForm(true);
     });
 });
 
-function SaveForm() {
+function SaveForm(IsNew) {
     showProgress();
     var unitMeasurement = {
         Id: parseInt($('#Id').val()),
@@ -30,7 +33,12 @@ function SaveForm() {
             alert("Unit Measurement has been saved successfully.");
             hideProgress();
 
-            window.location.href = '/UnitMeasurement/UnitMeasurement';
+            if (!IsNew) {
+                window.location.href = '/UnitMeasurement/UnitMeasurement';
+            } else {
+                $('#Id').val("0");
+                ResetForm();
+            }
         },
         error: function (xhr, httpStatusMessage, customErrorMessage) {
             alert(customErrorMessage);
@@ -44,6 +52,7 @@ function GetDetail() {
     $('#Id').val(UnitMeasurementId);
 
     if (typeof UnitMeasurementId !== "undefined" && UnitMeasurementId !== null && UnitMeasurementId !== '') {
+        $("#SaveNew").hide();
         showProgress();
         var unitMeasurement = {
             Id: parseInt($('#Id').val()),
@@ -71,7 +80,9 @@ function GetDetail() {
             },
         });
     }
-
+    else {
+        $('#IsActive').prop('checked', true);
+    }
     hideProgress();
 }
 

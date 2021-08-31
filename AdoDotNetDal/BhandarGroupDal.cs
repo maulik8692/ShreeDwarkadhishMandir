@@ -46,6 +46,7 @@ namespace AdoDotNetDal
                 bhandarGroup.Description = dr["Description"].ToString();
                 bhandarGroup.IsJewellery = dr["IsJewellery"].ToBool();
                 bhandarGroup.IsSamagri = dr["IsSamagri"].ToBool();
+                bhandarGroup.IsBhandar = dr["IsBhandar"].ToBool();
                 bhandarGroups.Add(bhandarGroup);
             }
 
@@ -71,6 +72,7 @@ namespace AdoDotNetDal
                 bhandarGroup.GroupCode = dr["GroupCode"].ToString();
                 bhandarGroup.Description = dr["Description"].ToString();
                 bhandarGroup.IsJewellery = dr["IsJewellery"].ToBool();
+                bhandarGroup.IsBhandar = dr["IsBhandar"].ToBool();
                 bhandarGroup.IsSamagri = dr["IsSamagri"].ToBool();
                 bhandarGroup.IsActive = dr["IsActive"].ToBool();
                 bhandarGroups.Add(bhandarGroup);
@@ -95,6 +97,7 @@ namespace AdoDotNetDal
             cmd.Parameters.AddWithValue("@Description", anyType.Description);
             cmd.Parameters.AddWithValue("@IsJewellery", anyType.IsJewellery);
             cmd.Parameters.AddWithValue("@IsSamagri", anyType.IsSamagri);
+            cmd.Parameters.AddWithValue("@IsBhandar", anyType.IsBhandar);
             cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
             cmd.Parameters.AddWithValue("@IsActive", anyType.IsActive);
             cmd.Parameters.AddWithValue("@IsDeleted", anyType.IsDeleted);
@@ -135,6 +138,7 @@ namespace AdoDotNetDal
                 bhandarGroup.Description = dr["Description"].ToString();
                 bhandarGroup.IsJewellery = dr["IsJewellery"].ToBool();
                 bhandarGroup.IsSamagri = dr["IsSamagri"].ToBool();
+                bhandarGroup.IsBhandar = dr["IsBhandar"].ToBool();
                 bhandarGroup.IsActive = dr["IsActive"].ToBool();
                 bhandarGroup.Page = dr["page"].ToInt();
                 bhandarGroup.Records = dr["records"].ToInt();

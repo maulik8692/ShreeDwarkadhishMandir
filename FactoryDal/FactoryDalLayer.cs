@@ -50,7 +50,9 @@ namespace FactoryDal
 
                 ObjectsofOurProjects.RegisterType<IRepository<ISupplier>, SupplierDal>("Supplier");
                 ObjectsofOurProjects.RegisterType<IRepository<IBhandarCategory>, BhandarCategoryDal>("BhandarCategory");
+
                 ObjectsofOurProjects.RegisterType<IRepository<IUnitOfMeasurement>, UnitOfMeasurementDal>("UnitOfMeasurement");
+                ObjectsofOurProjects.RegisterType<IRepository<IUnitConversion>, UnitConversionDal>("UnitConversion");
 
                 ObjectsofOurProjects.RegisterType<IRepository<ICommunication>, CommunicationDal>("Communication");
                 ObjectsofOurProjects.RegisterType<IRepository<ISamagri>, SamagriDal>("Samagri");

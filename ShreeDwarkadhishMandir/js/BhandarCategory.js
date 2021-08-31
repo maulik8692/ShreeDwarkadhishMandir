@@ -13,11 +13,12 @@ function GetDetail() {
             mtype: 'Get',
             hoverrows: false,
             colNames: [
-                'Id', 'Name', 'Edit'],
+                'Id', 'Name','Bhandar Group', 'Edit'],
             colModel: [
                 { name: 'Id', index: 'Id', align: 'left', key: true, hidden: true, sortable: false },
                 { name: 'Name', index: 'Name', align: 'left', sortable: false },
-                { name: 'editoperation', index: 'editoperation', align: 'center', width: 40, sortable: false, formatter: EditBhandarCategory },
+                { name: 'GroupName', index: 'GroupName', align: 'left', sortable: false},
+                { name: 'editoperation', index: 'editoperation', align: 'center', sortable: false, formatter: EditBhandarCategory },
             ],
             pager: jQuery('#pager'),
             rowNum: 50,
@@ -35,12 +36,13 @@ function GetDetail() {
                     Id: "0"
                 },
             autowidth: true,
-            multiselect: false
-
+            multiselect: false,
+            gridComplete: function () {
+                SetStyle();
+            }
         });
 
     hideProgress();
-    SetStyle();
 };
 
 function SetStyle() {
@@ -50,6 +52,5 @@ function SetStyle() {
 }
 
 function EditBhandarCategory(cellvalue, options, rowObject) {
-    debugger;
     return "<div><a href=/BhandarCategory/CreateBhandarCategory?Id=" + rowObject.Id + "><i class='fa fa-edit'></i></a></div>";
 }

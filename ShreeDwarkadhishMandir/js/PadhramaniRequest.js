@@ -54,7 +54,7 @@ $(document).ready(function () {
     });
 
     $("#Village").change(function () {
-        debugger;
+        
         var selectedVillage = personalVillages.find(x => x.Id === parseInt($('option:selected', this).val()));
         if (selectedVillage !== null && selectedVillage.Id !== 0) {
             $('#PostalCode').val(selectedVillage.ZipCode)
@@ -87,7 +87,7 @@ function SendPadhramaniRequest() {
         CompletionDate: null,
         IsCompled: false
     };
-    debugger;
+    
     $.ajax({
         url: "/Padhramani/SavePadhramaniRequest",
         data: JSON.stringify(padhramaniRequest),
@@ -443,7 +443,7 @@ function GetVillagesByCityId(cityId) {
                 });
                 $('#VillageDiv').show();
 
-                debugger;
+                
                 if (typeof VaishnavDetail.VillageId !== "undefined" && VaishnavDetail.VillageId !== 0) {
                     $("#Village").val(VaishnavDetail.VillageId);
                     $('#PostalCode').val(VaishnavDetail.PostalCode)
