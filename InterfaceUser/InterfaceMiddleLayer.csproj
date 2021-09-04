@@ -75,6 +75,7 @@
     <Compile Include="ISamagriTransaction.cs" />
     <Compile Include="IServiceStatus.cs" />
     <Compile Include="IState.cs" />
+    <Compile Include="IStore.cs" />
     <Compile Include="ISupplier.cs" />
     <Compile Include="IUnitConversion.cs" />
     <Compile Include="IUnitOfMeasurement.cs" />

@@ -145,6 +145,7 @@
     <Compile Include="Controllers\ReceiptController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\SamagriController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\UnitConversionController.cs" />
     <Compile Include="Controllers\UnitMeasurementController.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="Models\ReceiptRequest.cs" />
     <Compile Include="Models\SamagriDetailRequest.cs" />
     <Compile Include="Models\SamagriRequest.cs" />
+    <Compile Include="Models\StoreRequest.cs" />
     <Compile Include="Models\SupplierRequest.cs" />
     <Compile Include="Models\UnitConversionRequest.cs" />
     <Compile Include="Models\UnitMeasurementRequest.cs" />
@@ -647,6 +649,7 @@
     <Content Include="js\CreateManorath.js" />
     <Content Include="js\CreateReceipt.js" />
     <Content Include="js\CreateSamagri.js" />
+    <Content Include="js\CreateStore.js" />
     <Content Include="js\CreateSupplier.js" />
     <Content Include="js\CreateUnitConversion.js" />
     <Content Include="js\CreateUnitMeasurement.js" />
@@ -667,6 +670,7 @@
     <Content Include="js\ReceiptDetail.js" />
     <Content Include="js\ReportList.js" />
     <Content Include="js\Samagri.js" />
+    <Content Include="js\Store.js" />
     <Content Include="js\Supplier.js" />
     <Content Include="js\TransactionList.js" />
     <Content Include="js\TransactionReport.js" />
@@ -1257,6 +1261,8 @@
     <Content Include="Views\BhandarGroup\CreateBhandarGroup.cshtml" />
     <Content Include="Views\UnitConversion\UnitConversion.cshtml" />
     <Content Include="Views\UnitConversion\CreateUnitConversion.cshtml" />
+    <Content Include="Views\Store\Store.cshtml" />
+    <Content Include="Views\Store\CreateStore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace InterfaceMiddleLayer
 {
-    public interface IUnitOfMeasurement
+    public interface IStore
     {
         int Id { get; set; }
-        string UnitAbbreviation { get; set; }
-        string UnitDescription { get; set; }
-        int CreatedBy { get; set; }
+        int MandirId { get; set; }
+        string Name { get; set; }
+        string Description { get; set; }
         bool IsActive { get; set; }
+        bool IsMainStore { get; set; }
+        DateTime CreatedOn { get; set; }
+        int CreatedBy { get; set; }
         int Total { get; set; }
         int Page { get; set; }
         int Records { get; set; }

@@ -1,4 +1,4 @@
-﻿var BhandarGroupDetail = {};
+﻿var StoreDetail = {};
 
 $(document).ready(function () {
     hideProgress();
@@ -14,68 +14,31 @@ $(document).ready(function () {
     $("#Save").click(function (e) {
         SaveForm();
     });
-
-    $('#IsJewellery').change(function () {
-        if (this.checked) {
-            $(this).prop("checked", true);
-            $('#IsSamagri').attr("disabled", true);
-            $('#IsBhandar').attr("disabled", true);
-        } else {
-            $('#IsSamagri').removeAttr("disabled");
-            $('#IsBhandar').removeAttr("disabled");
-        }
-    });
-
-    $('#IsSamagri').change(function () {
-        if (this.checked) {
-            $(this).prop("checked", true);
-            $('#IsJewellery').attr("disabled", true);
-            $('#IsBhandar').attr("disabled", true);
-        } else {
-            $('#IsJewellery').removeAttr("disabled");
-            $('#IsBhandar').removeAttr("disabled");
-        }
-    });
-
-    $('#IsBhandar').change(function () {
-        if (this.checked) {
-            $(this).prop("checked", true);
-            $('#IsSamagri').attr("disabled", true);
-            $('#IsJewellery').attr("disabled", true);
-        } else {
-            $('#IsSamagri').removeAttr("disabled");
-            $('#IsJewellery').removeAttr("disabled");
-        }
-    });
 });
 
 function SaveForm() {
     showProgress();
-    var BhandarGroup = {
+    var Store = {
         Id: $('#Id').val() == '' ? 0 : parseInt($('#Id').val()),
         MandirId: parseInt($('#Mandir').val()),
         Name: $('#Name').val(),
-        GroupCode: $('#GroupCode').val(),
         Description: $('#Description').val(),
-        IsJewellery: $('#IsJewellery').is(":checked"),
-        IsSamagri: $('#IsSamagri').is(":checked"),
-        IsBhandar: $('#IsBhandar').is(":checked"),
         IsActive: $('#IsActive').is(":checked")
     };
     $.ajax({
-        url: "/BhandarGroup/CreateBhandarGroup",
-        data: JSON.stringify(BhandarGroup),
+        url: "/Store/CreateStore",
+        data: JSON.stringify(Store),
         dataType: "json",
         type: "POST",
         contentType: "application/json; charset=utf-8",
         success: function (jsondata) {
-            alert("Bhandar Group has been saved successfully.");
+            alert("Store has been saved successfully.");
             hideProgress();
 
-            window.location.href = '/BhandarGroup/BhandarGroup';
+            window.location.href = '/Store/Store';
         },
         error: function (xhr, httpStatusMessage, customErrorMessage) {
-            
+
             alert(customErrorMessage);
             if (xhr.status === 406) {
                 if (customErrorMessage === "Name is require.") {
@@ -109,8 +72,8 @@ function GetMandirList() {
                 }).appendTo("#Mandir");
             });
 
-            if (typeof BhandarGroupDetail.MandirId !== "undefined" && BhandarGroupDetail.MandirId !== 0) {
-                $("#Mandir").val(BhandarGroupDetail.MandirId);
+            if (typeof StoreDetail.MandirId !== "undefined" && StoreDetail.MandirId !== 0) {
+                $("#Mandir").val(StoreDetail.MandirId);
             }
             else {
                 $("#Mandir").val($("#Mandir option:eq(1)").val());
@@ -137,22 +100,22 @@ function GetDetail() {
 
     if (typeof Id !== "undefined" && Id !== null && Id !== '') {
         showProgress();
-        var BhandarGroup = {
+        var Store = {
             Id: $('#Id').val()
         };
 
         $.ajax({
-            url: "/BhandarGroup/BhandarGroupDetail",
-            data: JSON.stringify(BhandarGroup),
+            url: "/Store/StoreDetail",
+            data: JSON.stringify(Store),
             dataType: "json",
             type: "POST",
             contentType: "application/json; charset=utf-8",
             success: function (jsondata) {
-                BhandarGroupDetail = jsondata;
+                StoreDetail = jsondata;
                 setdetail();
             },
             error: function (xhr, httpStatusMessage, customErrorMessage) {
-                
+
                 if (xhr.status === 406) {
                     alert(customErrorMessage);
                     if (customErrorMessage === "Name is require.") {
@@ -171,15 +134,8 @@ function GetDetail() {
 }
 
 function setdetail() {
-    $('#Name').val(BhandarGroupDetail.Name);
-    $('#GroupCode').val(BhandarGroupDetail.GroupCode);
-    $('#Description').val(BhandarGroupDetail.Description);
-    $('#IsActive').prop('checked', BhandarGroupDetail.IsActive);
-    $('#IsBhandar').prop('checked', BhandarGroupDetail.IsBhandar);
-    $('#IsSamagri').prop('checked', BhandarGroupDetail.IsSamagri);
-    $('#IsJewellery').prop('checked', BhandarGroupDetail.IsJewellery);
-    $('#IsSamagri').attr("disabled", true);
-    $('#IsJewellery').attr("disabled", true);
-    $('#IsBhandar').attr("disabled", true);
+    $('#Name').val(StoreDetail.Name);
+    $('#Description').val(StoreDetail.Description);
+    $('#IsActive').prop('checked', StoreDetail.IsActive);
     GetMandirList();
 }

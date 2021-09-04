@@ -57,6 +57,8 @@ namespace FactoryMiddleLayer
 
                 ObjectsofOurProjects.RegisterType<IBhandar, Bhandar>
                   ("Bhandar", new InjectionConstructor(new ValidationBhandar()));
+                ObjectsofOurProjects.RegisterType<IStore, Store>
+                  ("Store", new InjectionConstructor(new ValidationStore()));
 
                 ObjectsofOurProjects.RegisterType<IBhandarTransaction, BhandarTransaction>
                   ("BhandarTransaction", new InjectionConstructor(new ValidationBhandarTransaction()));

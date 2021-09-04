@@ -77,6 +77,7 @@
     <Compile Include="SamagriTransaction.cs" />
     <Compile Include="ServiceStatus.cs" />
     <Compile Include="State.cs" />
+    <Compile Include="Store.cs" />
     <Compile Include="Supplier.cs" />
     <Compile Include="SystemAdministrator.cs" />
     <Compile Include="Temple.cs" />

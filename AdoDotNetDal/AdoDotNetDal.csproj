@@ -74,6 +74,7 @@
     <Compile Include="SamagriDal.cs" />
     <Compile Include="ServiceStatusDal.cs" />
     <Compile Include="StateDal.cs" />
+    <Compile Include="StoreDal.cs" />
     <Compile Include="SupplierDal.cs" />
     <Compile Include="TemplateADO.cs" />
     <Compile Include="UnitConversionDal.cs" />

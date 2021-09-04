@@ -47,6 +47,8 @@ namespace FactoryDal
 
                 ObjectsofOurProjects.RegisterType<IRepository<IBhandar>, BhandarDal>("Bhandar");
                 ObjectsofOurProjects.RegisterType<IRepository<IBhandarGroup>, BhandarGroupDal>("BhandarGroup");
+                ObjectsofOurProjects.RegisterType<IRepository<IStore>, StoreDal>("Store");
+
 
                 ObjectsofOurProjects.RegisterType<IRepository<ISupplier>, SupplierDal>("Supplier");
                 ObjectsofOurProjects.RegisterType<IRepository<IBhandarCategory>, BhandarCategoryDal>("BhandarCategory");
