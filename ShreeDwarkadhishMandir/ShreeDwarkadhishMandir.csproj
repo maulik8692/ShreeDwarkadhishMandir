@@ -1285,6 +1285,10 @@
       <Project>{6044197f-fdcd-4c49-a4ec-5ede0b3c8427}</Project>
       <Name>CommonLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EnumLayer\EnumLayer.csproj">
+      <Project>{bf56cee1-a9c2-42b8-945e-bec4ed24ca07}</Project>
+      <Name>EnumLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FactoryDal\FactoryDal.csproj">
       <Project>{d8cc3cf5-74d5-4201-978b-f858cbb72d91}</Project>
       <Name>FactoryDal</Name>

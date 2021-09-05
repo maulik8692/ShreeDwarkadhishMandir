@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static EnumLayer.BhandarTransactionCodeEnum;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
@@ -106,6 +107,22 @@ namespace ShreeDwarkadhishMandir.Controllers
                 IBhandar BhandarResponse = Factory<IBhandar>.Create("Bhandar");
                 IRepository<IBhandar> dal = FactoryDalLayer<IRepository<IBhandar>>.Create("Bhandar");
                 BhandarResponse = dal.SaveWithReturn(BhandarRequest);
+
+                if (Bhandar.AllowToChangeBalance && Bhandar.Balance > 0)
+                {
+                    IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                    bhandarTransaction.BhandarId = BhandarResponse.Id;
+                    bhandarTransaction.UnitId = Bhandar.UnitId;
+                    bhandarTransaction.StoreId = Bhandar.StoreId;
+                    bhandarTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.Opening;
+                    bhandarTransaction.StockTransactionQuantity = Bhandar.Balance;
+                    bhandarTransaction.Description = "Opening Balance for " + Bhandar.Name;
+                    bhandarTransaction.CreatedBy= Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
+
+                    IBhandarTransaction BhandarTransactionResponse = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                    IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+                    BhandarTransactionResponse = dalBhandarTransaction.SaveWithReturn(bhandarTransaction);
+                }
 
                 return Json("Bhandar saved successfully.", JsonRequestBehavior.AllowGet);
             }

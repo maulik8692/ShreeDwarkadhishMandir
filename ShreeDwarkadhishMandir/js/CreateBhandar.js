@@ -23,7 +23,9 @@ function SaveForm() {
         Name: $('#Name').val(),
         Description: $('#Description').val(),
         IsActive: $('#IsActive').is(":checked"),
+        StoreId: parseInt($('#Store').val()),
         Balance: parseFloat($('#Balance').val()),
+        AllowToChangeBalance: $('#AllowToChangeBalance').val() === 'true'
     };
 
     $.ajax({
@@ -42,6 +44,36 @@ function SaveForm() {
             alert(customErrorMessage);
             hideProgress();
         },
+    });
+}
+
+function GetStoreList() {
+    $.ajax({
+        url: "/Store/StoreDropdown",
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        success: function (jsondata) {
+            $("#Store").empty();
+            $("<option />", {
+                val: 0,
+                text: 'Please Select Store'
+            }).appendTo("#Store");
+
+            $(jsondata).each(function () {Store
+                $("<option />", {
+                    val: this.Id,
+                    text: this.Name
+                }).appendTo("#Store");
+            });
+
+            $('.Store').show();
+        },
+        error: function (xhr) {
+            alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+
+            hideProgress();
+        }
     });
 }
 
@@ -90,7 +122,7 @@ function GetBhandarCategoriesForDrodown() {
         contentType: "application/json; charset=utf-8",
         success: function (jsondata) {
             $("#BhandarCategory").empty();
-            debugger;
+            
             $("<option />", {
                 val: 0,
                 text: 'Please Select Bhandar Category'
@@ -108,7 +140,7 @@ function GetBhandarCategoriesForDrodown() {
                 }).appendTo("#BhandarCategory");
             });
 
-            debugger;
+            
             if (typeof BhandarDetail.BhandarCategoryId !== "undefined" && BhandarDetail.BhandarCategoryId !== 0) {
                 $("#BhandarCategory").val(BhandarDetail.BhandarCategoryId);
                 $('#BhandarCategory').attr("disabled", true);
@@ -125,6 +157,7 @@ function GetBhandarCategoriesForDrodown() {
 }
 
 function ResetForm() {
+    $('.Store').hide();
     GetDetail();
 }
 
@@ -214,8 +247,10 @@ function GetDetail() {
         $('#Name').val();
         $('#Description').val();
         $('#Balance').val();
+        $('#AllowToChangeBalance').val(true);
         $('#IsActive').prop('checked', BhandarDetail.IsActive);
         GetUnitMeasurementList();
+        GetStoreList();
     }
 }
 
@@ -226,9 +261,11 @@ function setdetail() {
     $('#IsActive').prop('checked', BhandarDetail.IsActive);
     $('#UnitOfMeasurement').attr("disabled", false);
     $('#BhandarCategory').attr("disabled", false);
-    //if (BhandarDetail.AllowToChangeBalance !== true) {
-        $('#Balance').attr("disabled", BhandarDetail.AllowToChangeBalance !== true);
-    //}
-    debugger;
+    $('#AllowToChangeBalance').val(BhandarDetail.AllowToChangeBalance);
+    $('#Balance').attr("disabled", BhandarDetail.AllowToChangeBalance !== true);
+    if (BhandarDetail.AllowToChangeBalance === true) {
+        GetStoreList();
+    }
+    
     GetUnitMeasurementList();
 }

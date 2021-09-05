@@ -85,7 +85,6 @@ namespace ShreeDwarkadhishMandir.Controllers
             }
         }
 
-
         [HttpPost]
         public ActionResult CreateStore(StoreRequest Store)
         {
@@ -101,6 +100,23 @@ namespace ShreeDwarkadhishMandir.Controllers
             {
                 Log.Write(ex);
                 return new HttpStatusCodeResult(406, ex.Message);
+            }
+        }
+
+        public ActionResult StoreDropdown()
+        {
+            try
+            {
+                IRepository<IStore> dal = FactoryDalLayer<IRepository<IStore>>.Create("Store");
+
+                List<IStore> stores = dal.DropdownWithSearch("");
+
+                return Json(stores, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Log.Write(ex);
+                return new HttpStatusCodeResult(410, ex.Message);
             }
         }
     }

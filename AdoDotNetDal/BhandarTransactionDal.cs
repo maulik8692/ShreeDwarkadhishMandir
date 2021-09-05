@@ -61,21 +61,35 @@ namespace AdoDotNetDal
 
         protected override void SaveCommand(IBhandarTransaction anyType)
         {
-            cmd.CommandText = "SaveBhandarTransaction";
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@BhandarId", anyType.BhandarId);
-            cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
-            cmd.Parameters.AddWithValue("@Credit", anyType.StockTransactionQuantity);
-            cmd.Parameters.AddWithValue("@SupplierId", anyType.SupplierId);
-            cmd.Parameters.AddWithValue("@PurchasingPrice", anyType.PurchasingPrice);
-            cmd.Parameters.AddWithValue("@PaymentAccountHead", anyType.PaymentAccountHeadId);
-            cmd.Parameters.AddWithValue("@Notes ", anyType.Description);
-            cmd.ExecuteNonQuery();
+            throw new NotImplementedException();
         }
 
         protected override IBhandarTransaction SaveWithReturnCommand(IBhandarTransaction anyType)
         {
-            throw new NotImplementedException();
+            cmd.CommandText = "SaveBhandarTransaction";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@BhandarId", anyType.BhandarId);
+            cmd.Parameters.AddWithValue("@StoreId", anyType.StoreId);
+            cmd.Parameters.AddWithValue("@BhandarTransactionCodeId", anyType.BhandarTransactionCodeId);
+            cmd.Parameters.AddWithValue("@UnitId", anyType.UnitId);
+            cmd.Parameters.AddWithValue("@SupplierId", anyType.SupplierId);
+            cmd.Parameters.AddWithValue("@SamagriId", anyType.SamagriId);
+            cmd.Parameters.AddWithValue("@PaymentAccountHeadId", anyType.PaymentAccountHeadId);
+            cmd.Parameters.AddWithValue("@StockTransactionQuantity", anyType.StockTransactionQuantity);
+            cmd.Parameters.AddWithValue("@PurchasingPrice", anyType.PurchasingPrice);
+            cmd.Parameters.AddWithValue("@Description", anyType.Description);
+            cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            List<IBhandarTransaction> bhandarTransactions = new List<IBhandarTransaction>();
+            while (dr.Read())
+            {
+                IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                bhandarTransaction.Id = dr["Id"].ToInt();
+                bhandarTransactions.Add(bhandarTransaction);
+            }
+
+            return bhandarTransactions.FirstOrDefault();
         }
 
         protected override List<IBhandarTransaction> SearchCommand()

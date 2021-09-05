@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailSender", "EmailSender\
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SQLDatabase", "SQLDatabase\SQLDatabase.sqlproj", "{8A2E49B3-3F15-4476-B5C9-445F7EA4D6A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumLayer", "EnumLayer\EnumLayer.csproj", "{BF56CEE1-A9C2-42B8-945E-BEC4ED24CA07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{8A2E49B3-3F15-4476-B5C9-445F7EA4D6A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A2E49B3-3F15-4476-B5C9-445F7EA4D6A2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8A2E49B3-3F15-4476-B5C9-445F7EA4D6A2}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{BF56CEE1-A9C2-42B8-945E-BEC4ED24CA07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF56CEE1-A9C2-42B8-945E-BEC4ED24CA07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF56CEE1-A9C2-42B8-945E-BEC4ED24CA07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF56CEE1-A9C2-42B8-945E-BEC4ED24CA07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

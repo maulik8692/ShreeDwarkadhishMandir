@@ -23,7 +23,6 @@ namespace InterfaceMiddleLayer
         decimal StockTransactionQuantity { get; set; }
         int PaymentAccountHeadId { get; set; }
         string Description { get; set; }
-
         void Validate();
     }
 }
