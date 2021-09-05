@@ -41,6 +41,9 @@ namespace AdoDotNetDal
                 IBhandarCategory BhandarCategory = Factory<IBhandarCategory>.Create("BhandarCategory");
                 BhandarCategory.Id = dr["Id"].ToInt();
                 BhandarCategory.Name = dr["Name"].ToString();
+                BhandarCategory.IsJewellery = dr["IsJewellery"].ToBool();
+                BhandarCategory.IsBhandar = dr["IsBhandar"].ToBool();
+                BhandarCategory.IsSamagri = dr["IsSamagri"].ToBool();
                 bhandarCategories.Add(BhandarCategory);
             }
 

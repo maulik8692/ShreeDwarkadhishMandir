@@ -25,7 +25,7 @@ function GetDetail() {
             rowList: [50, 100, 150, 200],
             height: '100%',
             viewrecords: true,
-            emptyrecords: 'No unit of measurement found.',
+            emptyrecords: 'No Supplier found.',
             jsonReader:
                 {
                     root: "rows",

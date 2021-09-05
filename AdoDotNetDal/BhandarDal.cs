@@ -66,13 +66,14 @@ namespace AdoDotNetDal
             {
                 IBhandar bhandar = Factory<IBhandar>.Create("Bhandar");
                 bhandar.Id = dr["Id"].ToInt();
-                //bhandar.MandirId = dr["MandirId"].ToInt();
                 bhandar.Name = dr["Name"].ToString();
+                bhandar.Description = dr["Description"].ToString();
                 bhandar.UnitId = dr["UnitId"].ToInt();
-                bhandar.BhandarCategoryId = dr["CategoryId"].ToInt();
+                bhandar.BhandarCategoryId = dr["BhandarCategoryId"].ToInt();
                 bhandar.Balance = dr["Balance"].ToDecimal();
                 bhandar.CreatedBy = dr["CreatedBy"].ToInt();
                 bhandar.IsActive = dr["IsActive"].ToBool();
+                bhandar.AllowToChangeBalance = dr["AllowToChangeBalance"].ToBool();
                 bhandar.CategoryName = dr["CategoryName"].ToString();
                 bhandar.UnitAbbreviation = dr["UnitAbbreviation"].ToString();
                 bhandar.UnitDescription = dr["UnitDescription"].ToString();
@@ -89,22 +90,30 @@ namespace AdoDotNetDal
 
         protected override void SaveCommand(IBhandar anyType)
         {
-            cmd.CommandText = "SaveBhandar";
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@Id", anyType.Id);
-            //cmd.Parameters.AddWithValue("@MandirId", anyType.MandirId);
-            cmd.Parameters.AddWithValue("@Name", anyType.Name);
-            cmd.Parameters.AddWithValue("@UnitId", anyType.UnitId);
-            cmd.Parameters.AddWithValue("@CategoryId", anyType.BhandarCategoryId);
-            cmd.Parameters.AddWithValue("@Balance", anyType.Balance);
-            cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
-            cmd.Parameters.AddWithValue("@IsActive", anyType.IsActive);
-            cmd.ExecuteNonQuery();
+            throw new NotImplementedException();
         }
 
         protected override IBhandar SaveWithReturnCommand(IBhandar anyType)
         {
-            throw new NotImplementedException();
+            cmd.CommandText = "SaveBhandar";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Id", anyType.Id);
+            cmd.Parameters.AddWithValue("@BhandarCategoryId", anyType.BhandarCategoryId);
+            cmd.Parameters.AddWithValue("@UnitId", anyType.UnitId);
+            cmd.Parameters.AddWithValue("@Name", anyType.Name);
+            cmd.Parameters.AddWithValue("@Description", anyType.Description);
+            cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
+            cmd.Parameters.AddWithValue("@IsActive", anyType.IsActive);
+            SqlDataReader dr = cmd.ExecuteReader();
+            List<IBhandar> bhandars = new List<IBhandar>();
+            while (dr.Read())
+            {
+                IBhandar bhandar = Factory<IBhandar>.Create("Bhandar");
+                bhandar.Id = dr["Id"].ToInt();
+                bhandars.Add(bhandar);
+            }
+
+            return bhandars.FirstOrDefault();
         }
 
         protected override List<IBhandar> SearchCommand()
@@ -120,6 +129,7 @@ namespace AdoDotNetDal
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@PageNumber", supplierRequest.PageNumber);
             cmd.Parameters.AddWithValue("@PageSize", supplierRequest.PageSize);
+            cmd.Parameters.AddWithValue("@Name", supplierRequest.Name);
             SqlDataReader dr = null;
             dr = cmd.ExecuteReader();
 
@@ -128,16 +138,17 @@ namespace AdoDotNetDal
             {
                 IBhandar bhandar = Factory<IBhandar>.Create("Bhandar");
                 bhandar.Id = dr["Id"].ToInt();
-                //bhandar.MandirId = dr["MandirId"].ToInt();
                 bhandar.Name = dr["Name"].ToString();
                 bhandar.UnitId = dr["UnitId"].ToInt();
-                bhandar.BhandarCategoryId = dr["CategoryId"].ToInt();
+                bhandar.BhandarCategoryId = dr["BhandarCategoryId"].ToInt();
                 bhandar.Balance = dr["Balance"].ToDecimal();
                 bhandar.CreatedBy = dr["CreatedBy"].ToInt();
                 bhandar.IsActive = dr["IsActive"].ToBool();
                 bhandar.CategoryName = dr["CategoryName"].ToString();
                 bhandar.UnitAbbreviation = dr["UnitAbbreviation"].ToString();
                 bhandar.UnitDescription = dr["UnitDescription"].ToString();
+
+                bhandar.Records = dr["records"].ToInt();
                 bhandar.Page = dr["page"].ToInt();
                 bhandar.Total = dr["total"].ToInt();
                 bhandars.Add(bhandar);

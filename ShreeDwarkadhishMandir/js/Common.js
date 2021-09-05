@@ -61,6 +61,8 @@
     });
 
     $(".wait").height($(".page-wrapper").get(0).scrollHeight);
+
+    $('.searchableDropdown').select2();
     
 });
 

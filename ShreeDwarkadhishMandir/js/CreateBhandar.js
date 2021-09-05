@@ -3,10 +3,7 @@
 $(document).ready(function () {
     hideProgress();
     ResetForm();
-
-    $("#Mandir").change(function () {
-        //GetAccountHeadForBhet($('#Mandir').val());
-    });
+   
     $("#reset").click(function (e) {
         ResetForm();
     });
@@ -21,12 +18,12 @@ function SaveForm() {
     showProgress();
     var Bhandar = {
         Id: parseInt($('#Id').val()),
-        MandirId: parseInt($('#Mandir').val()),
-        Name: $('#BhandarName').val(),
         UnitId: parseInt($('#UnitOfMeasurement').val()),
-        CategoryId: parseInt($('#BhandarCategory').val()),
+        BhandarCategoryId: parseInt($('#BhandarCategory').val()),
+        Name: $('#Name').val(),
+        Description: $('#Description').val(),
+        IsActive: $('#IsActive').is(":checked"),
         Balance: parseFloat($('#Balance').val()),
-        IsActive: $('#IsActive').is(":checked")
     };
 
     $.ajax({
@@ -45,45 +42,6 @@ function SaveForm() {
             alert(customErrorMessage);
             hideProgress();
         },
-    });
-}
-
-function GetMandirList() {
-    $.ajax({
-        url: "/Mandir/MandirList",
-        dataType: "json",
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        success: function (jsondata) {
-            $("#Mandir").empty();
-
-            $("<option />", {
-                val: 0,
-                text: 'Please Select Mandir'
-            }).appendTo("#Mandir");
-
-            $(jsondata).each(function () {
-
-                $("<option />", {
-                    val: this.Id,
-                    text: this.Name
-                }).appendTo("#Mandir");
-            });
-
-            if (typeof BhandarDetail.MandirId !== "undefined" && BhandarDetail.MandirId !== 0) {
-                $("#Mandir").val(BhandarDetail.MandirId);
-            }
-            else {
-                $("#Mandir").val($("#Mandir option:eq(1)").val());
-            }
-
-            GetUnitMeasurementList();
-        },
-        error: function (xhr) {
-            alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
-
-            hideProgress();
-        }
     });
 }
 
@@ -111,6 +69,7 @@ function GetUnitMeasurementList() {
 
             if (typeof BhandarDetail.UnitId !== "undefined" && BhandarDetail.UnitId !== 0) {
                 $("#UnitOfMeasurement").val(BhandarDetail.UnitId);
+                $('#UnitOfMeasurement').attr("disabled", true);
             }
 
             GetBhandarCategoriesForDrodown();
@@ -131,22 +90,28 @@ function GetBhandarCategoriesForDrodown() {
         contentType: "application/json; charset=utf-8",
         success: function (jsondata) {
             $("#BhandarCategory").empty();
-
+            debugger;
             $("<option />", {
                 val: 0,
                 text: 'Please Select Bhandar Category'
             }).appendTo("#BhandarCategory");
 
+            //var filterResult = jsondata.filter(function (i, n) {
+            //    return i.IsActive === true;
+            //})
+
             $(jsondata).each(function () {
 
                 $("<option />", {
                     val: this.Id,
-                    text: this.CategoryName
+                    text: this.Name
                 }).appendTo("#BhandarCategory");
             });
 
-            if (typeof BhandarDetail.CategoryId !== "undefined" && BhandarDetail.CategoryId !== 0) {
-                $("#BhandarCategory").val(BhandarDetail.CategoryId);
+            debugger;
+            if (typeof BhandarDetail.BhandarCategoryId !== "undefined" && BhandarDetail.BhandarCategoryId !== 0) {
+                $("#BhandarCategory").val(BhandarDetail.BhandarCategoryId);
+                $('#BhandarCategory').attr("disabled", true);
             }
 
             hideProgress();
@@ -184,7 +149,6 @@ function GetDetail() {
             success: function (jsondata) {
                 BhandarDetail = jsondata;
                 setdetail();
-
             },
             error: function (xhr, httpStatusMessage, customErrorMessage) {
                 if (xhr.status === 410) {
@@ -245,15 +209,26 @@ function GetDetail() {
         });
     }
     else {
-        GetMandirList();
         hideProgress();
+        $('#IsActive').prop('checked', true);
+        $('#Name').val();
+        $('#Description').val();
+        $('#Balance').val();
+        $('#IsActive').prop('checked', BhandarDetail.IsActive);
+        GetUnitMeasurementList();
     }
 }
 
 function setdetail() {
-    $('#BhandarName').val(BhandarDetail.Name);
+    $('#Name').val(BhandarDetail.Name);
+    $('#Description').val(BhandarDetail.Description);
     $('#Balance').val(parseFloat(BhandarDetail.Balance).toFixed(5));
     $('#IsActive').prop('checked', BhandarDetail.IsActive);
-    GetMandirList();
-   
+    $('#UnitOfMeasurement').attr("disabled", false);
+    $('#BhandarCategory').attr("disabled", false);
+    //if (BhandarDetail.AllowToChangeBalance !== true) {
+        $('#Balance').attr("disabled", BhandarDetail.AllowToChangeBalance !== true);
+    //}
+    debugger;
+    GetUnitMeasurementList();
 }

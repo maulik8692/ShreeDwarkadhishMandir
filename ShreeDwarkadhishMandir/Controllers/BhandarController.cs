@@ -25,22 +25,35 @@ namespace ShreeDwarkadhishMandir.Controllers
             return View();
         }
 
-        public ActionResult GetBhandarForDropdown()
+        public JsonResult BhandarList(string sidx, string sord, int page, int rows)
         {
             try
             {
                 IBhandar BhandarRequest = Factory<IBhandar>.Create("Bhandar");
+                BhandarRequest.PageNumber = page;
+                BhandarRequest.PageSize = rows;
 
                 IRepository<IBhandar> dal = FactoryDalLayer<IRepository<IBhandar>>.Create("Bhandar");
 
-                List<IBhandar> Bhandars = dal.DropdownWithSearch(0);
+                List<IBhandar> Bhandars = dal.Search(BhandarRequest);
 
-                return Json(Bhandars, JsonRequestBehavior.AllowGet);
+                JqGridResponse<IBhandar> jsonData = new JqGridResponse<IBhandar>();
+                jsonData.total = Bhandars.IsNotNullList() ? Bhandars.First().Page : 1;
+                jsonData.page = page;
+                jsonData.records = Bhandars.IsNotNullList() ? Bhandars.First().Total : 1;
+                jsonData.rows = Bhandars;
+
+                return Json(jsonData, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
                 Log.Write(ex);
-                return new HttpStatusCodeResult(410, ex.Message);
+                JqGridResponse<IBhandar> jsonData = new JqGridResponse<IBhandar>();
+                //jsonData.total = 1;
+                //jsonData.page = page;
+                //jsonData.records = 0;
+                //jsonData.rows = new List<IBhandar>();
+                return Json(jsonData, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -65,38 +78,6 @@ namespace ShreeDwarkadhishMandir.Controllers
             }
         }
 
-        public JsonResult BhandarList(string sidx, string sord, int page, int rows)
-        {
-            try
-            {
-                IBhandar BhandarRequest = Factory<IBhandar>.Create("Bhandar");
-                BhandarRequest.PageNumber = page;
-                BhandarRequest.PageSize = rows;
-
-                IRepository<IBhandar> dal = FactoryDalLayer<IRepository<IBhandar>>.Create("Bhandar");
-
-                List<IBhandar> Bhandars = dal.Search(BhandarRequest);
-
-                JqGridResponse<IBhandar> jsonData = new JqGridResponse<IBhandar>();
-                jsonData.total = Bhandars.IsNotNullList() ? Bhandars.First().Page : 0;
-                jsonData.page = page;
-                jsonData.records = Bhandars.IsNotNullList() ? Bhandars.First().Total : 1;
-                jsonData.rows = Bhandars;
-
-                return Json(jsonData, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                Log.Write(ex);
-                JqGridResponse<IBhandar> jsonData = new JqGridResponse<IBhandar>();
-                jsonData.total = 1;
-                jsonData.page = page;
-                jsonData.records = 0;
-                jsonData.rows = new List<IBhandar>();
-                return Json(jsonData, JsonRequestBehavior.AllowGet);
-            }
-        }
-
         public ActionResult CreateBhandar()
         {
             if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
@@ -114,19 +95,38 @@ namespace ShreeDwarkadhishMandir.Controllers
             {
                 IBhandar BhandarRequest = Factory<IBhandar>.Create("Bhandar");
                 BhandarRequest.Id = Bhandar.Id;
-                //BhandarRequest.MandirId = Bhandar.MandirId;
-                BhandarRequest.Name = Bhandar.Name;
                 BhandarRequest.UnitId = Bhandar.UnitId;
-                BhandarRequest.BhandarCategoryId = Bhandar.CategoryId;
-                BhandarRequest.Balance = Bhandar.Balance;
+                BhandarRequest.BhandarCategoryId = Bhandar.BhandarCategoryId;
+                BhandarRequest.Name = Bhandar.Name;
+                BhandarRequest.Description = Bhandar.Description;
                 BhandarRequest.IsActive = Bhandar.IsActive;
                 BhandarRequest.Validate();
                 BhandarRequest.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
 
+                IBhandar BhandarResponse = Factory<IBhandar>.Create("Bhandar");
                 IRepository<IBhandar> dal = FactoryDalLayer<IRepository<IBhandar>>.Create("Bhandar");
-                dal.Save(BhandarRequest);
+                BhandarResponse = dal.SaveWithReturn(BhandarRequest);
 
                 return Json("Bhandar saved successfully.", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Log.Write(ex);
+                return new HttpStatusCodeResult(410, ex.Message);
+            }
+        }
+
+        public ActionResult GetBhandarForDropdown()
+        {
+            try
+            {
+                IBhandar BhandarRequest = Factory<IBhandar>.Create("Bhandar");
+
+                IRepository<IBhandar> dal = FactoryDalLayer<IRepository<IBhandar>>.Create("Bhandar");
+
+                List<IBhandar> Bhandars = dal.DropdownWithSearch(0);
+
+                return Json(Bhandars, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

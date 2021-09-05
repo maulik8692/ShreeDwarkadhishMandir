@@ -10,8 +10,6 @@
     $("#SaveNew").click(function (e) {
         SaveForm(true);
     });
-    $('.searchableDropdown').select2();
-    
 });
 
 function UnitOfMeasurementDropdown() {

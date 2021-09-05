@@ -18,6 +18,7 @@ namespace InterfaceMiddleLayer
         string CategoryName { get; set; }
         decimal Balance { get; set; }
         bool IsActive { get; set; }
+        bool AllowToChangeBalance { get; set; }
         int CreatedBy { get; set; }
         int UpdatedBy { get; set; }
         int DeletedBy { get; set; }

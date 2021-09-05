@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Create Bhandar";
+    ViewBag.Title = "Stock";
 }
 
 <div class="row">
@@ -7,7 +7,7 @@
     <div class="col-lg-8 PaddingTop">
         <div class="card">
             <div class="card-header">
-                <strong>Bhandar</strong>
+                <strong>Stock</strong>
             </div>
 
             <div class="card-body card-block">
@@ -26,20 +26,20 @@
 
                     <div class="form-group row Personal">
                         <div class="col col-md-3">
-                            <label for="BhandarName" class="control-label mb-1">Bhandar Name</label>
+                            <label for="Name" class="control-label mb-1">Stock Name</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input id="BhandarName" name="BhandarName" type="text" placeholder="Enter Bhandar Name" class="form-control">
-                            <small class="help-block form-text">Please Enter Bhandar Name.</small>
+                            <input id="Name" name="Name" type="text" placeholder="Enter Stock Name" class="form-control">
+                            <small class="help-block form-text">Please Enter Stock Name.</small>
                         </div>
                     </div>
 
-                    <div class="row form-group">
+                    <div class="form-group row Personal">
                         <div class="col col-md-3">
-                            <label for="UnitOfMeasurement" class="form-control-label">Unit Of Measurement</label>
+                            <label for="Description" class="control-label mb-1">Description</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <select name="UnitOfMeasurement" id="UnitOfMeasurement" class="form-control"></select>
+                            <textarea id="Description" name="Description" type="text" placeholder="Enter Description" class="form-control"></textarea>
                         </div>
                     </div>
 
@@ -48,7 +48,18 @@
                             <label for="BhandarCategory" class="form-control-label">Bhandar Category</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <select name="BhandarCategory" id="BhandarCategory" class="form-control"></select>
+                            <select name="BhandarCategory" id="BhandarCategory" class="form-control select2 select2-hidden-accessible searchableDropdown "></select>
+                            <small class="help-block form-text text-danger">Please ensure Bhandar Category given is right as you cannot edit it after save.</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="UnitOfMeasurement" class="form-control-label">Unit Of Measurement</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="UnitOfMeasurement" id="UnitOfMeasurement" class="form-control select2 select2-hidden-accessible searchableDropdown"></select>
+                            <small class="help-block form-text text-danger">Please ensure Unit Of Measurement given is right as you cannot edit it after save.</small>
                         </div>
                     </div>
 
@@ -57,7 +68,7 @@
                             <label for="Balance" class="control-label mb-1">Current Bhandar Balance</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input id="Balance" name="CategoryBalance" type="text" placeholder="Enter Bhandar Balance" class="form-control bhandar">
+                            <input id="Balance" name="CategoryBalance" type="text" placeholder="0.00000" class="form-control Units">
                             <small class="help-block form-text">Please Enter Bhandar Balance.</small>
                         </div>
                     </div>

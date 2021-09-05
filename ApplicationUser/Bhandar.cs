@@ -22,6 +22,7 @@ namespace MiddleLayer
         public decimal Balance { get; set; }
         public int CreatedBy { get; set; }
         public bool IsActive { get; set; }
+        public bool AllowToChangeBalance { get; set; }
         public string Description { get; set; }
         public int UpdatedBy { get; set; }
         public int DeletedBy { get; set; }
