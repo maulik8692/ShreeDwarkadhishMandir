@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Samagri";
 }
 
@@ -17,62 +16,33 @@
 
                     <input type="hidden" id="Id" name="Id" class="form-control">
 
-                    <div class="form-group row">
+                    <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="SamagriName" class="control-label mb-1">Samagri Name</label>
+                            <label for="Samagri" class="form-control-label">Samagri Name</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input id="SamagriName" name="SamagriName" type="text" placeholder="Enter Samagri Name" class="form-control">
-                            <small class="help-block form-text">Please Enter Samagri Name.</small>
+                            <select name="Samagri" id="Samagri" class="form-control select2 select2-hidden-accessible searchableDropdown "></select>
+                            <small class="help-block form-text text-danger">Please ensure Samagri given is right as you cannot edit it after save.</small>
                         </div>
                     </div>
 
                     <div class="row form-group General">
                         <div class="col col-md-3">
-                            <label for="Description" class="form-control-label">Samagri Description</label>
+                            <label for="Recipe" class="form-control-label">Samagri Recipe</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <textarea name="Description" id="Description" rows="9"
-                                      placeholder="Samagri Description" class="form-control"></textarea>
+                            <textarea name="Recipe" id="Recipe" rows="9"
+                                      placeholder="Samagri Recipe" class="form-control"></textarea>
                         </div>
                     </div>
 
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="UnitOfMeasurement" class="form-control-label">Unit Of Measurement</label>
+                            <label for="Description" class="form-control-label">Description</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <select name="UnitOfMeasurement" id="UnitOfMeasurement" class="form-control"></select>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col col-md-3">
-                            <label for="Balance" class="control-label mb-1">Current Samagri Balance</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input id="Balance" name="Balance" type="text" placeholder="Enter Samagri Balance" class="Balance form-control bhandar">
-                            <small class="help-block form-text">Please Enter Samagri Balance.</small>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col col-md-3">
-                            <label for="NoOfUnit" class="control-label mb-1">No of Unit</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input id="NoOfUnit" name="NoOfUnit" type="text" placeholder="0.00" class="Balance form-control">
-                            <small class="help-block form-text">Please Enter no of unit to be prepared in samagri.</small>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col col-md-3">
-                            <label for="MinmumAmount" class="control-label mb-1">Minmum amount validation</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input id="MinmumAmount" name="MinmumAmount" type="text" placeholder="0.00" class="Balance form-control">
-                            <small class="help-block form-text">Please Enter Minmum amount validation.</small>
+                            <textarea name="Description" id="Description"
+                                      placeholder="Description" class="form-control"></textarea>
                         </div>
                     </div>
 
@@ -90,6 +60,33 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row form-group textcenter bg-light">
+                        <div class="col-12">
+                            <hr />
+                            <strong class="textcenter">Output</strong>
+                            <hr />
+                        </div>
+                    </div>
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="OutputQuantity" class="control-label mb-1">Quantity</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="OutputQuantity" name="OutputQuantity" type="text" placeholder="0.00000" class="form-control Units">
+                            <small class="help-block form-text text-danger">Please ensure Quantity given is right as you cannot edit it after save.</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="UnitOfMeasurement" class="form-control-label">Unit Of Measurement</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="UnitOfMeasurement" id="UnitOfMeasurement" class="form-control select2 select2-hidden-accessible searchableDropdown"></select>
+                            <small class="help-block form-text text-danger">Please ensure Unit Of Measurement given is right as you cannot edit it after save.</small>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -103,13 +100,14 @@
         <div class="card">
             <div class="card-header">
                 <strong>Samagri Bhandar</strong>
+                <button id="NewSamagriBhandar" type="button" class="btn blueBackground btn-sm mb-1" data-target="#scrollmodal">
+                    <i class="fa fa-plus"></i> New
+                </button>
             </div>
 
             <div class="card-body card-block">
 
-                <button id="NewSamagriBhandar" type="button" class="btn blueBackground btn-sm mb-1" data-target="#scrollmodal">
-                    <i class="fa fa-plus"></i> New
-                </button>
+
 
                 <div class="table-responsive table--no-card m-b-30">
                     <table id="SamagriBhandar" style="width:100%" class="table table-borderless table-striped table-mandir"></table>

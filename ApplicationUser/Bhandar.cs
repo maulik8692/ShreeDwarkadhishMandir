@@ -22,6 +22,9 @@ namespace MiddleLayer
         public decimal Balance { get; set; }
         public int CreatedBy { get; set; }
         public bool IsActive { get; set; }
+        public bool IsJewellery { get; set; }
+        public bool IsSamagri { get; set; }
+        public bool IsBhandar { get; set; }
         public bool AllowToChangeBalance { get; set; }
         public string Description { get; set; }
         public int UpdatedBy { get; set; }

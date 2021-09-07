@@ -5,68 +5,200 @@ var SamagriDetail = [];
 
 $(document).ready(function () {
     Reset();
-    $("#SaveAdd").click(function (e) {
-        SaveSamagri();
-    });
+    //$("#SaveAdd").click(function (e) {
+    //    SaveSamagri();
+    //});
 
-    $("#NewSamagriDetail").click(function (e) {
-        ResetSamagriDetail(null);
-        var nextId = 0;
-        var isNew = $('#IsNew').is(":checked")
-        if (isNew === true && SamagriDetail.length > 0) {
-            nextId = Math.max.apply(Math, samagriBhandar.map(function (o) { return o.Id; })) + 1
-        } else if (isNew === true) {
-            nextId = 1
-        }
-        $('#SamagriDetailId').val(nextId);
-        $('#scrollmodal').modal('show');
-    });
+    //$("#NewSamagriDetail").click(function (e) {
+    //    ResetSamagriDetail(null);
+    //    var nextId = 0;
+    //    var isNew = $('#IsNew').is(":checked")
+    //    if (isNew === true && SamagriDetail.length > 0) {
+    //        nextId = Math.max.apply(Math, samagriBhandar.map(function (o) { return o.Id; })) + 1
+    //    } else if (isNew === true) {
+    //        nextId = 1
+    //    }
+    //    $('#SamagriDetailId').val(nextId);
+    //    $('#scrollmodal').modal('show');
+    //});
 
-    $("#UnitOfMeasurement").change(function () {
-        var selectedUOM = UnitMeasurement
-            .filter(function (index) {
-                return index.Id === parseInt($("#UnitOfMeasurement").val());
-            })
+    //$("#UnitOfMeasurement").change(function () {
+    //    var selectedUOM = UnitMeasurement
+    //        .filter(function (index) {
+    //            return index.Id === parseInt($("#UnitOfMeasurement").val());
+    //        })
 
-        $('.Balance').inputmask("numeric", {
-            radixPoint: ".",
-            groupSeparator: "",
-            digits: 5,
-            autoGroup: true,
-            suffix: ' ' + selectedUOM[0].UnitAbbreviation, //Space after $, this will not truncate the first character.
-            rightAlign: false//,
-            //oncleared: function () { self.Value(''); }
-        });
-    });
+    //    $('.Balance').inputmask("numeric", {
+    //        radixPoint: ".",
+    //        groupSeparator: "",
+    //        digits: 5,
+    //        autoGroup: true,
+    //        suffix: ' ' + selectedUOM[0].UnitAbbreviation, //Space after $, this will not truncate the first character.
+    //        rightAlign: false//,
+    //        //oncleared: function () { self.Value(''); }
+    //    });
+    //});
 
-    $("#SamagriBhandarUOM").change(function () {
+    //$("#SamagriBhandarUOM").change(function () {
 
-        var selectedUOM = UnitMeasurement
-            .filter(function (index) {
-                return index.Id === parseInt($("#SamagriBhandarUOM").val());
-            })
+    //    var selectedUOM = UnitMeasurement
+    //        .filter(function (index) {
+    //            return index.Id === parseInt($("#SamagriBhandarUOM").val());
+    //        })
 
-        $('#BhandarNoOfUnit').inputmask("numeric", {
-            radixPoint: ".",
-            groupSeparator: "",
-            digits: 5,
-            autoGroup: true,
-            suffix: ' ' + selectedUOM[0].UnitAbbreviation, //Space after $, this will not truncate the first character.
-            rightAlign: false//,
-            //oncleared: function () { self.Value(''); }
-        });
+    //    $('#BhandarNoOfUnit').inputmask("numeric", {
+    //        radixPoint: ".",
+    //        groupSeparator: "",
+    //        digits: 5,
+    //        autoGroup: true,
+    //        suffix: ' ' + selectedUOM[0].UnitAbbreviation, //Space after $, this will not truncate the first character.
+    //        rightAlign: false//,
+    //        //oncleared: function () { self.Value(''); }
+    //    });
 
-    });
+    //});
 
-    $("#SaveBhandar").click(function (e) {
-        SaveSamagriBhandar();
-    });
+    //$("#SaveBhandar").click(function (e) {
+    //    SaveSamagriBhandar();
+    //});
 
-    $("#resetBhandar").click(function (e) {
-        ResetSamagriBhandar();
-    });
-
+    //$("#resetBhandar").click(function (e) {
+    //    ResetSamagriBhandar();
+    //});
 });
+
+function Reset() {
+    showProgress();
+
+    //$('#SamagriName').val('');
+    //$('#Description').val('');
+    //$('#Balance').val('');
+    //$('#NoOfUnit').val('');
+    //$('#MinmumAmount').val('');
+
+    //GetSamagriDetail();
+
+    GetDetail();
+}
+
+function GetBhandar() {
+    $.ajax({
+        url: "/Bhandar/GetBhandarForDropdown",
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        success: function (jsondata) {
+            BhandarForDropdown = jsondata;
+            GetUnitMeasurementList();
+        },
+        error: function (xhr) {
+            alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+
+            hideProgress();
+        }
+    });
+}
+
+function GetUnitMeasurementList() {
+    $.ajax({
+        url: "/UnitMeasurement/UnitOfMeasurementDropdown",
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        success: function (jsondata) {
+            UnitMeasurement = jsondata;
+        },
+        error: function (xhr) {
+            alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+
+            hideProgress();
+        }
+    });
+}
+
+function GetDetail() {
+
+    var Id = getUrlParameter('Id');
+
+    $('#Id').val(Id);
+
+    if (typeof Id !== "undefined" && Id !== null && Id !== '') {
+        showProgress();
+    }
+    else {
+
+        $('#IsActive').prop('checked', true);
+        //$('#Name').val();
+        //$('#Description').val();
+        //$('#Balance').val();
+        //$('#AllowToChangeBalance').val(true);
+        //$('#IsActive').prop('checked', BhandarDetail.IsActive);
+        //GetUnitMeasurementList();
+        //GetStoreList();
+        GetBhandar();
+        BindSamagriDropdown(0, 0);
+        hideProgress();
+    }
+}
+
+function BindSamagriDropdown(MainBhandarId, Id) {
+    $("#Samagri").empty();
+
+    $("<option />", {
+        val: 0,
+        text: 'Please Select Bhandar Category'
+    }).appendTo("#Samagri");
+
+    var filterResult = []
+    if (typeof jsondata !== "undefined") {
+        if (typeof Id !== "undefined" && Id !== null && Id !== 0) {
+            filterResult = jsondata.filter(function (i, n) {
+                return i.IsActive === true && i.IsSamagri === true;
+            })
+        } else {
+            filterResult = jsondata.filter(function (i, n) {
+                return i.IsSamagri === true;
+            })
+        }
+    }
+
+    $(filterResult).each(function () {
+
+        $("<option />", {
+            val: this.Id,
+            text: this.Name
+        }).appendTo("#Samagri");
+    });
+
+    if (typeof MainBhandarId !== "undefined" && MainBhandarId !== null && MainBhandarId !== 0) {
+        $("#Samagri").val(MainBhandarId);
+        $('#Samagri').attr("disabled", true);
+    }
+}
+
+function BindOutputUnitMeasurement(MainUnitId) {
+    $("#UnitOfMeasurement").empty();
+
+    $("<option />", {
+        val: 0,
+        text: 'Please Select UnitOfMeasurement'
+    }).appendTo("#UnitOfMeasurement");
+
+    if (typeof jsondata !== "undefined") {
+        $(jsondata).each(function () {
+            $("<option />", {
+                val: this.Id,
+                text: this.UnitDescription + ' (' + this.UnitAbbreviation + ')'
+            }).appendTo("#UnitOfMeasurement");
+        });
+
+        if (typeof MainUnitId !== "undefined" && MainUnitId !== null && MainUnitId !== 0) {
+            $("#UnitOfMeasurement").val(MainUnitId);
+            $('#UnitOfMeasurement').attr("disabled", true);
+        }
+    }
+}
+
 
 function GetSamagriDetail() {
     var Id = getUrlParameter('Id');
@@ -311,18 +443,7 @@ function GetUnitMeasurementList() {
     });
 }
 
-function Reset() {
-    showProgress();
-    $('#SamagriName').val('');
-    $('#Description').val('');
-    $('#Balance').val('');
-    $('#NoOfUnit').val('');
-    $('#MinmumAmount').val('');
 
-    GetSamagriDetail();
-
-    GetBhandar();
-}
 
 function ResetSamagriBhandar(SamagriDetail) {
     SetSamagriBhandarUOM(SamagriDetail);
@@ -336,23 +457,7 @@ function ResetSamagriBhandar(SamagriDetail) {
     }
 }
 
-function GetBhandar() {
-    $.ajax({
-        url: "/Bhandar/GetBhandarForDropdown",
-        dataType: "json",
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        success: function (jsondata) {
-            BhandarForDropdown = jsondata;
 
-        },
-        error: function (xhr) {
-            alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
-
-            hideProgress();
-        }
-    });
-}
 
 function SaveSamagriBhandar() {
 

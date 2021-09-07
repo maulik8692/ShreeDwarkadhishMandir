@@ -44,6 +44,11 @@ namespace AdoDotNetDal
                 bhandar.Balance = dr["Balance"].ToDecimal();
                 bhandar.UnitAbbreviation = dr["UnitAbbreviation"].ToString();
                 bhandar.UnitDescription = dr["UnitDescription"].ToString();
+
+                bhandar.IsJewellery = dr["IsJewellery"].ToBool();
+                bhandar.IsSamagri = dr["IsSamagri"].ToBool();
+                bhandar.IsBhandar = dr["IsBhandar"].ToBool();
+                bhandar.IsActive = dr["IsActive"].ToBool();
                 bhandars.Add(bhandar);
             }
 
