@@ -9,14 +9,16 @@ namespace ShreeDwarkadhishMandir.Models
     {
         public int Id { get; set; }
         public int SamagriId { get; set; }
-        public int UnitId { get; set; }
-        public decimal NoOfUnit { get; set; }
         public int BhandarId { get; set; }
+        public int UnitId { get; set; }
+        public int Quantity { get; set; }
+        public bool IsOut { get; set; }
+        public decimal NoOfUnit { get; set; }
         public string BhandarName { get; set; }
         public decimal UnitPerSamagri { get; set; }
         public int CreatedBy { get; set; }
         public decimal NoOfSamagri { get; set; }
-        public decimal MinStockValidation { get; set; }
+        //public decimal MinStockValidation { get; set; }
         public string UnitAbbreviation { get; set; }
         public string UnitDescription { get; set; }
         public bool IsActive { get; set; }

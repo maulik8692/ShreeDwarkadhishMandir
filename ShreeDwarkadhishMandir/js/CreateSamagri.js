@@ -1,73 +1,68 @@
 ﻿var UnitMeasurement = [];
 var BhandarForDropdown = [];
 var SamagriDetail = {};
-var SamagriDetail = [];
+var SamagriDetails = [];
+var IsGridIntialized = false;
 
 $(document).ready(function () {
-    Reset();
-    //$("#SaveAdd").click(function (e) {
-    //    SaveSamagri();
-    //});
+    ResetForm();
+    $("#NewSamagriDetail").click(function (e) {
+        ResetSamagriDetail();
+    });
+    $("#SaveBhandar").click(function (e) {
+        SaveSamagriDetails();
+    });
 
-    //$("#NewSamagriDetail").click(function (e) {
-    //    ResetSamagriDetail(null);
-    //    var nextId = 0;
-    //    var isNew = $('#IsNew').is(":checked")
-    //    if (isNew === true && SamagriDetail.length > 0) {
-    //        nextId = Math.max.apply(Math, samagriBhandar.map(function (o) { return o.Id; })) + 1
-    //    } else if (isNew === true) {
-    //        nextId = 1
-    //    }
-    //    $('#SamagriDetailId').val(nextId);
-    //    $('#scrollmodal').modal('show');
-    //});
+    $("#KachiSamagri").change(function () {
+        BindDetailUnitMeasurement();
+    });
 
-    //$("#UnitOfMeasurement").change(function () {
-    //    var selectedUOM = UnitMeasurement
-    //        .filter(function (index) {
-    //            return index.Id === parseInt($("#UnitOfMeasurement").val());
-    //        })
+    $("#reset").click(function (e) {
+        ResetForm();
+    });
 
-    //    $('.Balance').inputmask("numeric", {
-    //        radixPoint: ".",
-    //        groupSeparator: "",
-    //        digits: 5,
-    //        autoGroup: true,
-    //        suffix: ' ' + selectedUOM[0].UnitAbbreviation, //Space after $, this will not truncate the first character.
-    //        rightAlign: false//,
-    //        //oncleared: function () { self.Value(''); }
-    //    });
-    //});
-
-    //$("#SamagriBhandarUOM").change(function () {
-
-    //    var selectedUOM = UnitMeasurement
-    //        .filter(function (index) {
-    //            return index.Id === parseInt($("#SamagriBhandarUOM").val());
-    //        })
-
-    //    $('#BhandarNoOfUnit').inputmask("numeric", {
-    //        radixPoint: ".",
-    //        groupSeparator: "",
-    //        digits: 5,
-    //        autoGroup: true,
-    //        suffix: ' ' + selectedUOM[0].UnitAbbreviation, //Space after $, this will not truncate the first character.
-    //        rightAlign: false//,
-    //        //oncleared: function () { self.Value(''); }
-    //    });
-
-    //});
-
-    //$("#SaveBhandar").click(function (e) {
-    //    SaveSamagriBhandar();
-    //});
-
-    //$("#resetBhandar").click(function (e) {
-    //    ResetSamagriBhandar();
-    //});
+    $("#Save").click(function (e) {
+        SaveForm();
+    });
 });
 
-function Reset() {
+function SaveForm() {
+    showProgress();
+    var Samagri = {
+        Id: parseInt($('#Id').val()),
+        BhandarId: parseInt($('#Samagri').val()),
+        Recipe: $('#Recipe').val(),
+        Description: $('#Description').val(),
+        IsActive: $('#IsActive').is(":checked"),
+        OutputQuantity: parseFloat($('#OutputQuantity').val()),
+        OutputUnitId: parseInt($('#UnitOfMeasurement').val()),
+        SamagriDetailRequest: SamagriDetails
+    };
+
+    $.ajax({
+        url: "/Samagri/CreateSamagri",
+        data: JSON.stringify(Samagri),
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        success: function (jsondata) {
+            alert("Samagri has been saved successfully.");
+            hideProgress();
+
+            window.location.href = '/Samagri/Samagri';
+        },
+        error: function (xhr, httpStatusMessage, customErrorMessage) {
+            if (customErrorMessage !== '' && customErrorMessage !== null) {
+                alert(customErrorMessage);
+            } else {
+                alert(SomethingWentWrong)
+            }
+            hideProgress();
+        },
+    });
+}
+
+function ResetForm() {
     showProgress();
 
     //$('#SamagriName').val('');
@@ -79,6 +74,31 @@ function Reset() {
     //GetSamagriDetail();
 
     GetDetail();
+}
+
+function GetDetail() {
+
+    var Id = getUrlParameter('Id');
+
+    $('#Id').val(Id);
+
+    if (typeof Id !== "undefined" && Id !== null && Id !== '') {
+        showProgress();
+    }
+    else {
+
+        $('#IsActive').prop('checked', true);
+        //$('#Name').val();
+        //$('#Description').val();
+        //$('#Balance').val();
+        //$('#AllowToChangeBalance').val(true);
+        //$('#IsActive').prop('checked', BhandarDetail.IsActive);
+        //GetUnitMeasurementList();
+        //GetStoreList();
+        GetBhandar();
+
+        hideProgress();
+    }
 }
 
 function GetBhandar() {
@@ -107,6 +127,7 @@ function GetUnitMeasurementList() {
         contentType: "application/json; charset=utf-8",
         success: function (jsondata) {
             UnitMeasurement = jsondata;
+            BindSamagriDropdown(0, 0);
         },
         error: function (xhr) {
             alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
@@ -116,47 +137,22 @@ function GetUnitMeasurementList() {
     });
 }
 
-function GetDetail() {
-
-    var Id = getUrlParameter('Id');
-
-    $('#Id').val(Id);
-
-    if (typeof Id !== "undefined" && Id !== null && Id !== '') {
-        showProgress();
-    }
-    else {
-
-        $('#IsActive').prop('checked', true);
-        //$('#Name').val();
-        //$('#Description').val();
-        //$('#Balance').val();
-        //$('#AllowToChangeBalance').val(true);
-        //$('#IsActive').prop('checked', BhandarDetail.IsActive);
-        //GetUnitMeasurementList();
-        //GetStoreList();
-        GetBhandar();
-        BindSamagriDropdown(0, 0);
-        hideProgress();
-    }
-}
-
 function BindSamagriDropdown(MainBhandarId, Id) {
     $("#Samagri").empty();
 
     $("<option />", {
         val: 0,
-        text: 'Please Select Bhandar Category'
+        text: 'Please Select Bhandar'
     }).appendTo("#Samagri");
 
     var filterResult = []
-    if (typeof jsondata !== "undefined") {
+    if (typeof BhandarForDropdown !== "undefined") {
         if (typeof Id !== "undefined" && Id !== null && Id !== 0) {
-            filterResult = jsondata.filter(function (i, n) {
+            filterResult = BhandarForDropdown.filter(function (i, n) {
                 return i.IsActive === true && i.IsSamagri === true;
             })
         } else {
-            filterResult = jsondata.filter(function (i, n) {
+            filterResult = BhandarForDropdown.filter(function (i, n) {
                 return i.IsSamagri === true;
             })
         }
@@ -174,6 +170,8 @@ function BindSamagriDropdown(MainBhandarId, Id) {
         $("#Samagri").val(MainBhandarId);
         $('#Samagri').attr("disabled", true);
     }
+
+    BindOutputUnitMeasurement();
 }
 
 function BindOutputUnitMeasurement(MainUnitId) {
@@ -184,8 +182,8 @@ function BindOutputUnitMeasurement(MainUnitId) {
         text: 'Please Select UnitOfMeasurement'
     }).appendTo("#UnitOfMeasurement");
 
-    if (typeof jsondata !== "undefined") {
-        $(jsondata).each(function () {
+    if (typeof UnitMeasurement !== "undefined") {
+        $(UnitMeasurement).each(function () {
             $("<option />", {
                 val: this.Id,
                 text: this.UnitDescription + ' (' + this.UnitAbbreviation + ')'
@@ -199,360 +197,193 @@ function BindOutputUnitMeasurement(MainUnitId) {
     }
 }
 
-
-function GetSamagriDetail() {
-    var Id = getUrlParameter('Id');
-
-    $('#Id').val(Id);
-    if (typeof Id !== "undefined" && Id !== null && Id !== '') {
-        showProgress();
-
-        var samagriRequest = {
-            Id: parseInt($('#Id').val()),
-            Name: '',
-            Description: '',
-            UnitId: 0,
-            NoOfUnit: 0,
-            Balance: 0,
-            MinStockValidation: 0,
-            CreatedBy: 0,
-            IsActive: false,
-            PageNumber: 0,
-            PageSize: 0,
-            Page: 0,
-            Total: 0,
-            UnitDescription: '',
-            UnitAbbreviation: '',
-            SamagriBhandarRequest: []
-        }
-        $.ajax({
-            url: "/Samagri/GetSamagriDetail",
-            data: JSON.stringify(samagriRequest),
-            dataType: "json",
-            type: "POST",
-            contentType: "application/json; charset=utf-8",
-            success: function (jsondata) {
-                SamagriDetail = jsondata;
-                SetSamagriDetail();
-            },
-            error: function (xhr, httpStatusMessage, customErrorMessage) {
-
-                hideProgress();
-            },
-        });
-    }
-    else {
-        GetUnitMeasurementList();
-    }
+function ResetSamagriDetail() {
+    BindSamagriDetailDropdown();
+    $("#UOM").empty();
+    $(".UOM").hide();
+    $('#Quantity').val('');
 }
 
-function SetSamagriDetail() {
-    $('#Balance').prop('disabled', true);
-    $('#NoOfUnit').prop('disabled', true);
-    $('#SamagriName').val(SamagriDetail.Name);
-    $('#Description').val(SamagriDetail.Description);
-    $('#Balance').val(SamagriDetail.Balance);
-    $('#NoOfUnit').val(SamagriDetail.NoOfUnit);
-    $('#MinmumAmount').val(SamagriDetail.MinStockValidation);
-    $('#IsActive').prop('checked', SamagriDetail.IsActive);
-    GetUnitMeasurementList();
-    GetSamagriBhandarList();
-}
-
-function GetSamagriBhandarList() {
-    var SamagriId = parseInt($('#Id').val());
-
-    if (typeof SamagriId !== "undefined" && SamagriId !== null && SamagriId !== '') {
-        showProgress();
-        var samagriBhandarRequest = {
-            Id: 0,
-            SamagriId: SamagriId,
-            UnitId: 0,
-            NoOfUnit: 0,
-            BhandarId: 0,
-            UnitPerSamagri: 0,
-            CreatedBy: 0,
-            NoOfSamagri: 0,
-            MinStockValidation: 0,
-            UnitAbbreviation: '',
-            UnitDescription: '',
-        }
-        $.ajax({
-            url: "/Samagri/GetSamagriBhandarList",
-            data: JSON.stringify(samagriBhandarRequest),
-            dataType: "json",
-            type: "POST",
-            contentType: "application/json; charset=utf-8",
-            success: function (jsondata) {
-                samagriBhandar = jsondata;
-                SetSamagriBhandarList();
-            },
-            error: function (xhr, httpStatusMessage, customErrorMessage) {
-
-                hideProgress();
-            },
-        });
-    }
-    else {
-
-        GetUnitMeasurementList();
-    }
-}
-
-function GetSamagriBhandar(id) {
-
-    var SamagriDetail = samagriBhandar.find(x => x.Id === parseInt(id));
-    ResetSamagriBhandar(SamagriDetail);
-    $('#BhandarNoOfUnit').val(SamagriDetail.NoOfUnit.toFixed(4));
-    $('#SamagriBhandarId').val(id);
-    $('#IsNew').prop('checked', SamagriDetail.IsNew);
-    $('#SamagriBhandarIsActive').prop('checked', SamagriDetail.IsActive);
-    $('#scrollmodal').modal('show');
-}
-
-function SetSamagriBhandarList() {
-    if (samagriBhandar !== null) {
-        $('#SamagriBhandar').DataTable({
-            destroy: true,
-            fixedHeader: true,
-            "data": samagriBhandar,
-            "columns": [
-                { "data": "BhandarName", "title": "Bhandar Name", "className": "dt-body-left" },
-                {
-                    data: "NoOfUnit",
-                    title: "NoOfUnit",
-                    render: function (data, type, row) {
-                        return parseFloat(row.NoOfUnit).toFixed(4) + ' ' + row.UnitAbbreviation;
-                    },
-                    className: "dt-body-Center"
-                },
-                {
-                    data: "Edit",
-                    title: "Edit",
-                    render: function (data, type, row) {
-                        return "<div onclick='GetSamagriBhandar(" + row.Id + ")'><i class='fa fa-edit'></i></div>"
-                    },
-                    className: "dt-body-Center"
-                }
-            ],
-            "language": {
-                "zeroRecords": "Darshan not available.",
-                "emptyTable": "Darshan not available."
-            },
-            ordering: false,
-            searching: false,
-            paging: false,
-            "bInfo": false
-        });
-
-        $('#DarshanTime thead').hide();
-        $('.fg-toolbar').hide();
-        hideProgress();
-    }
-}
-
-function SetSamagriUOM() {
-    $("#UnitOfMeasurement").empty();
-
-    $("<option />", {
-        val: 0,
-        text: 'Please Select UnitOfMeasurement'
-    }).appendTo("#UnitOfMeasurement");
-
-    $(UnitMeasurement).each(function () {
-
-        $("<option />", {
-            val: this.Id,
-            text: this.UnitDescription + ' (' + this.UnitAbbreviation + ')'
-        }).appendTo("#UnitOfMeasurement");
-    });
-
-    if (typeof SamagriDetail.UnitId !== "undefined" && SamagriDetail.UnitId !== 0) {
-        $("#UnitOfMeasurement").val(SamagriDetail.UnitId);
-    }
-}
-
-function SetSamagriBhandarUOM(SamagriDetail) {
-    $("#SamagriBhandarUOM").empty();
-
-    $("<option />", {
-        val: 0,
-        text: 'Please Select UnitOfMeasurement'
-    }).appendTo("#SamagriBhandarUOM");
-
-    $(UnitMeasurement).each(function () {
-
-        $("<option />", {
-            val: this.Id,
-            text: this.UnitDescription + ' (' + this.UnitAbbreviation + ')'
-        }).appendTo("#SamagriBhandarUOM");
-    });
-
-    if (SamagriDetail !== null && SamagriDetail !== "undefined" && typeof SamagriDetail.UnitId !== "undefined" && SamagriDetail.UnitId !== 0) {
-        $('#SamagriBhandarUOM').prop('disabled', true);
-        $("#SamagriBhandarUOM").val(SamagriDetail.UnitId);
-    }
-    else {
-        $('#SamagriBhandarUOM').prop('disabled', false);
-    }
-}
-
-function SetBhandarDropdown(SamagriDetail) {
-    $("#Bhandar").empty();
+function BindSamagriDetailDropdown() {
+    $("#KachiSamagri").empty();
 
     $("<option />", {
         val: 0,
         text: 'Please Select Bhandar'
-    }).appendTo("#Bhandar");
+    }).appendTo("#KachiSamagri");
 
-    $(BhandarForDropdown).each(function () {
+    var filterResult = []
+    if (typeof BhandarForDropdown !== "undefined") {
+        filterResult = BhandarForDropdown.filter(function (i, n) {
+            return i.IsActive === true && i.IsBhandar === true;
+        })
+    }
+
+    $(filterResult).each(function () {
 
         $("<option />", {
             val: this.Id,
             text: this.Name
-        }).appendTo("#Bhandar");
+        }).appendTo("#KachiSamagri");
     });
-
-    if (SamagriDetail !== null && SamagriDetail !== "undefined" && typeof SamagriDetail.BhandarId !== "undefined" && SamagriDetail.BhandarId !== 0) {
-        $('#Bhandar').prop('disabled', true);
-        $("#Bhandar").val(SamagriDetail.BhandarId);
-    }
-    else {
-        $('#Bhandar').prop('disabled', false);
-    }
-    hideProgress();
 }
 
-function GetUnitMeasurementList() {
-    $.ajax({
-        url: "/UnitMeasurement/UnitOfMeasurementDropdown",
-        dataType: "json",
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        success: function (jsondata) {
-            UnitMeasurement = jsondata;
-            SetSamagriUOM();
+function BindDetailUnitMeasurement() {
 
-            hideProgress();
-        },
-        error: function (xhr) {
-            alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+    var bhandarId = $('#KachiSamagri').val() !== "undefined" ? parseInt($('#KachiSamagri').val()) : 0
+    if (bhandarId > 0) {
+        $.ajax({
+            url: "/UnitMeasurement/UnitOfMeasurementDropdown",
+            data: JSON.stringify({ bhandarId: bhandarId }),
+            dataType: "json",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: function (jsondata) {
+                $("#UOM").empty();
 
-            hideProgress();
+                $("<option />", {
+                    val: 0,
+                    text: 'Please Select UnitOfMeasurement'
+                }).appendTo("#UOM");
+
+                if (typeof jsondata !== "undefined") {
+                    $(jsondata).each(function () {
+                        $("<option />", {
+                            val: this.Id,
+                            text: this.UnitDescription + ' (' + this.UnitAbbreviation + ')'
+                        }).appendTo("#UOM");
+                    });
+                }
+
+                $(".UOM").show();
+            },
+            error: function (xhr) {
+                alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+
+                hideProgress();
+            }
+        });
+    }
+}
+
+function SaveSamagriDetails(addMore) {
+    var added = false;
+    var bhandarId = $('#KachiSamagri').val() !== "undefined" ? parseInt($('#KachiSamagri').val()) : 0
+    var unitId = $('#UOM').val() !== "undefined" ? parseInt($('#UOM').val()) : 0;
+    var Quantity = $('#Quantity').val() !== "undefined" ? parseFloat($('#Quantity').val()) : 0;
+    $.map(SamagriDetails, function (e, i) {
+        if (e.BhandarId == bhandarId) {
+            added = true;
         }
     });
-}
+    if (!added) {
+        SamagriDetail = {};
+        SamagriDetail.BhandarId = bhandarId;
+        SamagriDetail.UnitId = unitId;
+        SamagriDetail.BhandarName = unitId > 0 ? $('#KachiSamagri').find("option:selected").text() : '';
+        SamagriDetail.Unit = Quantity.toFixed(5) + ' ' + (unitId > 0 ? $('#UOM').find("option:selected").text().split("(")[1].split(")")[0] : '');
+        SamagriDetail.Quantity = Quantity;
+        SamagriDetail.CanDelete = true;
+        SamagriDetail.IsNew = true;
+        //(typeof SamagriDetails == "undefined" || SamagriDetails === null || SamagriDetails.length === 0
+        //    ||
+        //    typeof SamagriDetails.Id == "undefined" || SamagriDetails.Id === null || SamagriDetails.Id === 0
+        //    || isNaN(SamagriDetails.Id) === true ?
+        //    true : false);
+
+        SamagriDetails.Id = (typeof SamagriDetails == "undefined" || SamagriDetails === null || SamagriDetails.length === 0 ?
+            0 : SamagriDetails.reduce((max, p) => p.Id > max ? p.Id : max, SamagriDetails[0].Id)) + 1;
+
+        //    SamagriDetail.IsNew === true ? SamagriDetails.Id :
+        //((typeof SamagriDetails == "undefined" || SamagriDetails === null || SamagriDetails.length === 0 ?
+        //    0 : SamagriDetails.reduce((max, p) => p.Id > max ? p.Id : max, SamagriDetails[0].Id)) + 1);
+
+        SamagriDetails.push(SamagriDetail);
+        if (addMore) {
+            ResetSamagriDetail();
+        } else {
+            $('#staticModal').modal('toggle');
+        }
 
 
+        if (IsGridIntialized === false) {
+            BindSamagriDetailList();
+        } else {
+            ReloadGrid();
+        }
 
-function ResetSamagriBhandar(SamagriDetail) {
-    SetSamagriBhandarUOM(SamagriDetail);
-    SetBhandarDropdown(SamagriDetail);
-    $('#BhandarNoOfUnit').val('');
-    $('#SamagriBhandarIsActive').prop('checked', false);
-    if (SamagriDetail === null) {
-        $('#IsNew').prop('checked', true);
+
     } else {
-        $('#IsNew').prop('checked', false);
+        alert($('#KachiSamagri').text() + ' already added.');
     }
 }
 
-
-
-function SaveSamagriBhandar() {
-
-    var SamagriBhandarId = parseInt($('#SamagriBhandarId').val());
-    var SamagriDetail = samagriBhandar.find(x => x.Id === parseInt(SamagriBhandarId));
-    SamagriDetail = {}
-    SamagriDetail.UnitId = $("#SamagriBhandarUOM").val();
-    SamagriDetail.BhandarId = $("#Bhandar").val();
-    SamagriDetail.NoOfUnit = parseFloat($('#BhandarNoOfUnit').val());
-
-    $.ajax({
-        url: "/Samagri/ValidateSamagriDetail",
-        data: JSON.stringify(SamagriDetail),
-        dataType: "json",
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        success: function (jsondata) {
-            if (typeof samagriBhandar !== 'undefined') {
-                var data = $.grep(samagriBhandar, function (e) {
-                    return e.id != SamagriBhandarId;
-                });
-                samagriBhandar = data;
-            }
-
-            SamagriDetail.Id = parseInt($('#SamagriBhandarId').val());
-            SamagriDetail.IsNew = $('#IsNew').is(":checked");
-            SamagriDetail.IsActive = $('#SamagriBhandarIsActive').is(":checked");
-            SamagriDetail.UnitAbbreviation = UnitMeasurement.find(x => x.Id === parseInt(SamagriDetail.UnitId)).UnitAbbreviation;
-            SamagriDetail.UnitDescription = UnitMeasurement.find(x => x.Id === parseInt(SamagriDetail.UnitId)).UnitDescription;
-            SamagriDetail.BhandarName = $("#Bhandar option:selected").text();
-
-            samagriBhandar.push(SamagriDetail);
-
-            $('#scrollmodal').modal('hide');
-            SetSamagriBhandarList();
-        },
-        error: function (xhr) {
-            alert(xhr.statusText);
-            if (xhr.statusText === "Please select Unit Of Measurement.") {
-                $("#SamagriBhandarUOM").focus();
-            } else if (xhr.statusText === "Please select Bhandar.") {
-                $("#Bhandar").focus();
-            } else if (xhr.statusText === "Please enter No of unit to be required.") {
-                $("#BhandarNoOfUnit").focus();
-            }
-            hideProgress();
-        }
-    });
+function ReloadGrid() {
+    var grid = $("#bhandar")
+    grid.jqGrid("clearGridData");
+    grid.jqGrid('setGridParam', { data: SamagriDetails }).trigger("reloadGrid");
 }
 
-function SaveSamagri() {
-    showProgress();
-    var samagriRequest = {
-        Id: parseInt($('#Id').val()),
-        Name: $('#SamagriName').val(),
-        Description: $('#Description').val(),
-        UnitId: parseInt($('#UnitOfMeasurement').val()),
-        NoOfUnit: parseFloat($('#NoOfUnit').val()),
-        Balance: parseFloat($('#Balance').val()),
-        MinStockValidation: parseFloat($('#MinmumAmount').val()),
-        CreatedBy: 0,
-        IsActive: $('#IsActive').is(":checked"),
-        PageNumber: 0,
-        PageSize: 0,
-        Page: 0,
-        Total: 0,
-        UnitDescription: '',
-        UnitAbbreviation: '',
-        SamagriBhandarRequest: samagriBhandar
-    }
-
-    $.ajax({
-        url: "/Samagri/CreateSamagri",
-        data: JSON.stringify(samagriRequest),
-        dataType: "json",
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        success: function (jsondata) {
-            alert('Samagri saved successfully.');
-            hideProgress();
-            window.location.href = '/Samagri/Samagri';
-        },
-        error: function (xhr) {
-            alert(xhr.statusText);
-            if (xhr.statusText === "Samagri name is require.") {
-                $("#SamagriName").focus();
-            } else if (xhr.statusText === "Please enter Description.") {
-                $("#Description").focus();
-            } else if (xhr.statusText === "Please select samagri's Unit Of Measurement.") {
-                $("#UnitOfMeasurement").focus();
-            } else if (xhr.statusText === "Please enter no of unit.") {
-                $("#NoOfUnit").focus();
+function BindSamagriDetailList() {
+    $("#bhandar").jqGrid("GridUnload");
+    var grid = $("#bhandar")
+    grid.jqGrid
+        ({
+            datatype: "local",
+            data: SamagriDetails,
+            hoverrows: false,
+            colNames: [
+                'Id', 'Bhandar', 'Unit', 'Action'],
+            colModel: [
+                { name: 'Id', index: 'Id', align: 'left', key: true, hidden: true, sortable: false },
+                { name: 'BhandarName', index: 'BhandarName', align: 'left', sortable: false },
+                { name: 'Unit', index: 'Unit', align: 'left', sortable: false },
+                { name: 'Id', index: 'Id', align: 'center', width: 40, sortable: false, formatter: DeleteSamagriDetailFormater },
+            ],
+            pgbuttons: false,
+            viewrecords: false,
+            pgtext: "",
+            pginput: false,
+            rowNum: 50,
+            rowList: [50, 100, 150, 200],
+            height: '100%',
+            viewrecords: true,
+            emptyrecords: 'No bhandar found.',
+            jsonReader:
+            {
+                root: "rows",
+                page: "page",
+                total: "total",
+                records: "records",
+                repeatitems: false,
+                Id: "0"
+            },
+            autowidth: true,
+            multiselect: false,
+            gridComplete: function () {
+                SetStyle();
             }
+        })
+    IsGridIntialized = true;
+}
 
-            hideProgress();
-        }
-    });
+function SetStyle() {
+    $('.HeaderButton').hide();
+
+    $('#bhandar').setGridWidth($('#divBhandar').width());
+}
+
+function DeleteSamagriDetailFormater(cellvalue, options, rowObject) {
+    return "<div>" +
+        (rowObject.CanDelete ?
+            "<a onclick='DeleteSamagriDetail(" + rowObject.Id + ")'><i class='fa fa-trash'></i></a>"
+            : "")
+        + "</div>";
+}
+
+function DeleteSamagriDetail(Id) {
+    if (confirm('Are you sure want to remove this samagri?')) {
+        SamagriDetails.splice(SamagriDetails.findIndex(item => item.Id === Id), 1);
+        ReloadGrid();
+    }
 }

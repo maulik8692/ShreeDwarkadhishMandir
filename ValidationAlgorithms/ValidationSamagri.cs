@@ -12,21 +12,29 @@ namespace ValidationAlgorithms
     {
         public void Validate(ISamagri anyType)
         {
-            if (anyType.Name.IsExactLength(0))
+            if (!anyType.BhandarId.IsNotZero())
             {
-                throw new Exception("Samagri name is require.");
+                throw new Exception("Please select samagri Name.");
             }
-            if (anyType.Description.IsExactLength(0))
+            if (anyType.SamagriDetails.IsNullList())
             {
-                throw new Exception("Please enter Description.");
+                throw new Exception("There must be at lease one samagri.");
             }
-            if (!anyType.UnitId.IsNotZero())
+            if (!anyType.SamagriDetails.Any(x => x.IsOut))
             {
-                throw new Exception("Please select samagri's Unit Of Measurement.");
+                throw new Exception("Please enter the output detail.");
             }
-            if (!anyType.NoOfUnit.IsNotZero())
+            if (!anyType.SamagriDetails.Any(x => x.IsOut && x.Quantity.IsNotZero()))
             {
-                throw new Exception("Please enter no of unit.");
+                throw new Exception("Please enter the output Quantity.");
+            }
+            if (!anyType.SamagriDetails.Any(x => x.IsOut && x.UnitId.IsNotZero()))
+            {
+                throw new Exception("Please enter the output Unit Of Measurement.");
+            }
+            if (!anyType.SamagriDetails.Any(x => x.IsOut == false))
+            {
+                throw new Exception("Please enter the output detail.");
             }
         }
     }

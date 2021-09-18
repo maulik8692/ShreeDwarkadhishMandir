@@ -31,6 +31,7 @@ namespace MiddleLayer
         public DateTime DeletedOn { get; set; }
         public int DeletedBy { get; set; }
         public int IsDeleted { get; set; }
+        public bool IsOut { get; set; }
 
         public SamagriDetail(IValidation<ISamagriDetail> _validation)
         {

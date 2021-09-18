@@ -51,12 +51,9 @@ namespace AdoDotNetDal
             cmd.Parameters.AddWithValue("@SamagriId", anyType.SamagriId);
             cmd.Parameters.AddWithValue("@BhandarId", anyType.BhandarId);
             cmd.Parameters.AddWithValue("@UnitId", anyType.UnitId);
-            cmd.Parameters.AddWithValue("@NoOfUnit", anyType.NoOfUnit);
-            cmd.Parameters.AddWithValue("@NoOfSamagri", anyType.NoOfSamagri);
-            cmd.Parameters.AddWithValue("@UnitPerSamagri", anyType.UnitPerSamagri);
-            cmd.Parameters.AddWithValue("@MinStockValidation", anyType.MinStockValidation);
+            cmd.Parameters.AddWithValue("@Quantity", anyType.Quantity);
+            cmd.Parameters.AddWithValue("@IsOut", anyType.IsOut);
             cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
-            //cmd.Parameters.AddWithValue("@IsActive", anyType.IsActive);
             cmd.ExecuteNonQuery();
         }
 

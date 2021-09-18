@@ -15,15 +15,11 @@ namespace MiddleLayer
         public string Name { get; set; }
         public string Description { get; set; }
         public int UnitId { get; set; }
-        public decimal NoOfUnit { get; set; }
+        public decimal Quantity { get; set; }
         public decimal Balance { get; set; }
         public decimal MinStockValidation { get; set; }
         public int CreatedBy { get; set; }
         public bool IsActive { get; set; }
-        public int PageNumber { get; set; }
-        public int PageSize { get; set; }
-        public int Page { get; set; }
-        public int Total { get; set; }
         public string UnitDescription { get; set; }
         public string UnitAbbreviation { get; set; }
         public int BhandarId { get; set; }
@@ -34,6 +30,13 @@ namespace MiddleLayer
         public DateTime DeletedOn { get; set; }
         public int DeletedBy { get; set; }
         public int IsDeleted { get; set; }
+        public List<ISamagriDetail> SamagriDetails { get; set; }
+
+        public int PageNumber { get; set; }
+        public int PageSize { get; set; }
+        public int Page { get; set; }
+        public int Total { get; set; }
+        public int Records { get; set; }
 
         public Samagri(IValidation<ISamagri> _validation)
         {

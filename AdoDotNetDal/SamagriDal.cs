@@ -51,7 +51,7 @@ namespace AdoDotNetDal
                 samagri.Description = dr["Description"].ToString();
                 samagri.UnitId = dr["UnitId"].ToInt();
 
-                samagri.NoOfUnit = dr["NoOfUnit"].ToDecimal();
+                samagri.Quantity = dr["Quantity"].ToDecimal();
                 samagri.Balance = dr["Balance"].ToDecimal();
                 samagri.MinStockValidation = dr["MinStockValidation"].ToDecimal();
                 samagri.IsActive = dr["IsActive"].ToBool();
@@ -77,10 +77,9 @@ namespace AdoDotNetDal
             cmd.CommandText = "SaveSamagri";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Id", anyType.Id);
-            cmd.Parameters.AddWithValue("@Name", anyType.Name);
+            cmd.Parameters.AddWithValue("@BhandarId", anyType.BhandarId);
             cmd.Parameters.AddWithValue("@Description", anyType.Description);
-            cmd.Parameters.AddWithValue("@UnitId", anyType.UnitId);
-            cmd.Parameters.AddWithValue("@Balance", anyType.Balance);
+            cmd.Parameters.AddWithValue("@Recipe", anyType.Recipe);
             cmd.Parameters.AddWithValue("@IsActive", anyType.IsActive);
             cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
             SqlDataReader dr = null;
@@ -122,15 +121,15 @@ namespace AdoDotNetDal
                 samagri.UnitId = dr["UnitId"].ToInt();
                 samagri.Description = dr["Description"].ToString();
 
-                samagri.NoOfUnit = dr["NoOfUnit"].ToDecimal();
+                samagri.Quantity = dr["Quantity"].ToDecimal();
                 samagri.Balance = dr["Balance"].ToDecimal();
-                samagri.MinStockValidation = dr["MinStockValidation"].ToDecimal();
                 samagri.IsActive = dr["IsActive"].ToBool();
                 samagri.CreatedBy = dr["CreatedBy"].ToInt();
                 samagri.UnitAbbreviation = dr["UnitAbbreviation"].ToString();
                 samagri.UnitDescription = dr["UnitDescription"].ToString();
 
                 samagri.Page = dr["page"].ToInt();
+                samagri.Records = dr["records"].ToInt();
                 samagri.Total = dr["total"].ToInt();
                 samagris.Add(samagri);
             }

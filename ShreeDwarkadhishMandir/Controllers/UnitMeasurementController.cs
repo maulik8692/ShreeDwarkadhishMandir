@@ -82,10 +82,10 @@ namespace ShreeDwarkadhishMandir.Controllers
         }
 
         [HttpPost]
-        public ActionResult UnitOfMeasurementDropdown()
+        public ActionResult UnitOfMeasurementDropdown(int bhandarId = 0)
         {
             IRepository<IUnitOfMeasurement> dal = FactoryDalLayer<IRepository<IUnitOfMeasurement>>.Create("UnitOfMeasurement");
-            List<IUnitOfMeasurement> accountHeadDropdown = dal.DropdownWithSearch(0);
+            List<IUnitOfMeasurement> accountHeadDropdown = dal.DropdownWithSearch(bhandarId);
 
             return Json(accountHeadDropdown, JsonRequestBehavior.AllowGet);
         }

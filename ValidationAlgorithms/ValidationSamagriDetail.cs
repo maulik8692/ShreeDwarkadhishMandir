@@ -12,17 +12,17 @@ namespace ValidationAlgorithms
     {
         public void Validate(ISamagriDetail anyType)
         {
-            if (!anyType.UnitId.IsNotZero())
-            {
-                throw new Exception("Please select Unit Of Measurement.");
-            }
             if (!anyType.BhandarId.IsNotZero())
             {
-                throw new Exception("Please select Bhandar.");
+                throw new Exception("Please select Samagri Bhandar.");
             }
-            if (!anyType.NoOfUnit.IsNotZero())
+            if (!anyType.UnitId.IsNotZero())
             {
-                throw new Exception("Please enter No of unit to be required.");
+                throw new Exception("Please select Samagri Unit Of Measurement.");
+            }
+            if (!anyType.Quantity.IsNotZero())
+            {
+                throw new Exception("Please enter Quantity to be required.");
             }
         }
     }

@@ -11,8 +11,11 @@ namespace InterfaceMiddleLayer
         int Id { get; set; }
         int SamagriId { get; set; }
         int BhandarId { get; set; }
-        string BhandarName { get; set; }
         int UnitId { get; set; }
+        decimal Quantity { get; set; }
+        bool IsOut { get; set; }
+        string BhandarName { get; set; }
+        
         decimal NoOfUnit { get; set; }
         decimal NoOfSamagri { get; set; }
         decimal MinStockValidation { get; set; }
@@ -20,7 +23,6 @@ namespace InterfaceMiddleLayer
         int CreatedBy { get; set; }
         string UnitAbbreviation { get; set; }
         string UnitDescription { get; set; }
-        decimal Quantity { get; set; }
         DateTime CreatedOn { get; set; }
         DateTime UpdatedOn { get; set; }
         int UpdatedBy { get; set; }

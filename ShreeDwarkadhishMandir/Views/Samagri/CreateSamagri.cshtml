@@ -2,7 +2,6 @@
     ViewBag.Title = "Samagri";
 }
 
-
 <div class="row">
     <div class="col-lg-2"></div>
     <div class="col-lg-8 PaddingTop">
@@ -60,62 +59,59 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row form-group textcenter bg-light">
-                        <div class="col-12">
-                            <hr />
-                            <strong class="textcenter">Output</strong>
-                            <hr />
-                        </div>
-                    </div>
 
-                    <div class="form-group row Personal">
-                        <div class="col col-md-3">
-                            <label for="OutputQuantity" class="control-label mb-1">Quantity</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input id="OutputQuantity" name="OutputQuantity" type="text" placeholder="0.00000" class="form-control Units">
-                            <small class="help-block form-text text-danger">Please ensure Quantity given is right as you cannot edit it after save.</small>
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="UnitOfMeasurement" class="form-control-label">Unit Of Measurement</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <select name="UnitOfMeasurement" id="UnitOfMeasurement" class="form-control select2 select2-hidden-accessible searchableDropdown"></select>
-                            <small class="help-block form-text text-danger">Please ensure Unit Of Measurement given is right as you cannot edit it after save.</small>
-                        </div>
-                    </div>
                 </form>
             </div>
-        </div>
-    </div>
-    <div class="col-lg-2"></div>
-</div>
 
-<div id="SamagriBhandarList" class="row">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-8 PaddingTop">
-        <div class="card">
             <div class="card-header">
-                <strong>Samagri Bhandar</strong>
-                <button id="NewSamagriBhandar" type="button" class="btn blueBackground btn-sm mb-1" data-target="#scrollmodal">
-                    <i class="fa fa-plus"></i> New
-                </button>
+                <strong>Output</strong>
             </div>
 
             <div class="card-body card-block">
+                <div class="form-group row Personal">
+                    <div class="col col-md-3">
+                        <label for="OutputQuantity" class="control-label mb-1">Quantity</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="OutputQuantity" name="OutputQuantity" type="text" placeholder="0.00000" class="form-control Units">
+                        <small class="help-block form-text text-danger">Please ensure Quantity given is right as you cannot edit it after save.</small>
+                    </div>
+                </div>
 
-
-
-                <div class="table-responsive table--no-card m-b-30">
-                    <table id="SamagriBhandar" style="width:100%" class="table table-borderless table-striped table-mandir"></table>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="UnitOfMeasurement" class="form-control-label">Unit Of Measurement</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="UnitOfMeasurement" id="UnitOfMeasurement" class="form-control select2 select2-hidden-accessible searchableDropdown"></select>
+                        <small class="help-block form-text text-danger">Please ensure Unit Of Measurement given is right as you cannot edit it after save.</small>
+                    </div>
                 </div>
             </div>
 
+        </div>
+
+        <div class="card">
+            <div class="card-body card-block">
+                <button id="NewSamagriDetail" type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#staticModal">
+                    Add Samagri
+                </button>
+            </div>
+        </div>
+        <div>
+            <div id="divBhandar" class="table-responsive table--no-card">
+                <table id="bhandar" class="table table-borderless table-striped table-mandir"></table>
+                <div id="pager"></div>
+            </div>
+        </div>
+        <div class="card m-t-30">
+            <div class="card-body card-block">
+                @*<button id="NewSamagriDetail" type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#staticModal">
+                    Add Samagri
+                </button>*@
+            </div>
             <div class="card-footer">
-                <button id="SaveAdd" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                <button id="Save" style="width:20%" type="submit" class="btn blueBackground btn-sm">
                     <i class="fa  fa-save"> </i> Save
                 </button>
                 <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
@@ -126,84 +122,52 @@
                 </a>
             </div>
         </div>
+
     </div>
     <div class="col-lg-2"></div>
 </div>
 
-<div class="modal fade" id="scrollmodal" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true">
+<div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
+     data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="scrollmodalLabel">Samagri Bhandar</h5>
+                <h5 class="modal-title" id="staticModalLabel">Samagri</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-lg-12 PaddingTop">
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                            <input type="hidden" id="SamagriBhandarId" name="SamagriBhandarId" class="form-control">
-
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="SamagriBhandarUOM" class="form-control-label">Unit Of Measurement</label>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <select name="SamagriBhandarUOM" id="SamagriBhandarUOM" class="form-control"></select>
-                                </div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-10 PaddingTop">
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="KachiSamagri" class="form-control-label">Kachi Samagri</label>
                             </div>
-
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="Bhandar" class="form-control-label">Bhandar</label>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <select name="Bhandar" id="Bhandar" class="form-control"></select>
-                                </div>
+                            <div class="col-12 col-md-9">
+                                <select name="KachiSamagri" id="KachiSamagri" class="form-control select2 select2-hidden-accessible model-dropdown "></select>
+                                <small class="help-block form-text text-danger">Please ensure Kachi Samagri selected is right as you cannot edit it after save.</small>
                             </div>
-
-                            <div class="form-group row">
-                                <div class="col col-md-3">
-                                    <label for="BhandarNoOfUnit" class="control-label mb-1">No of unit to be required</label>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <input id="BhandarNoOfUnit" name="BhandarNoOfUnit" type="text" placeholder="0.00" class="form-control bhandar">
-                                    <small class="help-block form-text">Please Enter No of unit to be required to make Samagri.</small>
-                                </div>
+                        </div>
+                        <div class="form-group row Personal">
+                            <div class="col col-md-3">
+                                <label for="Quantity" class="control-label mb-1">Quantity</label>
                             </div>
-
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label class=" form-control-label"></label>
-                                </div>
-                                <div class="col col-md-9">
-                                    <div class="form-check">
-                                        <div class="checkbox">
-                                            <label for="SamagriBhandarIsActive" class="form-check-label ">
-                                                <input type="checkbox" id="SamagriBhandarIsActive" name="SamagriBhandarIsActive" class="form-check-input">Is Active
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col-12 col-md-9">
+                                <input id="Quantity" name="Quantity" type="text" placeholder="0.00000" class="form-control Units">
+                                <small class="help-block form-text text-danger">Please ensure Quantity given is right as you cannot edit it after save.</small>
                             </div>
-
-                            <div class="row form-group" style="display:none;">
-                                <div class="col col-md-3">
-                                    <label class=" form-control-label"></label>
-                                </div>
-                                <div class="col col-md-9">
-                                    <div class="form-check">
-                                        <div class="checkbox">
-                                            <label for="IsNew" class="form-check-label ">
-                                                <input type="checkbox" id="IsNew" name="IsNew" class="form-check-input">Is New
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="row form-group UOM">
+                            <div class="col col-md-3">
+                                <label for="UOM" class="form-control-label">Unit Of Measurement</label>
                             </div>
-                        </form>
-
+                            <div class="col-12 col-md-9">
+                                <select name="UOM" id="UOM" class="form-control select2 select2-hidden-accessible model-dropdown"></select>
+                                <small class="help-block form-text text-danger">Please ensure Unit Of Measurement given is right as you cannot edit it after save.</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -221,5 +185,4 @@
         </div>
     </div>
 </div>
-
 <script src="~/js/CreateSamagri.js"></script>

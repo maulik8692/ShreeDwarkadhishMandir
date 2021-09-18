@@ -14,7 +14,7 @@ namespace InterfaceMiddleLayer
         string Description { get; set; }
         string Recipe { get; set; }
         int UnitId { get; set; }
-        decimal NoOfUnit { get; set; }
+        decimal Quantity { get; set; }
         decimal Balance { get; set; }
         decimal MinStockValidation { get; set; }
         int CreatedBy { get; set; }
@@ -25,13 +25,16 @@ namespace InterfaceMiddleLayer
         DateTime DeletedOn { get; set; }
         int DeletedBy { get; set; }
         int IsDeleted { get; set; }
+        
+        string UnitDescription { get; set; }
+        string UnitAbbreviation { get; set; }
+        List<ISamagriDetail> SamagriDetails { get; set; }
+
         int PageNumber { get; set; }
         int PageSize { get; set; }
         int Page { get; set; }
         int Total { get; set; }
-        string UnitDescription { get; set; }
-        string UnitAbbreviation { get; set; }
-       
+        int Records { get; set; }
         void Validate();
     }
 }

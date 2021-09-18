@@ -31,9 +31,8 @@ namespace AdoDotNetDal
         {
             cmd.CommandText = "GetUnitOfMeasurementDropdown";
             cmd.CommandType = CommandType.StoredProcedure;
-
-            SqlDataReader dr = null;
-            dr = cmd.ExecuteReader();
+            cmd.Parameters.AddWithValue("@BhandarId", anyObject.ToInt());
+            SqlDataReader dr = cmd.ExecuteReader();
 
             List<IUnitOfMeasurement> unitOfMeasurements = new List<IUnitOfMeasurement>();
             while (dr.Read())

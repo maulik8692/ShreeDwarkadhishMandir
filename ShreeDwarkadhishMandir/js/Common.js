@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿var SomethingWentWrong = 'Something Went Wrong. Please contact your Administrator'
+$(document).ready(function () {
     $('.number').inputmask("numeric", {
         radixPoint: ".",
         groupSeparator: ",",
@@ -63,6 +64,11 @@
     $(".wait").height($(".page-wrapper").get(0).scrollHeight);
 
     $('.searchableDropdown').select2();
+
+    $(".model-dropdown").select2({
+        tags: true,
+        dropdownParent: $("#staticModal")
+    });
     
 });
 
