@@ -82,7 +82,7 @@ namespace AdoDotNetDal
             {
                 ISamagriDetail samagri = Factory<ISamagriDetail>.Create("SamagriDetail");
                 samagri.Id = dr["Id"].ToInt();
-                samagri.NoOfUnit = dr["NoOfUnit"].ToDecimal();
+                samagri.Quantity = dr["Quantity"].ToDecimal();
                 samagri.UnitId = dr["UnitId"].ToInt();
                 samagri.UnitAbbreviation = dr["UnitAbbreviation"].ToString();
                 samagri.UnitDescription = dr["UnitDescription"].ToString();

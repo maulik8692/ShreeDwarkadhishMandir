@@ -74,6 +74,33 @@ namespace ShreeDwarkadhishMandir.Controllers
         }
 
         [HttpPost]
+        public ActionResult SamagriDetail(SamagriRequest samagriRequest)
+        {
+            try
+            {
+                ISamagri _samagriRequest = Factory<ISamagri>.Create("Samagri");
+                _samagriRequest.Id = samagriRequest.Id;
+                IRepository<ISamagri> dal = FactoryDalLayer<IRepository<ISamagri>>.Create("Samagri");
+                ISamagri samagri = dal.GetDetail(_samagriRequest);
+
+                ISamagriDetail samagriDetail = Factory<ISamagriDetail>.Create("SamagriDetail");
+                samagriDetail.SamagriId = samagriRequest.Id;
+
+                IRepository<ISamagriDetail> detail = FactoryDalLayer<IRepository<ISamagriDetail>>.Create("SamagriDetail");
+                List<ISamagriDetail> SamagriDetails = detail.Search(samagriDetail);
+
+                samagri.SamagriDetails = SamagriDetails;
+
+                return Json(samagri, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Log.Write(ex);
+                return new HttpStatusCodeResult(410, ex.Message);
+            }
+        }
+
+        [HttpPost]
         public ActionResult CreateSamagri(SamagriRequest samagriRequest)
         {
             try

@@ -25,6 +25,7 @@ namespace MiddleLayer
         public bool IsJewellery { get; set; }
         public bool IsSamagri { get; set; }
         public bool IsBhandar { get; set; }
+        public bool IsSamagriCreated { get; set; }
         public bool AllowToChangeBalance { get; set; }
         public string Description { get; set; }
         public int UpdatedBy { get; set; }

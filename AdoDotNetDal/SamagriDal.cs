@@ -47,15 +47,12 @@ namespace AdoDotNetDal
             {
                 ISamagri samagri = Factory<ISamagri>.Create("Samagri");
                 samagri.Id = dr["Id"].ToInt();
-                samagri.Name = dr["Name"].ToString();
+                samagri.Recipe = dr["Recipe"].ToString();
                 samagri.Description = dr["Description"].ToString();
-                samagri.UnitId = dr["UnitId"].ToInt();
-
-                samagri.Quantity = dr["Quantity"].ToDecimal();
-                samagri.Balance = dr["Balance"].ToDecimal();
-                samagri.MinStockValidation = dr["MinStockValidation"].ToDecimal();
                 samagri.IsActive = dr["IsActive"].ToBool();
-                
+                samagri.BhandarId = dr["BhandarId"].ToInt();
+                samagri.Quantity = dr["Quantity"].ToDecimal();
+                samagri.UnitId = dr["UnitId"].ToInt();
                 samagris.Add(samagri);
             }
 

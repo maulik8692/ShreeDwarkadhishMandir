@@ -34,6 +34,7 @@ namespace InterfaceMiddleLayer
         bool IsJewellery { get; set; }
         bool IsSamagri { get; set; }
         bool IsBhandar { get; set; }
+        bool IsSamagriCreated { get; set; }
         void Validate();
 
     }

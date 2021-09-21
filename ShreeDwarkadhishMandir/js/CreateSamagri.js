@@ -1,5 +1,6 @@
 ﻿var UnitMeasurement = [];
 var BhandarForDropdown = [];
+var _SamagriDetail = {};
 var SamagriDetail = {};
 var SamagriDetails = [];
 var IsGridIntialized = false;
@@ -23,6 +24,13 @@ $(document).ready(function () {
 
     $("#Save").click(function (e) {
         SaveForm();
+    });
+
+    $("#Samagri").change(function () {
+        var unitId = parseInt(BhandarForDropdown[BhandarForDropdown.findIndex(item => item.Id === parseInt(this.value))].UnitId)
+        if (typeof unitId !== "undefined" && unitId !== null && unitId !== 0) {
+            $("#UnitOfMeasurement").val(unitId).trigger('change.select2');;
+        }
     });
 });
 
@@ -84,20 +92,64 @@ function GetDetail() {
 
     if (typeof Id !== "undefined" && Id !== null && Id !== '') {
         showProgress();
+        var Samagri = {
+            Id: $('#Id').val()
+        };
+
+        $.ajax({
+            url: "/Samagri/SamagriDetail",
+            data: JSON.stringify(Samagri),
+            dataType: "json",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: function (jsondata) {
+                _SamagriDetail = jsondata;
+                setdetail();
+            },
+            error: function (xhr, httpStatusMessage, customErrorMessage) {
+                if (xhr.status === 410) {
+                    alert(customErrorMessage);
+                }
+                hideProgress();
+            },
+        });
     }
     else {
-
         $('#IsActive').prop('checked', true);
-        //$('#Name').val();
-        //$('#Description').val();
-        //$('#Balance').val();
-        //$('#AllowToChangeBalance').val(true);
-        //$('#IsActive').prop('checked', BhandarDetail.IsActive);
-        //GetUnitMeasurementList();
-        //GetStoreList();
         GetBhandar();
+    }
+}
 
-        hideProgress();
+function setdetail() {
+    $('#Description').val(_SamagriDetail.Description);
+    $('#Recipe').val(_SamagriDetail.Recipe);
+    $('#IsActive').prop('checked', _SamagriDetail.IsActive);
+    $('#OutputQuantity').val(_SamagriDetail.Quantity.toFixed(5));
+    $('#OutputQuantity').attr("disabled", true);
+    GetBhandar();
+}
+
+function setSamagriDetailList() {
+    $(_SamagriDetail.SamagriDetails).each(function () {
+
+        SamagriDetail = {};
+        SamagriDetail.BhandarId = this.BhandarId;
+        SamagriDetail.UnitId = this.UnitId;
+        SamagriDetail.BhandarName = this.BhandarId > 0 ? BhandarForDropdown[BhandarForDropdown.findIndex(item => item.Id === this.BhandarId)].Name : '';
+        SamagriDetail.Unit = this.Quantity.toFixed(5) + ' ' + (this.UnitId > 0 ? UnitMeasurement[UnitMeasurement.findIndex(item => item.Id === this.UnitId)].UnitAbbreviation : '');
+        SamagriDetail.Quantity = this.Quantity;
+        SamagriDetail.CanDelete = false;
+        SamagriDetail.IsNew = false;
+
+        SamagriDetails.Id = this.Id;
+
+        SamagriDetails.push(SamagriDetail);
+    });
+
+    if (IsGridIntialized === false) {
+        BindSamagriDetailList();
+    } else {
+        ReloadGrid();
     }
 }
 
@@ -128,6 +180,10 @@ function GetUnitMeasurementList() {
         success: function (jsondata) {
             UnitMeasurement = jsondata;
             BindSamagriDropdown(0, 0);
+            if (typeof _SamagriDetail !== "undefined"
+                && typeof _SamagriDetail.Id !== "undefined" && _SamagriDetail.Id !== null && _SamagriDetail.Id !== 0) {
+                setSamagriDetailList();
+            }
         },
         error: function (xhr) {
             alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
@@ -137,7 +193,7 @@ function GetUnitMeasurementList() {
     });
 }
 
-function BindSamagriDropdown(MainBhandarId, Id) {
+function BindSamagriDropdown() {
     $("#Samagri").empty();
 
     $("<option />", {
@@ -147,9 +203,9 @@ function BindSamagriDropdown(MainBhandarId, Id) {
 
     var filterResult = []
     if (typeof BhandarForDropdown !== "undefined") {
-        if (typeof Id !== "undefined" && Id !== null && Id !== 0) {
+        if (typeof _SamagriDetail.Id === "undefined" || _SamagriDetail.Id === null || _SamagriDetail.Id === 0) {
             filterResult = BhandarForDropdown.filter(function (i, n) {
-                return i.IsActive === true && i.IsSamagri === true;
+                return i.IsActive === true && i.IsSamagri === true && i.IsSamagriCreated === false;
             })
         } else {
             filterResult = BhandarForDropdown.filter(function (i, n) {
@@ -166,15 +222,16 @@ function BindSamagriDropdown(MainBhandarId, Id) {
         }).appendTo("#Samagri");
     });
 
-    if (typeof MainBhandarId !== "undefined" && MainBhandarId !== null && MainBhandarId !== 0) {
-        $("#Samagri").val(MainBhandarId);
+    if (typeof _SamagriDetail.BhandarId !== "undefined" && _SamagriDetail.BhandarId !== null && _SamagriDetail.BhandarId !== 0) {
+        $("#Samagri").val(_SamagriDetail.BhandarId);
         $('#Samagri').attr("disabled", true);
     }
 
     BindOutputUnitMeasurement();
 }
 
-function BindOutputUnitMeasurement(MainUnitId) {
+function BindOutputUnitMeasurement() {
+    $('#UnitOfMeasurement').attr("disabled", true);
     $("#UnitOfMeasurement").empty();
 
     $("<option />", {
@@ -190,11 +247,12 @@ function BindOutputUnitMeasurement(MainUnitId) {
             }).appendTo("#UnitOfMeasurement");
         });
 
-        if (typeof MainUnitId !== "undefined" && MainUnitId !== null && MainUnitId !== 0) {
-            $("#UnitOfMeasurement").val(MainUnitId);
-            $('#UnitOfMeasurement').attr("disabled", true);
+        if (typeof _SamagriDetail.UnitId !== "undefined" && _SamagriDetail.UnitId !== null && _SamagriDetail.UnitId !== 0) {
+            $("#UnitOfMeasurement").val(_SamagriDetail.UnitId);
         }
     }
+
+    hideProgress();
 }
 
 function ResetSamagriDetail() {
@@ -226,6 +284,7 @@ function BindSamagriDetailDropdown() {
             text: this.Name
         }).appendTo("#KachiSamagri");
     });
+    hideProgress();
 }
 
 function BindDetailUnitMeasurement() {
@@ -337,7 +396,7 @@ function BindSamagriDetailList() {
             colModel: [
                 { name: 'Id', index: 'Id', align: 'left', key: true, hidden: true, sortable: false },
                 { name: 'BhandarName', index: 'BhandarName', align: 'left', sortable: false },
-                { name: 'Unit', index: 'Unit', align: 'left', sortable: false },
+                { name: 'Unit', index: 'Unit', align: 'right', sortable: false },
                 { name: 'Id', index: 'Id', align: 'center', width: 40, sortable: false, formatter: DeleteSamagriDetailFormater },
             ],
             pgbuttons: false,
