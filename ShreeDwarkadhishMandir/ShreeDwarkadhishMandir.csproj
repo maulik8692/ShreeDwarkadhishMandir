@@ -146,6 +146,7 @@
     <Compile Include="Controllers\ReceiptController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\SamagriController.cs" />
+    <Compile Include="Controllers\SamagriTransactionController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\UnitConversionController.cs" />
@@ -671,6 +672,7 @@
     <Content Include="js\ReceiptDetail.js" />
     <Content Include="js\ReportList.js" />
     <Content Include="js\Samagri.js" />
+    <Content Include="js\SamagriTransaction.js" />
     <Content Include="js\Store.js" />
     <Content Include="js\Supplier.js" />
     <Content Include="js\TransactionList.js" />
@@ -1264,6 +1266,12 @@
     <Content Include="Views\UnitConversion\CreateUnitConversion.cshtml" />
     <Content Include="Views\Store\Store.cshtml" />
     <Content Include="Views\Store\CreateStore.cshtml" />
+    <Content Include="Views\SamagriTransaction\SamagriTransaction.cshtml" />
+    <Content Include="Views\SamagriTransaction\Issue.cshtml" />
+    <Content Include="Views\SamagriTransaction\Scraped.cshtml" />
+    <Content Include="Views\SamagriTransaction\Purchase.cshtml" />
+    <Content Include="Views\SamagriTransaction\Donation.cshtml" />
+    <Content Include="Views\SamagriTransaction\Complementary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

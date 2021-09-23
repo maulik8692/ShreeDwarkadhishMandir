@@ -1,6 +1,6 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Padhramani Request";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
 <div class="row PersonalDetail">
@@ -245,4 +245,4 @@
 
 </div>
 
-<script src="~/js/PadhramaniRequest.js"></script>
+<script src="~/js/PadhramaniRequest.js?@casheCleaner"></script>

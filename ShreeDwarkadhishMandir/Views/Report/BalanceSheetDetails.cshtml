@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "BalanceSheetDetails";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 @Html.HiddenFor(model => model.Id)
 
@@ -31,4 +32,4 @@
     </div>
 </div>
 <script src="~/Scripts/underscore.js"></script>
-<script src="~/js/BalanceSheetDetails.js"></script>
+<script src="~/js/BalanceSheetDetails.js?@casheCleaner"></script>

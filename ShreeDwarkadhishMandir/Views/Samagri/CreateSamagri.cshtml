@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Samagri";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
 <div class="row">
@@ -185,4 +186,4 @@
         </div>
     </div>
 </div>
-<script src="~/js/CreateSamagri.js"></script>
+<script src="~/js/CreateSamagri.js?@casheCleaner"></script>

@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Balance Sheet";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 <div>
     <div class="container">
@@ -48,5 +49,5 @@
         </div>
     </div>
 </div>
-<script src="~/js/BalanceSheet.js"></script>
+<script src="~/js/BalanceSheet.js?@casheCleaner"></script>
 <script src="~/Scripts/underscore.js"></script>

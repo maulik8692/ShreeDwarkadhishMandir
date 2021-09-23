@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Store";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
 <div class="row">
@@ -76,4 +77,4 @@
     <div class="col-lg-2"></div>
 </div>
 
-<script src="~/js/CreateStore.js"></script>
+<script src="~/js/CreateStore.js?@casheCleaner"></script>

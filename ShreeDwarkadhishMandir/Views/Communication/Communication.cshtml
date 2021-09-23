@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Communication";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 <script src="~/ckeditor/ckeditor.js"></script>
 <div class="row">
@@ -52,4 +53,4 @@
 
 @*@Html.TextArea("editor1", new { @class = "ckeditor", @id = "sampleEditor1"})*@
 
-<script src="~/js/Communication.js"></script>
+<script src="~/js/Communication.js?@casheCleaner"></script>

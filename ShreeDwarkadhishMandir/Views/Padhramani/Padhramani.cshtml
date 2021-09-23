@@ -1,6 +1,6 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Padhramani";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 <style>
     .ui-widget.ui-widget-content {
@@ -67,4 +67,4 @@
 </div>
 
 
-<script src="~/js/Padhramani.js"></script>
+<script src="~/js/Padhramani.js?@casheCleaner"></script>

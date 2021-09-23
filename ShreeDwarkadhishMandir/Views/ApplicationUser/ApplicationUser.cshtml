@@ -1,6 +1,6 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Application User";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 <div class="row">
     <div class="col-lg-2"></div>
@@ -115,4 +115,4 @@
     </div>
     <div class="col-lg-2"></div>
 </div>
-<script src="~/js/ApplicationUser.js"></script>
+<script src="~/js/ApplicationUser.js?@casheCleaner"></script>

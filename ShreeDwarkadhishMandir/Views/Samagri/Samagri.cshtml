@@ -1,6 +1,6 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Samagri";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
 <div class="row PaddingTop PaddingRight PaddingLeft">
@@ -22,4 +22,4 @@
         </div>
     </div>
 </div>
-<script src="~/js/Samagri.js"></script>
+<script src="~/js/Samagri.js?@casheCleaner"></script>

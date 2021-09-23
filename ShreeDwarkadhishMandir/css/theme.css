@@ -422,6 +422,10 @@ section {
     margin-top: 30px;
 }
 
+i.fa {
+    margin-right: 5px;
+}
+
 .fa-hover a {
     color: #666;
     font-size: 15px;

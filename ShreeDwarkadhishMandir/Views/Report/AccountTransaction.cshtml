@@ -1,6 +1,6 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "AccountTransaction";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
 
@@ -70,4 +70,4 @@
 </div>
 
 
-<script src="~/js/TransactionReport.js"></script>
+<script src="~/js/TransactionReport.js?@casheCleaner"></script>

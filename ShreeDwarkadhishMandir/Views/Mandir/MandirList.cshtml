@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Mandir";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
 <div class="card-footer PaddingRight display-none PaddingLeft">
@@ -19,4 +20,4 @@
         </div>
     </div>
 </div>
-<script src="~/js/MandirList.js"></script>
+<script src="~/js/MandirList.js?@casheCleaner"></script>

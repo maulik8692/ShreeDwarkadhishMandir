@@ -1,6 +1,6 @@
-﻿
-@{
+﻿@{
     Layout = null;
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
 <!DOCTYPE html>
@@ -58,8 +58,8 @@
     <script src="~/vendor/jquery-3.2.1.min.js"></script>
     <script src="~/vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="~/vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <script src="~/js/Common.js"></script>
-    <script src="~/js/Login.js"></script>
+    <script src="~/js/Common.js?@casheCleaner"></script>
+    <script src="~/js/Login.js?@casheCleaner"></script>
 
 </body>
 </html>

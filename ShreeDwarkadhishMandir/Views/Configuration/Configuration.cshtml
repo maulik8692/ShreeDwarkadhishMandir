@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "Configuration";
-    
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
 @*Layout = "~/Views/Shared/_Layout.cshtml";*@
@@ -125,4 +125,4 @@
     <div class="col-lg-2"></div>
 </div>
 
-<script src="~/js/Configuration.js"></script>
+<script src="~/js/Configuration.js?@casheCleaner"></script>

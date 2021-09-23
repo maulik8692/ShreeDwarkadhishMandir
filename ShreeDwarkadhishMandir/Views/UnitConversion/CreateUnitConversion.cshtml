@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Unit Conversion";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
 <div class="row">
@@ -73,4 +74,4 @@
     <div class="col-lg-2"></div>
 </div>
 
-<script src="~/js/CreateUnitConversion.js"></script>
+<script src="~/js/CreateUnitConversion.js?@casheCleaner"></script>

@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "ApplicationUserList";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 <div class="card-footer PaddingRight PaddingLeft" style="background-color:#00000000 !important">
     <button id="Save" type="submit" class="btn blueBackground btn-sm">
@@ -18,4 +19,4 @@
         </div>
     </div>
 </div>
-<script src="~/js/ApplicationUserList.js"></script>
+<script src="~/js/ApplicationUserList.js?@casheCleaner"></script>

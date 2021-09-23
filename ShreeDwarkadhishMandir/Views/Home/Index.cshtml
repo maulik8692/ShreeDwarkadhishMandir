@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Home";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 <!-- STATISTIC-->
 <section class="statistic statistic2">
@@ -131,4 +132,4 @@
         </div>
     </section>*@
 <!-- END DATA TABLE-->
-<script src="~/js/Home.js"></script>
+<script src="~/js/Home.js?@casheCleaner"></script>

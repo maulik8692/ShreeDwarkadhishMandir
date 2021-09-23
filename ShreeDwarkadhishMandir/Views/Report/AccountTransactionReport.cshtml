@@ -2,6 +2,7 @@
 
 @{
     Layout = null;
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
 <!DOCTYPE html>
@@ -30,7 +31,7 @@
     <script src="~/Scripts/datatables.min.js"></script>
     <script src="~/js/date.format.js"></script>
     @*<script src="~/js/ManorathReceiptReport.js"></script>*@
-    <script src="~/js/AccountTransactionReport.js"></script>
+    <script src="~/js/AccountTransactionReport.js?@casheCleaner"></script>
 
 </head>
 <body style="overflow-x: hidden;">

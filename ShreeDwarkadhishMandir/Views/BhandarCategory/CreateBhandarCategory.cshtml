@@ -1,6 +1,6 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Bhandar Category";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
 <div class="row">
@@ -87,4 +87,4 @@
     <div class="col-lg-2"></div>
 </div>
 
-<script src="~/js/CreateBhandarCategory.js"></script>
+<script src="~/js/CreateBhandarCategory.js?@casheCleaner"></script>

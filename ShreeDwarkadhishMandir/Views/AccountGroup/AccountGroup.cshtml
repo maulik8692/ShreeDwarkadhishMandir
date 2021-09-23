@@ -1,6 +1,6 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "AccountGroup";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
 <div class="row PaddingTop PaddingRight PaddingLeft">
@@ -24,4 +24,4 @@
     </div>
 </div>
 
-<script src="~/js/AccountGroup.js"></script>
+<script src="~/js/AccountGroup.js?@casheCleaner"></script>

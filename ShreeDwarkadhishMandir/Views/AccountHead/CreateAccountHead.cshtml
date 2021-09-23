@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Account Head";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
 <div class="row PaddingTop">
@@ -234,4 +235,4 @@
     </div>
 </div>
 
-<script src="~/js/CreateAccountHead.js"></script>
+<script src="~/js/CreateAccountHead.js?@casheCleaner"></script>

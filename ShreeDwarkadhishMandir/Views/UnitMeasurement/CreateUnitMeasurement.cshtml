@@ -1,6 +1,6 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Unit of Measurement";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
 <div class="row">
@@ -71,4 +71,4 @@
     <div class="col-lg-2"></div>
 </div>
 
-<script src="~/js/CreateUnitMeasurement.js"></script>
+<script src="~/js/CreateUnitMeasurement.js?@casheCleaner"></script>

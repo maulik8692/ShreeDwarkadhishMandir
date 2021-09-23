@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Mandir";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
 <div class="row PaddingTop">
@@ -157,4 +158,4 @@
     </div>
     <div class="col-lg-2"></div>
 </div>
-<script src="~/js/Mandir.js"></script>
+<script src="~/js/Mandir.js?@casheCleaner"></script>

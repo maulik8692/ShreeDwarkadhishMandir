@@ -1,6 +1,6 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "DarshanTime";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 <div class="row-search">
     <div class="col-lg-2 block-search">
@@ -29,4 +29,4 @@
 </div>
 
 
-<script src="~/js/DarshanTime.js"></script>
+<script src="~/js/DarshanTime.js?@casheCleaner"></script>

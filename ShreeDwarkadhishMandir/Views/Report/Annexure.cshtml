@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Annexure";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
 <div>
@@ -31,4 +32,4 @@
 </div>
 
 <script src="~/Scripts/underscore.js"></script>
-<script src="~/js/Annexure.js"></script>
+<script src="~/js/Annexure.js?@casheCleaner"></script>
