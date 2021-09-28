@@ -1,10 +1,15 @@
 ﻿using CommonLayer;
+using FactoryDal;
+using FactoryMiddleLayer;
+using InterfaceDal;
+using InterfaceMiddleLayer;
 using ShreeDwarkadhishMandir.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static EnumLayer.BhandarTransactionCodeEnum;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
@@ -54,12 +59,29 @@ namespace ShreeDwarkadhishMandir.Controllers
 
             return View();
         }
+
         [HttpPost]
-        public ActionResult Scraped(int id)
+        public ActionResult Scraped(SamagriTransactionRequest SamagriTransactionRequest)
         {
             try
             {
-                return Json("Samagri saved successfully.", JsonRequestBehavior.AllowGet);
+                IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                bhandarTransaction.BhandarId = SamagriTransactionRequest.BhandarId;
+                bhandarTransaction.UnitId = SamagriTransactionRequest.UnitId;
+                bhandarTransaction.StoreId = SamagriTransactionRequest.StoreId;
+                bhandarTransaction.CurrentBalance = SamagriTransactionRequest.CurrentBalance;
+                bhandarTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.Scrap;
+                bhandarTransaction.StockTransactionQuantity = SamagriTransactionRequest.StockTransactionQuantity;
+                bhandarTransaction.Description = SamagriTransactionRequest.Description;
+                bhandarTransaction.Validate();
+                bhandarTransaction.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
+
+                IBhandarTransaction BhandarTransactionResponse = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+
+                IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+                BhandarTransactionResponse = dalBhandarTransaction.SaveWithReturn(bhandarTransaction);
+
+                return Json("Bhandar has been scrapped successfully.", JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

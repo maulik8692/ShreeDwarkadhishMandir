@@ -39,6 +39,7 @@ namespace MiddleLayer
         public int Records { get; set; }
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
+        public int StoreId { get; set; }
 
         public Bhandar(IValidation<IBhandar> _validation)
         {

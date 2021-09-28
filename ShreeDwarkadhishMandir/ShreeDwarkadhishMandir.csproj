@@ -183,6 +183,7 @@
     <Compile Include="Models\ReceiptRequest.cs" />
     <Compile Include="Models\SamagriDetailRequest.cs" />
     <Compile Include="Models\SamagriRequest.cs" />
+    <Compile Include="Models\SamagriTransactionRequest.cs" />
     <Compile Include="Models\StoreRequest.cs" />
     <Compile Include="Models\SupplierRequest.cs" />
     <Compile Include="Models\UnitConversionRequest.cs" />
@@ -673,6 +674,7 @@
     <Content Include="js\ReportList.js" />
     <Content Include="js\Samagri.js" />
     <Content Include="js\SamagriTransaction.js" />
+    <Content Include="js\Scraped.js" />
     <Content Include="js\Store.js" />
     <Content Include="js\Supplier.js" />
     <Content Include="js\TransactionList.js" />

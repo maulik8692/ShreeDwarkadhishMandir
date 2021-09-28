@@ -35,6 +35,7 @@ namespace InterfaceMiddleLayer
         bool IsSamagri { get; set; }
         bool IsBhandar { get; set; }
         bool IsSamagriCreated { get; set; }
+        int StoreId { get; set; }
         void Validate();
 
     }

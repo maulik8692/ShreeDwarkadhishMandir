@@ -21,6 +21,7 @@ namespace InterfaceMiddleLayer
         int JewelleryUnitId { get; set; }
         decimal JewelleryQuantity { get; set; }
         decimal StockTransactionQuantity { get; set; }
+        decimal CurrentBalance { get; set; }
         int PaymentAccountHeadId { get; set; }
         string Description { get; set; }
         void Validate();

@@ -29,8 +29,10 @@ namespace AdoDotNetDal
 
         protected override List<IBhandar> DropdownWithSearchCommand<T>(T anyObject)
         {
+            IBhandar supplierRequest = anyObject as IBhandar;
             cmd.CommandText = "GetBhandarsForDropdown";
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@StoreId", supplierRequest.StoreId);
 
             SqlDataReader dr = null;
             dr = cmd.ExecuteReader();

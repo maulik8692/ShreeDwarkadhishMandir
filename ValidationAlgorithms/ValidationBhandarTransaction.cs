@@ -12,14 +12,23 @@ namespace ValidationAlgorithms
     {
         public void Validate(IBhandarTransaction anyType)
         {
+            if (!anyType.StoreId.IsNotZero())
+            {
+                throw new Exception("Please select Store.");
+            }
+            if (!anyType.BhandarId.IsNotZero())
+            {
+                throw new Exception("Please select Bhandar.");
+            }
+            if (!anyType.UnitId.IsNotZero())
+            {
+                throw new Exception("Please select Unit Of Measurement.");
+            }
+
             if (anyType.StockTransactionQuantity == 0)
             {
                 throw new Exception("Stock Transaction Quantity is require.");
             }
-            //if (anyType.StockTransactionQuantity > 0 && anyType.SupplierId == 0)
-            //{
-            //    throw new Exception("Please select supplier.");
-            //}
             if (anyType.PaymentAccountHeadId > 0 && anyType.PurchasingPrice == 0)
             {
                 throw new Exception("Please enter Purchasing amount.");
@@ -30,7 +39,11 @@ namespace ValidationAlgorithms
             }
             if (anyType.StockTransactionQuantity > 0 && anyType.Description.IsExactLength(0))
             {
-                throw new Exception("Please provide some notes for debit bhandar.");
+                throw new Exception("Please enter Description.");
+            }
+            if (anyType.BhandarTransactionCodeId == 10 && anyType.CurrentBalance < anyType.StockTransactionQuantity)
+            {
+                throw new Exception("Transaction Quantity must be less than or equal to current balance.");
             }
         }
     }

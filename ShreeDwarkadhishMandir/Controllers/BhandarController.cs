@@ -133,15 +133,15 @@ namespace ShreeDwarkadhishMandir.Controllers
             }
         }
 
-        public ActionResult GetBhandarForDropdown()
+        public ActionResult GetBhandarForDropdown(int StoreId)
         {
             try
             {
                 IBhandar BhandarRequest = Factory<IBhandar>.Create("Bhandar");
 
                 IRepository<IBhandar> dal = FactoryDalLayer<IRepository<IBhandar>>.Create("Bhandar");
-
-                List<IBhandar> Bhandars = dal.DropdownWithSearch(0);
+                BhandarRequest.StoreId = StoreId;
+                List<IBhandar> Bhandars = dal.DropdownWithSearch(BhandarRequest);
 
                 return Json(Bhandars, JsonRequestBehavior.AllowGet);
             }
