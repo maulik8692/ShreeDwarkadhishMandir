@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static EnumLayer.BhandarTransactionCodeEnum;
 
 namespace ValidationAlgorithms
 {
@@ -29,11 +30,11 @@ namespace ValidationAlgorithms
             {
                 throw new Exception("Stock Transaction Quantity is require.");
             }
-            if (anyType.PaymentAccountHeadId > 0 && anyType.PurchasingPrice == 0)
+            if (anyType.AccountHeadId > 0 && anyType.Price == 0)
             {
                 throw new Exception("Please enter Purchasing amount.");
             }
-            if (anyType.PurchasingPrice > 0 && anyType.PaymentAccountHeadId == 0)
+            if (anyType.Price > 0 && anyType.AccountHeadId == 0)
             {
                 throw new Exception("Please select payment account head.");
             }
@@ -41,9 +42,17 @@ namespace ValidationAlgorithms
             {
                 throw new Exception("Please enter Description.");
             }
-            if (anyType.BhandarTransactionCodeId == 10 && anyType.CurrentBalance < anyType.StockTransactionQuantity)
+            if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Scrap && anyType.CurrentBalance < anyType.StockTransactionQuantity)
             {
                 throw new Exception("Transaction Quantity must be less than or equal to current balance.");
+            }
+            if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Donation && !anyType.VaishnavId.IsNotZero())
+            {
+                throw new Exception("Please select Vaishnav name.");
+            }
+            if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.SoldOut && !anyType.Price.IsPositive())
+            {
+                throw new Exception("Please enter proper sold out price.");
             }
         }
     }

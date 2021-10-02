@@ -17,8 +17,8 @@ namespace MiddleLayer
         public decimal CurrentBalance { get; set; }
         public double BhandarBalance { get; set; }
         public int SupplierId { get; set; }
-        public int PaymentAccountHeadId { get; set; }
-        public decimal PurchasingPrice { get; set; }
+        public int AccountHeadId { get; set; }
+        public decimal Price { get; set; }
         public string Description { get; set; }
         public int Id { get; set; }
         public int StoreId { get; set; }
@@ -28,6 +28,7 @@ namespace MiddleLayer
         public int CreatedOn { get; set; }
         public int JewelleryUnitId { get; set; }
         public decimal JewelleryQuantity { get; set; }
+        public int VaishnavId { get; set; }
 
         public BhandarTransaction(IValidation<IBhandarTransaction> _validation)
         {

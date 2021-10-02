@@ -117,7 +117,7 @@ namespace ShreeDwarkadhishMandir.Controllers
                     bhandarTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.Opening;
                     bhandarTransaction.StockTransactionQuantity = Bhandar.Balance;
                     bhandarTransaction.Description = "Opening Balance for " + Bhandar.Name;
-                    bhandarTransaction.CreatedBy= Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
+                    bhandarTransaction.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
 
                     IBhandarTransaction BhandarTransactionResponse = Factory<IBhandarTransaction>.Create("BhandarTransaction");
                     IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
@@ -133,7 +133,7 @@ namespace ShreeDwarkadhishMandir.Controllers
             }
         }
 
-        public ActionResult GetBhandarForDropdown(int StoreId)
+        public ActionResult GetBhandarForDropdown(int StoreId = 0)
         {
             try
             {

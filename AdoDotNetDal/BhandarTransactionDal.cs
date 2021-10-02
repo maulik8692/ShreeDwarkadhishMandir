@@ -74,10 +74,11 @@ namespace AdoDotNetDal
             cmd.Parameters.AddWithValue("@UnitId", anyType.UnitId);
             cmd.Parameters.AddWithValue("@SupplierId", anyType.SupplierId);
             cmd.Parameters.AddWithValue("@SamagriId", anyType.SamagriId);
-            cmd.Parameters.AddWithValue("@PaymentAccountHeadId", anyType.PaymentAccountHeadId);
+            cmd.Parameters.AddWithValue("@AccountHeadId", anyType.AccountHeadId);
             cmd.Parameters.AddWithValue("@StockTransactionQuantity", anyType.StockTransactionQuantity);
-            cmd.Parameters.AddWithValue("@PurchasingPrice", anyType.PurchasingPrice);
+            cmd.Parameters.AddWithValue("@Price", anyType.Price);
             cmd.Parameters.AddWithValue("@Description", anyType.Description);
+            cmd.Parameters.AddWithValue("@VaishnavId", anyType.VaishnavId);
             cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
             SqlDataReader dr = cmd.ExecuteReader();
 

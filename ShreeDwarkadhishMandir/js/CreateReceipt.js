@@ -170,10 +170,8 @@ function GetVaishnav() {
             }
             $('#MobileNo').val(mobileNo);
         },
-        minLength: 5
+        minLength: 2
     });
-
-
 }
 
 function GetMandirList() {

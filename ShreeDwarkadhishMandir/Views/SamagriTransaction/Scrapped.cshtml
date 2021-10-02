@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Scraped";
+    ViewBag.Title = "Scrapped";
     string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
@@ -8,7 +8,7 @@
     <div class="col-lg-8 PaddingTop">
         <div class="card">
             <div class="card-header">
-                <strong>Stock</strong>
+                <strong>Stock Scrapped</strong>
             </div>
 
             <div class="card-body card-block">
@@ -55,11 +55,11 @@
 
                     <div class="form-group row Personal UOM">
                         <div class="col col-md-3">
-                            <label for="ScrapedQuantity" class="control-label mb-1">Scraped Quantity</label>
+                            <label for="ScrappedQuantity" class="control-label mb-1">Scrapped Quantity</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input id="ScrapedQuantity" name="ScrapedQuantity" type="text" placeholder="0.00000" class="form-control Units">
-                            <small class="help-block form-text">Please Enter Bhandar Balance.</small>
+                            <input id="ScrappedQuantity" name="ScrappedQuantity" type="text" placeholder="0.00000" class="form-control Units">
+                            <small class="help-block form-text">Please Enter Scrapped Quantity.</small>
                         </div>
                     </div>
 
@@ -91,4 +91,4 @@
     <div class="col-lg-2"></div>
 </div>
 
-<script src="~/js/Scraped.js?@casheCleaner"></script>
+<script src="~/js/Scrapped.js?@casheCleaner"></script>

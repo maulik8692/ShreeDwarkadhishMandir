@@ -12,8 +12,8 @@ namespace ShreeDwarkadhishMandir.Models
         public decimal StockTransactionQuantity { get; set; }
         public decimal CurrentBalance { get; set; }
         public int SupplierId { get; set; }
-        public int PaymentAccountHeadId { get; set; }
-        public decimal PurchasingPrice { get; set; }
+        public int AccountHeadId { get; set; }
+        public decimal Price { get; set; }
         public string Description { get; set; }
         public int Id { get; set; }
         public int StoreId { get; set; }
@@ -23,5 +23,6 @@ namespace ShreeDwarkadhishMandir.Models
         public int CreatedOn { get; set; }
         public int JewelleryUnitId { get; set; }
         public decimal JewelleryQuantity { get; set; }
+        public int VaishnavId { get; set; }
     }
 }

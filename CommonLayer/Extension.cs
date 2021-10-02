@@ -352,6 +352,21 @@ namespace CommonLayer
             return (value != 0);
         }
 
+        public static bool IsPositive(this int value)
+        {
+            return (value > 0);
+        }
+
+        public static bool IsPositive(this double value)
+        {
+            return (value > 0);
+        }
+
+        public static bool IsPositive(this decimal value)
+        {
+            return (value > 0);
+        }
+
         public static bool Is(this int value, int compare)
         {
             return (value == compare);

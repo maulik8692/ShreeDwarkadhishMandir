@@ -35,10 +35,10 @@ $(document).ready(function () {
 
 function SaveForm() {
     showProgress();
-    scrappedRequest.StockTransactionQuantity = parseFloat($("#ScrapedQuantity").val());
+    scrappedRequest.StockTransactionQuantity = parseFloat($("#ScrappedQuantity").val());
     scrappedRequest.Description = $("#Description").val();
     $.ajax({
-        url: "/SamagriTransaction/Scraped",
+        url: "/SamagriTransaction/Scrapped",
         data: JSON.stringify(scrappedRequest),
         dataType: "json",
         type: "POST",
@@ -57,6 +57,7 @@ function SaveForm() {
 }
 
 function ResetForm() {
+    showProgress();
     $(".Bhandar").hide();
     $(".UOM").hide();
     GetStoreList();

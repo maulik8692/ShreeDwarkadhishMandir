@@ -50,7 +50,7 @@ namespace ShreeDwarkadhishMandir.Controllers
             }
         }
 
-        public ActionResult Scraped()
+        public ActionResult Scrapped()
         {
             if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
             {
@@ -61,7 +61,7 @@ namespace ShreeDwarkadhishMandir.Controllers
         }
 
         [HttpPost]
-        public ActionResult Scraped(SamagriTransactionRequest SamagriTransactionRequest)
+        public ActionResult Scrapped(SamagriTransactionRequest SamagriTransactionRequest)
         {
             try
             {
@@ -82,6 +82,47 @@ namespace ShreeDwarkadhishMandir.Controllers
                 BhandarTransactionResponse = dalBhandarTransaction.SaveWithReturn(bhandarTransaction);
 
                 return Json("Bhandar has been scrapped successfully.", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Log.Write(ex);
+                return new HttpStatusCodeResult(410, ex.Message);
+            }
+        }
+
+        public ActionResult SoldOut()
+        {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SoldOut(SamagriTransactionRequest SamagriTransactionRequest)
+        {
+            try
+            {
+                IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                bhandarTransaction.BhandarId = SamagriTransactionRequest.BhandarId;
+                bhandarTransaction.UnitId = SamagriTransactionRequest.UnitId;
+                bhandarTransaction.StoreId = SamagriTransactionRequest.StoreId;
+                bhandarTransaction.Price = SamagriTransactionRequest.Price;
+                bhandarTransaction.CurrentBalance = SamagriTransactionRequest.CurrentBalance;
+                bhandarTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.SoldOut;
+                bhandarTransaction.StockTransactionQuantity = SamagriTransactionRequest.StockTransactionQuantity;
+                bhandarTransaction.Description = SamagriTransactionRequest.Description;
+                bhandarTransaction.Validate();
+                bhandarTransaction.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
+
+                IBhandarTransaction BhandarTransactionResponse = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+
+                IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+                BhandarTransactionResponse = dalBhandarTransaction.SaveWithReturn(bhandarTransaction);
+
+                return Json("Bhandar has been sold out successfully.", JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -123,11 +164,28 @@ namespace ShreeDwarkadhishMandir.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Donation(int id)
+        public ActionResult Donation(SamagriTransactionRequest SamagriTransactionRequest)
         {
             try
             {
-                return Json("Samagri saved successfully.", JsonRequestBehavior.AllowGet);
+                IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                bhandarTransaction.BhandarId = SamagriTransactionRequest.BhandarId;
+                bhandarTransaction.VaishnavId= SamagriTransactionRequest.VaishnavId;
+                bhandarTransaction.UnitId = SamagriTransactionRequest.UnitId;
+                bhandarTransaction.StoreId = SamagriTransactionRequest.StoreId;
+                bhandarTransaction.CurrentBalance = SamagriTransactionRequest.CurrentBalance;
+                bhandarTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.Donation;
+                bhandarTransaction.StockTransactionQuantity = SamagriTransactionRequest.StockTransactionQuantity;
+                bhandarTransaction.Description = SamagriTransactionRequest.Description;
+                bhandarTransaction.Validate();
+                bhandarTransaction.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
+
+                IBhandarTransaction BhandarTransactionResponse = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+
+                IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+                BhandarTransactionResponse = dalBhandarTransaction.SaveWithReturn(bhandarTransaction);
+
+                return Json("Bhandar Donation has been saved successfully.", JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

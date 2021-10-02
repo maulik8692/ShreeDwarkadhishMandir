@@ -15,14 +15,15 @@ namespace InterfaceMiddleLayer
         int UnitId { get; set; }
         int SupplierId { get; set; }
         int SamagriId { get; set; }
-        decimal PurchasingPrice { get; set; }
+        decimal Price { get; set; }
         int CreatedOn { get; set; }
         int CreatedBy { get; set; }
         int JewelleryUnitId { get; set; }
         decimal JewelleryQuantity { get; set; }
         decimal StockTransactionQuantity { get; set; }
         decimal CurrentBalance { get; set; }
-        int PaymentAccountHeadId { get; set; }
+        int AccountHeadId { get; set; }
+        int VaishnavId { get; set; }
         string Description { get; set; }
         void Validate();
     }

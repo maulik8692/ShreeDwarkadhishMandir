@@ -658,6 +658,7 @@
     <Content Include="js\CreateUnitMeasurement.js" />
     <Content Include="js\DarshanTime.js" />
     <Content Include="js\date.format.js" />
+    <Content Include="js\Donation.js" />
     <Content Include="js\Home.js" />
     <Content Include="js\IncomeExpenditure.js" />
     <Content Include="js\Login.js" />
@@ -674,7 +675,8 @@
     <Content Include="js\ReportList.js" />
     <Content Include="js\Samagri.js" />
     <Content Include="js\SamagriTransaction.js" />
-    <Content Include="js\Scraped.js" />
+    <Content Include="js\Scrapped.js" />
+    <Content Include="js\SoldOut.js" />
     <Content Include="js\Store.js" />
     <Content Include="js\Supplier.js" />
     <Content Include="js\TransactionList.js" />
@@ -1270,10 +1272,11 @@
     <Content Include="Views\Store\CreateStore.cshtml" />
     <Content Include="Views\SamagriTransaction\SamagriTransaction.cshtml" />
     <Content Include="Views\SamagriTransaction\Issue.cshtml" />
-    <Content Include="Views\SamagriTransaction\Scraped.cshtml" />
+    <Content Include="Views\SamagriTransaction\Scrapped.cshtml" />
     <Content Include="Views\SamagriTransaction\Purchase.cshtml" />
     <Content Include="Views\SamagriTransaction\Donation.cshtml" />
     <Content Include="Views\SamagriTransaction\Complementary.cshtml" />
+    <Content Include="Views\SamagriTransaction\SoldOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

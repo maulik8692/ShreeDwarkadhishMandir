@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Donation";
+    ViewBag.Title = "Sold out";
     string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
@@ -8,12 +8,12 @@
     <div class="col-lg-8 PaddingTop">
         <div class="card">
             <div class="card-header">
-                <strong>Donated Stock</strong>
+                <strong>Stock Sold out</strong>
             </div>
 
             <div class="card-body card-block">
                 <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                    <input type="hidden" id="VaishnavId" name="VaishnavId">
+
                     <input type="hidden" id="Id" name="Id" class="form-control">
 
                     <div class="row form-group Store">
@@ -22,7 +22,6 @@
                         </div>
                         <div class="col-12 col-md-9">
                             <select name="Store" id="Store" class="form-control select2 select2-hidden-accessible searchableDropdown"></select>
-                            <small class="help-block form-text text-danger">Please ensure Store given is right as you cannot edit it after save.</small>
                         </div>
                     </div>
 
@@ -36,14 +35,12 @@
                         </div>
                     </div>
 
-                    <div class="row form-group">
+                    <div class="form-group row Personal UOM">
                         <div class="col col-md-3">
-                            <label for="VaishnavId" class="form-control-label">Vaishnav Id</label>
+                            <label for="Description" class="control-label mb-1">Description</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input type="hidden" id="VaishnavId" name="VaishnavId">
-                            <input type="text" id="VaishnavIds" name="VaishnavIds" placeholder="Please Enter vaishnav Id" class="form-control">
-                            <small class="help-block form-text">Please enter vaishnav Id if not register then <a href="/Vaishnav/Vaishnav">Click here</a></small>
+                            <textarea id="Description" name="Description" type="text" placeholder="Enter Description" class="form-control"></textarea>
                         </div>
                     </div>
 
@@ -58,11 +55,21 @@
 
                     <div class="form-group row Personal UOM">
                         <div class="col col-md-3">
-                            <label for="DonatedQuantity" class="control-label mb-1">Donated Quantity</label>
+                            <label for="SoldOutQuantity" class="control-label mb-1">Sold Out Quantity</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input id="DonatedQuantity" name="DonatedQuantity" type="text" placeholder="0.00000" class="form-control Units">
-                            <small class="help-block form-text">Please Enter Donated Quantity to Bhandar.</small>
+                            <input id="SoldOutQuantity" name="SoldOutQuantity" type="text" placeholder="0.00000" class="form-control Units">
+                            <small class="help-block form-text">Please Enter Sold Out Quantity.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row Personal UOM">
+                        <div class="col col-md-3">
+                            <label for="SoldOutPrice" class="control-label mb-1">Total Sold Out Price</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="SoldOutPrice" name="SoldOutPrice" type="text" placeholder="0.00" class="form-control money">
+                            <small class="help-block form-text">Please Enter Sold Out Price.</small>
                         </div>
                     </div>
 
@@ -73,15 +80,6 @@
                         <div class="col-12 col-md-9">
                             <select name="UnitOfMeasurement" id="UnitOfMeasurement" class="form-control select2 select2-hidden-accessible searchableDropdown"></select>
                             <small class="help-block form-text text-danger">Please ensure Unit Of Measurement given is right as you cannot edit it after save.</small>
-                        </div>
-                    </div>
-
-                    <div class="form-group row Personal UOM">
-                        <div class="col col-md-3">
-                            <label for="Description" class="control-label mb-1">Description</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <textarea id="Description" name="Description" type="text" placeholder="Enter Description" class="form-control"></textarea>
                         </div>
                     </div>
 
@@ -103,4 +101,4 @@
     <div class="col-lg-2"></div>
 </div>
 
-<script src="~/js/Donation.js?@casheCleaner"></script>
+<script src="~/js/SoldOut.js?@casheCleaner"></script>
