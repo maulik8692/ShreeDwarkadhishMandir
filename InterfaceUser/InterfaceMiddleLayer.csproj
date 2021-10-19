@@ -60,6 +60,7 @@
     <Compile Include="IApplicationUser.cs" />
     <Compile Include="IDashboard.cs" />
     <Compile Include="IDefaultGroups.cs" />
+    <Compile Include="ISearchableDropdown.cs" />
     <Compile Include="IEmailConfiguration.cs" />
     <Compile Include="IEmailLog.cs" />
     <Compile Include="IIncomeAndExpenditure.cs" />

@@ -53,6 +53,11 @@ namespace AdoDotNetDal
             throw new NotImplementedException();
         }
 
+        public virtual List<AnyType> DropdownWithSearch(string procedureName)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual void Update(AnyType anyType)
         {
             throw new NotImplementedException();

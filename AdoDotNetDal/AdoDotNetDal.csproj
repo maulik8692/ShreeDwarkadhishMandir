@@ -60,6 +60,7 @@
     <Compile Include="DarshanDal.cs" />
     <Compile Include="DashboardDal.cs" />
     <Compile Include="DefaultGroupsDal.cs" />
+    <Compile Include="DropdownTemplateADO.cs" />
     <Compile Include="EmailConfigurationDal.cs" />
     <Compile Include="EmailLogDal.cs" />
     <Compile Include="IncomeExpenditureDal.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="ReceiptDal.cs" />
     <Compile Include="SamagriDetailDal.cs" />
     <Compile Include="SamagriDal.cs" />
+    <Compile Include="SearchableDropdownDal.cs" />
     <Compile Include="ServiceStatusDal.cs" />
     <Compile Include="StateDal.cs" />
     <Compile Include="StoreDal.cs" />
