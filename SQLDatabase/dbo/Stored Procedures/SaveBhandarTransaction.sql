@@ -1,0 +1,126 @@
+﻿-- =============================================        
+-- Author:  <Author,,Maulik Shah>        
+-- Create date: <Create Date,,21-Aug-2018>        
+-- Description: <Description,,SaveBhandarTransaction>        
+-- =============================================        
+CREATE PROCEDURE [dbo].[SaveBhandarTransaction]        
+ @BhandarId int      
+,@StoreId int      
+,@BhandarTransactionCodeId int      
+,@UnitId int      
+,@SupplierId int = null     
+,@SamagriId int = null     
+,@AccountHeadId int  = null    
+,@StockTransactionQuantity decimal(18,5)  = 0    
+,@Price decimal(18,2)  = 0    
+,@Description nvarchar(1000) = null
+,@VaishnavId int = null
+,@CreatedBy int      
+AS        
+BEGIN        
+ -- SET NOCOUNT ON added to prevent extra result sets from        
+ -- interfering with SELECT statements.        
+ SET NOCOUNT ON;        
+        
+ BEGIN TRANSACTION;        
+  BEGIN TRY         
+       
+ if (isnull(@SupplierId,0) = 0) set @SupplierId = null      
+ if (isnull(@SamagriId,0) = 0) set @SamagriId = null     
+ if (isnull(@AccountHeadId,0) = 0) set @AccountHeadId = null      
+ DECLARE @IdentityValue AS TABLE(ID INT);     
+ Declare @Id int = 0,@BhandarUnitId int;  
+    
+ select @BhandarUnitId=UnitId from Bhandar as B with (nolock) where B.Id=@BhandarId    
+    
+ INSERT INTO dbo.BhandarTransaction      
+ (BhandarId,StoreId,BhandarTransactionCodeId,UnitId,SupplierId,SamagriId,AccountHeadId,  
+ StockTransactionQuantity,      
+     Price,Description,CreatedBy,OriginalUnitId,VaishnavId)     
+   OUTPUT Inserted.ID INTO @IdentityValue         
+     VALUES      
+  (@BhandarId,@StoreId,@BhandarTransactionCodeId,@BhandarUnitId,@SupplierId,@SamagriId,@AccountHeadId,    
+  isnull(dbo.UnitConversionFormula(@BhandarId,@UnitId,@StockTransactionQuantity),0),      
+  @Price,@Description,@CreatedBy,@UnitId,@VaishnavId)      
+     
+ select @Id = ID  FROM @IdentityValue       
+    
+ ;WITH SP         
+ AS          
+ (          
+  select Sum(BT.StockTransactionQuantity * BC.MultiplicationWith) Balance,BT.BhandarId    
+  from BhandarTransaction as BT with (nolock)    
+  join BhandarTransactionCode as BC on BC.Id=BT.BhandarTransactionCodeId    
+  and BT.BhandarId= @BhandarId    
+  group by BT.BhandarId      
+ )       
+ Update B set B.Balance=SP.Balance     
+ from Bhandar as B     
+ Join SP on SP.BhandarId=B.Id    
+  
+ if not exists (select * from BhandarStoreBalance where BhandarId=@BhandarId and StoreId=@StoreId)  
+ BEGIN  
+ ;WITH SP         
+  AS          
+  (          
+   select Sum(BT.StockTransactionQuantity * BC.MultiplicationWith) Balance,BT.BhandarId,BT.StoreId    
+   from BhandarTransaction as BT with (nolock)    
+   join BhandarTransactionCode as BC on BC.Id=BT.BhandarTransactionCodeId    
+   and BT.BhandarId= @BhandarId and BT.StoreId=@StoreId  
+   group by BT.BhandarId ,BT.StoreId   
+  )   
+  insert into BhandarStoreBalance  
+  (BhandarId,StoreId,UnitId,Balance)  
+  select   
+   SP.BhandarId,SP.StoreId,@BhandarUnitId,SP.Balance   
+  from SP  
+ END  
+ else  
+ BEGIN  
+ ;WITH SP         
+  AS          
+  (          
+   select Sum(BT.StockTransactionQuantity * BC.MultiplicationWith) Balance,BT.BhandarId,BT.StoreId    
+   from BhandarTransaction as BT with (nolock)    
+   join BhandarTransactionCode as BC on BC.Id=BT.BhandarTransactionCodeId    
+   and BT.BhandarId= @BhandarId and BT.StoreId=@StoreId  
+   group by BT.BhandarId ,BT.StoreId       
+  )       
+  Update B set B.Balance=SP.Balance     
+  from BhandarStoreBalance as B     
+  Join SP on SP.BhandarId=B.BhandarId and SP.StoreId=B.StoreId  
+ END  
+  
+ --Update B set B.Balance=SP.Balance     
+ --from Bhandar as B     
+ --Join SP on SP.BhandarId=B.Id    
+        
+        
+ --IF( isnull(@PurchasingPrice,0)>0 )        
+ --BEGIN        
+         
+ --declare @SupplierAccountId int ;        
+ --select @SupplierAccountId = Id from AccountHead where SupplierId= @SupplierId        
+ --Declare @CreatedDate Datetime = getdate();        
+ --EXEC MultipleAccountTransaction @SupplierAccountId,@PaymentAccountHeadId,@PurchasingPrice,@CreatedDate,@CreatedBy        
+         
+ --END    
+    
+ select @Id as Id    
+        
+ COMMIT TRANSACTION         
+  END TRY        
+  BEGIN CATCH        
+      IF @@TRANCOUNT > 0        
+      BEGIN        
+          ROLLBACK TRANSACTION -- rollback to MySavePoint        
+    select        
+        error_message() as errormessage,        
+        error_number() as erronumber,        
+        error_state() as errorstate,        
+        error_procedure() as errorprocedure,        
+        error_line() as errorline;        
+      END        
+  END CATCH        
+        
+END 

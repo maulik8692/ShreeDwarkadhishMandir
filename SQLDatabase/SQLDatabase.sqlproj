@@ -13,7 +13,7 @@
     </RootPath>
     <RootNamespace>SQLDatabase</RootNamespace>
     <AssemblyName>SQLDatabase</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
+    <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -22,6 +22,8 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -56,5 +58,167 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Countries.sql" />
+    <Build Include="dbo\Tables\Occupation.sql" />
+    <Build Include="dbo\Tables\Supplier.sql" />
+    <Build Include="dbo\Tables\Villages.sql" />
+    <Build Include="dbo\Tables\Store.sql" />
+    <Build Include="dbo\Tables\BhandarTransactionCode.sql" />
+    <Build Include="dbo\Tables\Vaishnav.sql" />
+    <Build Include="dbo\Tables\AccountHead.sql" />
+    <Build Include="dbo\Tables\States.sql" />
+    <Build Include="dbo\Tables\Cities.sql" />
+    <Build Include="dbo\Tables\SamagriDetail.sql" />
+    <Build Include="dbo\Tables\UnitOfMeasurement.sql" />
+    <Build Include="dbo\Tables\TippaniGoogle.sql" />
+    <Build Include="dbo\Tables\Tippani.sql" />
+    <Build Include="dbo\Tables\Voucher.sql" />
+    <Build Include="dbo\Tables\UserType.sql" />
+    <Build Include="dbo\Tables\Payment.sql" />
+    <Build Include="dbo\Tables\Bhandar.sql" />
+    <Build Include="dbo\Tables\Samagri.sql" />
+    <Build Include="dbo\Tables\Mandir.sql" />
+    <Build Include="dbo\Tables\KayamiSalabadiDetail.sql" />
+    <Build Include="dbo\Tables\ReceiptVoucherBook.sql" />
+    <Build Include="dbo\Tables\ManorathReceipt_Backup.sql" />
+    <Build Include="dbo\Tables\BhandarStoreBalance.sql" />
+    <Build Include="dbo\Tables\AppConfiguration.sql" />
+    <Build Include="dbo\Tables\PadhramaniRequest.sql" />
+    <Build Include="dbo\Tables\BhandarTransaction.sql" />
+    <Build Include="dbo\Tables\ManorathReceipt.sql" />
+    <Build Include="dbo\Tables\ApplicationUser.sql" />
+    <Build Include="dbo\Tables\ReceiptNoCounter.sql" />
+    <Build Include="dbo\Tables\DarshanMaster.sql" />
+    <Build Include="dbo\Tables\UnitConversion.sql" />
+    <Build Include="dbo\Tables\DarshanTiming.sql" />
+    <Build Include="dbo\Tables\EmailTemplate.sql" />
+    <Build Include="dbo\Tables\EmailLog.sql" />
+    <Build Include="dbo\Tables\EmailConfiguration.sql" />
+    <Build Include="dbo\Tables\Manorath.sql" />
+    <Build Include="dbo\Tables\ServiceStatus.sql" />
+    <Build Include="dbo\Tables\BhandarGroup.sql" />
+    <Build Include="dbo\Tables\ServiceLog.sql" />
+    <Build Include="dbo\Tables\AccountTransaction.sql" />
+    <Build Include="dbo\Tables\BhandarCategory.sql" />
+    <Build Include="dbo\Tables\DefaultGroups.sql" />
+    <Build Include="dbo\Tables\AccountGroup.sql" />
+    <Build Include="dbo\Tables\MandirVoucher.sql" />
+    <Build Include="dbo\Views\RandomNumber.sql" />
+    <Build Include="dbo\Functions\GenerateVaishnavId.sql" />
+    <Build Include="dbo\Functions\UnitConversionFormula.sql" />
+    <Build Include="dbo\Stored Procedures\GetAnnexure.sql" />
+    <Build Include="dbo\Stored Procedures\GetIncomeAndExpenditure.sql" />
+    <Build Include="dbo\Stored Procedures\AutoBackUp.sql" />
+    <Build Include="dbo\Stored Procedures\GetBhandarCategoriesForDrodown.sql" />
+    <Build Include="dbo\Stored Procedures\GetBhandarCategoryById.sql" />
+    <Build Include="dbo\Stored Procedures\SaveVaishnav.sql" />
+    <Build Include="dbo\Stored Procedures\GetVaishnavs.sql" />
+    <Build Include="dbo\Stored Procedures\GetCountryAll.sql" />
+    <Build Include="dbo\Stored Procedures\SaveSamagriDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetVaishnavById.sql" />
+    <Build Include="dbo\Stored Procedures\GetStatesByCountryId.sql" />
+    <Build Include="dbo\Stored Procedures\GetCitiesByStateId.sql" />
+    <Build Include="dbo\Stored Procedures\GetVillagesByCityId.sql" />
+    <Build Include="dbo\Stored Procedures\SaveBhandarCategory.sql" />
+    <Build Include="dbo\Stored Procedures\GetBhandarCategories.sql" />
+    <Build Include="dbo\Stored Procedures\GetUnitOfMeasurement.sql" />
+    <Build Include="dbo\Stored Procedures\GetUnitOfMeasurementDropdown.sql" />
+    <Build Include="dbo\Stored Procedures\SaveEmailLog.sql" />
+    <Build Include="dbo\Stored Procedures\GetOccupation.sql" />
+    <Build Include="dbo\Stored Procedures\SaveSamagri.sql" />
+    <Build Include="dbo\Stored Procedures\SamagriForDropDown.sql" />
+    <Build Include="dbo\Stored Procedures\SaveMandirDetails.sql" />
+    <Build Include="dbo\Stored Procedures\SaveUnitOfMeasurement.sql" />
+    <Build Include="dbo\Stored Procedures\GetMandir.sql" />
+    <Build Include="dbo\Stored Procedures\SaveManorath.sql" />
+    <Build Include="dbo\Stored Procedures\GetUnitOfMeasurementById.sql" />
+    <Build Include="dbo\Stored Procedures\GetManoraths.sql" />
+    <Build Include="dbo\Stored Procedures\GetSamagriDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetSuppliers.sql" />
+    <Build Include="dbo\Stored Procedures\GetSamagris.sql" />
+    <Build Include="dbo\Stored Procedures\SaveSupplier.sql" />
+    <Build Include="dbo\Stored Procedures\GetManorathById.sql" />
+    <Build Include="dbo\Stored Procedures\GetSupplierById.sql" />
+    <Build Include="dbo\Stored Procedures\GetManorathsForDropDown.sql" />
+    <Build Include="dbo\Stored Procedures\GetSuppliersForDropdown.sql" />
+    <Build Include="dbo\Stored Procedures\AccountHeadForBhet.sql" />
+    <Build Include="dbo\Stored Procedures\GetMandirById.sql" />
+    <Build Include="dbo\Stored Procedures\GetUserType.sql" />
+    <Build Include="dbo\Stored Procedures\GetDashboardData.sql" />
+    <Build Include="dbo\Stored Procedures\SaveSamagriBhandarDetail.sql" />
+    <Build Include="dbo\Stored Procedures\SaveSamagriTransaction.sql" />
+    <Build Include="dbo\Stored Procedures\GetBookEntry.sql" />
+    <Build Include="dbo\Stored Procedures\GetSamagriDetailByMasterId.sql" />
+    <Build Include="dbo\Stored Procedures\GetSamagriTransactionById.sql" />
+    <Build Include="dbo\Stored Procedures\GetAppConfiguration.sql" />
+    <Build Include="dbo\Stored Procedures\GetAppConfigurationByName.sql" />
+    <Build Include="dbo\Stored Procedures\SaveApplicationUser.sql" />
+    <Build Include="dbo\Stored Procedures\GetApplicationUsers.sql" />
+    <Build Include="dbo\Stored Procedures\ManorathConfiguration.sql" />
+    <Build Include="dbo\Stored Procedures\CheckReceiptConfiguration.sql" />
+    <Build Include="dbo\Stored Procedures\GetBhandarGroupDropdown.sql" />
+    <Build Include="dbo\Stored Procedures\SaveAppConfiguration.sql" />
+    <Build Include="dbo\Stored Procedures\AutoBackUpDatabase.sql" />
+    <Build Include="dbo\Stored Procedures\SavePadhramaniRequest.sql" />
+    <Build Include="dbo\Stored Procedures\GetBhandarGroupById.sql" />
+    <Build Include="dbo\Stored Procedures\GetBhandarsForDropdown.sql" />
+    <Build Include="dbo\Stored Procedures\GetPadhramaniRequestList.sql" />
+    <Build Include="dbo\Stored Procedures\AuthenticationUser.sql" />
+    <Build Include="dbo\Stored Procedures\SaveBhandarGroup.sql" />
+    <Build Include="dbo\Stored Procedures\GetPadhramaniRequestById.sql" />
+    <Build Include="dbo\Stored Procedures\GetBhandarGroups.sql" />
+    <Build Include="dbo\Stored Procedures\SaveManorathReceipt.sql" />
+    <Build Include="dbo\Stored Procedures\GetDarshanByDate.sql" />
+    <Build Include="dbo\Stored Procedures\SaveDarshanTiming.sql" />
+    <Build Include="dbo\Stored Procedures\GetLastDarshanDate.sql" />
+    <Build Include="dbo\Stored Procedures\GetEmailToSend.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateEmailLog.sql" />
+    <Build Include="dbo\Stored Procedures\SaveCommunication.sql" />
+    <Build Include="dbo\Stored Procedures\SaveEmailConfiguration.sql" />
+    <Build Include="dbo\Stored Procedures\GetEmailConfiguration.sql" />
+    <Build Include="dbo\Stored Procedures\SaveAccountHead.sql" />
+    <Build Include="dbo\Stored Procedures\GetCashBankAccount.sql" />
+    <Build Include="dbo\Stored Procedures\GetManorathReceipts.sql" />
+    <Build Include="dbo\Stored Procedures\GetManorathReceiptById.sql" />
+    <Build Include="dbo\Stored Procedures\SaveAccountTransaction.sql" />
+    <Build Include="dbo\Stored Procedures\GetManorathReceiptReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetAccountHeads.sql" />
+    <Build Include="dbo\Stored Procedures\GetServiceStatus.sql" />
+    <Build Include="dbo\Stored Procedures\GetAccountHeadDropdown.sql" />
+    <Build Include="dbo\Stored Procedures\SaveServiceStatus.sql" />
+    <Build Include="dbo\Stored Procedures\MultipleAccountTransaction.sql" />
+    <Build Include="dbo\Stored Procedures\SaveUnitConversion.sql" />
+    <Build Include="dbo\Stored Procedures\CheckUnitConversion.sql" />
+    <Build Include="dbo\Stored Procedures\GetUnitConversions.sql" />
+    <Build Include="dbo\Stored Procedures\SaveBhandarTransaction.sql" />
+    <Build Include="dbo\Stored Procedures\GetStoreDropdown.sql" />
+    <Build Include="dbo\Stored Procedures\GetStoreById.sql" />
+    <Build Include="dbo\Stored Procedures\SaveStore.sql" />
+    <Build Include="dbo\Stored Procedures\GetStores.sql" />
+    <Build Include="dbo\Stored Procedures\GetBhandarById.sql" />
+    <Build Include="dbo\Stored Procedures\SaveBhandar.sql" />
+    <Build Include="dbo\Stored Procedures\GetBhandars.sql" />
+    <Build Include="dbo\Stored Procedures\GetMandirVouchers.sql" />
+    <Build Include="dbo\Stored Procedures\GetDefaultGroupsForDropDown.sql" />
+    <Build Include="dbo\Stored Procedures\SaveMandirVoucher.sql" />
+    <Build Include="dbo\Stored Procedures\GetAccountGroups.sql" />
+    <Build Include="dbo\Stored Procedures\GetBalanceSheet.sql" />
+    <Build Include="dbo\Stored Procedures\SaveAccountGroups.sql" />
+    <Build Include="dbo\Stored Procedures\GetAccountGroupById.sql" />
+    <Build Include="dbo\Stored Procedures\GetBhandarTransactionList.sql" />
+    <Build Include="dbo\Stored Procedures\GetAccountGroupsForDropdown.sql" />
+    <Build Include="dbo\Stored Procedures\GetAccountTransactions.sql" />
+    <Build Include="dbo\Stored Procedures\getBalanceSheetDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetAccountTransactionReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetAccountHeadById.sql" />
+    <Build Include="dbo\Stored Procedures\GetBhandarTransactionById.sql" />
+    <Build Include="dbo\Stored Procedures\GetApplicationUserById.sql" />
   </ItemGroup>
 </Project>
