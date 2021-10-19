@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,31-Aug-2021>    
 -- Description: <Description,,SaveUnitOfMeasurement>    
 -- =============================================    
-CREATE   PROCEDURE SaveStore  
+CREATE PROCEDURE SaveStore  
  @Id int,   
  @MandirId int  
 ,@Name nvarchar(500)  

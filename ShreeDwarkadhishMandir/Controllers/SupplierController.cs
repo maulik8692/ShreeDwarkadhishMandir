@@ -14,6 +14,7 @@ using InterfaceDal;
 using InterfaceMiddleLayer;
 
 using ShreeDwarkadhishMandir.Models;
+using static EnumLayer.ProcedureEnum;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
@@ -138,6 +139,14 @@ namespace ShreeDwarkadhishMandir.Controllers
                 Log.Write(ex);
                 return new HttpStatusCodeResult(410, ex.Message);
             }
+        }
+
+        public ActionResult GetCashBankAccount()
+        {
+            IRepositoryDropdown<ISearchableDropdown> dal = FactoryDalLayer<IRepositoryDropdown<ISearchableDropdown>>.Create("Searchable");
+            List<ISearchableDropdown> countries = dal.DropdownWithSearch(ProcedureName.GetSupplierAccount.ToString());
+
+            return Json(countries, JsonRequestBehavior.AllowGet);
         }
     }
 }

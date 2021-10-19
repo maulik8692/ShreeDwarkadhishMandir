@@ -4,7 +4,7 @@
 -- Description: <Description, ,UnitConversionFormula>  
 -- Select UnitConversionFormula(1,2,2500)  
 -- =============================================  
-CREATE   FUNCTION UnitConversionFormula  
+CREATE FUNCTION UnitConversionFormula  
 (  
 @BhandarId int,  
 @TransactionUnitId int,  

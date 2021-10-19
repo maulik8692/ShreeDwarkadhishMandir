@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,18-Sep-2021>      
 -- Description: <Description,,SaveSamagriDetail>      
 -- =============================================      
-create     PROCEDURE dbo.SaveSamagriDetail      
+CREATE   PROCEDURE dbo.SaveSamagriDetail      
  @Id int     
 ,@SamagriId int    
 ,@BhandarId int    

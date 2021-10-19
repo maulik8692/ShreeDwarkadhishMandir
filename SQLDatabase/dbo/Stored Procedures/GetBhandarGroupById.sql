@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,28-08-2021>        
 -- Description: <Description,,GetBhandarGroupById>         
 -- =============================================        
-CREATE   PROCEDURE dbo.GetBhandarGroupById    
+CREATE PROCEDURE dbo.GetBhandarGroupById    
 @Id int    
 AS        
 BEGIN        

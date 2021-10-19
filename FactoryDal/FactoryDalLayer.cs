@@ -69,6 +69,8 @@ namespace FactoryDal
                 ObjectsofOurProjects.RegisterType<IRepository<IIncomeAndExpenditure>, IncomeExpenditureDal>("IncomeAndExpenditure");
                 ObjectsofOurProjects.RegisterType<IRepository<IAnnexure>, AnnexureDal>("Annexure");
                 ObjectsofOurProjects.RegisterType<IRepository<IMandirVoucher>, MandirVoucherDal>("MandirVoucher");
+                ObjectsofOurProjects.RegisterType<IRepository<IMandirVoucher>, MandirVoucherDal>("MandirVoucher");
+                ObjectsofOurProjects.RegisterType<IRepositoryDropdown<ISearchableDropdown>, SearchableDropdownDal>("Searchable");
             }
 
             // Design Pattern : RIP. Replace If with Polymorephism

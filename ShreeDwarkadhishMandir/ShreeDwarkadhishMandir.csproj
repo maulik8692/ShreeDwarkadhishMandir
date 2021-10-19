@@ -670,6 +670,7 @@
     <Content Include="js\ManorathReceiptReport.js" />
     <Content Include="js\Padhramani.js" />
     <Content Include="js\PadhramaniRequest.js" />
+    <Content Include="js\Purchase.js" />
     <Content Include="js\Receipt.js" />
     <Content Include="js\ReceiptDetail.js" />
     <Content Include="js\ReportList.js" />

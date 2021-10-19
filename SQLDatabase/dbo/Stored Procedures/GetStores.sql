@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,31-Aug-2021>  
 -- Description: <Description,,GetStores>  
 -- =============================================  
-CREATE   PROCEDURE GetStores
+CREATE PROCEDURE GetStores
  @PageNumber INT =1,  
  @PageSize   INT =10
 ,@Name nvarchar(500)

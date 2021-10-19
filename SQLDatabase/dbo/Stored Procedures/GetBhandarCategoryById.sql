@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,18-oct-2018>  
 -- Description: <Description,,GetBhandarCategoryById>  
 -- =============================================  
-CREATE   PROCEDURE GetBhandarCategoryById  
+CREATE PROCEDURE GetBhandarCategoryById  
  @Id int  
 AS  
 BEGIN  

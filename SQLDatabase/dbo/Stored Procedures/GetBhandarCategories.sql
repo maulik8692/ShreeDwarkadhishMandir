@@ -4,7 +4,7 @@
 -- Description: <Description,,GetBhandarCategories>    
 -- GetBhandarCategories 1,100    
 -- =============================================    
-CREATE   PROCEDURE [dbo].[GetBhandarCategories]    
+CREATE PROCEDURE [dbo].[GetBhandarCategories]    
  @PageNumber INT =1,    
  @PageSize   INT   = 20 ,
  @Name varchar(50) =''

@@ -220,5 +220,6 @@
     <Build Include="dbo\Stored Procedures\GetAccountHeadById.sql" />
     <Build Include="dbo\Stored Procedures\GetBhandarTransactionById.sql" />
     <Build Include="dbo\Stored Procedures\GetApplicationUserById.sql" />
+    <Build Include="dbo\Stored Procedures\GetSupplierAccount.sql" />
   </ItemGroup>
 </Project>

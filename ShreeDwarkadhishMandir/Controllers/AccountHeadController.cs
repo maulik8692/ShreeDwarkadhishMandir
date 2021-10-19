@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static EnumLayer.ProcedureEnum;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
@@ -139,6 +140,14 @@ namespace ShreeDwarkadhishMandir.Controllers
                 jsonData.rows = new List<IAccountHead>();
                 return Json(jsonData, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public ActionResult GetCashBankAccount()
+        {
+            IRepositoryDropdown<ISearchableDropdown> dal = FactoryDalLayer<IRepositoryDropdown<ISearchableDropdown>>.Create("Searchable");
+            List<ISearchableDropdown> countries = dal.DropdownWithSearch(ProcedureName.GetCashBankAccount.ToString());
+
+            return Json(countries, JsonRequestBehavior.AllowGet);
         }
     }
 }

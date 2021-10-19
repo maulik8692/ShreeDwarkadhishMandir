@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,28-08-2021>        
 -- Description: <Description,,GetBhandarGroups>         
 -- =============================================        
-CREATE   PROCEDURE dbo.GetBhandarGroups    
+CREATE PROCEDURE dbo.GetBhandarGroups    
 @PageNumber INT ,      
 @PageSize   INT , @MandirId int,@Name nvarchar(150)    
 AS        

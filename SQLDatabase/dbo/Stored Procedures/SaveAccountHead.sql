@@ -27,76 +27,76 @@ CREATE PROCEDURE [dbo].[SaveAccountHead]
 ,@CreatedBy int ,
 @AnnexureOrder int = 0,
 @AnnexureName varchar(50)=null
+,@SupplierId int =  null
 AS  
 BEGIN  
  -- SET NOCOUNT ON added to prevent extra result sets from  
  -- interfering with SELECT statements.  
  SET NOCOUNT ON;  
   
-  Create table #AccountTransactionId (ID INT);    
-    
+	Create table #AccountTransactionId (ID INT);    
   
- Declare @AccountHeadId int,@BalanceDate datetime=Getdate()  
+	Declare @AccountHeadId int,@BalanceDate datetime=Getdate()  
   
-IF( @Id=0 )  
-BEGIN  
- Create TABLE #IdentityValue (ID INT);    
+	IF( @Id=0 )  
+	BEGIN  
+	 Create TABLE #IdentityValue (ID INT);    
    
- INSERT INTO dbo.AccountHead  
- (MandirId ,GroupId ,AccountName ,Alias ,BalanceAmount ,DebitCredit ,AccountHolderName  
- ,BankName ,BankAddress ,AccountNumber ,IFSCCode ,BankBranch ,DateOfIssue ,DateOfMaturity  
- ,InterestRate ,MaturityAmount ,IsEditable ,IsActive ,CreatedBy,AnnexureOrder,AnnexureName  )  
- OUTPUT Inserted.ID INTO #IdentityValue   
- VALUES ( @MandirId ,@GroupId ,@AccountName ,@Alias ,@BalanceAmount ,@DebitCredit ,@AccountHolderName  
- ,@BankName ,@BankAddress ,@AccountNumber ,@IFSCCode ,@BankBranch ,@DateOfIssue ,@DateOfMaturity  
- ,@InterestRate ,@MaturityAmount ,@IsEditable ,@IsActive ,@CreatedBy ,@AnnexureOrder,@AnnexureName  )  
+	 INSERT INTO dbo.AccountHead  
+	 (MandirId ,GroupId ,AccountName ,Alias ,BalanceAmount ,DebitCredit ,AccountHolderName  
+	 ,BankName ,BankAddress ,AccountNumber ,IFSCCode ,BankBranch ,DateOfIssue ,DateOfMaturity  
+	 ,InterestRate ,MaturityAmount ,IsEditable ,IsActive ,CreatedBy,AnnexureOrder,AnnexureName,SupplierId  )  
+	 OUTPUT Inserted.ID INTO #IdentityValue   
+	 VALUES ( @MandirId ,@GroupId ,@AccountName ,@Alias ,@BalanceAmount ,@DebitCredit ,@AccountHolderName  
+	 ,@BankName ,@BankAddress ,@AccountNumber ,@IFSCCode ,@BankBranch ,@DateOfIssue ,@DateOfMaturity  
+	 ,@InterestRate ,@MaturityAmount ,@IsEditable ,@IsActive ,@CreatedBy ,@AnnexureOrder,@AnnexureName, @SupplierId  )  
    
- IF( @BalanceAmount > 0 )  
- BEGIN  
+	 IF( @BalanceAmount > 0 )  
+	 BEGIN  
     
-  select @AccountHeadId = ID from #IdentityValue  
+	  select @AccountHeadId = ID from #IdentityValue  
     
-  IF( @DebitCredit='Credit' )  
-  BEGIN  
-   insert into #AccountTransactionId  
-   EXEC SaveAccountTransaction 0,@AccountHeadId,0,@BalanceAmount,@BalanceDate,0,@CreatedBy,1  
-  END  
-  ELSE   
-  BEGIN  
-   insert into #AccountTransactionId  
-   EXEC SaveAccountTransaction 0,@AccountHeadId,@BalanceAmount,0,@BalanceDate,0,@CreatedBy,1   
-  END  
- END  
+	  IF( @DebitCredit='Credit' )  
+	  BEGIN  
+	   insert into #AccountTransactionId  
+	   EXEC SaveAccountTransaction 0,@AccountHeadId,0,@BalanceAmount,@BalanceDate,0,@CreatedBy,1  
+	  END  
+	  ELSE   
+	  BEGIN  
+	   insert into #AccountTransactionId  
+	   EXEC SaveAccountTransaction 0,@AccountHeadId,@BalanceAmount,0,@BalanceDate,0,@CreatedBy,1   
+	  END  
+	 END  
   
-END  
-ELSE  
-BEGIN  
+	END  
+	ELSE  
+	BEGIN  
   
- UPDATE [dbo].[AccountHead]  
- SET MandirId = @MandirId, GroupId = @GroupId, AccountName = @AccountName, Alias = @Alias, AccountHolderName = @AccountHolderName,  
- BankName = @BankName, BankAddress = @BankAddress, AccountNumber = @AccountNumber,IFSCCode = @IFSCCode,  
- BankBranch = @BankBranch, DateOfIssue = @DateOfIssue, DateOfMaturity= @DateOfMaturity,  
- InterestRate = @InterestRate, MaturityAmount = @MaturityAmount, IsEditable = @IsEditable, IsActive= @IsActive,   
- AnnexureOrder=@AnnexureOrder,AnnexureName = @AnnexureName ,
- UpdateBy = @CreatedBy, UpdateOn = GETDATE()  
- WHERE Id=@Id  
+	 UPDATE [dbo].[AccountHead]  
+	 SET MandirId = @MandirId, GroupId = @GroupId, AccountName = @AccountName, Alias = @Alias, AccountHolderName = @AccountHolderName,  
+	 BankName = @BankName, BankAddress = @BankAddress, AccountNumber = @AccountNumber,IFSCCode = @IFSCCode,  
+	 BankBranch = @BankBranch, DateOfIssue = @DateOfIssue, DateOfMaturity= @DateOfMaturity,  
+	 InterestRate = @InterestRate, MaturityAmount = @MaturityAmount, IsEditable = @IsEditable, IsActive= @IsActive,   
+	 AnnexureOrder=@AnnexureOrder,AnnexureName = @AnnexureName ,
+	 UpdateBy = @CreatedBy, UpdateOn = GETDATE()  
+	 WHERE Id=@Id  
   
- --IF( @BalanceAmount > 0 )  
- --BEGIN  
- -- select @AccountHeadId = ID from #IdentityValue  
+	 --IF( @BalanceAmount > 0 )  
+	 --BEGIN  
+	 -- select @AccountHeadId = ID from #IdentityValue  
     
- -- IF( @DebitCredit='Credit' )  
- -- BEGIN  
- --  insert into #AccountTransactionId  
- --  EXEC SaveAccountTransaction 0,@AccountHeadId,0,@BalanceAmount,@BalanceDate,0,@CreatedBy,1  
- -- END  
- -- ELSE   
- -- BEGIN  
- --  insert into #AccountTransactionId  
- --  EXEC SaveAccountTransaction 0,@AccountHeadId,@BalanceAmount,0,@BalanceDate,0,@CreatedBy,1   
- -- END  
- --END  
+	 -- IF( @DebitCredit='Credit' )  
+	 -- BEGIN  
+	 --  insert into #AccountTransactionId  
+	 --  EXEC SaveAccountTransaction 0,@AccountHeadId,0,@BalanceAmount,@BalanceDate,0,@CreatedBy,1  
+	 -- END  
+	 -- ELSE   
+	 -- BEGIN  
+	 --  insert into #AccountTransactionId  
+	 --  EXEC SaveAccountTransaction 0,@AccountHeadId,@BalanceAmount,0,@BalanceDate,0,@CreatedBy,1   
+	 -- END  
+	 --END  
   
-END  
+	END  
   
 END  

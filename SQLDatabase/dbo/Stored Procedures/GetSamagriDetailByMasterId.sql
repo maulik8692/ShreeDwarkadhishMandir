@@ -4,7 +4,7 @@
 -- Description: <Description,, GetSamagriBhandarDetail>  
 -- GetSamagriDetailByMasterId 9  
 -- =============================================  
-CREATE   PROCEDURE [dbo].[GetSamagriDetailByMasterId]  
+CREATE PROCEDURE [dbo].[GetSamagriDetailByMasterId]  
  @SamagriId int  
 AS  
 BEGIN  

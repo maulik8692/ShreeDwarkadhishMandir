@@ -4,7 +4,7 @@
 -- Description: <Description,, SamagriForDropDown> 
 -- GetSamagriDetail 9
 -- =============================================  
-CREATE   PROCEDURE [dbo].[GetSamagriDetail]  
+CREATE PROCEDURE [dbo].[GetSamagriDetail]  
  @Id int  
 AS  
 BEGIN  

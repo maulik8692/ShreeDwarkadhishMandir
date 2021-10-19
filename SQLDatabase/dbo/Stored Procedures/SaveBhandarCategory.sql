@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,18-oct-2018>    
 -- Description: <Description,,GetBhandarCategoryById>    
 -- =============================================    
-CREATE   PROCEDURE SaveBhandarCategory    
+CREATE PROCEDURE SaveBhandarCategory    
  @Id int  
 ,@GroupId int  
 ,@Name nvarchar(150)  

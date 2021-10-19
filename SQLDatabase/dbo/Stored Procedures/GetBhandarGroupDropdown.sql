@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,28-08-2021>        
 -- Description: <Description,,GetBhandarGroupDropdown>         
 -- =============================================        
-CREATE   PROCEDURE dbo.GetBhandarGroupDropdown    
+CREATE PROCEDURE dbo.GetBhandarGroupDropdown    
 AS        
 BEGIN        
  -- SET NOCOUNT ON added to prevent extra result sets from        

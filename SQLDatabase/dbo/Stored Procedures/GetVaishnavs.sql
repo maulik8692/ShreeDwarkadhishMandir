@@ -4,7 +4,7 @@
 -- Description: <Description,,>        
 -- GetVaishnavs 1,100        
 -- =============================================        
-CREATE   PROCEDURE [dbo].[GetVaishnavs]        
+CREATE PROCEDURE [dbo].[GetVaishnavs]        
  @PageNumber INT,        
  @PageSize INT,      
  @VaishnavId varchar(50) = null      

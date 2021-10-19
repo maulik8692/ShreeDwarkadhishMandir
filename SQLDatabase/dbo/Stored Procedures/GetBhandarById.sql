@@ -4,7 +4,7 @@
 -- Description: <Description,,GetBhandarById>      
 -- GetBhandarById 1      
 -- =============================================      
-Create   PROCEDURE [dbo].[GetBhandarById]      
+CREATE PROCEDURE [dbo].[GetBhandarById]      
 @Id int    
 AS      
 BEGIN      

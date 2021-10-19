@@ -4,7 +4,7 @@
 -- Description: <Description,,GetBhandarsForDropdown>          
 -- GetBhandarsForDropdown   4   
 -- =============================================          
-CREATE   PROCEDURE dbo.GetBhandarsForDropdown
+CREATE PROCEDURE dbo.GetBhandarsForDropdown
 @StoreId int =  null
 AS          
 BEGIN          

@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,28-08-2021>        
 -- Description: <Description,,SaveBhandarGroup>         
 -- =============================================        
-CREATE   PROCEDURE dbo.SaveBhandarGroup    
+CREATE PROCEDURE dbo.SaveBhandarGroup    
 @Id int,@MandirId int,@Name nvarchar(150),@GroupCode nvarchar(500)=null,@Description nvarchar(500)=null,    
 @IsJewellery bit,@IsSamagri bit,@IsBhandar bit, @IsActive bit,@CreatedBy int,@IsDeleted bit    
 AS        

@@ -4,7 +4,7 @@
 -- Description: <Description,,GetSamagris>  
 -- GetSamagris 1,100  
 -- =============================================  
-CREATE   PROCEDURE [dbo].[GetSamagris]  
+CREATE PROCEDURE [dbo].[GetSamagris]  
 @PageNumber INT ,  
 @PageSize   INT ,
 @SamagriName varchar(50) = ''

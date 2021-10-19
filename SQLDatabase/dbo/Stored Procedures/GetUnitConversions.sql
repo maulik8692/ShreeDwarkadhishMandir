@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,30-Aug-2021>  
 -- Description: <Description,,CheckUnitConversion>  
 -- =============================================  
-CREATE   PROCEDURE dbo.GetUnitConversions
+CREATE PROCEDURE dbo.GetUnitConversions
 @PageNumber INT =1,              
 @PageSize   INT =20,
 @UnitAbbreviation varchar(50)=''

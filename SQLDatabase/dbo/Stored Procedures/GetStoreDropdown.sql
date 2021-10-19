@@ -3,7 +3,7 @@
 -- Create date: <Create Date,,31-Aug-2021>  
 -- Description: <Description,,GetUnitOfMeasurementDropdown>  
 -- =============================================  
-Create   PROCEDURE dbo.GetStoreDropdown  
+CREATE PROCEDURE dbo.GetStoreDropdown  
 AS  
 BEGIN  
  -- SET NOCOUNT ON added to prevent extra result sets from  

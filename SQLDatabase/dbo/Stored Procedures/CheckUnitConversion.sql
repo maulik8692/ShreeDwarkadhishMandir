@@ -4,7 +4,7 @@
 -- Description: <Description,,CheckUnitConversion>  
 -- CheckUnitConversion 5,6
 -- =============================================    
-CREATE   PROCEDURE [dbo].[CheckUnitConversion]  
+CREATE PROCEDURE [dbo].[CheckUnitConversion]  
  @MainUnitId int,  
  @ConversionUnitId int  
 AS    

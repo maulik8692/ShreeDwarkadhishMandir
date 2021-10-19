@@ -4,7 +4,7 @@
 -- Description: <Description,,SaveBhandar>  
 -- SaveBhandar   
 -- =============================================  
-CREATE   PROCEDURE [dbo].[SaveBhandar]  
+CREATE PROCEDURE [dbo].[SaveBhandar]  
 @Id int  
 ,@BhandarCategoryId int  
 ,@UnitId int  

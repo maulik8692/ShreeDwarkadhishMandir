@@ -4,7 +4,7 @@
 -- Description: <Description,,GetUnitOfMeasurementDropdown>  
 -- GetUnitOfMeasurementDropdown 3
 -- =============================================  
-Create   PROCEDURE dbo.GetUnitOfMeasurementDropdown  
+CREATE PROCEDURE dbo.GetUnitOfMeasurementDropdown  
 @BhandarId int
 AS  
 BEGIN  

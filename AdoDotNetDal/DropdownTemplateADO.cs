@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InterfaceDal;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -7,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace AdoDotNetDal
 {
-    public abstract class DropdownTemplateADO<AnyType> : AbstractDal<AnyType>
+    public abstract class DropdownTemplateADO<AnyType> : AbstractSearchableDal<AnyType>
     {
         protected SqlConnection con = null;
         protected SqlCommand cmd = null;
-        protected DropdownTemplateADO(string _connectionString) : base(_connectionString)
+        public DropdownTemplateADO(string _connectionString) : base(_connectionString)
         {
         }
 
