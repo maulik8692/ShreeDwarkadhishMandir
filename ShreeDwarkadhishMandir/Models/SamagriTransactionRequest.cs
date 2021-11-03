@@ -56,6 +56,13 @@ namespace ShreeDwarkadhishMandir.Models
                     bhandarTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
                     bhandarTransaction.Price = item.Price;
                     bhandarTransaction.ExpensesAccountId = item.ExpensesAccountId;
+
+                    bhandarTransaction.ChequeBranch = this.ChequeBranch;
+                    bhandarTransaction.ChequeBank = this.ChequeBank;
+                    bhandarTransaction.ChequeDate = this.ChequeDate;
+                    bhandarTransaction.ChequeNumber = this.ChequeNumber;
+                    bhandarTransaction.ChequeStatus = this.ChequeStatus;
+
                     bhandarTransaction.Validate();
                     bhandarTransactions.Add(bhandarTransaction);
                 }
@@ -67,6 +74,65 @@ namespace ShreeDwarkadhishMandir.Models
             else
             {
                 throw new Exception("There must be atlease one item of purchase.");
+            }
+        }
+
+        public List<IBhandarTransaction> Scrapped()
+        {
+            if (this.ItemDetails.IsNotNullList())
+            {
+                List<IBhandarTransaction> bhandarTransactions = new List<IBhandarTransaction>();
+                foreach (var item in this.ItemDetails)
+                {
+                    IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                    bhandarTransaction.BhandarId = item.BhandarId;
+                    bhandarTransaction.UnitId = item.UnitId;
+                    bhandarTransaction.StoreId = item.StoreId;
+                    bhandarTransaction.CurrentBalance = item.CurrentBalance;
+                    bhandarTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.Scrap;
+                    bhandarTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
+                    bhandarTransaction.Description = this.Description;
+                    bhandarTransaction.Validate();
+                    bhandarTransactions.Add(bhandarTransaction);
+                }
+
+                bhandarTransactions.ForEach(x => x.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt());
+
+                return bhandarTransactions;
+            }
+            else
+            {
+                throw new Exception("There must be atlease one item for Scrapped.");
+            }
+        }
+
+        public List<IBhandarTransaction> Donation()
+        {
+            if (this.ItemDetails.IsNotNullList())
+            {
+                List<IBhandarTransaction> bhandarTransactions = new List<IBhandarTransaction>();
+                foreach (var item in this.ItemDetails)
+                {
+                    IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                    bhandarTransaction.BhandarId = item.BhandarId;
+                    bhandarTransaction.VaishnavId = this.VaishnavId;
+                    bhandarTransaction.UnitId = item.UnitId;
+                    bhandarTransaction.StoreId = item.StoreId;
+                    bhandarTransaction.CurrentBalance = item.CurrentBalance;
+                    bhandarTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.Donation;
+                    bhandarTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
+                    bhandarTransaction.Description = this.Description;
+                    bhandarTransaction.Validate();
+                    bhandarTransactions.Add(bhandarTransaction);
+                }
+
+                bhandarTransactions.ForEach(x => x.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt());
+
+                return bhandarTransactions;
+            }
+            else
+            {
+                throw new Exception("There must be atlease one item for Donation.");
             }
         }
     }

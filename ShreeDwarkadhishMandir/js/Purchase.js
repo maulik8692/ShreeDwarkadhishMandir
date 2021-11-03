@@ -1,7 +1,8 @@
 ﻿var PurchaseAccountHead = [];
-var purchaseDetails = [];
+var transactionDetails = [];
 var BhandarList = [];
-var donatedRequest = {};
+var detailRequest = {};
+var selectedbhandar = {};
 var IsGridIntialized = false;
 
 $(document).ready(function () {
@@ -53,12 +54,12 @@ function PageEvents() {
     });
 
     $("#Bhandar").change(function () {
-        donatedRequest.BhandarId = parseInt(this.value);
-        selectedbhandar = BhandarList[BhandarList.findIndex(item => item.Id === donatedRequest.BhandarId)];
+        detailRequest.BhandarId = parseInt(this.value);
+        selectedbhandar = BhandarList[BhandarList.findIndex(item => item.Id === detailRequest.BhandarId)];
         if (typeof selectedbhandar !== "undefined" && selectedbhandar !== null && selectedbhandar.bhandarId !== 0) {
             $("#CurrentBalance").val(selectedbhandar.Balance.toFixed(5) + ' ' + selectedbhandar.UnitAbbreviation);
-            donatedRequest.UnitId = selectedbhandar.UnitId;
-            donatedRequest.CurrentBalance = selectedbhandar.Balance;
+            detailRequest.UnitId = selectedbhandar.UnitId;
+            detailRequest.CurrentBalance = selectedbhandar.Balance;
         }
         showProgress();
         GetUnitMeasurement();
@@ -86,7 +87,7 @@ function SaveForm() {
     showProgress();
     var purchaseRequest = {};
     purchaseRequest.IncomeAccountId = $('#PaidFrom').val();
-    purchaseRequest.ItemDetails = purchaseDetails;
+    purchaseRequest.ItemDetails = transactionDetails;
     purchaseRequest.Description = $('#Description').val();
     purchaseRequest.Price = $('#TransactionAmount').val() !== "undefined" ? parseFloat($('#TransactionAmount').val().substr(2).replace(/,/g, '')) : 0;
     purchaseRequest.CurrentBalance = $('#PaidAccountBalance').val() !== "undefined" ? parseFloat($('#PaidAccountBalance').val().substr(2).replace(/,/g, '')) : 0;
@@ -121,10 +122,12 @@ function ResetForm() {
     showProgress();
     $('.Cheque').hide();
     $('#ChequeBranch').prop("disabled", true);
+    $('#ChequeBranch').prop("disabled", true);
     $('#ChequeBank').prop("disabled", true);
     $('input[name="TransactionFrom"]').prop('checked', false);
     $('input[type=radio][name=TransactionFrom]').prop("disabled", true);
     $('#TransactionAmount').val();
+    $('#Description').val();
     $('.PaidAccountBalance').hide();
 
     GetCashBankAccount();
@@ -135,7 +138,7 @@ function ResetDetail() {
     $('.Bhandar').hide();
     $('.UOM').hide();
     $('#PurchaseCost').val('');
-    $('#PurchasedQuantity').val('');
+    $('#StockTransactionQuantity').val('');
     GetStoreList();
     GetExpensesAccountHead();
 }
@@ -357,11 +360,11 @@ function SaveItem() {
     var ExpensesAccountId = $('#ExpensesAccount').val() !== "undefined" ? parseInt($('#ExpensesAccount').val()) : 0
     var StoreId = $('#Store').val() !== "undefined" ? parseInt($('#Store').val()) : 0
     var BhandarId = $('#Bhandar').val() !== "undefined" ? parseInt($('#Bhandar').val()) : 0;
-    var Quantity = $('#PurchasedQuantity').val() !== "undefined" ? parseFloat($('#PurchasedQuantity').val()) : 0;
+    var Quantity = $('#StockTransactionQuantity').val() !== "undefined" ? parseFloat($('#StockTransactionQuantity').val()) : 0;
     var unitId = $('#UnitOfMeasurement').val() !== "undefined" ? parseInt($('#UnitOfMeasurement').val()) : 0;
     var PurchaseCost = $('#PurchaseCost').val() !== "undefined" ? parseFloat($('#PurchaseCost').val().substr(2).replace(/,/g, '')) : 0;
     var added = false;
-    $.map(purchaseDetails, function (e, i) {
+    $.map(transactionDetails, function (e, i) {
         if (e.BhandarId == BhandarId) {
             added = true;
         }
@@ -378,13 +381,13 @@ function SaveItem() {
         purchaseDetail.Price = PurchaseCost;
         purchaseDetail.StockTransactionQuantity = Quantity;
         purchaseDetail.Unit = Quantity.toFixed(5) + ' ' + (unitId > 0 ? $('#UnitOfMeasurement').find("option:selected").text().split("(")[1].split(")")[0] : '');
-        purchaseDetail.Id = (typeof purchaseDetails == "undefined" || purchaseDetails === null || purchaseDetails.length === 0 ?
-            0 : purchaseDetails.reduce((max, p) => p.Id > max ? p.Id : max, purchaseDetails[0].Id)) + 1;
+        purchaseDetail.Id = (typeof transactionDetails == "undefined" || transactionDetails === null || transactionDetails.length === 0 ?
+            0 : transactionDetails.reduce((max, p) => p.Id > max ? p.Id : max, transactionDetails[0].Id)) + 1;
 
-        purchaseDetails.push(purchaseDetail);
-  
+        transactionDetails.push(purchaseDetail);
+
         var totalAmount = 0;
-        $(purchaseDetails).each(function () {
+        $(transactionDetails).each(function () {
             totalAmount += this.Price;
         });
 
@@ -407,10 +410,10 @@ function BindDetailList() {
     grid.jqGrid
         ({
             datatype: "local",
-            data: purchaseDetails,
+            data: transactionDetails,
             hoverrows: false,
             colNames: [
-                'Id', 'Store', 'Bhandar', 'Unit', 'Cost','Expenses Account', 'Action'],
+                'Id', 'Store', 'Bhandar', 'Unit', 'Cost', 'Expenses Account', 'Action'],
             colModel: [
                 { name: 'Id', index: 'Id', align: 'left', key: true, hidden: true, sortable: false },
                 { name: 'StoreName', index: 'StoreName', align: 'left', sortable: false },
@@ -450,7 +453,7 @@ function BindDetailList() {
 function ReloadGrid() {
     var grid = $("#TransactionDetail")
     grid.jqGrid("clearGridData");
-    grid.jqGrid('setGridParam', { data: purchaseDetails }).trigger("reloadGrid");
+    grid.jqGrid('setGridParam', { data: transactionDetails }).trigger("reloadGrid");
 }
 
 function SetStyle() {
@@ -467,7 +470,7 @@ function DeleteDetailFormater(cellvalue, options, rowObject) {
 
 function DeleteDetail(Id) {
     if (confirm('Are you sure want to remove this item?')) {
-        purchaseDetails.splice(purchaseDetails.findIndex(item => item.Id === Id), 1);
+        transactionDetails.splice(transactionDetails.findIndex(item => item.Id === Id), 1);
         ReloadGrid();
     }
 }
