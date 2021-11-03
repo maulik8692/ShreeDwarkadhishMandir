@@ -446,3 +446,44 @@ function DeleteSamagriDetail(Id) {
         ReloadGrid();
     }
 }
+
+function GetUnitMeasurement() {
+
+    var bhandarId = $('#Bhandar').val() !== "undefined" ? parseInt($('#Bhandar').val()) : 0
+    if (bhandarId > 0) {
+        $.ajax({
+            url: "/UnitMeasurement/UnitOfMeasurementDropdown",
+            data: JSON.stringify({ bhandarId: bhandarId }),
+            dataType: "json",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: function (jsondata) {
+                $("#UnitOfMeasurement").empty();
+
+                $("<option />", {
+                    val: 0,
+                    text: 'Please Select UnitOfMeasurement'
+                }).appendTo("#UnitOfMeasurement");
+
+                if (typeof jsondata !== "undefined") {
+                    $(jsondata).each(function () {
+                        $("<option />", {
+                            val: this.Id,
+                            text: this.UnitDescription + ' (' + this.UnitAbbreviation + ')'
+                        }).appendTo("#UnitOfMeasurement");
+                    });
+                }
+
+                $("#UnitOfMeasurement").val(selectedbhandar.UnitId).trigger('change.select2');
+
+                $(".UOM").show();
+                hideProgress();
+            },
+            error: function (xhr) {
+                alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+
+                hideProgress();
+            }
+        });
+    }
+}

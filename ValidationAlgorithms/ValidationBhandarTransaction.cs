@@ -25,31 +25,50 @@ namespace ValidationAlgorithms
             {
                 throw new Exception("Please select Unit Of Measurement.");
             }
-
             if (anyType.StockTransactionQuantity == 0)
             {
                 throw new Exception("Stock Transaction Quantity is require.");
-            }
-            if (anyType.AccountHeadId > 0 && anyType.Price == 0)
-            {
-                throw new Exception("Please enter Purchasing amount.");
-            }
-            if (anyType.Price > 0 && anyType.AccountHeadId == 0)
-            {
-                throw new Exception("Please select payment account head.");
             }
             if (anyType.StockTransactionQuantity > 0 && anyType.Description.IsExactLength(0))
             {
                 throw new Exception("Please enter Description.");
             }
+
+            if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Purchase && !anyType.IncomeAccountId.IsPositive())
+            {
+                throw new Exception("Please select Paid From account.");
+            }
+            if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Purchase && !anyType.ExpensesAccountId.IsPositive())
+            {
+                throw new Exception("Expenses Account is missing in one or more item.");
+            }
+            if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Purchase && !anyType.Price.IsPositive())
+            {
+                throw new Exception("Purchase cost is missing in one or more item.");
+            }
+            if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Purchase && !anyType.PaidAccountBalance.IsPositive())
+            {
+                throw new Exception("Purchase account does not having enough Balance.");
+            }
+            if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Purchase && !anyType.TotalPaidBalance.IsPositive())
+            {
+                throw new Exception("Purchase account does not having enough Balance.");
+            }
+            if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Purchase && anyType.TotalPaidBalance > anyType.PaidAccountBalance)
+            {
+                throw new Exception("Purchase account does not having enough Balance.");
+            }
+
             if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Scrap && anyType.CurrentBalance < anyType.StockTransactionQuantity)
             {
                 throw new Exception("Transaction Quantity must be less than or equal to current balance.");
             }
+
             if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Donation && !anyType.VaishnavId.IsNotZero())
             {
                 throw new Exception("Please select Vaishnav name.");
             }
+
             if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.SoldOut && !anyType.Price.IsPositive())
             {
                 throw new Exception("Please enter proper sold out price.");

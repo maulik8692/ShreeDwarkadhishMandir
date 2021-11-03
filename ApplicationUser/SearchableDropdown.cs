@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MiddleLayer
 {
-    class SearchableDropdown: ISearchableDropdown
+    public class SearchableDropdown: ISearchableDropdown
     {
         public int Id { get; set; }
         public string DisplayText { get; set; }

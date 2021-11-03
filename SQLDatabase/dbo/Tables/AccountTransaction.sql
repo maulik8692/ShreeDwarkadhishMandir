@@ -25,12 +25,16 @@
     [IsDeleted]                   BIT             CONSTRAINT [DF_AccountTrasaction_IsDeleted] DEFAULT ((0)) NOT NULL,
     [Description]                 NVARCHAR (500)  NULL,
     [MandirVoucherId]             INT             NULL,
+    [BhandarTransactionId]        INT             NULL,
     CONSTRAINT [PK_AccountTrasaction] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_AccountTransaction_AccountHead] FOREIGN KEY ([AccountId]) REFERENCES [dbo].[AccountHead] ([Id]),
+    CONSTRAINT [FK_AccountTransaction_BhandarTransaction] FOREIGN KEY ([BhandarTransactionId]) REFERENCES [dbo].[BhandarTransaction] ([Id]),
     CONSTRAINT [FK_AccountTransaction_MandirVoucher] FOREIGN KEY ([MandirVoucherId]) REFERENCES [dbo].[MandirVoucher] ([Id]),
     CONSTRAINT [FK_AccountTransaction_Manorath] FOREIGN KEY ([ManorathId]) REFERENCES [dbo].[Manorath] ([Id]),
     CONSTRAINT [FK_AccountTransaction_ManorathReceipt] FOREIGN KEY ([ManorathReceiptId]) REFERENCES [dbo].[ManorathReceipt] ([Id]),
     CONSTRAINT [FK_AccountTransaction_Payment] FOREIGN KEY ([PaymentId]) REFERENCES [dbo].[Payment] ([Id]),
     CONSTRAINT [FK_AccountTransaction_Voucher] FOREIGN KEY ([VoucherId]) REFERENCES [dbo].[Voucher] ([Id])
 );
+
+
 

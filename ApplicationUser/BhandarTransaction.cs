@@ -19,6 +19,8 @@ namespace MiddleLayer
         public int SupplierId { get; set; }
         public int AccountHeadId { get; set; }
         public decimal Price { get; set; }
+        public decimal PaidAccountBalance { get; set; }
+        public decimal TotalPaidBalance { get; set; }
         public string Description { get; set; }
         public int Id { get; set; }
         public int StoreId { get; set; }
@@ -29,6 +31,13 @@ namespace MiddleLayer
         public int JewelleryUnitId { get; set; }
         public decimal JewelleryQuantity { get; set; }
         public int VaishnavId { get; set; }
+        public int IncomeAccountId { get; set; }
+        public int ExpensesAccountId { get; set; }
+        public string ChequeBank { get; set; }
+        public string ChequeBranch { get; set; }
+        public string ChequeNumber { get; set; }
+        public DateTime? ChequeDate { get; set; }
+        public int ChequeStatus { get; set; }
 
         public BhandarTransaction(IValidation<IBhandarTransaction> _validation)
         {

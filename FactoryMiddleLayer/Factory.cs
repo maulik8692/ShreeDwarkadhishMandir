@@ -142,6 +142,7 @@ namespace FactoryMiddleLayer
                 ObjectsofOurProjects.RegisterType<IBalanceSheet, BalanceSheet>("BalanceSheet");
                 ObjectsofOurProjects.RegisterType<IIncomeAndExpenditure, IncomeAndExpenditure>("IncomeAndExpenditure");
                 ObjectsofOurProjects.RegisterType<IAnnexure, Annexure>("Annexure");
+                ObjectsofOurProjects.RegisterType<ISearchableDropdown, SearchableDropdown>("Searchable");
             }
 
             //Design pattern :-  RIP Replace If with Poly

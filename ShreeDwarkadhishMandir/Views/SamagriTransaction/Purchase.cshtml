@@ -3,7 +3,7 @@
     string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
-<div class="row PaddingTop">
+<div class="row ">
     <div class="col-lg-2"></div>
     <div class="col-lg-8">
         <div class="card">
@@ -14,11 +14,19 @@
 
                 <div class="row form-group">
                     <div class="col col-md-3">
-                        <label for="TransactionFrom" class="form-control-label">Purchase</label>
+                        <label for="PaidFrom" class="form-control-label">Paid From</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="PaidFrom" id="PaidFrom" class="form-control"></select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="TransactionAmount" class="form-control-label">Purchase</label>
                     </div>
                     <div class="col-12 col-md-5">
-                        <input id="Nek" name="TransactionFrom" type="text" placeholder="₹ 1000.00" class="form-control money OnSave">
-                        <small class="help-block form-text">Please enter Purchase value.</small>
+                        <input id="TransactionAmount" name="TransactionAmount" type="text" placeholder="₹ 1000.00" class="form-control money OnSave" readonly>
                     </div>
                     <div class="col col-md-4">
                         <div class="form-check-inline form-check">
@@ -32,13 +40,21 @@
                     </div>
                 </div>
 
+                <div class="row form-group PaidAccountBalance">
+                    <div class="col col-md-3">
+                        <label for="PaidAccountBalance" class="form-control-label">Paid Account Balance</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="PaidAccountBalance" name="PaidAccountBalance" type="text" placeholder="₹ 1000.00" class="form-control money" readonly>
+                    </div>
+                </div>
+
                 <div class="row form-group Cheque">
                     <div class="col col-md-3">
                         <label for="ChequeBank" class="form-control-label">Bank Name</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="text" id="ChequeBank" name="ChequeBank" placeholder="Please Enter Cheque Bank Name" class="form-control">
-                        <small class="help-block form-text">Please enter Cheque Bank Name.</small>
+                        <input type="text" id="ChequeBank" readonly name="ChequeBank" placeholder="Please Enter Cheque Bank Name" class="form-control">
                     </div>
                 </div>
 
@@ -47,8 +63,7 @@
                         <label for="ChequeBranch" class="form-control-label">Bank Branch</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="text" id="ChequeBranch" name="ChequeBranch" placeholder="Please Enter Cheque Bank Name" class="form-control">
-                        <small class="help-block form-text">Please enter Cheque Bank Branch.</small>
+                        <input type="text" id="ChequeBranch" readonly name="ChequeBranch" placeholder="Please Enter Cheque Bank Name" class="form-control">
                     </div>
                 </div>
 
@@ -85,8 +100,151 @@
                     </div>
                 </div>
 
+                <div class="form-group row Personal">
+                    <div class="col col-md-3">
+                        <label for="Description" class="control-label mb-1">Description</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <textarea id="Description" name="Description" type="text" placeholder="Enter Description" class="form-control"></textarea>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body card-block">
+                <button id="NewDetail" type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#staticModal">
+                    Add Purchase Item
+                </button>
+            </div>
+        </div>
+        <div>
+            <div id="divTransactionDetail" class="table-responsive table--no-card">
+                <table id="TransactionDetail" class="table table-borderless table-striped table-mandir"></table>
+                <div id="pager"></div>
+            </div>
+        </div>
+        <div class="card m-t-30">
+            <div class="card-body card-block">
+               
+            </div>
+            <div class="card-footer">
+                <button id="Save" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"> </i> Save
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"> </i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/Samagri/Samagri" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+
+<div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
+     data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticModalLabel">Purchase Item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-10 PaddingTop">
+
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="ExpensesAccount" class="form-control-label">Expenses Account</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select name="ExpensesAccount" id="ExpensesAccount" class="form-control"></select>
+                            </div>
+                        </div>
+
+
+                        <div class="row form-group Store">
+                            <div class="col col-md-3">
+                                <label for="Store" class="form-control-label">Store</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select name="Store" id="Store" class="form-control select2 select2-hidden-accessible searchableDropdown"></select>
+                                <small class="help-block form-text text-danger">Please ensure Store given is right as you cannot edit it after save.</small>
+                            </div>
+                        </div>
+
+                        <div class="row form-group Bhandar">
+                            <div class="col col-md-3">
+                                <label for="Bhandar" class="form-control-label">Bhandar Name</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select name="Bhandar" id="Bhandar" class="form-control select2 select2-hidden-accessible searchableDropdown "></select>
+                                <small class="help-block form-text text-danger">Please ensure Bhandar given is right as you cannot edit it after save.</small>
+                            </div>
+                        </div>
+                        <div class="form-group row Personal UOM">
+                            <div class="col col-md-3">
+                                <label for="CurrentBalance" class="control-label mb-1">Current Bhandar Balance</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input id="CurrentBalance" name="CurrentBalance" type="text" placeholder="0.00000" readonly="readonly" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row Personal UOM">
+                            <div class="col col-md-3">
+                                <label for="PurchasedQuantity" class="control-label mb-1">Purchase Quantity</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input id="PurchasedQuantity" name="PurchasedQuantity" type="text" placeholder="0.00000" class="form-control Units">
+                                <small class="help-block form-text">Please Enter Donated Quantity to Bhandar.</small>
+                            </div>
+                        </div>
+
+                        <div class="row form-group UOM">
+                            <div class="col col-md-3">
+                                <label for="UnitOfMeasurement" class="form-control-label">Unit Of Measurement</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select name="UnitOfMeasurement" id="UnitOfMeasurement" class="form-control select2 select2-hidden-accessible searchableDropdown"></select>
+                                <small class="help-block form-text text-danger">Please ensure Unit Of Measurement given is right as you cannot edit it after save.</small>
+                            </div>
+                        </div>
+
+                        <div class="row form-group UOM">
+                            <div class="col col-md-3">
+                                <label for="PurchaseCost" class="form-control-label">Purchase Cost</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input id="PurchaseCost" name="PurchaseCost" type="text" placeholder="₹ 1000.00" class="form-control money">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="SaveItem" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"> </i> Save
+                </button>
+                <button id="SaveNNewItem" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"> </i> Save &amp; New
+                </button>
+                <button id="ResetItem" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"> </i> Reset
+                </button>
+                <a style="width:20%" data-dismiss="modal" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
             </div>
         </div>
     </div>
 </div>
+
 <script src="~/js/Purchase.js?@casheCleaner"></script>

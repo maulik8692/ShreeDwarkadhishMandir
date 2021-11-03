@@ -40,7 +40,6 @@ function SaveForm() {
     donatedRequest.Description = $("#Description").val();
     donatedRequest.UnitId = $('#UnitOfMeasurement').val();
     donatedRequest.VaishnavId = parseInt($('#VaishnavId').val());
-    debugger;
     $.ajax({
         url: "/SamagriTransaction/Donation",
         data: JSON.stringify(donatedRequest),

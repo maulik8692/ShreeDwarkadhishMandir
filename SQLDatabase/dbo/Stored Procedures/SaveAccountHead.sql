@@ -1,10 +1,9 @@
-﻿  
--- =============================================  
+﻿-- =============================================  
 -- Author:  <Author,,Maulik Shah>  
 -- Create date: <Create Date,,19 Jun 2018>  
 -- Description: <Description,,>  
 -- =============================================  
-CREATE PROCEDURE [dbo].[SaveAccountHead]  
+CREATE   PROCEDURE [dbo].[SaveAccountHead]  
 @Id int  
 ,@MandirId int  
 ,@GroupId int  
@@ -51,23 +50,25 @@ BEGIN
 	 ,@BankName ,@BankAddress ,@AccountNumber ,@IFSCCode ,@BankBranch ,@DateOfIssue ,@DateOfMaturity  
 	 ,@InterestRate ,@MaturityAmount ,@IsEditable ,@IsActive ,@CreatedBy ,@AnnexureOrder,@AnnexureName, @SupplierId  )  
    
-	 IF( @BalanceAmount > 0 )  
-	 BEGIN  
-    
-	  select @AccountHeadId = ID from #IdentityValue  
-    
-	  IF( @DebitCredit='Credit' )  
-	  BEGIN  
-	   insert into #AccountTransactionId  
-	   EXEC SaveAccountTransaction 0,@AccountHeadId,0,@BalanceAmount,@BalanceDate,0,@CreatedBy,1  
-	  END  
-	  ELSE   
-	  BEGIN  
-	   insert into #AccountTransactionId  
-	   EXEC SaveAccountTransaction 0,@AccountHeadId,@BalanceAmount,0,@BalanceDate,0,@CreatedBy,1   
-	  END  
-	 END  
-  
+		select @AccountHeadId = ID from #IdentityValue  
+		 IF( @BalanceAmount > 0 )  
+		 BEGIN  
+		 IF( @DebitCredit='Credit' )  
+		  BEGIN  
+		   insert into #AccountTransactionId  
+		   EXEC SaveAccountTransaction 0,@AccountHeadId,0,@BalanceAmount,@BalanceDate,0,@CreatedBy,1  
+		  END  
+		  ELSE   
+		  BEGIN  
+		   insert into #AccountTransactionId  
+		   EXEC SaveAccountTransaction 0,@AccountHeadId,@BalanceAmount,0,@BalanceDate,0,@CreatedBy,1   
+		  END  
+		 END  
+		IF exists( select * from accountGroup where Id = @GroupId and GroupType=1)
+		BEGIN
+		 update accountHead set IsBankAccount=1 where Id = @AccountHeadId
+		END
+
 	END  
 	ELSE  
 	BEGIN  
@@ -81,6 +82,10 @@ BEGIN
 	 UpdateBy = @CreatedBy, UpdateOn = GETDATE()  
 	 WHERE Id=@Id  
   
+	IF exists( select * from accountGroup where Id = @GroupId and GroupType=1)
+	BEGIN
+		update accountHead set IsBankAccount=1 where Id = @Id
+	END
 	 --IF( @BalanceAmount > 0 )  
 	 --BEGIN  
 	 -- select @AccountHeadId = ID from #IdentityValue  

@@ -15,7 +15,14 @@ CREATE PROCEDURE [dbo].[SaveBhandarTransaction]
 ,@Price decimal(18,2)  = 0    
 ,@Description nvarchar(1000) = null
 ,@VaishnavId int = null
-,@CreatedBy int      
+,@CreatedBy int
+,@IncomeAccountId int  = null
+,@ExpensesAccountId int  = null,
+ @ChequeBank varchar(50) = null,        
+ @ChequeBranch varchar(50) = null,        
+ @ChequeNumber varchar(50) = null,        
+ @ChequeDate datetime =  null,        
+ @ChequeStatus int =  null 
 AS        
 BEGIN        
  -- SET NOCOUNT ON added to prevent extra result sets from        
@@ -24,10 +31,12 @@ BEGIN
         
  BEGIN TRANSACTION;        
   BEGIN TRY         
-       
+ Declare @TransactionDate datetime = Getdate();
  if (isnull(@SupplierId,0) = 0) set @SupplierId = null      
  if (isnull(@SamagriId,0) = 0) set @SamagriId = null     
- if (isnull(@AccountHeadId,0) = 0) set @AccountHeadId = null      
+ if (isnull(@AccountHeadId,0) = 0) set @AccountHeadId = null   
+ if (isnull(@VaishnavId,0) = 0) set @VaishnavId = null   
+
  DECLARE @IdentityValue AS TABLE(ID INT);     
  Declare @Id int = 0,@BhandarUnitId int;  
     
@@ -35,17 +44,16 @@ BEGIN
     
  INSERT INTO dbo.BhandarTransaction      
  (BhandarId,StoreId,BhandarTransactionCodeId,UnitId,SupplierId,SamagriId,AccountHeadId,  
- StockTransactionQuantity,      
-     Price,Description,CreatedBy,OriginalUnitId,VaishnavId)     
-   OUTPUT Inserted.ID INTO @IdentityValue         
-     VALUES      
+  StockTransactionQuantity, Price,Description,CreatedBy,OriginalUnitId,VaishnavId,IncomeAccountId,ExpensesAccountId)     
+ OUTPUT Inserted.ID INTO @IdentityValue         
+ VALUES      
   (@BhandarId,@StoreId,@BhandarTransactionCodeId,@BhandarUnitId,@SupplierId,@SamagriId,@AccountHeadId,    
   isnull(dbo.UnitConversionFormula(@BhandarId,@UnitId,@StockTransactionQuantity),0),      
-  @Price,@Description,@CreatedBy,@UnitId,@VaishnavId)      
+  @Price,@Description,@CreatedBy,@UnitId,@VaishnavId,@IncomeAccountId,@ExpensesAccountId)      
      
  select @Id = ID  FROM @IdentityValue       
     
- ;WITH SP         
+ ;WITH SP
  AS          
  (          
   select Sum(BT.StockTransactionQuantity * BC.MultiplicationWith) Balance,BT.BhandarId    
@@ -60,7 +68,7 @@ BEGIN
   
  if not exists (select * from BhandarStoreBalance where BhandarId=@BhandarId and StoreId=@StoreId)  
  BEGIN  
- ;WITH SP         
+	;WITH SP
   AS          
   (          
    select Sum(BT.StockTransactionQuantity * BC.MultiplicationWith) Balance,BT.BhandarId,BT.StoreId    
@@ -77,7 +85,7 @@ BEGIN
  END  
  else  
  BEGIN  
- ;WITH SP         
+	;WITH SP
   AS          
   (          
    select Sum(BT.StockTransactionQuantity * BC.MultiplicationWith) Balance,BT.BhandarId,BT.StoreId    
@@ -90,7 +98,34 @@ BEGIN
   from BhandarStoreBalance as B     
   Join SP on SP.BhandarId=B.BhandarId and SP.StoreId=B.StoreId  
  END  
-  
+ 
+ 
+IF( @BhandarTransactionCodeId = 2 )
+BEGIN
+
+exec MultipleAccountTransaction         
+ @CreditAccountId = @IncomeAccountId,              
+ @DebitAccountId = @ExpensesAccountId,              
+ @TransactionAmount = @Price,              
+ @TransactionDate = @TransactionDate,              
+ @VaishnavId  = null,               
+ @CreatedBy =@CreatedBy,              
+ @ManorathReceiptId =  null,              
+ @ManorathId = null,              
+ @VoucherId  =  null,              
+ @PaymentId = null,              
+ @TrasactionType  =  null,              
+ @ChequeBank  = @ChequeBank,              
+ @ChequeBranch = @ChequeBranch,              
+ @ChequeNumber = @ChequeNumber,              
+ @ChequeDate =  @ChequeDate,              
+ @ChequeStatus =  @ChequeStatus,          
+ @Description = @Description ,        
+ @MandirVoucherId = null   ,
+ @BhandarTransactionId = @Id
+
+END
+
  --Update B set B.Balance=SP.Balance     
  --from Bhandar as B     
  --Join SP on SP.BhandarId=B.Id    

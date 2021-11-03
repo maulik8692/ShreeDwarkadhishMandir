@@ -7,6 +7,7 @@ using ShreeDwarkadhishMandir.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using static EnumLayer.BhandarTransactionCodeEnum;
@@ -73,6 +74,13 @@ namespace ShreeDwarkadhishMandir.Controllers
                 bhandarTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.Scrap;
                 bhandarTransaction.StockTransactionQuantity = SamagriTransactionRequest.StockTransactionQuantity;
                 bhandarTransaction.Description = SamagriTransactionRequest.Description;
+
+                bhandarTransaction.ChequeBranch = SamagriTransactionRequest.ChequeBranch;
+                bhandarTransaction.ChequeBank = SamagriTransactionRequest.ChequeBank;
+                bhandarTransaction.ChequeDate = SamagriTransactionRequest.ChequeDate;
+                bhandarTransaction.ChequeNumber = SamagriTransactionRequest.ChequeNumber;
+                bhandarTransaction.ChequeStatus = SamagriTransactionRequest.ChequeStatus;
+
                 bhandarTransaction.Validate();
                 bhandarTransaction.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
 
@@ -140,11 +148,28 @@ namespace ShreeDwarkadhishMandir.Controllers
 
             return View();
         }
+
         [HttpPost]
-        public ActionResult Purchase(int id)
+        public ActionResult Purchase(SamagriTransactionRequest SamagriTransactionRequest)
         {
             try
             {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    List<IBhandarTransaction> bhandarTransactions = SamagriTransactionRequest.Purchase();
+
+                    List<IBhandarTransaction> BhandarTransactionResponse = new List<IBhandarTransaction>();
+
+                    IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+
+                    foreach (var item in bhandarTransactions)
+                    {
+                        IBhandarTransaction bhandarTransactionResponse = dalBhandarTransaction.SaveWithReturn(item);
+                    }
+
+                    scope.Complete();
+                }
+
                 return Json("Samagri saved successfully.", JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -170,7 +195,7 @@ namespace ShreeDwarkadhishMandir.Controllers
             {
                 IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
                 bhandarTransaction.BhandarId = SamagriTransactionRequest.BhandarId;
-                bhandarTransaction.VaishnavId= SamagriTransactionRequest.VaishnavId;
+                bhandarTransaction.VaishnavId = SamagriTransactionRequest.VaishnavId;
                 bhandarTransaction.UnitId = SamagriTransactionRequest.UnitId;
                 bhandarTransaction.StoreId = SamagriTransactionRequest.StoreId;
                 bhandarTransaction.CurrentBalance = SamagriTransactionRequest.CurrentBalance;

@@ -80,6 +80,15 @@ namespace AdoDotNetDal
             cmd.Parameters.AddWithValue("@Description", anyType.Description);
             cmd.Parameters.AddWithValue("@VaishnavId", anyType.VaishnavId);
             cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
+
+            cmd.Parameters.AddWithValue("@IncomeAccountId", anyType.IncomeAccountId);
+            cmd.Parameters.AddWithValue("@ExpensesAccountId", anyType.ExpensesAccountId);
+
+            cmd.Parameters.AddWithValue("@ChequeBranch", anyType.ChequeBranch);
+            cmd.Parameters.AddWithValue("@ChequeBank", anyType.ChequeBank);
+            cmd.Parameters.AddWithValue("@ChequeDate", anyType.ChequeDate);
+            cmd.Parameters.AddWithValue("@ChequeNumber", anyType.ChequeNumber);
+            cmd.Parameters.AddWithValue("@ChequeStatus", anyType.ChequeStatus);
             SqlDataReader dr = cmd.ExecuteReader();
 
             List<IBhandarTransaction> bhandarTransactions = new List<IBhandarTransaction>();

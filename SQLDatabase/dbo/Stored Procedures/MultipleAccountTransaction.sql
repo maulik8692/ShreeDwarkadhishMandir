@@ -21,7 +21,8 @@ CREATE PROCEDURE [dbo].[MultipleAccountTransaction]
  @ChequeDate datetime =  null,        
  @ChequeStatus int =  null,    
  @Description Nvarchar(500)  = null  ,  
- @MandirVoucherId int = null    
+ @MandirVoucherId int = null,
+ @BhandarTransactionId int = null
 AS        
 BEGIN        
  -- SET NOCOUNT ON added to prevent extra result sets from        
@@ -39,7 +40,7 @@ BEGIN
   @ManorathReceiptId = @ManorathReceiptId, @ManorathId = @ManorathId, @VoucherId = @VoucherId, @PaymentId = @PaymentId,        
   @TrasactionType = @TrasactionType, @ChequeBank = @ChequeBank , @ChequeBranch = @ChequeBranch , @ChequeNumber = @ChequeNumber ,        
   @ChequeDate = @ChequeDate , @ChequeStatus = @ChequeStatus , @ReferenceAccountTransaction = NULL,@Description  = @Description ,   
-  @MandirVoucherId   = @MandirVoucherId  
+  @MandirVoucherId   = @MandirVoucherId  , @BhandarTransactionId=@BhandarTransactionId
         
         
   select @ReferenceAccountTransaction = Id from #AccountTransactionId        
@@ -50,7 +51,8 @@ BEGIN
   @IsOpenningBalance = 0, @ManorathReceiptId = @ManorathReceiptId, @ManorathId = @ManorathId,        
   @VoucherId = @VoucherId, @PaymentId = @PaymentId, @TrasactionType = @TrasactionType,        
   @ChequeBank = NULL, @ChequeBranch = NULL, @ChequeNumber = NULL, @ChequeDate = NULL,        
-  @ChequeStatus = NULL, @ReferenceAccountTransaction = @ReferenceAccountTransaction,@Description  =@Description, @MandirVoucherId  = null    
+  @ChequeStatus = NULL, @ReferenceAccountTransaction = @ReferenceAccountTransaction,@Description  =@Description,
+  @MandirVoucherId  = null, @BhandarTransactionId=@BhandarTransactionId
         
   COMMIT TRANSACTION         
   END TRY        

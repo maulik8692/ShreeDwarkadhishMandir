@@ -145,9 +145,9 @@ namespace ShreeDwarkadhishMandir.Controllers
         public ActionResult GetCashBankAccount()
         {
             IRepositoryDropdown<ISearchableDropdown> dal = FactoryDalLayer<IRepositoryDropdown<ISearchableDropdown>>.Create("Searchable");
-            List<ISearchableDropdown> countries = dal.DropdownWithSearch(ProcedureName.GetCashBankAccount.ToString());
+            List<ISearchableDropdown> results = dal.DropdownWithSearch(ProcedureName.GetCashBankAccount.ToString());
 
-            return Json(countries, JsonRequestBehavior.AllowGet);
+            return Json(results, JsonRequestBehavior.AllowGet);
         }
     }
 }

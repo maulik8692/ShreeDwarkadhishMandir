@@ -211,6 +211,8 @@ function ResetFormData() {
     $('#IsEditable').prop('checked', true);
     $('input[name="TransactionType"]').prop('checked', false);
     $('input[name="TransactionType"]').prop('disabled', false);
+    $('#AccountGroup').prop("disabled", false);
+    $('#BalanceAmount').prop("disabled", false);
 }
 
 function ResetForm() {
@@ -308,17 +310,20 @@ function ResetForm() {
 
 function setdetail() {
     SetAccountHeadFeilds(accountHeadDetail.AccountTypeId);
-    $('#AccountType').val(accountHeadDetail.AccountTypeId);
-    //$('#AccountType').prop("disabled", true);
-    //$('#BalanceAmount').prop("disabled", true);
-    $('#BalanceAmount').val(parseFloat(accountHeadDetail.BalanceAmount).toFixed(2));
+    //$('#AccountType').val(accountHeadDetail.AccountTypeId);
+    $('#AccountType').prop("disabled", true);
+    $('#AccountGroup').prop("disabled", true);
+    $('#BalanceAmount').prop("disabled", true);
+    $('#BalanceAmount').val(parseFloat(Math.abs(accountHeadDetail.BalanceAmount)).toFixed(2));
     $('#AccountName').val(accountHeadDetail.AccountName);
     $('#Alias').val(accountHeadDetail.Alias)
     //
+    $('#BankBranch').val(accountHeadDetail.BankBranch);
     $('#BankName').val(accountHeadDetail.BankName);
     $('#BankAddress').val(accountHeadDetail.BankAddress);
     $('#IFSCCode').val(accountHeadDetail.IFSCCode);
     $('#AccountNumber').val(accountHeadDetail.AccountNumber);
+    $('#AccountHolderName').val(accountHeadDetail.AccountHolderName);
     //
     $('#DateOfIssue').val(accountHeadDetail.DateOfIssue);
     $('#DateOfMaturity').val(accountHeadDetail.DateOfMaturity);

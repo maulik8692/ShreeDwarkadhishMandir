@@ -141,7 +141,7 @@ namespace ShreeDwarkadhishMandir.Controllers
             }
         }
 
-        public ActionResult GetCashBankAccount()
+        public ActionResult GetSupplierAccount()
         {
             IRepositoryDropdown<ISearchableDropdown> dal = FactoryDalLayer<IRepositoryDropdown<ISearchableDropdown>>.Create("Searchable");
             List<ISearchableDropdown> countries = dal.DropdownWithSearch(ProcedureName.GetSupplierAccount.ToString());
