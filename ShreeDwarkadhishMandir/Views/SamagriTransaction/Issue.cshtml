@@ -3,6 +3,167 @@
     string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
-<h2>Issue</h2>
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8 PaddingTop">
+        <div class="card">
+            <div class="card-header">
+                <strong>Issue or transfer Stock</strong>
+            </div>
+
+            <div class="card-body card-block">
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <input type="hidden" id="Id" name="Id" class="form-control">
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="Description" class="control-label mb-1">Description</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <textarea id="Description" name="Description" type="text" placeholder="Enter Description" class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body card-block">
+                <button id="NewDetail" type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#staticModal">
+                    Add Issue Item
+                </button>
+            </div>
+        </div>
+
+        <div>
+            <div id="divTransactionDetail" class="table-responsive table--no-card">
+                <table id="TransactionDetail" class="table table-borderless table-striped table-mandir"></table>
+                <div id="pager"></div>
+            </div>
+        </div>
+
+        <div class="card m-t-30">
+
+            <div class="card-footer">
+                <button id="Save" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"> </i> Save
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"> </i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/SamagriTransaction/SamagriTransaction" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+<div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
+     data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticModalLabel">Purchase Item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12 PaddingTop">
+
+                        <div class="row form-group Store">
+                            <div class="col col-md-2">
+                            </div>
+                            <div class="col col-md-8">
+                                <small class="help-block form-text text-danger">Please ensure given detail is right as you cannot edit it after save.</small>
+                            </div>
+                            <div class="col col-md-2">
+                            </div>
+                        </div>
+
+                        <div class="row form-group Store">
+                            <div class="col col-md-4">
+                                <label for="StoreFrom" class="form-control-label"></label>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <label for="StoreFrom" class="form-control-label textcenter">From Store</label>
+                            </div>
+                            <div class="col-12 col-md-4 Bhandar">
+                                <label for="StoreTo" class="form-control-label textcenter">To Store</label>
+                            </div>
+                        </div>
+
+                        <div class="row form-group Store">
+                            <div class="col col-md-4">
+                                <label for="StoreFrom" class="form-control-label">Store</label>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <select name="Store" id="Store" class="form-control select2 select2-hidden-accessible searchableDropdown"></select>
+                            </div>
+                            <div class="col-12 col-md-4 Bhandar">
+                                <select name="StoreTo" id="StoreTo" class="form-control select2 select2-hidden-accessible searchableDropdown"></select>
+                            </div>
+                        </div>
+
+                        <div class="row form-group Bhandar">
+                            <div class="col col-md-4">
+                                <label for="Bhandar" class="form-control-label">Bhandar Name</label>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <select name="Bhandar" id="Bhandar" class="form-control select2 select2-hidden-accessible searchableDropdown "></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row Personal UOM">
+                            <div class="col col-md-4">
+                                <label for="CurrentBalance" class="control-label mb-1">Current Bhandar Balance</label>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <input id="CurrentBalance" name="CurrentBalance" type="text" placeholder="0.00000" readonly="readonly" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="row form-group UOM">
+                            <div class="col col-md-4">
+                                <label for="UnitOfMeasurement" class="form-control-label">Unit Of Measurement</label>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <select name="UnitOfMeasurement" id="UnitOfMeasurement" class="form-control select2 select2-hidden-accessible searchableDropdown"></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row Personal UOM">
+                            <div class="col col-md-4">
+                                <label for="StockTransactionQuantity" class="control-label mb-1">Issue Quantity</label>
+                            </div>
+                            <div class="col-12 col-md-8">
+                                <input id="StockTransactionQuantity" name="StockTransactionQuantity" type="text" placeholder="0.00000" class="form-control Units">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="SaveItem" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"> </i> Save
+                </button>
+                <button id="SaveNNewItem" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"> </i> Save &amp; New
+                </button>
+                <button id="ResetItem" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"> </i> Reset
+                </button>
+                <a style="width:20%" data-dismiss="modal" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="~/js/Issue.js?@casheCleaner"></script>

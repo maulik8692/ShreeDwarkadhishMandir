@@ -13,6 +13,7 @@ namespace InterfaceMiddleLayer
         string Name { get; set; }
         string Description { get; set; }
         bool IsActive { get; set; }
+        int StoreType { get; set; }
         bool IsMainStore { get; set; }
         DateTime CreatedOn { get; set; }
         int CreatedBy { get; set; }

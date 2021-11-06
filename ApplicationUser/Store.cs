@@ -16,6 +16,7 @@ namespace MiddleLayer
         public string Description { get; set; }
         public bool IsActive { get; set; }
         public bool IsMainStore { get; set; }
+        public int StoreType { get; set; }
         public DateTime CreatedOn { get; set; }
         public int CreatedBy { get; set; }
         public int Total { get; set; }

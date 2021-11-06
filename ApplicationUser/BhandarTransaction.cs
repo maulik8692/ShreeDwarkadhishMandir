@@ -14,6 +14,7 @@ namespace MiddleLayer
         public int BhandarId { get; set; }
         public int CreatedBy { get; set; }
         public decimal StockTransactionQuantity { get; set; }
+        public decimal TotalStockTransactionQuantity { get; set; }
         public decimal CurrentBalance { get; set; }
         public double BhandarBalance { get; set; }
         public int SupplierId { get; set; }

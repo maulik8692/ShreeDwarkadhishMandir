@@ -42,6 +42,7 @@ namespace AdoDotNetDal
                 Store.Id = dr["Id"].ToInt();
                 Store.Name = dr["Name"].ToString();
                 Store.IsActive = dr["IsActive"].ToBool();
+                Store.StoreType = dr["StoreType"].ToInt();
 
                 Stores.Add(Store);
             }

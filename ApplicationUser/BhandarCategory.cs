@@ -17,9 +17,7 @@ namespace MiddleLayer
         public int CreatedBy { get; set; }
         public bool IsActive { get; set; }
         public int GroupId { get; set; }
-        public bool IsJewellery { get; set; }
-        public bool IsSamagri { get; set; }
-        public bool IsBhandar { get; set; }
+        public int GroupType { get; set; }
         public string CategoryCode { get; set; }
         public string Description { get; set; }
         public int UpdatedBy { get; set; }

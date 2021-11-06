@@ -29,7 +29,24 @@ namespace AdoDotNetDal
 
         protected override List<IBhandarTransaction> DropdownWithSearchCommand<T>(T anyObject)
         {
-            throw new NotImplementedException();
+            IBhandarTransaction bhandarSearch = (IBhandarTransaction)anyObject;
+            cmd.CommandText = "UnitConversionByBhandarId";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@BhandarId", bhandarSearch.BhandarId);
+            cmd.Parameters.AddWithValue("@TransactionUnitId", bhandarSearch.UnitId);
+            cmd.Parameters.AddWithValue("@TransactionQuantity", bhandarSearch.StockTransactionQuantity);
+            SqlDataReader dr = null;
+            dr = cmd.ExecuteReader();
+
+            List<IBhandarTransaction> bhandarTransactions = new List<IBhandarTransaction>();
+            while (dr.Read())
+            {
+                IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                bhandarTransaction.TotalStockTransactionQuantity = dr["TotalStockTransactionQuantity"].ToDecimal();
+                bhandarTransactions.Add(bhandarTransaction);
+            }
+
+            return bhandarTransactions;
         }
 
         protected override IBhandarTransaction GetDetailCommand<T>(T anyObject)

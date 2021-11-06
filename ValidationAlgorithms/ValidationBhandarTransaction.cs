@@ -73,6 +73,11 @@ namespace ValidationAlgorithms
             {
                 throw new Exception("Please enter proper sold out price.");
             }
+
+            if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.IssueFrom && anyType.CurrentBalance < anyType.TotalStockTransactionQuantity)
+            {
+                throw new Exception("Total Transaction Quantity must be less than or equal to current balance.");
+            }
         }
     }
 }

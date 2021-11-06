@@ -57,49 +57,16 @@
 
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label class=" form-control-label"></label>
+                            <label for="GroupType" class="form-control-label">Group Type</label>
                         </div>
-                        <div class="col col-md-9">
-                            <div class="form-check">
-                                <div class="checkbox">
-                                    <label for="IsJewellery" class="form-check-label ">
-                                        <input type="checkbox" id="IsJewellery" name="IsJewellery" class="form-check-input">Is For Jewellery?
-                                    </label>
-                                    <small class="help-block form-text text-warning">If it is checked &amp; saved then it can not be reverted.</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class=" form-control-label"></label>
-                        </div>
-                        <div class="col col-md-9">
-                            <div class="form-check">
-                                <div class="checkbox">
-                                    <label for="IsSamagri" class="form-check-label ">
-                                        <input type="checkbox" id="IsSamagri" name="IsSamagri" class="form-check-input">Is For Samagri?
-                                    </label>
-                                    <small class="help-block form-text text-warning">If it is checked &amp; saved then it can not be reverted.</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label class=" form-control-label"></label>
-                        </div>
-                        <div class="col col-md-9">
-                            <div class="form-check">
-                                <div class="checkbox">
-                                    <label for="IsBhandar" class="form-check-label ">
-                                        <input type="checkbox" id="IsBhandar" name="IsBhandar" class="form-check-input">Is For Bhandar ghar?
-                                    </label>
-                                    <small class="help-block form-text text-warning">If it is checked &amp; saved then it can not be reverted.</small>
-                                </div>
-                            </div>
+                        <div class="col-12 col-md-9">
+                            <select name="GroupType" id="GroupType" class="form-control">
+                                <option value="0" selected>General</option>
+                                <option value="1">For Jewellery</option>
+                                <option value="2">For Samagri</option>
+                                <option value="3">For Bhandar</option>
+                            </select>
+                            <small class="help-block form-text text-warning">If it is selected &amp; saved then it can not be reverted.</small>
                         </div>
                     </div>
 

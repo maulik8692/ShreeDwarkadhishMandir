@@ -3,28 +3,63 @@
     string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 <div class="row PaddingTop PaddingRight PaddingLeft">
-    <div class="form-group row col-lg-12" style="margin-bottom:10px;">
-        <div class="col col-md-2">
-            <label></label>
-        </div>
-        <div class="col col-md-2">
-            <label></label>
-        </div>
-        <div class="col col-md-8">
-            <a href="/SamagriTransaction/Issue" class="btn btn-primary float-right"><i class="fa fa-plus"></i>Issue/Transfer</a>
-            <a href="/SamagriTransaction/SoldOut" class="btn btn-primary float-right m-r-10"><i class="fa fa-plus"></i>Sold out</a>
-            <a href="/SamagriTransaction/Scrapped" class="btn btn-primary float-right m-r-10"><i class="fa fa-plus"></i>Spoiled/Scrapped</a>
-            <a href="/SamagriTransaction/Purchase" class="btn btn-primary float-right m-r-10"><i class="fa fa-plus"></i>Purchase</a>
-            <a href="/SamagriTransaction/Donation" class="btn btn-primary float-right m-r-10"><i class="fa fa-plus"></i>Take Donation</a>
-            <a href="/SamagriTransaction/Complementary" class="btn btn-primary float-right m-r-10"><i class="fa fa-plus"></i>Complementary</a>
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="account-dropdown__item">
+                    <a href="/SamagriTransaction/Issue">
+                        <i class="fa fa-square"></i>Issue or Transfer
+                    </a>
+                </div>
+                <div class="account-dropdown__item">
+                    <a href="/SamagriTransaction/SoldOut">
+                        <i class="fa fa-square"></i>Sold out
+                    </a>
+                </div>
+                <div class="account-dropdown__item">
+                    <a href="/SamagriTransaction/Scrapped">
+                        <i class="fa fa-square"></i>Spoiled/Scrapped
+                    </a>
+                </div>
+                <div class="account-dropdown__item">
+                    <a href="/SamagriTransaction/Purchase">
+                        <i class="fa fa-square"></i>Purchase
+                    </a>
+                </div>
+                <div class="account-dropdown__item">
+                    <a href="/SamagriTransaction/Donation">
+                        <i class="fa fa-square"></i>Take Donation
+                    </a>
+                </div>
+                <div class="account-dropdown__item">
+                    <a href="/SamagriTransaction/Complementary">
+                        <i class="fa fa-square"></i>Complementary
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="col-lg-12">
-        <div id="divSamagri" class="table-responsive table--no-card m-b-30">
-            <table id="Samagri" class="table table-borderless table-striped table-mandir"></table>
-            <div id="pager"></div>
+    <div class="col-lg-2"></div>
+    @*<div class="form-group row col-lg-12" style="margin-bottom:10px;">
+            <div class="col col-md-2">
+                <label></label>
+            </div>
+            <div class="col col-md-10">
+                <a href="/SamagriTransaction/Issue" class="btn btn-primary float-right"><i class="fa fa-plus"></i>Issue/Transfer</a>
+                <a href="/SamagriTransaction/SoldOut" class="btn btn-primary float-right m-r-10"><i class="fa fa-plus"></i>Sold out</a>
+                <a href="/SamagriTransaction/Scrapped" class="btn btn-primary float-right m-r-10"><i class="fa fa-plus"></i>Spoiled/Scrapped</a>
+                <a href="/SamagriTransaction/Purchase" class="btn btn-primary float-right m-r-10"><i class="fa fa-plus"></i>Purchase</a>
+                <a href="/SamagriTransaction/Donation" class="btn btn-primary float-right m-r-10"><i class="fa fa-plus"></i>Take Donation</a>
+                <a href="/SamagriTransaction/Complementary" class="btn btn-primary float-right m-r-10"><i class="fa fa-plus"></i>Complementary</a>
+            </div>
         </div>
-    </div>
+        <div class="col-lg-12">
+            <div id="divSamagri" class="table-responsive table--no-card m-b-30">
+                <table id="Samagri" class="table table-borderless table-striped table-mandir"></table>
+                <div id="pager"></div>
+            </div>
+        </div>*@
 </div>
 <script src="~/js/SamagriTransaction.js?@casheCleaner"></script>
 

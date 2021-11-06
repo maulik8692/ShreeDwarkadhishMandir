@@ -13,9 +13,7 @@ namespace InterfaceMiddleLayer
         string Name { get; set; }
         string GroupCode { get; set; }
         string Description { get; set; }
-        bool IsJewellery { get; set; }
-        bool IsSamagri { get; set; }
-        bool IsBhandar { get; set; }
+        int GroupType { get; set; }
         bool IsActive { get; set; }
         int CreatedBy { get; set; }
         int UpdatedBy { get; set; }

@@ -221,5 +221,6 @@
     <Build Include="dbo\Stored Procedures\GetBhandarTransactionById.sql" />
     <Build Include="dbo\Stored Procedures\GetApplicationUserById.sql" />
     <Build Include="dbo\Stored Procedures\GetSupplierAccount.sql" />
+    <Build Include="dbo\Stored Procedures\UnitConversionByBhandarId.sql" />
   </ItemGroup>
 </Project>

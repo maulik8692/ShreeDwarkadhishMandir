@@ -12,8 +12,7 @@ namespace ShreeDwarkadhishMandir.Models
         public string Name { get; set; }
         public string GroupCode { get; set; }
         public string Description { get; set; }
-        public bool IsJewellery { get; set; }
-        public bool IsSamagri { get; set; }
+        public int GroupType { get; set; }
         public bool IsActive { get; set; }
         public int CreatedBy { get; set; }
         public int UpdatedBy { get; set; }
@@ -27,6 +26,5 @@ namespace ShreeDwarkadhishMandir.Models
         public int Records { get; set; }
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
-        public bool IsBhandar { get; set; }
     }
 }

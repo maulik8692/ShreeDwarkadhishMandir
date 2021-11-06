@@ -661,6 +661,7 @@
     <Content Include="js\Donation.js" />
     <Content Include="js\Home.js" />
     <Content Include="js\IncomeExpenditure.js" />
+    <Content Include="js\Issue.js" />
     <Content Include="js\Login.js" />
     <Content Include="js\Mandir.js" />
     <Content Include="js\MandirList.js" />

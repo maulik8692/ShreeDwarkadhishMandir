@@ -44,9 +44,7 @@ namespace AdoDotNetDal
                 bhandarGroup.MandirId = dr["MandirId"].ToInt();
                 bhandarGroup.GroupCode = dr["GroupCode"].ToString();
                 bhandarGroup.Description = dr["Description"].ToString();
-                bhandarGroup.IsJewellery = dr["IsJewellery"].ToBool();
-                bhandarGroup.IsSamagri = dr["IsSamagri"].ToBool();
-                bhandarGroup.IsBhandar = dr["IsBhandar"].ToBool();
+                bhandarGroup.GroupType = dr["GroupType"].ToInt();
                 bhandarGroups.Add(bhandarGroup);
             }
 
@@ -71,9 +69,7 @@ namespace AdoDotNetDal
                 bhandarGroup.Name = dr["Name"].ToString();
                 bhandarGroup.GroupCode = dr["GroupCode"].ToString();
                 bhandarGroup.Description = dr["Description"].ToString();
-                bhandarGroup.IsJewellery = dr["IsJewellery"].ToBool();
-                bhandarGroup.IsBhandar = dr["IsBhandar"].ToBool();
-                bhandarGroup.IsSamagri = dr["IsSamagri"].ToBool();
+                bhandarGroup.GroupType = dr["GroupType"].ToInt();
                 bhandarGroup.IsActive = dr["IsActive"].ToBool();
                 bhandarGroups.Add(bhandarGroup);
             }
@@ -95,9 +91,7 @@ namespace AdoDotNetDal
             cmd.Parameters.AddWithValue("@Name", anyType.Name);
             cmd.Parameters.AddWithValue("@GroupCode", anyType.GroupCode);
             cmd.Parameters.AddWithValue("@Description", anyType.Description);
-            cmd.Parameters.AddWithValue("@IsJewellery", anyType.IsJewellery);
-            cmd.Parameters.AddWithValue("@IsSamagri", anyType.IsSamagri);
-            cmd.Parameters.AddWithValue("@IsBhandar", anyType.IsBhandar);
+            cmd.Parameters.AddWithValue("@GroupType", anyType.GroupType);
             cmd.Parameters.AddWithValue("@CreatedBy", anyType.CreatedBy);
             cmd.Parameters.AddWithValue("@IsActive", anyType.IsActive);
             cmd.Parameters.AddWithValue("@IsDeleted", anyType.IsDeleted);
@@ -136,9 +130,7 @@ namespace AdoDotNetDal
                 bhandarGroup.Name = dr["Name"].ToString();
                 bhandarGroup.GroupCode = dr["GroupCode"].ToString();
                 bhandarGroup.Description = dr["Description"].ToString();
-                bhandarGroup.IsJewellery = dr["IsJewellery"].ToBool();
-                bhandarGroup.IsSamagri = dr["IsSamagri"].ToBool();
-                bhandarGroup.IsBhandar = dr["IsBhandar"].ToBool();
+                bhandarGroup.GroupType = dr["GroupType"].ToInt();
                 bhandarGroup.IsActive = dr["IsActive"].ToBool();
                 bhandarGroup.Page = dr["page"].ToInt();
                 bhandarGroup.Records = dr["records"].ToInt();

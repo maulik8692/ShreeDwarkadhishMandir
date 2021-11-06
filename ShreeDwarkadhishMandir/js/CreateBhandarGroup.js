@@ -14,39 +14,6 @@ $(document).ready(function () {
     $("#Save").click(function (e) {
         SaveForm();
     });
-
-    $('#IsJewellery').change(function () {
-        if (this.checked) {
-            $(this).prop("checked", true);
-            $('#IsSamagri').attr("disabled", true);
-            $('#IsBhandar').attr("disabled", true);
-        } else {
-            $('#IsSamagri').removeAttr("disabled");
-            $('#IsBhandar').removeAttr("disabled");
-        }
-    });
-
-    $('#IsSamagri').change(function () {
-        if (this.checked) {
-            $(this).prop("checked", true);
-            $('#IsJewellery').attr("disabled", true);
-            $('#IsBhandar').attr("disabled", true);
-        } else {
-            $('#IsJewellery').removeAttr("disabled");
-            $('#IsBhandar').removeAttr("disabled");
-        }
-    });
-
-    $('#IsBhandar').change(function () {
-        if (this.checked) {
-            $(this).prop("checked", true);
-            $('#IsSamagri').attr("disabled", true);
-            $('#IsJewellery').attr("disabled", true);
-        } else {
-            $('#IsSamagri').removeAttr("disabled");
-            $('#IsJewellery').removeAttr("disabled");
-        }
-    });
 });
 
 function SaveForm() {
@@ -57,9 +24,7 @@ function SaveForm() {
         Name: $('#Name').val(),
         GroupCode: $('#GroupCode').val(),
         Description: $('#Description').val(),
-        IsJewellery: $('#IsJewellery').is(":checked"),
-        IsSamagri: $('#IsSamagri').is(":checked"),
-        IsBhandar: $('#IsBhandar').is(":checked"),
+        GroupType: parseInt($('#GroupType').is(":checked")),
         IsActive: $('#IsActive').is(":checked")
     };
     $.ajax({
@@ -175,11 +140,6 @@ function setdetail() {
     $('#GroupCode').val(BhandarGroupDetail.GroupCode);
     $('#Description').val(BhandarGroupDetail.Description);
     $('#IsActive').prop('checked', BhandarGroupDetail.IsActive);
-    $('#IsBhandar').prop('checked', BhandarGroupDetail.IsBhandar);
-    $('#IsSamagri').prop('checked', BhandarGroupDetail.IsSamagri);
-    $('#IsJewellery').prop('checked', BhandarGroupDetail.IsJewellery);
-    $('#IsSamagri').attr("disabled", true);
-    $('#IsJewellery').attr("disabled", true);
-    $('#IsBhandar').attr("disabled", true);
+    $('#GroupType').val(BhandarGroupDetail.GroupType);
     GetMandirList();
 }

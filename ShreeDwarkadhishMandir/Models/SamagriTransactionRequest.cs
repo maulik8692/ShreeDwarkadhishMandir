@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CommonLayer;
+using FactoryDal;
 using FactoryMiddleLayer;
+using InterfaceDal;
 using InterfaceMiddleLayer;
 using static EnumLayer.BhandarTransactionCodeEnum;
 
@@ -36,6 +38,7 @@ namespace ShreeDwarkadhishMandir.Models
         public DateTime? ChequeDate { get; set; }
         public int ChequeStatus { get; set; }
         public List<SamagriTransactionRequest> ItemDetails { get; set; }
+        public int StoreToId { get; set; }
 
         public List<IBhandarTransaction> Purchase()
         {
@@ -82,17 +85,25 @@ namespace ShreeDwarkadhishMandir.Models
             if (this.ItemDetails.IsNotNullList())
             {
                 List<IBhandarTransaction> bhandarTransactions = new List<IBhandarTransaction>();
+                IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
                 foreach (var item in this.ItemDetails)
                 {
                     IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+
                     bhandarTransaction.BhandarId = item.BhandarId;
                     bhandarTransaction.UnitId = item.UnitId;
+                    bhandarTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
                     bhandarTransaction.StoreId = item.StoreId;
+
+                    IBhandarTransaction unitConversionByBhandarId = dalBhandarTransaction.DropdownWithSearch(bhandarTransaction).FirstOrDefault();
+                    bhandarTransaction.StockTransactionQuantity = unitConversionByBhandarId.IsNull() ? 0 : unitConversionByBhandarId.TotalStockTransactionQuantity;
+
                     bhandarTransaction.CurrentBalance = item.CurrentBalance;
                     bhandarTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.Scrap;
-                    bhandarTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
                     bhandarTransaction.Description = this.Description;
                     bhandarTransaction.Validate();
+
+                    bhandarTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
                     bhandarTransactions.Add(bhandarTransaction);
                 }
 
@@ -124,6 +135,69 @@ namespace ShreeDwarkadhishMandir.Models
                     bhandarTransaction.Description = this.Description;
                     bhandarTransaction.Validate();
                     bhandarTransactions.Add(bhandarTransaction);
+                }
+
+                bhandarTransactions.ForEach(x => x.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt());
+
+                return bhandarTransactions;
+            }
+            else
+            {
+                throw new Exception("There must be atlease one item for Donation.");
+            }
+        }
+
+        public List<IBhandarTransaction> Issue()
+        {
+            if (this.ItemDetails.IsNotNullList())
+            {
+                List<IBhandarTransaction> bhandarTransactions = new List<IBhandarTransaction>();
+                IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+
+                foreach (var item in this.ItemDetails)
+                {
+                    decimal totalTransactionQuantity = 0;
+
+                    foreach (var i in this.ItemDetails.Where(x => x.BhandarId == item.BhandarId))
+                    {
+                        IBhandarTransaction issueTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                        issueTransaction.BhandarId = i.BhandarId;
+                        issueTransaction.UnitId = i.UnitId;
+                        issueTransaction.StockTransactionQuantity = i.StockTransactionQuantity;
+
+                        IBhandarTransaction unitConversionByBhandarId = dalBhandarTransaction.DropdownWithSearch(issueTransaction).FirstOrDefault();
+                        totalTransactionQuantity += unitConversionByBhandarId.IsNull() ? 0 : unitConversionByBhandarId.TotalStockTransactionQuantity;
+                    }
+
+                    IBhandarTransaction issueFromTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                    issueFromTransaction.BhandarId = item.BhandarId;
+                    issueFromTransaction.UnitId = item.UnitId;
+                    issueFromTransaction.StoreId = item.StoreId;
+                    issueFromTransaction.CurrentBalance = item.CurrentBalance;
+                    issueFromTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.IssueFrom;
+                    issueFromTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
+                    
+                    IBhandarTransaction issueFromunitConversionByBhandarId = dalBhandarTransaction.DropdownWithSearch(issueFromTransaction).FirstOrDefault();
+                    issueFromTransaction.StockTransactionQuantity = issueFromunitConversionByBhandarId.IsNull() ? 0 : issueFromunitConversionByBhandarId.TotalStockTransactionQuantity;
+
+                    issueFromTransaction.TotalStockTransactionQuantity = totalTransactionQuantity;
+                    issueFromTransaction.Description = this.Description;
+
+                    issueFromTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
+                    issueFromTransaction.Validate();
+                    bhandarTransactions.Add(issueFromTransaction);
+
+
+                    IBhandarTransaction issueToTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                    issueToTransaction.BhandarId = item.BhandarId;
+                    issueToTransaction.UnitId = item.UnitId;
+                    issueToTransaction.StoreId = item.StoreToId;
+                    issueToTransaction.CurrentBalance = item.CurrentBalance;
+                    issueToTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.IssueTo;
+                    issueToTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
+                    issueToTransaction.Description = this.Description;
+                    issueToTransaction.Validate();
+                    bhandarTransactions.Add(issueToTransaction);
                 }
 
                 bhandarTransactions.ForEach(x => x.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt());

@@ -36,13 +36,28 @@ namespace ShreeDwarkadhishMandir.Controllers
 
             return View();
         }
-
         [HttpPost]
-        public ActionResult Issue(int id)
+        public ActionResult Issue(SamagriTransactionRequest SamagriTransactionRequest)
         {
             try
             {
-                return Json("Samagri saved successfully.", JsonRequestBehavior.AllowGet);
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    List<IBhandarTransaction> bhandarTransactions = SamagriTransactionRequest.Issue();
+
+                    List<IBhandarTransaction> BhandarTransactionResponse = new List<IBhandarTransaction>();
+
+                    IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+
+                    foreach (var item in bhandarTransactions)
+                    {
+                        IBhandarTransaction bhandarTransactionResponse = dalBhandarTransaction.SaveWithReturn(item);
+                    }
+
+                    scope.Complete();
+                }
+
+                return Json("Bhandar has been Issued successfully.", JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -60,7 +75,6 @@ namespace ShreeDwarkadhishMandir.Controllers
 
             return View();
         }
-
         [HttpPost]
         public ActionResult Scrapped(SamagriTransactionRequest SamagriTransactionRequest)
         {
@@ -100,7 +114,6 @@ namespace ShreeDwarkadhishMandir.Controllers
 
             return View();
         }
-
         [HttpPost]
         public ActionResult SoldOut(SamagriTransactionRequest SamagriTransactionRequest)
         {
@@ -141,7 +154,6 @@ namespace ShreeDwarkadhishMandir.Controllers
 
             return View();
         }
-
         [HttpPost]
         public ActionResult Purchase(SamagriTransactionRequest SamagriTransactionRequest)
         {

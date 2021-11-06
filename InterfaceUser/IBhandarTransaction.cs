@@ -23,6 +23,7 @@ namespace InterfaceMiddleLayer
         int JewelleryUnitId { get; set; }
         decimal JewelleryQuantity { get; set; }
         decimal StockTransactionQuantity { get; set; }
+        decimal TotalStockTransactionQuantity { get; set; }
         decimal CurrentBalance { get; set; }
         int AccountHeadId { get; set; }
         int VaishnavId { get; set; }

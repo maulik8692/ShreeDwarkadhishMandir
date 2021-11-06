@@ -31,9 +31,7 @@ namespace InterfaceMiddleLayer
         int Records { get; set; }
         int PageNumber { get; set; }
         int PageSize { get; set; }
-        bool IsJewellery { get; set; }
-        bool IsSamagri { get; set; }
-        bool IsBhandar { get; set; }
+        int GroupType { get; set; }
         bool IsSamagriCreated { get; set; }
         int StoreId { get; set; }
         void Validate();

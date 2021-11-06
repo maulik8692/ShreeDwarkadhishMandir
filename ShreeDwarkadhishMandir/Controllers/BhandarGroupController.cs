@@ -120,9 +120,7 @@ namespace ShreeDwarkadhishMandir.Controllers
                 BhandarRequest.GroupCode = bhandarGroup.GroupCode;
                 BhandarRequest.Description = bhandarGroup.Description;
                 BhandarRequest.IsActive = bhandarGroup.IsActive;
-                BhandarRequest.IsJewellery = bhandarGroup.IsJewellery;
-                BhandarRequest.IsSamagri = bhandarGroup.IsSamagri;
-                BhandarRequest.IsBhandar = bhandarGroup.IsBhandar;
+                BhandarRequest.GroupType = bhandarGroup.GroupType;
                 BhandarRequest.Validate();
                 BhandarRequest.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
 
