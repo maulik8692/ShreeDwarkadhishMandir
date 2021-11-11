@@ -30,6 +30,8 @@ namespace MiddleLayer
         public DateTime DeletedOn { get; set; }
         public int DeletedBy { get; set; }
         public int IsDeleted { get; set; }
+       public int StoreId { get; set; }
+        public string StoreName { get; set; }
         public List<ISamagriDetail> SamagriDetails { get; set; }
 
         public int PageNumber { get; set; }

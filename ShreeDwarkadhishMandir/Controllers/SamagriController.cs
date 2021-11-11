@@ -85,6 +85,8 @@ namespace ShreeDwarkadhishMandir.Controllers
 
                 ISamagriDetail samagriDetail = Factory<ISamagriDetail>.Create("SamagriDetail");
                 samagriDetail.SamagriId = samagriRequest.Id;
+                samagriDetail.Quantity = samagriRequest.OutputQuantity;
+                samagriDetail.UnitId = samagriRequest.UnitId;
 
                 IRepository<ISamagriDetail> detail = FactoryDalLayer<IRepository<ISamagriDetail>>.Create("SamagriDetail");
                 List<ISamagriDetail> SamagriDetails = detail.Search(samagriDetail);
@@ -164,12 +166,32 @@ namespace ShreeDwarkadhishMandir.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetSamagriDropdown()
+        {
+            try
+            {
+                IRepository<ISamagri> dal = FactoryDalLayer<IRepository<ISamagri>>.Create("Samagri");
+
+                List<ISamagri> samagris = dal.DropdownWithSearch(0);
+
+                return Json(samagris, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Log.Write(ex);
+                return new HttpStatusCodeResult(410, ex.Message);
+            }
+        }
+
+        [HttpPost]
         public ActionResult GetSamagriDetailList(SamagriDetailRequest SamagriDetailRequest)
         {
             try
             {
                 ISamagriDetail samagri = Factory<ISamagriDetail>.Create("SamagriDetail");
                 samagri.SamagriId = SamagriDetailRequest.SamagriId;
+                samagri.Quantity = SamagriDetailRequest.Quantity;
+                samagri.UnitId = SamagriDetailRequest.UnitId;
 
                 IRepository<ISamagriDetail> dal = FactoryDalLayer<IRepository<ISamagriDetail>>.Create("SamagriDetail");
 

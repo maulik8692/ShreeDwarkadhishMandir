@@ -29,6 +29,10 @@ namespace InterfaceMiddleLayer
         DateTime DeletedOn { get; set; }
         int DeletedBy { get; set; }
         int IsDeleted { get; set; }
+        int StoreId { get; set; }
+        string StoreName { get; set; }
+        decimal Balance { get; set; }
+
         void Validate();
     }
 }

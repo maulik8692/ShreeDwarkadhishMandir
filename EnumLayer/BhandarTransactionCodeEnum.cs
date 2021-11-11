@@ -20,7 +20,11 @@ namespace EnumLayer
             NekConsumption = 8,
             ComplementaryConsumption = 9,
             Scrap = 10,
-            SoldOut = 11
+            SoldOut = 11,
+            SamagriIssue = 12,
+            IssueForSamagri = 13,
+            CorrectionOfIncreased = 14,
+            CorrectionOfDecreased = 15
         }
     }
 }

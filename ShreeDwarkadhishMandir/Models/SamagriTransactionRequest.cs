@@ -72,6 +72,9 @@ namespace ShreeDwarkadhishMandir.Models
 
                 bhandarTransactions.ForEach(x => x.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt());
 
+                Guid TransactionId = Guid.NewGuid();
+                bhandarTransactions.ForEach(x => x.TransactionId = TransactionId);
+
                 return bhandarTransactions;
             }
             else
@@ -108,6 +111,9 @@ namespace ShreeDwarkadhishMandir.Models
                 }
 
                 bhandarTransactions.ForEach(x => x.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt());
+                
+                Guid TransactionId = Guid.NewGuid();
+                bhandarTransactions.ForEach(x => x.TransactionId = TransactionId);
 
                 return bhandarTransactions;
             }
@@ -138,6 +144,9 @@ namespace ShreeDwarkadhishMandir.Models
                 }
 
                 bhandarTransactions.ForEach(x => x.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt());
+
+                Guid TransactionId = Guid.NewGuid();
+                bhandarTransactions.ForEach(x => x.TransactionId = TransactionId);
 
                 return bhandarTransactions;
             }
@@ -201,6 +210,53 @@ namespace ShreeDwarkadhishMandir.Models
                 }
 
                 bhandarTransactions.ForEach(x => x.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt());
+
+                Guid TransactionId = Guid.NewGuid();
+                bhandarTransactions.ForEach(x => x.TransactionId = TransactionId);
+
+                return bhandarTransactions;
+            }
+            else
+            {
+                throw new Exception("There must be atlease one item for Donation.");
+            }
+        }
+
+        public List<IBhandarTransaction> IssueForSamagri()
+        {
+            if (this.ItemDetails.IsNotNullList())
+            {
+                List<IBhandarTransaction> bhandarTransactions = new List<IBhandarTransaction>();
+                IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+
+                IBhandarTransaction issueFromTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                issueFromTransaction.BhandarId = this.BhandarId;
+                issueFromTransaction.UnitId = this.UnitId;
+                issueFromTransaction.StoreId = this.StoreId;
+                issueFromTransaction.Description = this.Description;
+                issueFromTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.SamagriIssue;
+                issueFromTransaction.StockTransactionQuantity = this.StockTransactionQuantity;
+                issueFromTransaction.Validate();
+                bhandarTransactions.Add(issueFromTransaction);
+
+                foreach (var item in this.ItemDetails)
+                {
+                    IBhandarTransaction issueToTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                    issueToTransaction.BhandarId = item.BhandarId;
+                    issueToTransaction.UnitId = item.UnitId;
+                    issueToTransaction.StoreId = item.StoreId;
+                    issueToTransaction.CurrentBalance = item.CurrentBalance;
+                    issueToTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.IssueForSamagri;
+                    issueToTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
+                    issueToTransaction.Description = this.Description;
+                    issueToTransaction.Validate();
+                    bhandarTransactions.Add(issueToTransaction);
+                }
+
+                bhandarTransactions.ForEach(x => x.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt());
+
+                Guid TransactionId = Guid.NewGuid();
+                bhandarTransactions.ForEach(x => x.TransactionId = TransactionId);
 
                 return bhandarTransactions;
             }

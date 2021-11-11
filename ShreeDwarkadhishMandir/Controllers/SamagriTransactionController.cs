@@ -66,6 +66,46 @@ namespace ShreeDwarkadhishMandir.Controllers
             }
         }
 
+        public ActionResult IssueForSamagri()
+        {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult IssueForSamagri(SamagriTransactionRequest SamagriTransactionRequest)
+        {
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    List<IBhandarTransaction> bhandarTransactions = SamagriTransactionRequest.IssueForSamagri();
+
+                    List<IBhandarTransaction> BhandarTransactionResponse = new List<IBhandarTransaction>();
+
+                    IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+
+                    foreach (var item in bhandarTransactions)
+                    {
+                        IBhandarTransaction bhandarTransactionResponse = dalBhandarTransaction.SaveWithReturn(item);
+                    }
+
+                    scope.Complete();
+                }
+
+                return Json("Bhandar has been Issued successfully.", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Log.Write(ex);
+                return new HttpStatusCodeResult(410, ex.Message);
+            }
+        }
+
+
         public ActionResult Scrapped()
         {
             if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
@@ -245,6 +285,5 @@ namespace ShreeDwarkadhishMandir.Controllers
                 return new HttpStatusCodeResult(410, ex.Message);
             }
         }
-
     }
 }

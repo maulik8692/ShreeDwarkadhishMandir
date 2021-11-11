@@ -22,18 +22,15 @@ BEGIN
  ,U.Id as UnitId  
  ,U.UnitAbbreviation          
  ,U.UnitDescription      
- ,BG.IsJewellery      
- ,BG.IsSamagri      
- ,BG.IsBhandar      
+ ,BG.GroupType      
  ,BG.IsActive    
  ,cast(case when isnull(S.Id,0)=0 then 0 else 1 end as bit) IsSamagriCreated 
  from Bhandar as B           
  Inner Join UnitOfMeasurement as U on U.Id=B.UnitId          
  Inner Join BhandarCategory as BC on BC.Id=B.BhandarCategoryId      
  Inner Join BhandarGroup as BG on BG.Id=BC.GroupId    
- left join Samagri as S on S.BhandarId = B.Id and BG.IsSamagri=1 
+ left join Samagri as S on S.BhandarId = B.Id and BG.GroupType=2 
  left join BhandarStoreBalance as BSB on BSB.BhandarId=B.Id
-	
  where B.IsActive=1 
  and ((BSB.StoreId=@StoreId and @StoreId is not null and @StoreId > 0) or @StoreId is null or @StoreId = 0)
  order by B.Name          

@@ -28,6 +28,10 @@ namespace InterfaceMiddleLayer
         
         string UnitDescription { get; set; }
         string UnitAbbreviation { get; set; }
+
+        int StoreId { get; set; }
+        string StoreName { get; set; }
+
         List<ISamagriDetail> SamagriDetails { get; set; }
 
         int PageNumber { get; set; }

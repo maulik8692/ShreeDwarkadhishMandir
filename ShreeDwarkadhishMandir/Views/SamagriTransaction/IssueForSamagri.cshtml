@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Issue For Samagri";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
+}
+
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8 PaddingTop">
+        <div class="card">
+            <div class="card-header">
+                <strong>Issue for Samagri</strong>
+            </div>
+
+            <div class="card-body card-block">
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="" class="form-control-label"></label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <small class="help-block form-text text-danger">Please ensure detail given is right as you cannot edit it after save.</small>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label for="Samagri" class="form-control-label">Samagri Name</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="Samagri" id="Samagri" class="form-control select2 select2-hidden-accessible searchableDropdown "></select>
+                        </div>
+                    </div>
+
+                    <div class="row form-group UOM">
+                        <div class="col col-md-3">
+                            <label for="OutputQuantity" class="control-label mb-1">Quantity</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <input id="OutputQuantity" name="OutputQuantity" type="text" placeholder="0.00000" class="form-control Units">
+                        </div>
+                    </div>
+
+                    <div class="row form-group UOM">
+                        <div class="col col-md-3">
+                            <label for="UnitOfMeasurement" class="form-control-label">Unit Of Measurement</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <select name="UnitOfMeasurement" id="UnitOfMeasurement" class="form-control select2 select2-hidden-accessible searchableDropdown"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row Personal">
+                        <div class="col col-md-3">
+                            <label for="Description" class="control-label mb-1">Description</label>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <textarea id="Description" name="Description" type="text" placeholder="Enter Description" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <div id="divBhandar" class="table-responsive table--no-card">
+                <table id="bhandar" class="table table-borderless table-striped table-mandir"></table>
+                <div id="pager"></div>
+            </div>
+        </div>
+        <div class="card m-t-30">
+            
+            <div class="card-footer">
+                <button id="Save" style="width:20%" type="submit" class="btn blueBackground btn-sm">
+                    <i class="fa  fa-save"> </i> Save
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"> </i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/Samagri/Samagri" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+        <script src="~/js/IssueForSamagri.js?@casheCleaner"></script>

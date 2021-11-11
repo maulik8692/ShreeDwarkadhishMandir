@@ -29,7 +29,29 @@ namespace AdoDotNetDal
 
         protected override List<ISamagri> DropdownWithSearchCommand<T>(T anyObject)
         {
-            throw new NotImplementedException();
+            ISamagri samagriRequest = anyObject as ISamagri;
+
+            cmd.CommandText = "GetSamagriDropdown";
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataReader dr = null;
+            dr = cmd.ExecuteReader();
+
+            List<ISamagri> samagris = new List<ISamagri>();
+            while (dr.Read())
+            {
+                ISamagri samagri = Factory<ISamagri>.Create("Samagri");
+                samagri.Id = dr["Id"].ToInt();
+                samagri.Name = dr["Name"].ToString();
+                samagri.Recipe = dr["Recipe"].ToString();
+                samagri.Description = dr["Description"].ToString();
+                samagri.IsActive = dr["IsActive"].ToBool();
+                samagri.BhandarId = dr["BhandarId"].ToInt();
+                samagri.Quantity = dr["Quantity"].ToDecimal();
+                samagri.UnitId = dr["UnitId"].ToInt();
+                samagris.Add(samagri);
+            }
+
+            return samagris;
         }
 
         protected override ISamagri GetDetailCommand<T>(T anyObject)
@@ -53,6 +75,9 @@ namespace AdoDotNetDal
                 samagri.BhandarId = dr["BhandarId"].ToInt();
                 samagri.Quantity = dr["Quantity"].ToDecimal();
                 samagri.UnitId = dr["UnitId"].ToInt();
+                samagri.StoreId = dr["StoreId"].ToInt();
+                samagri.StoreName = dr["StoreName"].ToString();
+                samagri.Balance = dr["Balance"].ToDecimal();
                 samagris.Add(samagri);
             }
 

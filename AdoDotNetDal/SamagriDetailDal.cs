@@ -74,6 +74,8 @@ namespace AdoDotNetDal
             cmd.CommandText = "GetSamagriDetailByMasterId";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@SamagriId", samagriRequest.SamagriId);
+            cmd.Parameters.AddWithValue("@Quantity", samagriRequest.Quantity);
+            cmd.Parameters.AddWithValue("@UnitId", samagriRequest.UnitId);
             SqlDataReader dr = null;
             dr = cmd.ExecuteReader();
 
@@ -88,7 +90,12 @@ namespace AdoDotNetDal
                 samagri.UnitDescription = dr["UnitDescription"].ToString();
                 samagri.BhandarId = dr["BhandarId"].ToInt();
                 samagri.BhandarName = dr["BhandarName"].ToString();
-                //samagri.IsActive = dr["IsActive"].ToBool();
+
+                samagri.StoreId = dr["StoreId"].ToInt();
+                samagri.StoreName = dr["StoreName"].ToString();
+                samagri.Balance = dr["Balance"].ToDecimal();
+
+
                 samagris.Add(samagri);
             }
 

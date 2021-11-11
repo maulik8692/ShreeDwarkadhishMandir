@@ -32,6 +32,9 @@ namespace MiddleLayer
         public int DeletedBy { get; set; }
         public int IsDeleted { get; set; }
         public bool IsOut { get; set; }
+        public int StoreId { get; set; }
+        public string StoreName { get; set; }
+        public decimal Balance { get; set; }
 
         public SamagriDetail(IValidation<ISamagriDetail> _validation)
         {

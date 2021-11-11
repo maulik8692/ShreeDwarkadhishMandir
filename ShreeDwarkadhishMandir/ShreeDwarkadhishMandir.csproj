@@ -662,6 +662,7 @@
     <Content Include="js\Home.js" />
     <Content Include="js\IncomeExpenditure.js" />
     <Content Include="js\Issue.js" />
+    <Content Include="js\IssueForSamagri.js" />
     <Content Include="js\Login.js" />
     <Content Include="js\Mandir.js" />
     <Content Include="js\MandirList.js" />
@@ -1279,6 +1280,7 @@
     <Content Include="Views\SamagriTransaction\Donation.cshtml" />
     <Content Include="Views\SamagriTransaction\Complementary.cshtml" />
     <Content Include="Views\SamagriTransaction\SoldOut.cshtml" />
+    <Content Include="Views\SamagriTransaction\IssueForSamagri.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

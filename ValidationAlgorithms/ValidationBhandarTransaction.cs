@@ -59,7 +59,13 @@ namespace ValidationAlgorithms
                 throw new Exception("Purchase account does not having enough Balance.");
             }
 
-            if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Scrap && anyType.CurrentBalance < anyType.StockTransactionQuantity)
+            if (
+                (
+                    anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Scrap 
+                    ||
+                    anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.IssueForSamagri
+                ) 
+                && anyType.CurrentBalance < anyType.StockTransactionQuantity)
             {
                 throw new Exception("Transaction Quantity must be less than or equal to current balance.");
             }

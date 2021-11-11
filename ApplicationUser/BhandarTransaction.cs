@@ -32,6 +32,7 @@ namespace MiddleLayer
         public int JewelleryUnitId { get; set; }
         public decimal JewelleryQuantity { get; set; }
         public int VaishnavId { get; set; }
+        public Guid TransactionId { get; set; }
         public int IncomeAccountId { get; set; }
         public int ExpensesAccountId { get; set; }
         public string ChequeBank { get; set; }

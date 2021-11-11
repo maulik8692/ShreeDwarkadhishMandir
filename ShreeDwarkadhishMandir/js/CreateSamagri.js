@@ -203,13 +203,14 @@ function BindSamagriDropdown() {
 
     var filterResult = []
     if (typeof BhandarForDropdown !== "undefined") {
+        debugger;
         if (typeof _SamagriDetail.Id === "undefined" || _SamagriDetail.Id === null || _SamagriDetail.Id === 0) {
             filterResult = BhandarForDropdown.filter(function (i, n) {
-                return i.IsActive === true && i.IsSamagri === true && i.IsSamagriCreated === false;
+                return i.IsActive === true && i.GroupType === 2 && i.IsSamagriCreated === false;
             })
         } else {
             filterResult = BhandarForDropdown.filter(function (i, n) {
-                return i.IsSamagri === true;
+                return i.GroupType === 2;
             })
         }
     }
