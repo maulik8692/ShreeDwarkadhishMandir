@@ -1,4 +1,9 @@
 ﻿var ManorathTypies = [];
+var BhandarList = [];
+var selectedbhandar = {};
+var transactionDetails = [];
+var IsGridIntialized = false;
+
 $(document).ready(function () {
     $("#ManorathDate").datepicker({
         dateFormat: 'dd-M-yy',
@@ -73,6 +78,40 @@ $(document).ready(function () {
         $('#ChequeNumber').val('');
         $('#ChequeDate').val('');
 
+    });
+
+    $("#Store").change(function () {
+        GetBhandar();
+    });
+
+    $("#Bhandar").change(function () {
+        var BhandarId = parseInt(this.value);
+        selectedbhandar = {};
+        selectedbhandar = BhandarList[BhandarList.findIndex(item => item.Id === BhandarId)];
+        if (typeof selectedbhandar !== "undefined" && selectedbhandar !== null && selectedbhandar.bhandarId !== 0) {
+            $("#CurrentBalance").val(selectedbhandar.Balance.toFixed(5) + ' ' + selectedbhandar.UnitAbbreviation);
+            selectedbhandar.UnitId = selectedbhandar.UnitId;
+            selectedbhandar.CurrentBalance = selectedbhandar.Balance;
+        }
+        showProgress();
+        GetUnitMeasurement();
+    });
+
+    $("#NewDetail").click(function (e) {
+        ResetDetail();
+    });
+
+    $("#SaveItem").click(function (e) {
+        SaveItem(true);
+    });
+
+    $("#SaveNNewItem").click(function (e) {
+        SaveItem(false);
+    });
+
+    $("#ResetItem").click(function (e) {
+        $('#SamagriTransaction').hide();
+        ResetDetail();
     });
 
     GetVaishnav();
@@ -268,6 +307,14 @@ function ResetForm() {
     $('#ChequeNumber').val('');
     $('#ChequeDate').val('');
     $('.Cheque').hide();
+
+    BhandarList = [];
+    selectedbhandar = {};
+    transactionDetails = [];
+    $('.Bhandar').hide();
+    $('.UOM').hide();
+    $('#StockTransactionQuantity').val('');
+    $('#SamagriTransaction').hide();
 }
 
 function SaveForm(allowprint) {
@@ -292,7 +339,8 @@ function SaveForm(allowprint) {
     reportParamObj.ManorathTithiMaas = $("#ManorathMonth").val();
     reportParamObj.ManorathTithiPaksh = $("#ManorathPaksh").val();
     reportParamObj.Description = $("#Description").val();
-
+    reportParamObj.ItemDetails = transactionDetails;
+    
     $.ajax({
         url: "/Receipt/SaveManorathReceipt",
         data: JSON.stringify(reportParamObj),
@@ -301,6 +349,7 @@ function SaveForm(allowprint) {
         contentType: "application/json; charset=utf-8",
         success: function (jsondata) {
             if (jsondata !== null) {
+                debugger;
                 if (allowprint) {
 
                     var url = '/Receipt/ReceiptDetail?Id=' + jsondata.Id;
@@ -314,13 +363,15 @@ function SaveForm(allowprint) {
                     }
 
                 } else {
-                    alert('Receipt No ' + parseInt(reportParamObj.Description)+' generated successfully.');
-                    ResetForm();
-                    //$('#Nek').val('');
-                    $("#Description").val(parseInt(reportParamObj.Description)+ 1);
-                    $('#ManorathiName').val('Vaishnav');
-                    $("#ManorathDate").val(reportParamObj.ManorathDate);
+                    alert('Receipt generated successfully.');
+                    //alert('Receipt No ' + parseInt(reportParamObj.Description) + ' generated successfully.');
+                   
+                    ////$('#Nek').val('');
+                    //$("#Description").val(parseInt(reportParamObj.Description) + 1);
+                    //$('#ManorathiName').val('Vaishnav');
+                    //$("#ManorathDate").val(reportParamObj.ManorathDate);
                 }
+                ResetForm();
                 //window.location.href = '/Receipt/Receipt';
             }
             hideProgress();
@@ -388,4 +439,249 @@ function CheckReceiptConfiguration() {
             hideProgress();
         }
     });
+}
+
+function ResetDetail() {
+    $('.Bhandar').hide();
+    $('.UOM').hide();
+    $('#StockTransactionQuantity').val('');
+    GetStoreList();
+}
+
+function GetStoreList() {
+    $.ajax({
+        url: "/Store/StoreDropdown",
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        success: function (jsondata) {
+            $("#Store").empty();
+            if (typeof jsondata !== "undefined") {
+                var prasadGhar = jsondata.filter(function (i, n) { return i.StoreType === 3 && i.IsActive === true });
+                if (typeof prasadGhar !== "undefined") {
+                    $("<option />", {
+                        val: 0,
+                        text: 'Please Select Store'
+                    }).appendTo("#Store");
+
+                    $(prasadGhar).each(function () {
+                        $("<option />", {
+                            val: this.Id,
+                            text: this.Name
+                        }).appendTo("#Store");
+                    });
+
+                    if (prasadGhar.length === 1) {
+                        $("#Store").val(prasadGhar[0].Id).trigger('change.select2');
+                        $('.Store').hide();
+                        GetBhandar();
+                    }
+                    else {
+                        $('.Store').show();
+                    }
+                }
+            }
+        },
+        error: function (xhr) {
+            alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+
+            hideProgress();
+        }
+    });
+}
+
+function GetBhandar() {
+    var storeId = $('#Store').val() !== "undefined" ? parseInt($('#Store').val()) : 0
+    if (storeId > 0) {
+        $.ajax({
+            url: "/Bhandar/GetBhandarForDropdown",
+            data: JSON.stringify({ StoreId: storeId }),
+            dataType: "json",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: function (jsondata) {
+                $("#Bhandar").empty();
+
+                $("<option />", {
+                    val: 0,
+                    text: 'Please Select Bhandar'
+                }).appendTo("#Bhandar");
+
+                var filterResult = []
+                filterResult = jsondata.filter(function (i, n) {
+                    return i.IsActive === true;
+                })
+
+                BhandarList = filterResult;
+                $(filterResult).each(function () {
+
+                    $("<option />", {
+                        val: this.Id,
+                        text: this.Name
+                    }).appendTo("#Bhandar");
+                });
+
+                $(".Bhandar").show();
+            },
+            error: function (xhr) {
+                alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+
+                hideProgress();
+            }
+        });
+    }
+}
+
+function GetUnitMeasurement() {
+
+    var bhandarId = $('#Bhandar').val() !== "undefined" ? parseInt($('#Bhandar').val()) : 0
+    if (bhandarId > 0) {
+        $.ajax({
+            url: "/UnitMeasurement/UnitOfMeasurementDropdown",
+            data: JSON.stringify({ bhandarId: bhandarId }),
+            dataType: "json",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: function (jsondata) {
+                $("#UnitOfMeasurement").empty();
+
+                $("<option />", {
+                    val: 0,
+                    text: 'Please Select UnitOfMeasurement'
+                }).appendTo("#UnitOfMeasurement");
+
+                if (typeof jsondata !== "undefined") {
+                    $(jsondata).each(function () {
+                        $("<option />", {
+                            val: this.Id,
+                            text: this.UnitDescription + ' (' + this.UnitAbbreviation + ')'
+                        }).appendTo("#UnitOfMeasurement");
+                    });
+                }
+
+                $("#UnitOfMeasurement").val(selectedbhandar.UnitId).trigger('change.select2');
+
+                $(".UOM").show();
+                hideProgress();
+            },
+            error: function (xhr) {
+                alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+
+                hideProgress();
+            }
+        });
+    }
+}
+
+function SaveItem(isfinal) {
+
+    var StoreId = $('#Store').val() !== "undefined" ? parseInt($('#Store').val()) : 0
+    var BhandarId = $('#Bhandar').val() !== "undefined" ? parseInt($('#Bhandar').val()) : 0;
+    var Quantity = $('#StockTransactionQuantity').val() !== "undefined" ? parseFloat($('#StockTransactionQuantity').val().replace(/,/g, '')) : 0;
+    var unitId = $('#UnitOfMeasurement').val() !== "undefined" ? parseInt($('#UnitOfMeasurement').val()) : 0;
+    var added = false;
+    $.map(transactionDetails, function (e, i) {
+        if (e.BhandarId == BhandarId) {
+            added = true;
+        }
+    });
+    if (!added) {
+        var purchaseDetail = {}
+        purchaseDetail.StoreId = StoreId;
+        purchaseDetail.StoreName = StoreId > 0 ? $('#Store').find("option:selected").text() : '';
+        purchaseDetail.BhandarId = BhandarId;
+        purchaseDetail.BhandarName = BhandarId > 0 ? $('#Bhandar').find("option:selected").text() : '';
+        purchaseDetail.UnitId = unitId;
+        purchaseDetail.CurrentBalance = selectedbhandar.Balance;
+        purchaseDetail.StockTransactionQuantity = Quantity;
+        purchaseDetail.Unit = Quantity.toFixed(5) + ' ' + (unitId > 0 ? $('#UnitOfMeasurement').find("option:selected").text().split("(")[1].split(")")[0] : '');
+        purchaseDetail.Id = (typeof transactionDetails == "undefined" || transactionDetails === null || transactionDetails.length === 0 ?
+            0 : transactionDetails.reduce((max, p) => p.Id > max ? p.Id : max, transactionDetails[0].Id)) + 1;
+
+        transactionDetails.push(purchaseDetail);
+
+        if (isfinal) {
+            $('#staticModal').modal('toggle');
+        }
+
+        $('#SamagriTransaction').show();
+        if (IsGridIntialized === false) {
+            BindDetailList();
+        } else {
+            ReloadGrid();
+        }
+
+        ResetDetail();
+    } else {
+        alert($('#Bhandar').text() + ' already added.');
+    }
+}
+
+function BindDetailList() {
+    $("#TransactionDetail").jqGrid("GridUnload");
+    var grid = $("#TransactionDetail")
+    grid.jqGrid
+        ({
+            datatype: "local",
+            data: transactionDetails,
+            hoverrows: false,
+            colNames: [
+                'Id', 'Store', 'Bhandar', 'Unit', 'Action'],
+            colModel: [
+                { name: 'Id', index: 'Id', align: 'left', key: true, hidden: true, sortable: false },
+                { name: 'StoreName', index: 'StoreName', align: 'left', sortable: false },
+                { name: 'BhandarName', index: 'BhandarName', align: 'left', sortable: false },
+                { name: 'Unit', index: 'Unit', align: 'right', sortable: false },
+                { name: 'Id', index: 'Id', align: 'center', width: 70, sortable: false, formatter: DeleteDetailFormater },
+            ],
+            pgbuttons: false,
+            viewrecords: false,
+            pgtext: "",
+            pginput: false,
+            rowNum: 50,
+            rowList: [50, 100, 150, 200],
+            height: '100%',
+            viewrecords: true,
+            emptyrecords: 'No detail item found.',
+            jsonReader:
+            {
+                root: "rows",
+                page: "page",
+                total: "total",
+                records: "records",
+                repeatitems: false,
+                Id: "0"
+            },
+            autowidth: true,
+            multiselect: false,
+            gridComplete: function () {
+                SetStyle();
+            }
+        })
+    IsGridIntialized = true;
+}
+
+function ReloadGrid() {
+    var grid = $("#TransactionDetail")
+    grid.jqGrid("clearGridData");
+    grid.jqGrid('setGridParam', { data: transactionDetails }).trigger("reloadGrid");
+}
+
+function SetStyle() {
+    $('.HeaderButton').hide();
+
+    $('#TransactionDetail').setGridWidth($('#divTransactionDetail').width());
+}
+
+function DeleteDetailFormater(cellvalue, options, rowObject) {
+    return "<div>" +
+        "<a onclick='DeleteDetail(" + rowObject.Id + ")'><i class='fa fa-trash'></i></a>"
+        + "</div>";
+}
+
+function DeleteDetail(Id) {
+    if (confirm('Are you sure want to remove this item?')) {
+        transactionDetails.splice(transactionDetails.findIndex(item => item.Id === Id), 1);
+        ReloadGrid();
+    }
 }

@@ -12,6 +12,12 @@ namespace InterfaceMiddleLayer
         string ReceiptNo { get; set; }
         int ManorathId { get; set; }
         string ManorathName { get; set; }
+        /*
+         * 1    Regular Bhet
+         * 2    Darshan
+         * 3    Manorath
+         * 4    Kayami Manorath
+         */
         int ManorathType { get; set; }
         decimal Nek { get; set; }
         int? VaishnavId { get; set; }
@@ -53,7 +59,7 @@ namespace InterfaceMiddleLayer
         string GurudevName { get; set; }
         string MandirHeader { get; set; }
         string Description { get; set; }
-
+        bool PendingSamagri { get; set; }
         void Validate();
     }
 }

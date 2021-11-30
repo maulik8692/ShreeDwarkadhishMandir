@@ -40,6 +40,7 @@ namespace MiddleLayer
         public string ChequeNumber { get; set; }
         public DateTime? ChequeDate { get; set; }
         public int ChequeStatus { get; set; }
+        public int ReceiptId { get; set; }
 
         public BhandarTransaction(IValidation<IBhandarTransaction> _validation)
         {

@@ -162,25 +162,26 @@ namespace AdoDotNetDal
             List<IReceipt> IReceipts = new List<IReceipt>();
             while (dr.Read())
             {
-                IReceipt IReceipt = Factory<IReceipt>.Create("Receipt");
-                IReceipt.Id = dr["Id"].ToInt();
-                IReceipt.ReceiptNo = dr["ReceiptNo"].ToString();
-                IReceipt.Nek = dr["Nek"].ToDecimal();
-                IReceipt.ManorathType = dr["ManorathType"].ToInt();
-                IReceipt.ManorathiName = dr["ManorathiName"].ToString();
-                IReceipt.ManorathName = dr["ManorathName"].ToString();
+                IReceipt result = Factory<IReceipt>.Create("Receipt");
+                result.Id = dr["Id"].ToInt();
+                result.ReceiptNo = dr["ReceiptNo"].ToString();
+                result.Nek = dr["Nek"].ToDecimal();
+                result.ManorathType = dr["ManorathType"].ToInt();
+                result.ManorathiName = dr["ManorathiName"].ToString();
+                result.ManorathName = dr["ManorathName"].ToString();
+                result.PendingSamagri = dr["PendingSamagri"].ToBool();
 
                 if (dr["ManorathDate"].IsNotNull() && dr["ManorathDate"].IsDate())
                 {
-                    IReceipt.ManorathDate = dr["ManorathDate"].ToString().ToDateTime("MM/dd/yyyy hh:mm:ss tt");
+                    result.ManorathDate = dr["ManorathDate"].ToString().ToDateTime("MM/dd/yyyy hh:mm:ss tt");
                 }
-                IReceipt.CreatedBy = dr["CreatedBy"].ToInt();
-                IReceipt.CreatedDisplayName = dr["DisplayName"].ToString();
+                result.CreatedBy = dr["CreatedBy"].ToInt();
+                result.CreatedDisplayName = dr["DisplayName"].ToString();
                
-                IReceipt.Total = dr["total"].ToInt();
-                IReceipt.Page = dr["page"].ToInt();
-                IReceipt.Records = dr["records"].ToInt();
-                IReceipts.Add(IReceipt);
+                result.Total = dr["total"].ToInt();
+                result.Page = dr["page"].ToInt();
+                result.Records = dr["records"].ToInt();
+                IReceipts.Add(result);
             }
 
             return IReceipts;

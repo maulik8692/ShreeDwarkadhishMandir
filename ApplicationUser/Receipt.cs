@@ -54,7 +54,7 @@ namespace MiddleLayer
         public string ManorathTithiPaksh { get; set; }
         public string ManorathTithi { get; set; }
         public string Description { get; set; }
-
+        public bool PendingSamagri { get; set; }
         public Receipt()
         {
             

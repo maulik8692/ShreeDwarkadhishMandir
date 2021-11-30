@@ -7,6 +7,7 @@ using ShreeDwarkadhishMandir.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -50,31 +51,54 @@ namespace ShreeDwarkadhishMandir.Controllers
         {
             try
             {
-                IReceipt receipt = Factory<IReceipt>.Create("Receipt");
-                receipt.Nek = receiptRequest.Nek;
-                receipt.ManorathId = receiptRequest.ManorathId;
-                receipt.ManorathType = receiptRequest.ManorathType;
-                receipt.TrasactionType = receiptRequest.TrasactionType;
-                receipt.VaishnavId = receiptRequest.VaishnavId;
-                receipt.ManorathiName = receiptRequest.ManorathiName;
-                receipt.Email = receiptRequest.Email;
-                receipt.MobileNo = receiptRequest.MobileNo;
-                receipt.ManorathDate = receiptRequest.ManorathDate;
-                receipt.ChequeBank = receiptRequest.ChequeBank;
-                receipt.ChequeBranch = receiptRequest.ChequeBranch;
-                receipt.ChequeNumber = receiptRequest.ChequeNumber;
-                receipt.ChequeDate = receiptRequest.ChequeDate;
-                receipt.ChequeStatus = receiptRequest.ChequeStatus;
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    IReceipt receipt = Factory<IReceipt>.Create("Receipt");
+                    receipt.Nek = receiptRequest.Nek;
+                    receipt.ManorathId = receiptRequest.ManorathId;
+                    receipt.ManorathType = receiptRequest.ManorathType;
+                    receipt.TrasactionType = receiptRequest.TrasactionType;
+                    receipt.VaishnavId = receiptRequest.VaishnavId;
+                    receipt.ManorathiName = receiptRequest.ManorathiName;
+                    receipt.Email = receiptRequest.Email;
+                    receipt.MobileNo = receiptRequest.MobileNo;
+                    receipt.ManorathDate = receiptRequest.ManorathDate;
+                    receipt.ChequeBank = receiptRequest.ChequeBank;
+                    receipt.ChequeBranch = receiptRequest.ChequeBranch;
+                    receipt.ChequeNumber = receiptRequest.ChequeNumber;
+                    receipt.ChequeDate = receiptRequest.ChequeDate;
+                    receipt.ChequeStatus = receiptRequest.ChequeStatus;
 
-                receipt.ManorathTithi = receiptRequest.ManorathTithi;
-                receipt.ManorathTithiMaas = receiptRequest.ManorathTithiMaas;
-                receipt.ManorathTithiPaksh = receiptRequest.ManorathTithiPaksh;
-                receipt.Description = receiptRequest.Description;
-                receipt.Validate();
-                receipt.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
-                IRepository<IReceipt> dal = FactoryDalLayer<IRepository<IReceipt>>.Create("Receipt");
-                IReceipt IReceiptResponse = dal.SaveWithReturn(receipt);
-                return Json(IReceiptResponse, JsonRequestBehavior.AllowGet);
+                    receipt.ManorathTithi = receiptRequest.ManorathTithi;
+                    receipt.ManorathTithiMaas = receiptRequest.ManorathTithiMaas;
+                    receipt.ManorathTithiPaksh = receiptRequest.ManorathTithiPaksh;
+                    receipt.Description = receiptRequest.Description.EmptyStringIfNull();
+                    receipt.Validate();
+                    receipt.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
+                    IRepository<IReceipt> dal = FactoryDalLayer<IRepository<IReceipt>>.Create("Receipt");
+                    IReceipt IReceiptResponse = dal.SaveWithReturn(receipt);
+
+                    if (receiptRequest.ItemDetails.IsNotNullList())
+                    {
+                        SamagriTransactionRequest SamagriTransactionRequest = new SamagriTransactionRequest();
+                        SamagriTransactionRequest.ItemDetails = receiptRequest.ItemDetails;
+                        SamagriTransactionRequest.ReceiptId = IReceiptResponse.Id;
+                        SamagriTransactionRequest.ItemDetails.ForEach(x => x.ReceiptId = IReceiptResponse.Id);
+                        List<IBhandarTransaction> bhandarTransactions = SamagriTransactionRequest.ReciptConsumption();
+
+                        List<IBhandarTransaction> BhandarTransactionResponse = new List<IBhandarTransaction>();
+
+                        IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+
+                        foreach (var item in bhandarTransactions)
+                        {
+                            IBhandarTransaction bhandarTransactionResponse = dalBhandarTransaction.SaveWithReturn(item);
+                        }
+                    }
+
+                    scope.Complete();
+                    return Json(IReceiptResponse, JsonRequestBehavior.AllowGet);
+                }
             }
             catch (Exception ex)
             {
@@ -153,6 +177,34 @@ namespace ShreeDwarkadhishMandir.Controllers
             }
         }
 
-        
+        [HttpPost]
+        public ActionResult ReceiptSamagriTransaction(SamagriTransactionRequest SamagriTransactionRequest)
+        {
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    List<IBhandarTransaction> bhandarTransactions = SamagriTransactionRequest.ReciptConsumption();
+
+                    List<IBhandarTransaction> BhandarTransactionResponse = new List<IBhandarTransaction>();
+
+                    IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+
+                    foreach (var item in bhandarTransactions)
+                    {
+                        IBhandarTransaction bhandarTransactionResponse = dalBhandarTransaction.SaveWithReturn(item);
+                    }
+
+                    scope.Complete();
+                }
+
+                return Json("Samagri for receipt has been saved successfully.", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Log.Write(ex);
+                return new HttpStatusCodeResult(410, ex.Message);
+            }
+        }
     }
 }

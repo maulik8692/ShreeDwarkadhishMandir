@@ -43,7 +43,7 @@ namespace ShreeDwarkadhishMandir.Models
         public DateTime? ManorathToDate { get; set; }
         public int AccountId { get; set; }
         public bool OnlyManorath { get; set; }
-
+        public List<SamagriTransactionRequest> ItemDetails { get; set; }
         public string ManorathTithiMaas { get; set; }
         public string ManorathTithiPaksh { get; set; }
         public string ManorathTithi { get; set; }

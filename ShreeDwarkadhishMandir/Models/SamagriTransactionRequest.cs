@@ -39,6 +39,7 @@ namespace ShreeDwarkadhishMandir.Models
         public int ChequeStatus { get; set; }
         public List<SamagriTransactionRequest> ItemDetails { get; set; }
         public int StoreToId { get; set; }
+        public int ReceiptId { get; set; }
 
         public List<IBhandarTransaction> Purchase()
         {
@@ -247,6 +248,73 @@ namespace ShreeDwarkadhishMandir.Models
                     issueToTransaction.StoreId = item.StoreId;
                     issueToTransaction.CurrentBalance = item.CurrentBalance;
                     issueToTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.IssueForSamagri;
+                    issueToTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
+                    issueToTransaction.Description = this.Description;
+                    issueToTransaction.Validate();
+                    bhandarTransactions.Add(issueToTransaction);
+                }
+
+                bhandarTransactions.ForEach(x => x.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt());
+
+                Guid TransactionId = Guid.NewGuid();
+                bhandarTransactions.ForEach(x => x.TransactionId = TransactionId);
+
+                return bhandarTransactions;
+            }
+            else
+            {
+                throw new Exception("There must be atlease one item for Donation.");
+            }
+        }
+
+        public List<IBhandarTransaction> ReciptConsumption()
+        {
+            if (this.ItemDetails.IsNotNullList())
+            {
+                List<IBhandarTransaction> bhandarTransactions = new List<IBhandarTransaction>();
+
+                foreach (var item in this.ItemDetails)
+                {
+                    IBhandarTransaction issueToTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                    issueToTransaction.BhandarId = item.BhandarId;
+                    issueToTransaction.UnitId = item.UnitId;
+                    issueToTransaction.StoreId = item.StoreId;
+                    issueToTransaction.ReceiptId = this.ReceiptId;
+                    issueToTransaction.Description = "Recipt Consumption " + this.ReceiptId;
+                    issueToTransaction.CurrentBalance = item.CurrentBalance;
+                    issueToTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.ReciptConsumption;
+                    issueToTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
+                    issueToTransaction.Validate();
+                    bhandarTransactions.Add(issueToTransaction);
+                }
+
+                bhandarTransactions.ForEach(x => x.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt());
+
+                Guid TransactionId = Guid.NewGuid();
+                bhandarTransactions.ForEach(x => x.TransactionId = TransactionId);
+
+                return bhandarTransactions;
+            }
+            else
+            {
+                throw new Exception("There must be atlease one item for Donation.");
+            }
+        }
+
+        public List<IBhandarTransaction> ManorathConsumption()
+        {
+            if (this.ItemDetails.IsNotNullList())
+            {
+                List<IBhandarTransaction> bhandarTransactions = new List<IBhandarTransaction>();
+
+                foreach (var item in this.ItemDetails)
+                {
+                    IBhandarTransaction issueToTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                    issueToTransaction.BhandarId = item.BhandarId;
+                    issueToTransaction.UnitId = item.UnitId;
+                    issueToTransaction.StoreId = item.StoreId;
+                    issueToTransaction.CurrentBalance = item.CurrentBalance;
+                    issueToTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.ManorathConsumption;
                     issueToTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
                     issueToTransaction.Description = this.Description;
                     issueToTransaction.Validate();

@@ -64,10 +64,21 @@ namespace ValidationAlgorithms
                     anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Scrap 
                     ||
                     anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.IssueForSamagri
+                    ||
+                    anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.ReciptConsumption
+                    ||
+                    anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.ManorathConsumption
                 ) 
                 && anyType.CurrentBalance < anyType.StockTransactionQuantity)
             {
                 throw new Exception("Transaction Quantity must be less than or equal to current balance.");
+            }
+
+            if ((anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.ReciptConsumption
+                    ||
+                    anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.ManorathConsumption) && !anyType.ReceiptId.IsNotZero())
+            {
+                throw new Exception("Please select receipt for proceed transaction.");
             }
 
             if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Donation && !anyType.VaishnavId.IsNotZero())

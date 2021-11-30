@@ -11,7 +11,19 @@ namespace InterfaceMiddleLayer
         int Id { get; set; }
         string ManorathName { get; set; }
         decimal Nyochhawar { get; set; }
+        /*
+         * 1    Regular Bhet
+         * 2    Darshan
+         * 3    Manorath
+         * 4    Kayami Manorath
+         */
         int ManorathType { get; set; }
+        /*
+         * 1    Regular Bhet
+         * 2    Darshan
+         * 3    Manorath
+         * 4    Kayami Manorath
+         */
         string ManorathTypeName { get; set; }
         int? DarshanId { get; set; }
         string DarshanName { get; set; }

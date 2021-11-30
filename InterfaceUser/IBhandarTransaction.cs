@@ -40,6 +40,7 @@ namespace InterfaceMiddleLayer
         string ChequeNumber { get; set; }
         DateTime? ChequeDate { get; set; }
         int ChequeStatus { get; set; }
+        int ReceiptId { get; set; }
         void Validate();
     }
 }
