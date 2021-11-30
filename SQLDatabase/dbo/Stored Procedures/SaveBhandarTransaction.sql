@@ -23,7 +23,8 @@ CREATE PROCEDURE [dbo].[SaveBhandarTransaction]
  @ChequeNumber varchar(50) = null,          
  @ChequeDate datetime =  null,          
  @ChequeStatus int =  null,
- @TransactionId uniqueidentifier 
+ @TransactionId uniqueidentifier
+ ,@ReceiptId int = null
 AS          
 BEGIN          
  -- SET NOCOUNT ON added to prevent extra result sets from          
@@ -38,7 +39,8 @@ BEGIN
  if (isnull(@AccountHeadId,0) = 0) set @AccountHeadId = null     
  if (isnull(@VaishnavId,0) = 0) set @VaishnavId = null  
  if (isnull(@IncomeAccountId,0) = 0) set @IncomeAccountId = null  
- if (isnull(@ExpensesAccountId,0) = 0) set @ExpensesAccountId = null  
+ if (isnull(@ExpensesAccountId,0) = 0) set @ExpensesAccountId = null
+ if (isnull(@ReceiptId,0) = 0) set @ReceiptId = null
   
  DECLARE @IdentityValue AS TABLE(ID INT);       
  Declare @Id int = 0,@BhandarUnitId int;    
@@ -47,12 +49,13 @@ BEGIN
       
  INSERT INTO dbo.BhandarTransaction        
  (BhandarId,StoreId,BhandarTransactionCodeId,UnitId,SupplierId,SamagriId,AccountHeadId,    
-  StockTransactionQuantity, Price,Description,CreatedBy,OriginalUnitId,VaishnavId,IncomeAccountId,ExpensesAccountId,TransactionId)       
+  StockTransactionQuantity, Price,Description,CreatedBy,OriginalUnitId,VaishnavId,IncomeAccountId,ExpensesAccountId,TransactionId
+  ,ReceiptId)       
  OUTPUT Inserted.ID INTO @IdentityValue           
  VALUES        
   (@BhandarId,@StoreId,@BhandarTransactionCodeId,@BhandarUnitId,@SupplierId,@SamagriId,@AccountHeadId,      
   isnull(dbo.UnitConversionFormula(@BhandarId,@UnitId,@StockTransactionQuantity),0),        
-  @Price,@Description,@CreatedBy,@UnitId,@VaishnavId,@IncomeAccountId,@ExpensesAccountId,@TransactionId)        
+  @Price,@Description,@CreatedBy,@UnitId,@VaishnavId,@IncomeAccountId,@ExpensesAccountId,@TransactionId,@ReceiptId)        
        
  select @Id = ID  FROM @IdentityValue         
       
