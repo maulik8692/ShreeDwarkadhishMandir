@@ -3,7 +3,6 @@
     string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
-@*Layout = "~/Views/Shared/_Layout.cshtml";*@
 <div class="row">
     <div class="col-lg-2"></div>
     <div class="col-lg-8 PaddingTop">
@@ -14,14 +13,88 @@
             <div class="default-tab">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-Configuration-tab" data-toggle="tab" href="#nav-Configuration" role="tab" aria-controls="nav-Configuration"
+                        <a class="nav-item nav-link active" id="nav-Darshan-tab" data-toggle="tab" href="#nav-Darshan" role="tab" aria-controls="nav-Darshan"
+                           aria-selected="true">દર્શન &amp; મનોરથ</a>
+                        <a class="nav-item nav-link" id="nav-BhandarSamagri-tab" data-toggle="tab" href="#nav-BhandarSamagri" role="tab" aria-controls="nav-BhandarSamagri"
+                           aria-selected="false">ભંડાર &amp; સામગ્રી</a>
+                        <a class="nav-item nav-link" id="nav-Account-tab" data-toggle="tab" href="#nav-Account" role="tab" aria-controls="nav-Account"
+                           aria-selected="false">નાણકીય વ્યવહાર</a>
+                        <a class="nav-item nav-link" id="nav-Configuration-tab" data-toggle="tab" href="#nav-Configuration" role="tab" aria-controls="nav-Configuration"
                            aria-selected="true">Configuration</a>
                         <a class="nav-item nav-link" id="nav-EmailConfiguration-tab" data-toggle="tab" href="#nav-EmailConfiguration" role="tab" aria-controls="nav-EmailConfiguration"
                            aria-selected="false">Email Configuration</a>
+
                     </div>
                 </nav>
                 <div class="tab-content pl-3 pt-2" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-Configuration" role="tabpanel" aria-labelledby="nav-Configuration-tab">
+                    <div class="tab-pane fade  show active" id="nav-Darshan" role="tabpanel" aria-labelledby="nav-Darshan-tab">
+                        <div class="account-dropdown__item">
+                            <a href="/Darshan/DarshanTime">
+                                <i class="fa fa-bell"></i>Darshan &amp; Darshan Time
+                            </a>
+                        </div>
+                        <div class="account-dropdown__item">
+                            <a href="/Manorath/Manorath">
+                                <i class="fa fa-gift"></i>Manorath
+                            </a>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-BhandarSamagri" role="tabpanel" aria-labelledby="nav-BhandarSamagri-tab">
+                        <div class="account-dropdown__item">
+                            <a href="/Bhandar/Bhandar">
+                                <i class="fa fa-briefcase"></i>ભંડાર
+                            </a>
+                        </div>
+                        <div class="account-dropdown__item">
+                            <a href="/Samagri/Samagri">
+                                <i class="fa fa-circle"></i>સામગ્રી
+                            </a>
+                        </div>
+                        <div class="account-dropdown__item">
+                            <a href="/Store/Store">
+                                <i class="fa fa-home"></i>સંગ્રહ (Store)
+                            </a>
+                        </div>
+                        <div class="account-dropdown__item">
+                            <a href="/BhandarCategory/BhandarCategory">
+                                <i class="fa fa-briefcase"></i>ભંડાર શ્રેણીઓ (Bhandar Category)
+                            </a>
+                        </div>
+                        <div class="account-dropdown__item">
+                            <a href="/BhandarGroup/BhandarGroup">
+                                <i class="fa fa-briefcase"></i>ભંડાર સમૂહ (Bhandar Group)
+                            </a>
+                        </div>
+
+                        <div class="account-dropdown__item">
+                            <a href="/UnitMeasurement/UnitMeasurement">
+                                <i class="fa fa-sitemap"></i>માપન એકમ (Unit Of Measurement)
+                            </a>
+                        </div>
+                        <div class="account-dropdown__item">
+                            <a href="/UnitConversion/UnitConversion">
+                                <i class="fa fa-sitemap"></i>એકમ રૂપાંતર (Unit Conversion)
+                            </a>
+                        </div>
+                        <div class="account-dropdown__item">
+                            <a href="/Supplier/Supplier">
+                                <i class="fa fa-desktop"></i>વિક્રેતા (Supplier)
+                            </a>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-Account" role="tabpanel" aria-labelledby="nav-Account-tab">
+                        <div class="account-dropdown__item">
+                            <a href="/AccountHead/AccountHead">
+                                <i class="zmdi zmdi-money-box"></i>ખાતા (Account Head)
+                            </a>
+                        </div>
+                        <div class="account-dropdown__item">
+                            <a href="/AccountGroup/AccountGroup">
+                                <i class="zmdi zmdi-money-box"></i>ખાતા સમૂહ (Account Group)
+                            </a>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-Configuration" role="tabpanel" aria-labelledby="nav-Configuration-tab">
                         <div class="card-body card-block">
                             <form action="" method="post" class="form-horizontal">
                                 <div id="ConfigurationKeys">

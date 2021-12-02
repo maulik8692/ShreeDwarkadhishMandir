@@ -16,6 +16,12 @@
     <!-- Load paper.css for happy printing -->
     <link href="~/Content/PrintPaper/Paper.css" rel="stylesheet" />
     <style>
+        .receipt_header_image {
+            background-image: url(../../images/Logo.png);
+            background-size: 110px 110px;
+            background-repeat: no-repeat;
+        }
+
         .m-t-2 {
             margin-top: 2px !important;
         }
@@ -64,12 +70,8 @@
         <table class="border-0 width-100">
             <tbody>
                 <tr>
-                    <td class="width-20">
-                        @*<img id="ImageUrl" class="MandirIMage" src="" />*@
-                        <img id="Logo" class="MandirIMage" src="~/images/Logo.png" />
-                    </td>
                     <td class="text-center">
-                        <div>
+                        <div class="receipt_header_image">
                             <div class="f-12" id="MandirHeader"></div>
                             <div class="m-t-5 f-14"><strong id="GurudevName"></strong></div>
                             <div class="m-t-5 f-14"><strong id="MandirName"></strong></div>

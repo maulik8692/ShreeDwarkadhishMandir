@@ -90,6 +90,11 @@ namespace ShreeDwarkadhishMandir.Controllers
             return Json(accountHeadDropdown, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult ApplicationConfiguration()
+        {
+            return View();
+        }
+
         public ActionResult Configuration()
         {
             return View();

@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 <!DOCTYPE html>
@@ -22,7 +22,7 @@
     <link href="~/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <link href="~/css/theme.css?@casheCleaner" rel="stylesheet" media="all">
     @*<link href="~/Content/css/select2.css" rel="stylesheet" />*@
-    
+
     @*<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />*@
     <link href="~/Content/themes/base/jquery-ui.min.css?@casheCleaner" rel="stylesheet" />
     <link href="~/Content/jquery.jqGrid/ui.jqgrid.css?@casheCleaner" rel="stylesheet" />
@@ -48,70 +48,76 @@
                 <div class="header3-wrap">
                     <div class="header__logo">
                         <a href="/Home/Index">
-                            <img src="~/images/icon.png" style="height:52px;" alt="Shree Dwarkadhis Mandir" />
-                            <span>Shree Vallabh</span>
+                            <img src="~/images/Logo.png" style="height:52px;" alt="Shree Dwarkadhis Mandir" />
+                            <span>@Function.ReadCookie(@CookiesKey.AuthenticatedMandirName)</span>
                         </a>
                     </div>
                     <div class="header__navbar">
                         <ul class="list-unstyled">
+                            @*<li>
+                                    <a href="/Darshan/DarshanTime">
+                                        <i class="fas fa-bell"></i>
+                                        <span class="bot-line"></span>દર્શન
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Manorath/Manorath">
+                                        <i class="fas fa-gift"></i>
+                                        <span class="bot-line"></span>મનોરથ
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Samagri/Samagri">
+                                        <i class="fas fa-circle"></i>
+                                        <span class="bot-line"></span>સામગ્રી
+                                    </a>
+                                </li>*@
                             <li>
-                                <a href="/Darshan/DarshanTime">
-                                    <i class="fas fa-bell"></i>
-                                    <span class="bot-line"></span>દર્શન
+                                <a href="/SamagriTransaction/SamagriTransaction">
+                                    <i class="fas fa-tasks"></i>
+                                    <span class="bot-line"></span>ભંડાર લેવડ દેવડ
                                 </a>
                             </li>
+                            @*<li class="has-sub">
+                                    <a href="#">
+                                        <i class="fas fa-briefcase"></i>
+                                        <span class="bot-line"></span>ભંડાર
+                                    </a>
+                                    <ul class="header3-sub-list list-unstyled">
+                                        <li>
+                                            <a href="/Bhandar/Bhandar">
+                                                <i class="fas fa-briefcase"></i>
+                                                <span class="bot-line"></span>ભંડાર
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Supplier/Supplier">
+                                                <i class="fas fa-briefcase"></i>
+                                                <span class="bot-line"></span>વિક્રેતા (Supplier)
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/UnitMeasurement/UnitMeasurement">
+                                                <i class="fas fa-briefcase"></i>
+                                                <span class="bot-line"></span>માપન એકમ (Unit Of Measurement)
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/BhandarCategory/BhandarCategory">
+                                                <i class="fas fa-briefcase"></i>
+                                                <span class="bot-line"></span>ભંડાર શ્રેણીઓ (Bhandar Category)
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/SamagriTransaction/SamagriTransaction">
+                                                <i class="fas fa-briefcase"></i>
+                                                <span class="bot-line"></span>ભંડાર લેવડ દેવડ
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>*@
                             <li>
-                                <a href="/Manorath/Manorath">
-                                    <i class="fas fa-gift"></i>
-                                    <span class="bot-line"></span>મનોરથ
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/Samagri/Samagri">
-                                    <i class="fas fa-circle"></i>
-                                    <span class="bot-line"></span>સામગ્રી
-                                </a>
-                            </li>
-                            <li class="has-sub">
-                                <a href="#">
-                                    <i class="fas fa-briefcase"></i>
-                                    <span class="bot-line"></span>ભંડાર
-                                </a>
-                                <ul class="header3-sub-list list-unstyled">
-                                    <li>
-                                        <a href="/Bhandar/Bhandar">
-                                            <i class="fas fa-briefcase"></i>
-                                            <span class="bot-line"></span>ભંડાર
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/Supplier/Supplier">
-                                            <i class="fas fa-briefcase"></i>
-                                            <span class="bot-line"></span>વિક્રેતા (Supplier)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/UnitMeasurement/UnitMeasurement">
-                                            <i class="fas fa-briefcase"></i>
-                                            <span class="bot-line"></span>માપન એકમ (Unit Of Measurement)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/BhandarCategory/BhandarCategory">
-                                            <i class="fas fa-briefcase"></i>
-                                            <span class="bot-line"></span>ભંડાર શ્રેણીઓ (Bhandar Category)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/SamagriTransaction/SamagriTransaction">
-                                            <i class="fas fa-briefcase"></i>
-                                            <span class="bot-line"></span>Transaction
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="/Receipt/Receipt">
+                                <a href="/Receipt/ReceiptList">
                                     <i class="fas fa-file-text"></i>
                                     <span class="bot-line"></span>ભેટ
                                 </a>
@@ -131,22 +137,28 @@
                                     <li>
                                         <a href="/AccountTransaction/AccountTransaction">
                                             <i class="zmdi zmdi-money-box"></i>
-                                            <span class="bot-line"></span>લેવડદેવડ(Adjust Transaction)
+                                            <span class="bot-line"></span>લેવડદેવડ (Adjust Transaction)
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="/AccountHead/AccountHead">
-                                            <i class="zmdi zmdi-money-box"></i>
-                                            <span class="bot-line"></span>ખાતા (Account Head)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/AccountGroup/AccountGroup">
-                                            <i class="zmdi zmdi-money-box"></i>
-                                            <span class="bot-line"></span>Account Group
-                                        </a>
-                                    </li>
+                                    @*<li>
+                                            <a href="/AccountHead/AccountHead">
+                                                <i class="zmdi zmdi-money-box"></i>
+                                                <span class="bot-line"></span>ખાતા (Account Head)
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/AccountGroup/AccountGroup">
+                                                <i class="zmdi zmdi-money-box"></i>
+                                                <span class="bot-line"></span>Account Group
+                                            </a>
+                                        </li>*@
                                 </ul>
+                            </li>
+                            <li>
+                                <a href="/Report/ReportList">
+                                    <i class="fas fa-file-text"></i>
+                                    <span class="bot-line"></span>Reports
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -167,11 +179,11 @@
                                     </div>
                                 </div>
                                 <div class="account-dropdown__body">
-                                    <div class="account-dropdown__item">
+                                    @*<div class="account-dropdown__item">
                                         <a href="/Report/ReportList">
                                             <i class="zmdi zmdi-money-box"></i>Reports
                                         </a>
-                                    </div>
+                                    </div>*@
                                     <div class="account-dropdown__item">
                                         <a href="#">
                                             <i class="zmdi zmdi-email"></i>Email Log
@@ -208,17 +220,17 @@
                                         </div>
                                     </div>
                                     @*<div class="account-dropdown__body">
-                                        <div class="account-dropdown__item">
-                                            <a href="/ApplicationUser/ApplicationUser?Id=@Function.ReadCookie(CookiesKey.AuthenticatedId)">
-                                                <i class="zmdi zmdi-account"></i>Profile
-                                            </a>
-                                        </div>
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="fa fa-lock"></i>Change Password
-                                            </a>
-                                        </div>
-                                    </div>*@
+                                            <div class="account-dropdown__item">
+                                                <a href="/ApplicationUser/ApplicationUser?Id=@Function.ReadCookie(CookiesKey.AuthenticatedId)">
+                                                    <i class="zmdi zmdi-account"></i>Profile
+                                                </a>
+                                            </div>
+                                            <div class="account-dropdown__item">
+                                                <a href="#">
+                                                    <i class="fa fa-lock"></i>Change Password
+                                                </a>
+                                            </div>
+                                        </div>*@
                                     <div class="account-dropdown__footer">
                                         <a href="\Login\Login">
                                             <i class="zmdi zmdi-power"></i>Logout
@@ -238,7 +250,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a href="#">
-                            <img src="~/images/icon.png" style="height:52px;" alt="Shree Dwarkadhis Mandir" />
+                            <img src="~/images/Logo.png" style="height:52px;" alt="Shree Dwarkadhis Mandir" />
                             <span>Shree Vallabh</span>
                         </a>
                         <button class="hamburger hamburger--slider" type="button">

@@ -629,6 +629,7 @@
     <Content Include="js\AccountTransactionReport.js" />
     <Content Include="js\AdjustBhandar.js" />
     <Content Include="js\Annexure.js" />
+    <Content Include="js\ApplicationConfiguration.js" />
     <Content Include="js\ApplicationUser.js" />
     <Content Include="js\ApplicationUserList.js" />
     <Content Include="js\BalanceSheet.js" />
@@ -1284,6 +1285,7 @@
     <Content Include="Views\SamagriTransaction\SoldOut.cshtml" />
     <Content Include="Views\SamagriTransaction\IssueForSamagri.cshtml" />
     <Content Include="Views\SamagriTransaction\Nek.cshtml" />
+    <Content Include="Views\Configuration\ApplicationConfiguration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
