@@ -63,6 +63,12 @@ namespace ValidationAlgorithms
                 (
                     anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Scrap 
                     ||
+                    anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.SoldOut
+                    ||
+                    anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.ComplementaryConsumption
+                    ||
+                    anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.NekConsumption
+                    ||
                     anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.IssueForSamagri
                     ||
                     anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.ReciptConsumption
@@ -79,6 +85,11 @@ namespace ValidationAlgorithms
                     anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.ManorathConsumption) && !anyType.ReceiptId.IsNotZero())
             {
                 throw new Exception("Please select receipt for proceed transaction.");
+            }
+
+            if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.NekConsumption && !anyType.ApplicationUser.ToInt().IsNotZero())
+            {
+                throw new Exception("Please select user for nek.");
             }
 
             if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Donation && !anyType.VaishnavId.IsNotZero())

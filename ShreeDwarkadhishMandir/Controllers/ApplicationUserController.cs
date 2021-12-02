@@ -40,7 +40,7 @@ namespace ShreeDwarkadhishMandir.Controllers
         {
             try
             {
-                ApplicationUserBase applicationUser = Factory<ApplicationUserBase>.Create("Vallabh");
+                ApplicationUserBase applicationUser = Factory<ApplicationUserBase>.Create("Vallabhkul");
                 applicationUser.Id = applicationUserRequest.Id;
 
                 IRepository<ApplicationUserBase> dal = FactoryDalLayer<IRepository<ApplicationUserBase>>.Create("ApplicationUser");
@@ -116,5 +116,13 @@ namespace ShreeDwarkadhishMandir.Controllers
             return Json(applicationUsers, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public ActionResult ApplicationUserDropdown()
+        {
+            IRepository<ApplicationUserBase> dal = FactoryDalLayer<IRepository<ApplicationUserBase>>.Create("ApplicationUser");
+            List<ApplicationUserBase> applicationUsers = dal.DropdownWithSearch(0);
+
+            return Json(applicationUsers, JsonRequestBehavior.AllowGet);
+        }
     }
 }

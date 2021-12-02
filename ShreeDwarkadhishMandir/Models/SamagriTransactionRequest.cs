@@ -40,12 +40,14 @@ namespace ShreeDwarkadhishMandir.Models
         public List<SamagriTransactionRequest> ItemDetails { get; set; }
         public int StoreToId { get; set; }
         public int ReceiptId { get; set; }
+        public int? ApplicationUser { get; set; }
 
         public List<IBhandarTransaction> Purchase()
         {
             if (this.ItemDetails.IsNotNullList())
             {
                 List<IBhandarTransaction> bhandarTransactions = new List<IBhandarTransaction>();
+                IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
                 foreach (var item in this.ItemDetails)
                 {
                     IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
@@ -66,6 +68,10 @@ namespace ShreeDwarkadhishMandir.Models
                     bhandarTransaction.ChequeDate = this.ChequeDate;
                     bhandarTransaction.ChequeNumber = this.ChequeNumber;
                     bhandarTransaction.ChequeStatus = this.ChequeStatus;
+
+                    IBhandarTransaction issueFromunitConversionByBhandarId = dalBhandarTransaction.DropdownWithSearch(bhandarTransaction).FirstOrDefault();
+                    bhandarTransaction.StockTransactionQuantity = issueFromunitConversionByBhandarId.IsNull() ? 0 : issueFromunitConversionByBhandarId.TotalStockTransactionQuantity;
+
 
                     bhandarTransaction.Validate();
                     bhandarTransactions.Add(bhandarTransaction);
@@ -129,6 +135,8 @@ namespace ShreeDwarkadhishMandir.Models
             if (this.ItemDetails.IsNotNullList())
             {
                 List<IBhandarTransaction> bhandarTransactions = new List<IBhandarTransaction>();
+                IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+
                 foreach (var item in this.ItemDetails)
                 {
                     IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
@@ -139,6 +147,10 @@ namespace ShreeDwarkadhishMandir.Models
                     bhandarTransaction.CurrentBalance = item.CurrentBalance;
                     bhandarTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.Donation;
                     bhandarTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
+
+                    IBhandarTransaction issueFromunitConversionByBhandarId = dalBhandarTransaction.DropdownWithSearch(bhandarTransaction).FirstOrDefault();
+                    bhandarTransaction.StockTransactionQuantity = issueFromunitConversionByBhandarId.IsNull() ? 0 : issueFromunitConversionByBhandarId.TotalStockTransactionQuantity;
+
                     bhandarTransaction.Description = this.Description;
                     bhandarTransaction.Validate();
                     bhandarTransactions.Add(bhandarTransaction);
@@ -219,7 +231,7 @@ namespace ShreeDwarkadhishMandir.Models
             }
             else
             {
-                throw new Exception("There must be atlease one item for Donation.");
+                throw new Exception("There must be atlease one item for Issue.");
             }
         }
 
@@ -237,6 +249,10 @@ namespace ShreeDwarkadhishMandir.Models
                 issueFromTransaction.Description = this.Description;
                 issueFromTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.SamagriIssue;
                 issueFromTransaction.StockTransactionQuantity = this.StockTransactionQuantity;
+
+                IBhandarTransaction unitConversionByBhandarId = dalBhandarTransaction.DropdownWithSearch(issueFromTransaction).FirstOrDefault();
+                issueFromTransaction.StockTransactionQuantity = unitConversionByBhandarId.IsNull() ? 0 : unitConversionByBhandarId.TotalStockTransactionQuantity;
+
                 issueFromTransaction.Validate();
                 bhandarTransactions.Add(issueFromTransaction);
 
@@ -249,6 +265,10 @@ namespace ShreeDwarkadhishMandir.Models
                     issueToTransaction.CurrentBalance = item.CurrentBalance;
                     issueToTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.IssueForSamagri;
                     issueToTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
+
+                    IBhandarTransaction unitConversionDetailsByBhandarId = dalBhandarTransaction.DropdownWithSearch(issueToTransaction).FirstOrDefault();
+                    issueToTransaction.StockTransactionQuantity = unitConversionDetailsByBhandarId.IsNull() ? 0 : unitConversionDetailsByBhandarId.TotalStockTransactionQuantity;
+
                     issueToTransaction.Description = this.Description;
                     issueToTransaction.Validate();
                     bhandarTransactions.Add(issueToTransaction);
@@ -263,7 +283,7 @@ namespace ShreeDwarkadhishMandir.Models
             }
             else
             {
-                throw new Exception("There must be atlease one item for Donation.");
+                throw new Exception("There must be atlease one item for Issue For Samagri.");
             }
         }
 
@@ -272,6 +292,7 @@ namespace ShreeDwarkadhishMandir.Models
             if (this.ItemDetails.IsNotNullList())
             {
                 List<IBhandarTransaction> bhandarTransactions = new List<IBhandarTransaction>();
+                IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
 
                 foreach (var item in this.ItemDetails)
                 {
@@ -284,6 +305,10 @@ namespace ShreeDwarkadhishMandir.Models
                     issueToTransaction.CurrentBalance = item.CurrentBalance;
                     issueToTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.ReciptConsumption;
                     issueToTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
+
+                    IBhandarTransaction unitConversionByBhandarId = dalBhandarTransaction.DropdownWithSearch(issueToTransaction).FirstOrDefault();
+                    issueToTransaction.StockTransactionQuantity = unitConversionByBhandarId.IsNull() ? 0 : unitConversionByBhandarId.TotalStockTransactionQuantity;
+
                     issueToTransaction.Validate();
                     bhandarTransactions.Add(issueToTransaction);
                 }
@@ -297,7 +322,7 @@ namespace ShreeDwarkadhishMandir.Models
             }
             else
             {
-                throw new Exception("There must be atlease one item for Donation.");
+                throw new Exception("There must be atlease one item for Receipt.");
             }
         }
 
@@ -331,6 +356,87 @@ namespace ShreeDwarkadhishMandir.Models
             else
             {
                 throw new Exception("There must be atlease one item for Donation.");
+            }
+        }
+
+        public List<IBhandarTransaction> ComplementaryConsumption()
+        {
+            if (this.ItemDetails.IsNotNullList())
+            {
+                List<IBhandarTransaction> bhandarTransactions = new List<IBhandarTransaction>();
+                IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+                foreach (var item in this.ItemDetails)
+                {
+                    IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+
+                    bhandarTransaction.BhandarId = item.BhandarId;
+                    bhandarTransaction.UnitId = item.UnitId;
+                    bhandarTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
+                    bhandarTransaction.StoreId = item.StoreId;
+
+                    IBhandarTransaction unitConversionByBhandarId = dalBhandarTransaction.DropdownWithSearch(bhandarTransaction).FirstOrDefault();
+                    bhandarTransaction.StockTransactionQuantity = unitConversionByBhandarId.IsNull() ? 0 : unitConversionByBhandarId.TotalStockTransactionQuantity;
+
+                    bhandarTransaction.CurrentBalance = item.CurrentBalance;
+                    bhandarTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.ComplementaryConsumption;
+                    bhandarTransaction.Description = this.Description;
+                    bhandarTransaction.Validate();
+
+                    bhandarTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
+                    bhandarTransactions.Add(bhandarTransaction);
+                }
+
+                bhandarTransactions.ForEach(x => x.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt());
+
+                Guid TransactionId = Guid.NewGuid();
+                bhandarTransactions.ForEach(x => x.TransactionId = TransactionId);
+
+                return bhandarTransactions;
+            }
+            else
+            {
+                throw new Exception("There must be atlease one item for Complementary.");
+            }
+        }
+
+        public List<IBhandarTransaction> NekConsumption()
+        {
+            if (this.ItemDetails.IsNotNullList())
+            {
+                List<IBhandarTransaction> bhandarTransactions = new List<IBhandarTransaction>();
+                IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+                foreach (var item in this.ItemDetails)
+                {
+                    IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+
+                    bhandarTransaction.BhandarId = item.BhandarId;
+                    bhandarTransaction.UnitId = item.UnitId;
+                    bhandarTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
+                    bhandarTransaction.StoreId = item.StoreId;
+                    bhandarTransaction.ApplicationUser = this.ApplicationUser;
+
+                    IBhandarTransaction unitConversionByBhandarId = dalBhandarTransaction.DropdownWithSearch(bhandarTransaction).FirstOrDefault();
+                    bhandarTransaction.StockTransactionQuantity = unitConversionByBhandarId.IsNull() ? 0 : unitConversionByBhandarId.TotalStockTransactionQuantity;
+
+                    bhandarTransaction.CurrentBalance = item.CurrentBalance;
+                    bhandarTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.ComplementaryConsumption;
+                    bhandarTransaction.Description = this.Description;
+                    bhandarTransaction.Validate();
+
+                    bhandarTransaction.StockTransactionQuantity = item.StockTransactionQuantity;
+                    bhandarTransactions.Add(bhandarTransaction);
+                }
+
+                bhandarTransactions.ForEach(x => x.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt());
+
+                Guid TransactionId = Guid.NewGuid();
+                bhandarTransactions.ForEach(x => x.TransactionId = TransactionId);
+
+                return bhandarTransactions;
+            }
+            else
+            {
+                throw new Exception("There must be atlease one item for Nek.");
             }
         }
     }

@@ -97,6 +97,7 @@ namespace AdoDotNetDal
             cmd.Parameters.AddWithValue("@Description", anyType.Description);
             cmd.Parameters.AddWithValue("@VaishnavId", anyType.VaishnavId);
             cmd.Parameters.AddWithValue("@ReceiptId", anyType.ReceiptId);
+            cmd.Parameters.AddWithValue("@ApplicationUser", anyType.ApplicationUser);
 
             cmd.Parameters.AddWithValue("@TransactionId", anyType.TransactionId);
 

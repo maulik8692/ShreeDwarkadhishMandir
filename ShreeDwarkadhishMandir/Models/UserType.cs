@@ -7,7 +7,7 @@ namespace ShreeDwarkadhishMandir.Models
 {
     public class UserType
     {
-        public static string Vallabh { get { return "Vallabh"; } }
+        public static string Vallabhkul { get { return "Vallabhkul"; } }
         public static string SystemAdmin { get { return "System Admin"; } }
         public static string Adhikariji { get { return "Adhikariji"; } }
         public static string Mukhyaji { get { return "Mukhyaji"; } }

@@ -105,7 +105,6 @@ namespace ShreeDwarkadhishMandir.Controllers
             }
         }
 
-
         public ActionResult Scrapped()
         {
             if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
@@ -273,11 +272,66 @@ namespace ShreeDwarkadhishMandir.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Complementary(int id)
+        public ActionResult Complementary(SamagriTransactionRequest SamagriTransactionRequest)
         {
             try
             {
-                return Json("Samagri saved successfully.", JsonRequestBehavior.AllowGet);
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    List<IBhandarTransaction> bhandarTransactions = SamagriTransactionRequest.Scrapped();
+
+                    List<IBhandarTransaction> BhandarTransactionResponse = new List<IBhandarTransaction>();
+
+                    IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+
+                    foreach (var item in bhandarTransactions)
+                    {
+                        IBhandarTransaction bhandarTransactionResponse = dalBhandarTransaction.SaveWithReturn(item);
+                    }
+
+                    scope.Complete();
+                }
+
+                return Json("Bhandar has been scrapped successfully.", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Log.Write(ex);
+                return new HttpStatusCodeResult(410, ex.Message);
+            }
+        }
+
+        public ActionResult Nek()
+        {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Nek(SamagriTransactionRequest SamagriTransactionRequest)
+        {
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    List<IBhandarTransaction> bhandarTransactions = SamagriTransactionRequest.NekConsumption();
+
+                    List<IBhandarTransaction> BhandarTransactionResponse = new List<IBhandarTransaction>();
+
+                    IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+
+                    foreach (var item in bhandarTransactions)
+                    {
+                        IBhandarTransaction bhandarTransactionResponse = dalBhandarTransaction.SaveWithReturn(item);
+                    }
+
+                    scope.Complete();
+                }
+
+                return Json("Nek has been saved successfully.", JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

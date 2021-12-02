@@ -16,7 +16,7 @@ namespace FactoryMiddleLayer
             {
                 ObjectsofOurProjects = new UnityContainer();
                 ObjectsofOurProjects.RegisterType<ApplicationUserBase, VallabhKul>
-                    ("Vallabh", new InjectionConstructor(new ValidationSimpleUser()));
+                    ("Vallabhkul", new InjectionConstructor(new ValidationSimpleUser()));
                 ObjectsofOurProjects.RegisterType<ApplicationUserBase, SystemAdministrator>
                     ("System Admin", new InjectionConstructor(new ValidationUserAll()));
                 ObjectsofOurProjects.RegisterType<ApplicationUserBase, Adhikari>

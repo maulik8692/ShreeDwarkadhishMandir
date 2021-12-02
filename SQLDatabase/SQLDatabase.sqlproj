@@ -223,5 +223,6 @@
     <Build Include="dbo\Stored Procedures\GetSupplierAccount.sql" />
     <Build Include="dbo\Stored Procedures\UnitConversionByBhandarId.sql" />
     <Build Include="dbo\Stored Procedures\GetSamagriDropdown.sql" />
+    <Build Include="dbo\Stored Procedures\GetUserDropdown.sql" />
   </ItemGroup>
 </Project>

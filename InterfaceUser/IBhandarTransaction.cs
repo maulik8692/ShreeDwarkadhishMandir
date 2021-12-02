@@ -41,6 +41,7 @@ namespace InterfaceMiddleLayer
         DateTime? ChequeDate { get; set; }
         int ChequeStatus { get; set; }
         int ReceiptId { get; set; }
+        int? ApplicationUser { get; set; }
         void Validate();
     }
 }

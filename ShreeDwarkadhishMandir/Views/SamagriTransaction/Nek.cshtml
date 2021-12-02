@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Donation";
+    ViewBag.Title = "Nek";
     string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
 }
 
@@ -8,22 +8,20 @@
     <div class="col-lg-8 PaddingTop">
         <div class="card">
             <div class="card-header">
-                <strong>Donated Stock</strong>
+                <strong>Nek</strong>
             </div>
-
             <div class="card-body card-block">
                 <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                    <input type="hidden" id="VaishnavId" name="VaishnavId">
+
                     <input type="hidden" id="Id" name="Id" class="form-control">
 
                     <div class="row form-group">
                         <div class="col col-md-3">
-                            <label for="VaishnavId" class="form-control-label">Vaishnav Id</label>
+                            <label for="NekUser" class="form-control-label">User</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input type="hidden" id="VaishnavId" name="VaishnavId">
-                            <input type="text" id="VaishnavIds" name="VaishnavIds" placeholder="Please Enter vaishnav Id" class="form-control">
-                            <small class="help-block form-text">Please enter vaishnav Id if not register then <a href="/Vaishnav/Vaishnav">Click here</a></small>
+                            <select name="NekUser" id="NekUser" class="form-control select2 select2-hidden-accessible searchableDropdown "></select>
+                            <small class="help-block form-text text-danger">Please ensure User selected is right as you cannot edit it after save.</small>
                         </div>
                     </div>
 
@@ -38,12 +36,13 @@
 
                 </form>
             </div>
+
         </div>
 
         <div class="card">
             <div class="card-body card-block">
                 <button id="NewDetail" type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#staticModal">
-                    Add Donated Item
+                    Add Nek Item
                 </button>
             </div>
         </div>
@@ -64,7 +63,7 @@
                 <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
                     <i class="fa fa-refresh"> </i> Reset
                 </button>
-                <a id="reset" style="width:20%" href="/SamagriTransaction/SamagriTransaction" class="btn blueBackground btn-sm">
+                <a id="reset" style="width:20%" href="/Samagri/Samagri" class="btn blueBackground btn-sm">
                     <i class="fa fa-arrow-left"> </i> Back
                 </a>
             </div>
@@ -79,7 +78,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticModalLabel">Purchase Item</h5>
+                <h5 class="modal-title" id="staticModalLabel">Complementary Item</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -119,11 +118,11 @@
 
                         <div class="form-group row Personal UOM">
                             <div class="col col-md-3">
-                                <label for="StockTransactionQuantity" class="control-label mb-1">Donated Quantity</label>
+                                <label for="StockTransactionQuantity" class="control-label mb-1">Complementary Quantity</label>
                             </div>
                             <div class="col-12 col-md-9">
                                 <input id="StockTransactionQuantity" name="StockTransactionQuantity" type="text" placeholder="0.00000" class="form-control Units">
-                                <small class="help-block form-text">Please Enter Donated Quantity to Bhandar.</small>
+                                <small class="help-block form-text">Please Enter Complementary to Bhandar.</small>
                             </div>
                         </div>
 
@@ -157,4 +156,4 @@
     </div>
 </div>
 
-<script src="~/js/Donation.js?@casheCleaner"></script>
+<script src="~/js/Nek.js?@casheCleaner"></script>

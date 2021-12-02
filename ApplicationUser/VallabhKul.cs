@@ -7,13 +7,13 @@ namespace MiddleLayer
         public VallabhKul()
         {
             UserTypeId = 1;
-            UserTypeName = "Vallabh";
+            UserTypeName = "Vallabhkul";
         }
 
         public VallabhKul(IValidation<IApplicationUser> _validation) : base(_validation)
         {
             UserTypeId = 1;
-            UserTypeName = "Vallabh";
+            UserTypeName = "Vallabhkul";
         }
     }
 }

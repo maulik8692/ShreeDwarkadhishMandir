@@ -27,7 +27,24 @@ namespace AdoDotNetDal
 
         protected override List<ApplicationUserBase> DropdownWithSearchCommand<T>(T anyObject)
         {
-            throw new NotImplementedException();
+            cmd.CommandText = "GetUserDropdown";
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataReader dr = null;
+            dr = cmd.ExecuteReader();
+
+            List<ApplicationUserBase> applicationUsers = new List<ApplicationUserBase>();
+            while (dr.Read())
+            {
+                ApplicationUserBase applicationUser = Factory<ApplicationUserBase>.Create(dr["UserTypeName"].ToString());
+                applicationUser.Id = dr["Id"].ToInt();
+                applicationUser.UserName = dr["UserName"].ToString();
+                applicationUser.DisplayName = dr["DisplayName"].ToString();
+                applicationUser.UserTypeId = dr["UserTypeId"].ToInt();
+                applicationUser.UserTypeName = dr["UserTypeName"].ToString();
+                applicationUsers.Add(applicationUser);
+            }
+
+            return applicationUsers;
         }
 
         protected override ApplicationUserBase GetDetailCommand<T>(T anyObject)
