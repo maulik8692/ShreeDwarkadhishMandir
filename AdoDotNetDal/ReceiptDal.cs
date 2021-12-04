@@ -155,6 +155,7 @@ namespace AdoDotNetDal
             cmd.Parameters.AddWithValue("@MandirId", IReceiptRequest.MandirId);
             cmd.Parameters.AddWithValue("@PageNumber", IReceiptRequest.PageNumber);
             cmd.Parameters.AddWithValue("@PageSize", IReceiptRequest.PageSize);
+            cmd.Parameters.AddWithValue("@ReceiptNo", IReceiptRequest.ReceiptNo);
 
             SqlDataReader dr = null;
             dr = cmd.ExecuteReader();

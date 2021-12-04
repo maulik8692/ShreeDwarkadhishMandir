@@ -158,22 +158,21 @@ namespace ShreeDwarkadhishMandir.Controllers
         {
             try
             {
-                IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
-                bhandarTransaction.BhandarId = SamagriTransactionRequest.BhandarId;
-                bhandarTransaction.UnitId = SamagriTransactionRequest.UnitId;
-                bhandarTransaction.StoreId = SamagriTransactionRequest.StoreId;
-                bhandarTransaction.Price = SamagriTransactionRequest.Price;
-                bhandarTransaction.CurrentBalance = SamagriTransactionRequest.CurrentBalance;
-                bhandarTransaction.BhandarTransactionCodeId = (int)BhandarTransactionCode.SoldOut;
-                bhandarTransaction.StockTransactionQuantity = SamagriTransactionRequest.StockTransactionQuantity;
-                bhandarTransaction.Description = SamagriTransactionRequest.Description;
-                bhandarTransaction.Validate();
-                bhandarTransaction.CreatedBy = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    List<IBhandarTransaction> bhandarTransactions = SamagriTransactionRequest.SoldOut();
 
-                IBhandarTransaction BhandarTransactionResponse = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                    List<IBhandarTransaction> BhandarTransactionResponse = new List<IBhandarTransaction>();
 
-                IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
-                BhandarTransactionResponse = dalBhandarTransaction.SaveWithReturn(bhandarTransaction);
+                    IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+
+                    foreach (var item in bhandarTransactions)
+                    {
+                        IBhandarTransaction bhandarTransactionResponse = dalBhandarTransaction.SaveWithReturn(item);
+                    }
+
+                    scope.Complete();
+                }
 
                 return Json("Bhandar has been sold out successfully.", JsonRequestBehavior.AllowGet);
             }

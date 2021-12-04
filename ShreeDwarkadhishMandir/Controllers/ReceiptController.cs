@@ -146,7 +146,7 @@ namespace ShreeDwarkadhishMandir.Controllers
             return View();
         }
 
-        public JsonResult GetReceiptList(string sidx, string sord, int page, int rows)
+        public JsonResult GetReceiptList(string sidx, string sord, int page, int rows, string ReceiptNo)
         {
             try
             {
@@ -154,6 +154,7 @@ namespace ShreeDwarkadhishMandir.Controllers
                 IReceipt.MandirId = Function.ReadCookie(CookiesKey.AuthenticatedMandirId).ToInt();
                 IReceipt.PageNumber = page;
                 IReceipt.PageSize = rows;
+                IReceipt.ReceiptNo = ReceiptNo;
 
                 IRepository<IReceipt> dal = FactoryDalLayer<IRepository<IReceipt>>.Create("Receipt");
                 List<IReceipt> IReceiptResponse = dal.Search(IReceipt);

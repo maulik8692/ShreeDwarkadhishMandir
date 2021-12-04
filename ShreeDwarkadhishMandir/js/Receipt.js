@@ -42,6 +42,16 @@ function GetDetail() {
 
     var grid = $("#Receipt"), headerRow, rowHight, resizeSpanHeight;
 
+    $("#ReceiptNo").on('keyup change', function () {
+        if (this.value.length > 3 || this.value.length === 0) {
+            var postData = jQuery('#Receipt').jqGrid("getGridParam", "postData");
+            postData.ReceiptNo = jQuery('#ReceiptNo').val().trim(),
+                jQuery('#Receipt').jqGrid("setGridParam", { vaishnavId: true });
+                jQuery('#Receipt').trigger("reloadGrid", [{ page: 1, current: true }]);
+            SetStyle();
+        }
+    });
+
     grid.jqGrid
         ({
             url: "/Receipt/GetReceiptList",
@@ -306,7 +316,7 @@ function SaveItem(isfinal) {
                     $('#ReceiptId').val("");
                     $('#SamagriTransaction').hide();
                     alert("Samagri for receipt has been saved successfully.");
-                   
+
                     ResetDetail();
                 },
                 error: function (xhr, httpStatusMessage, customErrorMessage) {

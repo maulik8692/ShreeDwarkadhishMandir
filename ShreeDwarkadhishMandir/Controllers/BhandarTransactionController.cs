@@ -30,20 +30,20 @@ namespace ShreeDwarkadhishMandir.Controllers
         {
             try
             {
-                IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
-                bhandarTransaction.BhandarId = bhandarTransactionRequest.BhandarId;
-                bhandarTransaction.StockTransactionQuantity = bhandarTransactionRequest.Credit;
-                //bhandarTransaction.Debit = bhandarTransactionRequest.Debit;
-                bhandarTransaction.SupplierId = bhandarTransactionRequest.SupplierId;
-                bhandarTransaction.AccountHeadId = bhandarTransactionRequest.PaymentAccountHead;
-                bhandarTransaction.Price = bhandarTransactionRequest.PurchasingPrice;
-                bhandarTransaction.Description = bhandarTransactionRequest.Notes;
-                bhandarTransaction.Validate();
-                bhandarTransaction.CreatedBy  = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
+                //IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                //bhandarTransaction.BhandarId = bhandarTransactionRequest.BhandarId;
+                //bhandarTransaction.StockTransactionQuantity = bhandarTransactionRequest.Credit;
+                ////bhandarTransaction.Debit = bhandarTransactionRequest.Debit;
+                //bhandarTransaction.SupplierId = bhandarTransactionRequest.SupplierId;
+                //bhandarTransaction.AccountHeadId = bhandarTransactionRequest.PaymentAccountHead;
+                //bhandarTransaction.Price = bhandarTransactionRequest.PurchasingPrice;
+                //bhandarTransaction.Description = bhandarTransactionRequest.Notes;
+                //bhandarTransaction.Validate();
+                //bhandarTransaction.CreatedBy  = Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt();
 
-                IRepository<IBhandarTransaction> dal = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+                //IRepository<IBhandarTransaction> dal = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
 
-                dal.Save(bhandarTransaction);
+                //dal.Save(bhandarTransaction);
 
                 return Json("Bhandar adjustment has been successfully.", JsonRequestBehavior.AllowGet);
             }

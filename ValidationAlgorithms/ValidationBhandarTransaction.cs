@@ -61,7 +61,7 @@ namespace ValidationAlgorithms
 
             if (
                 (
-                    anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Scrap 
+                    anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.Scrap
                     ||
                     anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.SoldOut
                     ||
@@ -74,8 +74,10 @@ namespace ValidationAlgorithms
                     anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.ReciptConsumption
                     ||
                     anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.ManorathConsumption
+                    ||
+                    anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.IssueFrom
                 ) 
-                && anyType.CurrentBalance < anyType.StockTransactionQuantity)
+                && anyType.CurrentBalance < anyType.TotalStockTransactionQuantity)
             {
                 throw new Exception("Transaction Quantity must be less than or equal to current balance.");
             }
@@ -102,10 +104,10 @@ namespace ValidationAlgorithms
                 throw new Exception("Please enter proper sold out price.");
             }
 
-            if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.IssueFrom && anyType.CurrentBalance < anyType.TotalStockTransactionQuantity)
-            {
-                throw new Exception("Total Transaction Quantity must be less than or equal to current balance.");
-            }
+            //if (anyType.BhandarTransactionCodeId == (int)BhandarTransactionCode.IssueFrom && anyType.CurrentBalance < anyType.TotalStockTransactionQuantity)
+            //{
+            //    throw new Exception("Total Transaction Quantity must be less than or equal to current balance.");
+            //}
         }
     }
 }
