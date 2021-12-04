@@ -14,7 +14,7 @@
         string Password { get; set; }
         int CreatedBy { get; set; }
         string MandirName { get; set; }
-
+        bool IsDefaultRecord { get; set; }
         void Validate();
     }
 }

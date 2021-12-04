@@ -33,6 +33,7 @@ namespace MiddleLayer
         public int PageSize { get; set; }
         public string GroupName { get; set; }
         public string NatureOfGroup { get; set; }
+        public bool IsDefaultRecord { get; set; }
 
         public Manorath(IValidation<IManorath> _validation)
         {

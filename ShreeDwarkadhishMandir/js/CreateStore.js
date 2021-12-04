@@ -136,6 +136,11 @@ function GetDetail() {
 function setdetail() {
     $('#Name').val(StoreDetail.Name);
     $('#Description').val(StoreDetail.Description);
+    if (StoreDetail.IsDefaultRecord == true) {
+        $('.IsActive').hide();
+    } else {
+        $('.IsActive').show();
+    }
     $('#IsActive').prop('checked', StoreDetail.IsActive);
     GetMandirList();
 }

@@ -20,7 +20,7 @@ BEGIN
 			Count(A.Id) over () AS total,
 			@PageNumber as page,
 			@PageSize as records,
-			A.Id, A.AccountName, A.Alias, A.BalanceAmount, A.DebitCredit, A.IsActive, A.IsEditable, AG.GroupName, DG.NatureOfGroup
+			A.Id, A.AccountName, A.Alias, A.BalanceAmount, A.DebitCredit, A.IsActive, A.IsDefaultRecord IsEditable, AG.GroupName, DG.NatureOfGroup
 			from AccountHead as A with (nolock)
 			Inner join AccountGroup AG with (nolock) on AG.Id=A.GroupId 
 			Inner Join DefaultGroups as DG  with (nolock) on DG.Id=AG.DefaultGroupId

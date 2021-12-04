@@ -30,8 +30,11 @@
     [SupplierId]        INT             NULL,
     [IsBankAccount]     BIT             CONSTRAINT [DF_AccountHead_IsBankAccount] DEFAULT ((0)) NULL,
     [IsCashOnHand]      BIT             CONSTRAINT [DF_AccountHead_IsCashOnHand] DEFAULT ((0)) NULL,
+    [IsDefaultRecord]   BIT             CONSTRAINT [D_AccountHead_IsDefaultRecord] DEFAULT ((1)) NOT NULL,
     CONSTRAINT [PK_AccountHead] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_AccountHead_AccountGroup] FOREIGN KEY ([GroupId]) REFERENCES [dbo].[AccountGroup] ([Id]),
     CONSTRAINT [FK_AccountHead_Supplier] FOREIGN KEY ([SupplierId]) REFERENCES [dbo].[Supplier] ([Id])
 );
+
+
 

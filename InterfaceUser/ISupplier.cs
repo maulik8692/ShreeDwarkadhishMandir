@@ -31,6 +31,8 @@ namespace InterfaceMiddleLayer
         int Records { get; set; }
         int PageNumber { get; set; }
         int PageSize { get; set; }
+        bool IsDefaultRecord { get; set; }
+
         void Validate();
     }
 }

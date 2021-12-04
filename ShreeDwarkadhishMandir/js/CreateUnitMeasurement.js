@@ -89,6 +89,11 @@ function GetDetail() {
 function setdetail() {
     $('#UnitAbbreviation').val(UnitMeasurementDetail.UnitAbbreviation);
     $('#UnitDescription').val(UnitMeasurementDetail.UnitDescription);
+    if (UnitMeasurementDetail.IsDefaultRecord == true) {
+        $('.IsActive').hide();
+    } else {
+        $('.IsActive').show();
+    }
     $('#IsActive').prop('checked', UnitMeasurementDetail.IsActive);
 }
 

@@ -410,6 +410,11 @@ function ResetForm() {
 function setdetail() {
     $('#Nyochhawar').val(parseFloat(ManorathDetail.Nyochhawar).toFixed(2));
     $('#ManorathName').val(ManorathDetail.ManorathName);
+    if (ManorathDetail.IsDefaultRecord == true) {
+        $('.IsActive').hide();
+    } else {
+        $('.IsActive').show();
+    }
     $('#IsActive').prop('checked', ManorathDetail.IsActive);
     $('#ManorathType').val(ManorathDetail.ManorathType);
     GetCashManorath();

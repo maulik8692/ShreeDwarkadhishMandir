@@ -8,6 +8,9 @@
     [UpdatedOn]        DATETIME      NULL,
     [UpdatedBy]        INT           NULL,
     [MandirId]         INT           CONSTRAINT [DF_UnitOfMeasurement_MandirId] DEFAULT ((1)) NULL,
+    [IsDefaultRecord]  BIT           CONSTRAINT [D_UnitOfMeasurement_IsDefaultRecord] DEFAULT ((1)) NOT NULL,
     CONSTRAINT [PK_UnitOfMeasurement] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 

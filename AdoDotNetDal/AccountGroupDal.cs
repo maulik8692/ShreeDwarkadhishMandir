@@ -46,6 +46,7 @@ namespace AdoDotNetDal
                 accountGroup.GroupType = dr["GroupType"].ToInt();
                 accountGroup.IsActive = dr["IsActive"].ToBool();
                 accountGroup.IsEditable = dr["IsEditable"].ToBool();
+                accountGroup.IsDefaultRecord = dr["IsDefaultRecord"].ToBool();    
                 accountGroup.DefaultGroupsName = dr["DefaultGroupsName"].ToString();
                 accountGroup.NatureOfGroup = dr["NatureOfGroup"].ToString();
                 accountGroups.Add(accountGroup);

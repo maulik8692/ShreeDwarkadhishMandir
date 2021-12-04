@@ -71,6 +71,7 @@ namespace AdoDotNetDal
                 bhandarGroup.Description = dr["Description"].ToString();
                 bhandarGroup.GroupType = dr["GroupType"].ToInt();
                 bhandarGroup.IsActive = dr["IsActive"].ToBool();
+                bhandarGroup.IsDefaultRecord = dr["IsDefaultRecord"].ToBool();
                 bhandarGroups.Add(bhandarGroup);
             }
 

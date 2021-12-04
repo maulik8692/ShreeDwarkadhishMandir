@@ -71,6 +71,7 @@ namespace AdoDotNetDal
                 applicationUser.UserTypeId = dr["UserTypeId"].ToInt();
                 applicationUser.UserTypeName = dr["UserTypeName"].ToString();
                 applicationUser.MandirName = dr["MandirName"].ToString();
+                applicationUser.IsDefaultRecord = dr["IsDefaultRecord"].ToBool(); 
                 applicationUsers.Add(applicationUser);
             }
 
@@ -126,6 +127,7 @@ namespace AdoDotNetDal
                 applicationUser.UserTypeId = dr["UserTypeId"].ToInt();
                 applicationUser.UserTypeName = dr["UserTypeName"].ToString();
                 applicationUser.MandirName = dr["MandirName"].ToString();
+                applicationUser.IsDefaultRecord = dr["IsDefaultRecord"].ToBool();
                 applicationUsers.Add(applicationUser);
             }
 

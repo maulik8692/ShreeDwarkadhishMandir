@@ -4,7 +4,7 @@
 -- Description:	<Description,,>
 -- =============================================
 CREATE PROCEDURE [dbo].[GetAccountGroups]
-	@PageNumber INT ,
+@PageNumber INT ,
 @PageSize   INT 
 AS
 BEGIN
@@ -22,7 +22,7 @@ BEGIN
 		,AG.DefaultGroupId
 		,AG.GroupType
 		,AG.IsActive
-		,AG.IsEditable
+		,AG.IsDefaultRecord IsEditable
 		,DG.GroupName as DefaultGroupsName
 		,DG.NatureOfGroup
 		from AccountGroup as AG with (nolock)

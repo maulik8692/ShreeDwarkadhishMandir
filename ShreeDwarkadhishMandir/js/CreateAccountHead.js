@@ -333,9 +333,14 @@ function setdetail() {
 
     $('#AnnexureOrder').val(accountHeadDetail.AnnexureOrder);
     $('#AnnexureName').val(accountHeadDetail.AnnexureName);
-
+    if (accountHeadDetail.IsDefaultRecord == true) {
+        $('.IsActive').hide();
+    } else {
+        $('.IsActive').show();
+    }
     $('#IsActive').prop('checked', accountHeadDetail.IsActive);
-    $('#IsEditable').prop('checked', accountHeadDetail.IsEditable);
+    //$('#IsEditable').prop('checked', accountHeadDetail.IsEditable);
+    $('#IsEditable').prop('checked', false);
     GetAccountGroupsForDropdown();
 }
 

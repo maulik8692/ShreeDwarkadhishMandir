@@ -76,6 +76,7 @@ namespace AdoDotNetDal
                 supplier.VillageId = dr["VillageId"].ToInt();
                 supplier.PostalCode = dr["PostalCode"].ToString();
                 supplier.IsActive = dr["IsActive"].ToBool();
+                supplier.IsDefaultRecord = dr["IsDefaultRecord"].ToBool();
                 supplier.CountryName = dr["CountryName"].ToString();
                 supplier.StateName = dr["StateName"].ToString();
                 supplier.CityName = dr["CityName"].ToString();

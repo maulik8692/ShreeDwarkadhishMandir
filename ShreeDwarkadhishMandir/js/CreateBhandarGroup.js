@@ -139,6 +139,12 @@ function setdetail() {
     $('#Name').val(BhandarGroupDetail.Name);
     $('#GroupCode').val(BhandarGroupDetail.GroupCode);
     $('#Description').val(BhandarGroupDetail.Description);
+    if (BhandarGroupDetail.IsDefaultRecord == true) {
+        $('.IsActive').hide();
+    } else {
+        $('.IsActive').show();
+    }
+
     $('#IsActive').prop('checked', BhandarGroupDetail.IsActive);
     $('#GroupType').val(BhandarGroupDetail.GroupType);
     GetMandirList();

@@ -40,6 +40,8 @@ namespace InterfaceMiddleLayer
         string NatureOfGroup { get; set; }
         int AnnexureOrder { get; set; }
         string AnnexureName { get; set; }
+        bool IsDefaultRecord { get; set; }
+
         void Validate();
     }
 }

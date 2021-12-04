@@ -11,7 +11,7 @@ BEGIN
  -- interfering with SELECT statements.  
  SET NOCOUNT ON;  
   
- select  Id , MandirId, Name, Description, IsMainStore,
+ select  Id , MandirId, Name, Description, IsMainStore,IsDefaultRecord
  IsActive from Store  
  where id= @id  
   

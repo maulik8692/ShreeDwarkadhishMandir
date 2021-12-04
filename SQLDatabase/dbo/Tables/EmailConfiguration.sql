@@ -8,6 +8,9 @@
     [SSL]             BIT          NULL,
     [ExchangeService] BIT          NULL,
     [IsActive]        BIT          CONSTRAINT [DF_EmailConfiguration_IsActive] DEFAULT ((0)) NULL,
+    [IsDefaultRecord] BIT          CONSTRAINT [D_EmailConfiguration_IsDefaultRecord] DEFAULT ((1)) NOT NULL,
     CONSTRAINT [PK_EmailConfiguration] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 

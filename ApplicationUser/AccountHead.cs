@@ -44,6 +44,7 @@ namespace MiddleLayer
         public string NatureOfGroup { get; set; }
         public int AnnexureOrder { get; set; }
         public string AnnexureName { get; set; }
+        public bool IsDefaultRecord { get; set; }
         public AccountHead()
         {
             Id = 0;

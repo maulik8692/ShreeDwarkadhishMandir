@@ -20,6 +20,9 @@
     [RegistrationNumber] NVARCHAR (100) NULL,
     [GurudevName]        NVARCHAR (500) NULL,
     [MandirHeader]       NVARCHAR (150) NULL,
+    [IsDefaultRecord]    BIT            CONSTRAINT [D_Mandir_IsDefaultRecord] DEFAULT ((1)) NOT NULL,
     CONSTRAINT [PK_Mandir] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 

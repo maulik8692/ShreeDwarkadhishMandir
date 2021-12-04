@@ -11,7 +11,7 @@ BEGIN
  SET NOCOUNT ON;        
         
     -- Insert statements for procedure here        
- Select BC.Id ,BC.Name, BG.GroupType   
+ Select BC.Id ,BC.Name, BG.GroupType , BG.IsDefaultRecord
  from BhandarCategory as BC  
  join BhandarGroup as BG on BG.Id=BC.GroupId  
  where BC.IsDeleted = 0        

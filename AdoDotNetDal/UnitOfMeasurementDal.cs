@@ -68,6 +68,7 @@ namespace AdoDotNetDal
                 unitOfMeasurement.UnitAbbreviation = dr["UnitAbbreviation"].ToString();
                 unitOfMeasurement.UnitDescription = dr["UnitDescription"].ToString();
                 unitOfMeasurement.IsActive = dr["IsActive"].ToBool();
+                unitOfMeasurement.IsDefaultRecord = dr["IsDefaultRecord"].ToBool();
                 unitOfMeasurements.Add(unitOfMeasurement);
             }
 

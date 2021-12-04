@@ -77,6 +77,7 @@ namespace AdoDotNetDal
                 Manorath.IsActive = dr["IsActive"].ToBool();
                 Manorath.ManorathType = dr["ManorathType"].ToInt();
                 Manorath.DarshanId = dr["DarshanId"].ToInt();
+                Manorath.IsDefaultRecord = dr["IsDefaultRecord"].ToBool();
                 Manoraths.Add(Manorath);
             }
 

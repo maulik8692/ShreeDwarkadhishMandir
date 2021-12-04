@@ -69,6 +69,7 @@ namespace AdoDotNetDal
                 BhandarCategory.CategoryCode = dr["CategoryCode"].ToString();
                 BhandarCategory.Description = dr["Description"].ToString();
                 BhandarCategory.IsActive = dr["IsActive"].ToBool();
+                BhandarCategory.IsDefaultRecord = dr["IsDefaultRecord"].ToBool();
                 bhandarCategories.Add(BhandarCategory);
             }
 

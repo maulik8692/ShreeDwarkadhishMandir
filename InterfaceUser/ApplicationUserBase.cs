@@ -20,7 +20,7 @@ namespace InterfaceMiddleLayer
         public string Address { get; set; }
         public string DisplayName { get; set; }
         public string Email { get; set; }
-
+        public bool IsDefaultRecord { get; set; }
 
         public ApplicationUserBase()
         {
@@ -36,6 +36,7 @@ namespace InterfaceMiddleLayer
             Address = string.Empty;
             DisplayName = string.Empty;
             Email = string.Empty;
+            IsDefaultRecord = false;
         }
 
         public ApplicationUserBase(IValidation<IApplicationUser> _validation)

@@ -16,7 +16,7 @@ BEGIN
 	ISNULL(M.CashAccountId,0) as CashAccountId, 
 	ISNULL(M.ChequeAccountId,0) as ChequeAccountId, 
 	ISNULL(M.VaishnavAccountId,0) as VaishnavAccountId, 
-	M.IsActive,M.ManorathType,M.DarshanId
+	M.IsActive,M.ManorathType,M.DarshanId, M.IsDefaultRecord
 	FROM Manorath  as M with (nolock)
 	LEFT JOIN AccountHead as CA on CA.Id=M.CashAccountId
 	LEFT JOIN AccountHead as ChA on ChA.Id=M.ChequeAccountId

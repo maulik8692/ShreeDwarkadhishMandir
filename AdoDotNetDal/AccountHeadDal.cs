@@ -95,6 +95,7 @@ namespace AdoDotNetDal
                 accountHead.MaturityAmount = dr["MaturityAmount"].ToDecimal();
                 accountHead.IsActive = dr["IsActive"].ToBool();
                 accountHead.IsEditable = dr["IsEditable"].ToBool();
+                accountHead.IsDefaultRecord = dr["IsDefaultRecord"].ToBool();
                 accountHeads.Add(accountHead);
             }
 

@@ -20,7 +20,8 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT A.Id,A.DisplayName,A.UserName,'' as Password,A.Address,A.Email,A.PhoneNumber,A.MandirId,A.UserTypeId,U.TypeName as UserTypeName,M.Name As MandirName
+	SELECT A.Id,A.DisplayName,A.UserName,'' as Password,A.Address,A.Email,A.PhoneNumber,A.MandirId,A.UserTypeId,
+	U.TypeName as UserTypeName,M.Name As MandirName,A.IsDefaultRecord
 	From dbo.ApplicationUser AS A
 	inner join UserType AS U on U.Id=A.UserTypeId
 	Inner join Mandir AS M on M.Id=A.MandirId

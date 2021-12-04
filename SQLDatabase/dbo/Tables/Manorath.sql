@@ -15,10 +15,13 @@
     [UpdatedBy]         INT             NULL,
     [DeletedOn]         DATETIME        NULL,
     [DeletedBy]         INT             NULL,
+    [IsDefaultRecord]   BIT             CONSTRAINT [D_Manorath_IsDefaultRecord] DEFAULT ((1)) NOT NULL,
     CONSTRAINT [PK_Manorath] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Manorath_AccountHead] FOREIGN KEY ([VaishnavAccountId]) REFERENCES [dbo].[AccountHead] ([Id]),
     CONSTRAINT [FK_Manorath_DarshanMaster] FOREIGN KEY ([DarshanId]) REFERENCES [dbo].[DarshanMaster] ([Id])
 );
+
+
 
 
 GO

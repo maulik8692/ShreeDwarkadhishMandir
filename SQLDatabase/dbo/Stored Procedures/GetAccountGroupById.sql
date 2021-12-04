@@ -19,6 +19,7 @@ BEGIN
 		,AG.GroupType
 		,AG.IsActive
 		,AG.IsEditable
+		,AG.IsDefaultRecord
 	From AccountGroup as AG
 	where 
 		AG.Id=@Id

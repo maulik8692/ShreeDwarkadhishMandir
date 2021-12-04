@@ -120,6 +120,12 @@ function setdetail() {
     $('#Name').val(BhandarCategoryDetail.Name);
     $('#CategoryCode').val(BhandarCategoryDetail.CategoryCode);
     $('#Description').val(BhandarCategoryDetail.Description);
+    if (BhandarCategoryDetail.IsDefaultRecord == true) {
+        $('.IsActive').hide();
+    } else {
+        $('.IsActive').show();
+    }
+
     $('#IsActive').prop('checked', BhandarCategoryDetail.IsActive);
 }
 

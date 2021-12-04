@@ -22,6 +22,7 @@ BEGIN
 	,S.IsActive,ISNULL(PC.Name,'') as CountryName
 	,ISNULL(PS.Name,'') as StateName,ISNULL(PCt.Name,'') as CityName
 	,ISNULL(PV.Village,'') as VillageName
+	,S.IsDefaultRecord
 	FROM Supplier  as S with (nolock)
 	LEFT JOIN Countries as PC on PC.Id=S.CountryId
 	LEFT JOIN States as PS on PS.Id=S.StateId

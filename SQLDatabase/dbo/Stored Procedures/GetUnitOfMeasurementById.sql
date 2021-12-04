@@ -14,7 +14,8 @@ BEGIN
     select  Id ,
 	UnitAbbreviation,
 	UnitDescription,
-	IsActive from UnitOfMeasurement
+	IsActive from UnitOfMeasurement,
+	IsDefaultRecord
 	where id= @id
 
 END

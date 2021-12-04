@@ -71,6 +71,7 @@ namespace AdoDotNetDal
                 Store.Description = dr["Description"].ToString();
                 Store.IsMainStore = dr["IsMainStore"].ToBool();
                 Store.IsActive = dr["IsActive"].ToBool();
+                Store.IsDefaultRecord = dr["IsDefaultRecord"].ToBool();
                 Stores.Add(Store);
             }
 

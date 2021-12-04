@@ -465,7 +465,11 @@ function setdetail() {
     $("#PostalCode").val(SupplierDetail.PostalCode);
 
     $('#email').val(SupplierDetail.Email);
-    
+    if (SupplierDetail.IsDefaultRecord == true) {
+        $('.IsActive').hide();
+    } else {
+        $('.IsActive').show();
+    }
     $('#IsActive').prop('checked', SupplierDetail.IsActive);
     GetMandirList();
     GetCountryAll();

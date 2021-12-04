@@ -185,56 +185,6 @@ function GetDetail() {
             error: function (xhr, httpStatusMessage, customErrorMessage) {
                 if (xhr.status === 410) {
                     alert(customErrorMessage);
-                    if (customErrorMessage === "Mobile number is require.") {
-                        $('#MobileNo').focus();
-                    }
-                    else if (customErrorMessage === "Email is require.") {
-                        $('#email').focus();
-                    }
-                    else if (customErrorMessage === "First name is require.") {
-                        $('#FirstName').focus();
-                    }
-                    else if (customErrorMessage === "Postalcode is require.") {
-                        $('#Postalcode').focus();
-                    }
-                    else if (customErrorMessage === "Address is require.") {
-                        $('#Address').focus();
-                    }
-                    else if (customErrorMessage === "Please select State.") {
-                        $('#State').focus();
-                        $("#State").empty();
-                        $("#City").empty();
-                        $('#cityDiv').hide();
-                        $("#Village").empty();
-                        $('#VillageDiv').hide();
-                    } else if (customErrorMessage === "Please select City.") {
-                        $('#City').focus();
-                        $("#City").empty();
-                        $("#Village").empty();
-                        $('#VillageDiv').hide();
-                    } else if (customErrorMessage === "Please select Village.") {
-                        $('#Village').focus();
-                        $("#Village").empty();
-                    } else if (customErrorMessage === "Please select occupation State.") {
-                        $('#OccupationState').focus();
-                        $("#OccupationState").empty();
-                        $("#OccupationCity").empty();
-                        $('#OccupationCityDiv').hide();
-                        $("#OccupationVillage").empty();
-                        $('#OccupationVillageDiv').hide();
-                    } else if (customErrorMessage === "Please select occupation city.") {
-                        $('#OccupationCity').focus();
-                        $("#OccupationCity").empty();
-                        $("#OccupationVillage").empty();
-                        $('#OccupationVillageDiv').hide();
-                    } else if (customErrorMessage === "Please select occupation village.") {
-                        $('#OccupationVillage').focus();
-                        $("#OccupationVillage").empty();
-                    } else if (customErrorMessage === "Occupation postalcode is require.") {
-                        $('#OccupationPostalCode').focus();
-                    } else if (customErrorMessage === "Occupation Address is require.") {
-                        $('#OccupationAddress').focus();
-                    }
                 }
                 hideProgress();
             },
@@ -251,7 +201,13 @@ function setdetail() {
     $('#GroupName').val(AccountGroupDetail.GroupName);
     $('#AliasName').val(AccountGroupDetail.AliasName);
     $('#AccountGroupId').val(AccountGroupDetail.Id);
+    if (AccountGroupDetail.IsDefaultRecord == true) {
+        $('.IsActive').hide();
+    } else {
+        $('.IsActive').show();
+    }
     $('#IsActive').prop('checked', AccountGroupDetail.IsActive);
-    $('#IsEditable').prop('checked', AccountGroupDetail.IsEditable);
+    //$('#IsEditable').prop('checked', AccountGroupDetail.IsEditable);
+    $('#IsEditable').prop('checked', false);
     GetDefaultGroups();
 }

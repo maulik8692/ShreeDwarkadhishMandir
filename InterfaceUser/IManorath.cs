@@ -42,6 +42,8 @@ namespace InterfaceMiddleLayer
         int PageSize { get; set; }
         string GroupName { get; set; }
         string NatureOfGroup { get; set; }
+        bool IsDefaultRecord { get; set; }
+
         void Validate();
     }
 }

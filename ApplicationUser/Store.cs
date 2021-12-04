@@ -24,6 +24,7 @@ namespace MiddleLayer
         public int Records { get; set; }
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
+        public bool IsDefaultRecord { get; set; }
         public Store(IValidation<IStore> _validation)
         {
             validation = _validation;

@@ -14,7 +14,7 @@ BEGIN
     -- Insert statements for procedure here  
  SELECT  A.Id, A.MandirId, A.GroupId, A.AccountName, A.Alias, A.BalanceAmount, A.DebitCredit, A.AccountHolderName  
  ,A.BankName, A.BankAddress, A.AccountNumber, A.IFSCCode, A.BankBranch, A.DateOfIssue, A.DateOfMaturity  
- ,A.InterestRate, A.MaturityAmount, A.IsEditable, A.IsActive, A.AnnexureOrder, A.AnnexureName  
+ ,A.InterestRate, A.MaturityAmount, A.IsEditable, A.IsActive, A.AnnexureOrder, A.AnnexureName ,A.IsDefaultRecord
  from AccountHead as A  
  where A.Id=@Id And A.IsDeleted=0   
   

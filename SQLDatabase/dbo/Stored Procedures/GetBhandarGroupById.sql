@@ -12,7 +12,7 @@ BEGIN
  SET NOCOUNT ON;          
           
  SELECT            
- BG.Id,BG.MandirId,BG.Name,BG.GroupCode,BG.Description,BG.GroupType,BG.IsActive
+ BG.Id,BG.MandirId,BG.Name,BG.GroupCode,BG.Description,BG.GroupType,BG.IsActive,BG.IsDefaultRecord
  from BhandarGroup as BG      
  where       
  BG.Id = @Id       
