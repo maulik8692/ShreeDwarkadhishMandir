@@ -42,6 +42,10 @@ namespace ShreeDwarkadhishMandir.Models
         public int ReceiptId { get; set; }
         public int? ApplicationUser { get; set; }
 
+        public DateTime? FromDate { get; set; }
+        public DateTime? ToDate { get; set; }
+        public bool ShowGroupping { get; set; }
+
         public List<IBhandarTransaction> SoldOut()
         {
             if (this.ItemDetails.IsNotNullList())
@@ -478,6 +482,17 @@ namespace ShreeDwarkadhishMandir.Models
             {
                 throw new Exception("There must be atlease one item for Nek.");
             }
+        }
+
+        public IBhandarTransaction Report()
+        {
+            IBhandarTransaction bhandarTransaction = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+            bhandarTransaction.FromDate = this.FromDate;
+            bhandarTransaction.ToDate = this.ToDate;
+            bhandarTransaction.BhandarTransactionCodeId = this.BhandarTransactionCodeId;
+            bhandarTransaction.BhandarId = this.BhandarId;
+            bhandarTransaction.StoreId = this.StoreId;
+            return bhandarTransaction;
         }
     }
 }

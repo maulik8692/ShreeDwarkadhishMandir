@@ -158,5 +158,33 @@ namespace ShreeDwarkadhishMandir.Controllers
             List<IAnnexure> balanceSheet = dal.GetReport(string.Empty);
             return Json(balanceSheet, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult BhandarTransaction()
+        {
+            return View();
+        }
+
+        public ActionResult BhandarTransactionReport(SamagriTransactionRequest SamagriTransactionRequest)
+        {
+            return View(SamagriTransactionRequest);
+        }
+
+        [HttpPost]
+        public ActionResult GetBhandarTransactionReport(SamagriTransactionRequest SamagriTransactionRequest)
+        {
+            try
+            {
+                IBhandarTransaction request = SamagriTransactionRequest.Report();
+                List<IBhandarTransaction> BhandarTransactionResponse = new List<IBhandarTransaction>();
+                IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
+                BhandarTransactionResponse =  dalBhandarTransaction.GetReport(request);
+                return Json(BhandarTransactionResponse, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Log.Write(ex);
+                return new HttpStatusCodeResult(410, ex.Message);
+            }
+        }
     }
 }

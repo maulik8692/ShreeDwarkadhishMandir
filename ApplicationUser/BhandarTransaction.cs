@@ -28,7 +28,6 @@ namespace MiddleLayer
         public int BhandarTransactionCodeId { get; set; }
         public int UnitId { get; set; }
         public int SamagriId { get; set; }
-        public int CreatedOn { get; set; }
         public int JewelleryUnitId { get; set; }
         public decimal JewelleryQuantity { get; set; }
         public int VaishnavId { get; set; }
@@ -42,7 +41,17 @@ namespace MiddleLayer
         public int ChequeStatus { get; set; }
         public int ReceiptId { get; set; }
         public int? ApplicationUser { get; set; }
-
+        public DateTime? FromDate { get; set; }
+        public DateTime? ToDate { get; set; }
+        public string BhandarName { get; set; }
+        public string StoreName { get; set; }
+        public string UnitDescription { get; set; }
+        public string UnitAbbreviation { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public string TransactionCode { get; set; }
+        public string TransactionType { get; set; }
+        public int MultiplicationWith { get; set; }
+        public string BhandarUnitAbbreviation { get; set; }
         public BhandarTransaction(IValidation<IBhandarTransaction> _validation)
         {
             validation = _validation;

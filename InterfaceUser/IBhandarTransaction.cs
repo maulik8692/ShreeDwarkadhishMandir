@@ -18,7 +18,6 @@ namespace InterfaceMiddleLayer
         decimal Price { get; set; }
         decimal PaidAccountBalance { get; set; }
         decimal TotalPaidBalance { get; set; }
-        int CreatedOn { get; set; }
         int CreatedBy { get; set; }
         int JewelleryUnitId { get; set; }
         decimal JewelleryQuantity { get; set; }
@@ -42,6 +41,17 @@ namespace InterfaceMiddleLayer
         int ChequeStatus { get; set; }
         int ReceiptId { get; set; }
         int? ApplicationUser { get; set; }
+        DateTime? FromDate { get; set; }
+        DateTime? ToDate { get; set; }
+        string BhandarName { get; set; }
+        string StoreName { get; set; }
+        string UnitDescription { get; set; }
+        string UnitAbbreviation { get; set; }
+        DateTime CreatedOn { get; set; }
+        string TransactionCode { get; set; }
+        string TransactionType { get; set; }
+        int MultiplicationWith { get; set; }
+        string BhandarUnitAbbreviation { get; set; }
         void Validate();
     }
 }

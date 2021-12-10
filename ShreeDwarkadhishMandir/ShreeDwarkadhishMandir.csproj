@@ -637,6 +637,8 @@
     <Content Include="js\Bhandar.js" />
     <Content Include="js\BhandarCategory.js" />
     <Content Include="js\BhandarGroup.js" />
+    <Content Include="js\BhandarTransaction.js" />
+    <Content Include="js\BhandarTransactionReport.js" />
     <Content Include="js\Common.js" />
     <Content Include="js\Complementary.js" />
     <Content Include="js\CreateAccountHead.js" />
@@ -1286,6 +1288,8 @@
     <Content Include="Views\SamagriTransaction\IssueForSamagri.cshtml" />
     <Content Include="Views\SamagriTransaction\Nek.cshtml" />
     <Content Include="Views\Configuration\ApplicationConfiguration.cshtml" />
+    <Content Include="Views\Report\BhandarTransaction.cshtml" />
+    <Content Include="Views\Report\BhandarTransactionReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Bhandar Transaction Report";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
+}
+
+<div class="row PaddingTop">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <strong>Manorath </strong>Receipt
+            </div>
+            <div class="card-body">
+                <div class="row form-group Store">
+                    <div class="col col-md-3">
+                        <label for="Store" class="form-control-label">Store</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="Store" id="Store" class="form-control select2 select2-hidden-accessible searchableDropdown"></select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="Bhandar" class="form-control-label">Bhandar Name</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="Bhandar" id="Bhandar" class="form-control select2 select2-hidden-accessible searchableDropdown "></select>
+                    </div>
+                </div>
+
+                <div class="row form-group Store">
+                    <div class="col col-md-3">
+                        <label for="TransactionType" class="form-control-label">Transaction Type</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="TransactionType" id="TransactionType" class="form-control select2 select2-hidden-accessible searchableDropdown">
+                            <option value="0">Please select Transaction Type</option>
+                            <option value="1">Opening</option>
+                            <option value="2">Purchased</option>
+                            <option value="3">Donationed</option>
+                            <option value="4">Issue or Transferred</option>
+                            <option value="6">Recipt Consumption</option>
+                            <option value="8">Nek</option>
+                            <option value="9">Complementary </option>
+                            <option value="10">Scrapped</option>
+                            <option value="11">SoldOut</option>
+                            <option value="12">Issue For Samagri</option>
+                            <option value="14">Stock Correction</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="CreatedFromDate" class="form-control-label">Transaction From Date</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="CreatedFromDate" name="CreatedFromDate" type="text" placeholder="Enter Date" class="form-control CreatedDate">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="CreatedToDate" class="form-control-label">Transaction To Date</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input id="CreatedToDate" name="CreatedToDate" type="text" placeholder="Enter Date" class="form-control CreatedDate">
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button id="Search" style="width:20%" type="button" class="btn blueBackground btn-sm">
+                    <i class="fa fa-search"></i> Search
+                </button>
+                <button id="reset" style="width:20%" type="reset" class="btn blueBackground btn-sm">
+                    <i class="fa fa-refresh"></i> Reset
+                </button>
+                <a id="reset" style="width:20%" href="/Report/ReportList" class="btn blueBackground btn-sm">
+                    <i class="fa fa-arrow-left"> </i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/BhandarTransaction.js?@casheCleaner"></script>
+

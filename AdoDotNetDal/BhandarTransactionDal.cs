@@ -73,7 +73,42 @@ namespace AdoDotNetDal
 
         protected override List<IBhandarTransaction> GetReportCommand<T>(T anyObject)
         {
-            throw new NotImplementedException();
+            IBhandarTransaction request = anyObject as IBhandarTransaction;
+            cmd.CommandText = "BhandarTransactionDetailReport";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@FromDate", request.FromDate);
+            cmd.Parameters.AddWithValue("@ToDate", request.ToDate);
+            cmd.Parameters.AddWithValue("@BhandarTransactionCodeId", request.BhandarTransactionCodeId);
+            cmd.Parameters.AddWithValue("@BhandarId", request.BhandarId);
+            cmd.Parameters.AddWithValue("@StoreId", request.StoreId);
+            SqlDataReader dr = null;
+            dr = cmd.ExecuteReader();
+
+            List<IBhandarTransaction> response = new List<IBhandarTransaction>();
+            while (dr.Read())
+            {
+                IBhandarTransaction result = Factory<IBhandarTransaction>.Create("BhandarTransaction");
+                result.BhandarName = dr["BhandarName"].ToString();
+                result.BhandarId = dr["BhandarId"].ToInt();
+                result.StoreId = dr["StoreId"].ToInt();
+                result.StoreName = dr["StoreName"].ToString();
+                result.UnitDescription = dr["UnitDescription"].ToString();
+                result.UnitAbbreviation = dr["UnitAbbreviation"].ToString();
+                result.StockTransactionQuantity = dr["StockTransactionQuantity"].ToDecimal();
+                if (dr["CreatedOn"].IsNotNull() && dr["CreatedOn"].IsDate())
+                {
+                    result.CreatedOn = dr["CreatedOn"].ToString().ToDateTime("MM/dd/yyyy hh:mm:ss tt");
+                }
+                result.TransactionCode = dr["TransactionCode"].ToString();
+                result.TransactionType = dr["TransactionType"].ToString();
+                result.MultiplicationWith = dr["MultiplicationWith"].ToInt();
+
+                result.CurrentBalance = dr["CurrentBalance"].ToDecimal();
+                result.BhandarUnitAbbreviation = dr["BhandarUnitAbbreviation"].ToString();
+                response.Add(result);
+            }
+
+            return response;
         }
 
         protected override void SaveCommand(IBhandarTransaction anyType)
