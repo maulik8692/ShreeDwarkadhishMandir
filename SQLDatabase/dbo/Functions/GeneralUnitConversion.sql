@@ -2,29 +2,20 @@
 -- Author:  <Author,,Maulik Shah>  
 -- Create date: <Create Date, ,04-Sep-2021>  
 -- Description: <Description, ,UnitConversionFormula>  
--- Select UnitConversionFormula(1,2,2500)  
+-- Select GeneralUnitConversion(1,2,2500)  
 -- =============================================  
-CREATE FUNCTION [dbo].[UnitConversionFormula]  
+Create FUNCTION [dbo].[GeneralUnitConversion]  
 (  
-@BhandarId int,  
-@TransactionUnitId int,  
-@TransactionQuantity decimal(18,5)  
+@FirstUnitId int,  
+@SecondUnitId int,  
+@TransactionQuantity decimal(18,5) 
 )  
 RETURNS decimal(18,5)  
 AS  
 BEGIN  
- Declare @BhandarUnitId int, @ConvertedQuantity decimal(18,5)=0  
-  
- select @BhandarUnitId = B.UnitId  
- from Bhandar as B with (nolock) where B.Id=@BhandarId  
-  
- IF( Isnull(@BhandarUnitId,0) = @TransactionUnitId)  
- BEGIN  
-  set @ConvertedQuantity = @TransactionQuantity  
- END  
- else   
- BEGIN  
-  Declare @MainUnitId int ,@ConversionUnitId int ,  
+ Declare @ConvertedQuantity decimal(18,5)=0  
+
+Declare @MainUnitId int ,@ConversionUnitId int ,  
   @MainUnitQuantity decimal(18,5), @ConversionUnitQuantity decimal(18,5)  
   
   select   
@@ -34,20 +25,19 @@ BEGIN
    @ConversionUnitQuantity=UC.ConversionUnitQuantity  
   from UnitConversion as UC with (nolock)    
   where   
-   (UC.MainUnitId = @BhandarUnitId and UC.ConversionUnitId=@TransactionUnitId)  
+   (UC.MainUnitId = @FirstUnitId and UC.ConversionUnitId=@SecondUnitId)  
     or  
-   (UC.MainUnitId = @TransactionUnitId and UC.ConversionUnitId=@BhandarUnitId)  
+   (UC.MainUnitId = @SecondUnitId and UC.ConversionUnitId=@FirstUnitId)  
   
-  IF( @MainUnitId = @TransactionUnitId )  
+  IF( @MainUnitId = @SecondUnitId )  
   BEGIN  
    set @ConvertedQuantity = @TransactionQuantity * @ConversionUnitQuantity  
   END  
-  else IF( @ConversionUnitId = @TransactionUnitId )  
+  else IF( @ConversionUnitId = @SecondUnitId )  
   BEGIN  
    set @ConvertedQuantity = @TransactionQuantity / @ConversionUnitQuantity  
   END  
- END  
   
  RETURN isnull(@ConvertedQuantity,0)  
   
-END  
+END

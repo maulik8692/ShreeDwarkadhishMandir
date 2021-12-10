@@ -224,5 +224,7 @@
     <Build Include="dbo\Stored Procedures\UnitConversionByBhandarId.sql" />
     <Build Include="dbo\Stored Procedures\GetSamagriDropdown.sql" />
     <Build Include="dbo\Stored Procedures\GetUserDropdown.sql" />
+    <Build Include="dbo\Functions\GeneralUnitConversion.sql" />
+    <Build Include="dbo\Stored Procedures\BhandarTransactionDetailReport.sql" />
   </ItemGroup>
 </Project>
