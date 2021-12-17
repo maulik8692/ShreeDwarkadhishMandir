@@ -17,6 +17,15 @@ namespace ShreeDwarkadhishMandir.Controllers
         // GET: Darshan
         public ActionResult DarshanTime()
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedDarshanTime())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View();
         }
 
@@ -38,6 +47,15 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult CreateDarshan()
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedDarshanTime())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View();
         }
 

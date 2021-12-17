@@ -17,6 +17,15 @@ namespace ShreeDwarkadhishMandir.Controllers
         // GET: AccountTransaction
         public ActionResult AccountTransaction()
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedAccountTransaction())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View();
         }
 

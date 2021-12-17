@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BhandarTransactionCodeEnum.cs" />
+    <Compile Include="Enumerations.cs" />
+    <Compile Include="UserPage.cs" />
     <Compile Include="ProcedureEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

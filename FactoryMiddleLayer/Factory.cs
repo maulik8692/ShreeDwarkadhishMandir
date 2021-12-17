@@ -32,26 +32,10 @@ namespace FactoryMiddleLayer
 
                 ObjectsofOurProjects.RegisterType<IAccountHead, AccountHead>
                     ("AccountHead", new InjectionConstructor(new ValidationAccountHead()));
-                //ObjectsofOurProjects.RegisterType<AccountHead, FixedDeposit>
-                //    ("FixedDeposit", new InjectionConstructor(new ValidationFixedDeposit()));
-                //ObjectsofOurProjects.RegisterType<AccountHead, BhetHead>
-                //    ("BhetHead", new InjectionConstructor(new ValidationBhet()));
-                //ObjectsofOurProjects.RegisterType<AccountHead, ManorathHead>
-                //   ("ManorathHead", new InjectionConstructor(new ValidationManorath()));
-                //ObjectsofOurProjects.RegisterType<AccountHead, DarshanHead>
-                //  ("DarshanHead", new InjectionConstructor(new ValidationDarshanHead()));
-                //ObjectsofOurProjects.RegisterType<AccountHead, GeneralAccount>
-                //  ("GeneralAccount", new InjectionConstructor(new ValidationBhet()));
-                //ObjectsofOurProjects.RegisterType<AccountHead, SupplierHead>
-                // ("SupplierHead", new InjectionConstructor(new ValidationSupplierHead()));
-
+                
                 ObjectsofOurProjects.RegisterType<IReceipt, Receipt>
                     ("Receipt", new InjectionConstructor(new ValidationReceipt()));
-                //ObjectsofOurProjects.RegisterType<ReceiptBase, ManorathReceipt>
-                //    ("ManorathReceipt", new InjectionConstructor(new ValidationManorathReceipt()));
-                //ObjectsofOurProjects.RegisterType<ReceiptBase, DarshanReceipt>
-                //   ("DarshanReceipt", new InjectionConstructor(new ValidationManorathReceipt()));
-
+                
                 ObjectsofOurProjects.RegisterType<IBhandarGroup, BhandarGroup>
                   ("BhandarGroup", new InjectionConstructor(new ValidationBhandarGroup()));
 
@@ -138,6 +122,8 @@ namespace FactoryMiddleLayer
                 ObjectsofOurProjects.RegisterType<IEmailLog, EmailLog>
                   ("EmailLog");
 
+                ObjectsofOurProjects.RegisterType<IPageModule, PageModule>
+                    ("PageModule");
 
                 ObjectsofOurProjects.RegisterType<IBalanceSheet, BalanceSheet>("BalanceSheet");
                 ObjectsofOurProjects.RegisterType<IIncomeAndExpenditure, IncomeAndExpenditure>("IncomeAndExpenditure");

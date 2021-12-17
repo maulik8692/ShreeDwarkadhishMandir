@@ -1,55 +1,73 @@
-﻿@{
+﻿@using ShreeDwarkadhishMandir.Models;
+@{
     ViewBag.Title = "Home";
     string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
+    bool IsAllowedVaishnavJan = CheckValidation.IsAllowedVaishnavJan();
+    bool IsAllowedManorathReceipt = CheckValidation.IsAllowedManorathReceipt();
+    bool IsAllowedReceiptList = CheckValidation.IsAllowedReceiptList();
+    bool IsAllowedManorath = CheckValidation.IsAllowedManorath();
 }
 <!-- STATISTIC-->
 <section class="statistic statistic2">
     <div class="container">
         <div class="row">
-            <a href="/Vaishnav/VaishnavJan" class="col-md-6 col-lg-3">
-                <div>
-                    <div class="statistic__item statistic__item--green">
-                        <h2 id="Vaishnavs" class="number">0</h2>
-                        <span class="desc">Vaishnav</span>
-                        <div class="icon">
-                            <i class="zmdi zmdi-account-o"></i>
+            @if (IsAllowedVaishnavJan)
+            {
+                <a href="/Vaishnav/VaishnavJan" class="col-md-6 col-lg-3">
+                    <div>
+                        <div class="statistic__item statistic__item--green">
+                            <h2 id="Vaishnavs" class="number">0</h2>
+                            <span class="desc">Vaishnav</span>
+                            <div class="icon">
+                                <i class="zmdi zmdi-account-o"></i>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-            <a id="bhet" class="col-md-6 col-lg-3" style="cursor: pointer;">
-                <div>
-                    <div class="statistic__item statistic__item--orange">
-                        <h2 id="Bhet" class="number">0</h2>
-                        <span class="desc">Todays Bhet</span>
-                        <div class="icon">
-                            <i class="zmdi zmdi-shopping-cart"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#ManorathOfToday" class="col-md-6 col-lg-3">
-                <div>
-                    <div class="statistic__item statistic__item--blue">
-                        <h2 id="Manorath" class="number">0</h2>
-                        <span class="desc">Today's Manorath</span>
-                        <div class="icon">
-                            <i class="zmdi zmdi-calendar-note"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
+                </a>
+            }
 
-            <div class="col-md-6 col-lg-3">
-                <div class="statistic__item statistic__item--red">
-                    <h2 id="Balance" class="number">0</h2>
-                    <span class="desc">Balance</span>
-                    <div class="icon">
-                        <i class="fa fa-inr"></i>
+            @if (IsAllowedReceiptList || IsAllowedManorathReceipt)
+            {
+                <a id="bhet" class="col-md-6 col-lg-3" style="cursor: pointer;">
+                    <div>
+                        <div class="statistic__item statistic__item--orange">
+                            <h2 id="Bhet" class="number">0</h2>
+                            <span class="desc">Todays Bhet</span>
+                            <div class="icon">
+                                <i class="zmdi zmdi-shopping-cart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+
+            @if (IsAllowedManorath)
+            {
+                <a href="#ManorathOfToday" class="col-md-6 col-lg-3">
+                    <div>
+                        <div class="statistic__item statistic__item--blue">
+                            <h2 id="Manorath" class="number">0</h2>
+                            <span class="desc">Today's Manorath</span>
+                            <div class="icon">
+                                <i class="zmdi zmdi-calendar-note"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+
+            @if (IsAllowedReceiptList)
+            {
+                <div class="col-md-6 col-lg-3">
+                    <div class="statistic__item statistic__item--red">
+                        <h2 id="Balance" class="number">0</h2>
+                        <span class="desc">Balance</span>
+                        <div class="icon">
+                            <i class="fa fa-inr"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
-
+            }
         </div>
     </div>
 </section>

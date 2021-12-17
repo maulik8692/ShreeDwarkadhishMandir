@@ -17,11 +17,29 @@ namespace ShreeDwarkadhishMandir.Controllers
         // GET: Report
         public ActionResult ReportList()
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedReportList())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View();
         }
 
         public ActionResult ManorathReceipt()
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedManorathReceiptReport())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View();
         }
 
@@ -29,6 +47,15 @@ namespace ShreeDwarkadhishMandir.Controllers
         {
             try
             {
+                if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+                {
+                    return RedirectToAction("Login", "Login");
+                }
+                else if (!CheckValidation.IsAllowedManorathReceiptReport())
+                {
+                    return RedirectToAction("AccessDenied", "Error");
+                }
+
                 return View(receiptRequest);
             }
             catch (Exception ex)
@@ -67,6 +94,15 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult AccountTransaction()
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedAccountTransactionReport())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View();
         }
 
@@ -107,6 +143,15 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult BalanceSheet()
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedBalanceSheet())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View();
         }
 
@@ -120,6 +165,15 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult BalanceSheetDetails(int GroupId)
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedBalanceSheet())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             BalanceSheetRequest balanceSheet = new BalanceSheetRequest();
             balanceSheet.Id = GroupId;
             return View(balanceSheet);
@@ -135,6 +189,15 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult IncomeExpenditure()
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedIncomeExpenditure())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View();
         }
 
@@ -148,6 +211,15 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult Annexure()
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedAnnexure())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View();
         }
 
@@ -161,11 +233,29 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult BhandarTransaction()
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedBhandarTransaction())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View();
         }
 
         public ActionResult BhandarTransactionReport(SamagriTransactionRequest SamagriTransactionRequest)
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedBhandarTransaction())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View(SamagriTransactionRequest);
         }
 

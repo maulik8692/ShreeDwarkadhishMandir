@@ -164,6 +164,7 @@
     <Compile Include="Models\BalanceSheetRequest.cs" />
     <Compile Include="Models\BhandarCategoryRequest.cs" />
     <Compile Include="Models\BhandarGroupRequest.cs" />
+    <Compile Include="Models\CheckValidation.cs" />
     <Compile Include="Models\JqGridResponse.cs" />
     <Compile Include="Models\BhandarRequest.cs" />
     <Compile Include="Models\BhandarTransactionRequest.cs" />
@@ -620,6 +621,7 @@
     <Content Include="fonts\poppins\poppins-v5-latin-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\access_denied.png" />
     <Content Include="images\Icon.png" />
     <Content Include="images\icon\avatar-01.jpg" />
     <Content Include="images\Logo.png" />
@@ -663,6 +665,7 @@
     <Content Include="js\DarshanTime.js" />
     <Content Include="js\date.format.js" />
     <Content Include="js\Donation.js" />
+    <Content Include="js\HideProgress.js" />
     <Content Include="js\Home.js" />
     <Content Include="js\IncomeExpenditure.js" />
     <Content Include="js\Issue.js" />
@@ -1290,6 +1293,7 @@
     <Content Include="Views\Configuration\ApplicationConfiguration.cshtml" />
     <Content Include="Views\Report\BhandarTransaction.cshtml" />
     <Content Include="Views\Report\BhandarTransactionReport.cshtml" />
+    <Content Include="Views\Error\AccessDenied.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

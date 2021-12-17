@@ -26,6 +26,10 @@ namespace ShreeDwarkadhishMandir.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
+            else if (!CheckValidation.IsAllowedVaishnav())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
 
             return View();
         }
@@ -125,6 +129,10 @@ namespace ShreeDwarkadhishMandir.Controllers
             if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
             {
                 return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedVaishnavJan())
+            {
+                return RedirectToAction("AccessDenied", "Error");
             }
 
             return View();

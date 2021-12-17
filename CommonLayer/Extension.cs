@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -12,6 +13,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+
 
 namespace CommonLayer
 {
@@ -1985,5 +1987,17 @@ namespace CommonLayer
             g = System.Convert.ToByte(match.Groups["g"].Value, 16);
             return Color.FromArgb(a, r, g, b);
         }
+
+        #region Json 
+        public static string ToJson(this object val)
+        {
+            return JsonConvert.SerializeObject(val);
+        }
+
+        public static object FromJson(this string val)
+        {
+            return JsonConvert.DeserializeObject(val);
+        }
+        #endregion Json
     }
 }

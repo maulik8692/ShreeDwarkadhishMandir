@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace InterfaceMiddleLayer
@@ -21,6 +22,7 @@ namespace InterfaceMiddleLayer
         public string DisplayName { get; set; }
         public string Email { get; set; }
         public bool IsDefaultRecord { get; set; }
+        public List<IPageModule> PageRights { get; set; }
 
         public ApplicationUserBase()
         {

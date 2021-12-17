@@ -1,6 +1,18 @@
-﻿@{
+﻿@using ShreeDwarkadhishMandir.Models;
+@{
     ViewBag.Title = "ReportList";
     string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
+
+    bool IsAllowedBalanceSheet = CheckValidation.IsAllowedBalanceSheet();
+    bool IsAllowedIncomeExpenditure = CheckValidation.IsAllowedIncomeExpenditure();
+    bool IsAllowedAnnexure = CheckValidation.IsAllowedAnnexure();
+    bool IsAllowedManorathReceiptReport = CheckValidation.IsAllowedManorathReceiptReport();
+    bool IsAllowedAccountTransactionReport = CheckValidation.IsAllowedAccountTransactionReport();
+    bool IsAllowedBhandarTransaction = CheckValidation.IsAllowedBhandarTransaction();
+
+    bool IsThereAnyAccountReport = IsAllowedBalanceSheet || IsAllowedIncomeExpenditure || IsAllowedAnnexure || IsAllowedManorathReceiptReport || IsAllowedAccountTransactionReport;
+    string InventoryReportHeaderClass = IsThereAnyAccountReport ? "nav-item nav-link" : "nav-item nav-link active";
+    string InventoryReportListClass = IsThereAnyAccountReport ? "tab-pane fade" : "tab-pane fade show active";
 }
 
 <div class="row PaddingTop">
@@ -13,51 +25,63 @@
             <div class="default-tab">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-Account-tab" data-toggle="tab" href="#nav-Account" role="tab" aria-controls="nav-Account"
-                           aria-selected="true">Account Report</a>
-                        <a class="nav-item nav-link" id="nav-Inventory-tab" data-toggle="tab" href="#nav-Inventory" role="tab" aria-controls="nav-Inventory"
-                           aria-selected="false">Inventory Report</a>
+                        @if (IsThereAnyAccountReport)
+                        {
+                            <a class="nav-item nav-link active" id="nav-Account-tab" data-toggle="tab" href="#nav-Account" role="tab" aria-controls="nav-Account"
+                               aria-selected="true">Account Report</a>
+                        }
+                        @if (IsAllowedBhandarTransaction)
+                        {
+                            <a class="@InventoryReportHeaderClass" id="nav-Inventory-tab" data-toggle="tab" href="#nav-Inventory" role="tab" aria-controls="nav-Inventory"
+                               aria-selected="false">Inventory Report</a>
+                        }
                     </div>
                 </nav>
                 <div class="tab-content pl-3 pt-2" id="nav-tabContent">
-                    <div class="tab-pane fade  show active" id="nav-Account" role="tabpanel" aria-labelledby="nav-Account-tab">
-                        <div class="account-dropdown__item">
-                            <a href="/Report/BalanceSheet">
-                                <i class="zmdi zmdi-money-box"></i>Balance Sheet
-                            </a>
+                    @if (IsThereAnyAccountReport)
+                    {
+                        <div class="tab-pane fade show active" id="nav-Account" role="tabpanel" aria-labelledby="nav-Account-tab">
+                            <div class="account-dropdown__item">
+                                <a href="/Report/BalanceSheet">
+                                    <i class="zmdi zmdi-money-box"></i>Balance Sheet
+                                </a>
+                            </div>
+                            <div class="account-dropdown__item">
+                                <a href="/Report/IncomeExpenditure">
+                                    <i class="zmdi zmdi-money-box"></i>Income over Expenditure
+                                </a>
+                            </div>
+                            <div class="account-dropdown__item">
+                                <a href="/Report/Annexure">
+                                    <i class="zmdi zmdi-money-box"></i>Annexure
+                                </a>
+                            </div>
+                            <div class="account-dropdown__item">
+                                <a href="/Report/ManorathReceipt">
+                                    <i class="zmdi zmdi-money-box"></i>Manorath Receipt
+                                </a>
+                            </div>
+                            <div class="account-dropdown__item">
+                                <a href="/Report/AccountTransaction">
+                                    <i class="zmdi zmdi-money-box"></i>Account Transaction
+                                </a>
+                            </div>
                         </div>
-                        <div class="account-dropdown__item">
-                            <a href="/Report/IncomeExpenditure">
-                                <i class="zmdi zmdi-money-box"></i>Income over Expenditure
-                            </a>
+                    }
+                    @if (IsAllowedBhandarTransaction)
+                    {
+                        <div class="@InventoryReportListClass" id="nav-Inventory" role="tabpanel" aria-labelledby="nav-Inventory-tab">
+                            <div class="account-dropdown__item">
+                                <a href="/Report/BhandarTransaction">
+                                    <i class="fa fa-briefcase"></i>Bhandar Transaction
+                                </a>
+                            </div>
                         </div>
-                        <div class="account-dropdown__item">
-                            <a href="/Report/Annexure">
-                                <i class="zmdi zmdi-money-box"></i>Annexure
-                            </a>
-                        </div>
-                        <div class="account-dropdown__item">
-                            <a href="/Report/ManorathReceipt">
-                                <i class="zmdi zmdi-money-box"></i>Manorath Receipt
-                            </a>
-                        </div>
-                        <div class="account-dropdown__item">
-                            <a href="/Report/AccountTransaction">
-                                <i class="zmdi zmdi-money-box"></i>Account Transaction
-                            </a>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-Inventory" role="tabpanel" aria-labelledby="nav-Inventory-tab">
-                        <div class="account-dropdown__item">
-                            <a href="/Report/BhandarTransaction">
-                                <i class="fa fa-briefcase"></i>Bhandar Transaction
-                            </a>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
         <div class="col-lg-2"></div>
     </div>
 </div>
-<script src="~/js/ReportList.js?@casheCleaner"></script>
+<script src="~/js/HideProgress.js?@casheCleaner"></script>

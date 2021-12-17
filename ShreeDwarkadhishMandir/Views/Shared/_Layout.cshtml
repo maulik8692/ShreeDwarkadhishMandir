@@ -1,5 +1,14 @@
-﻿@{
+﻿@using ShreeDwarkadhishMandir.Models;
+@{
     string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
+    bool IsAllowedSamagriTransaction = CheckValidation.IsAllowedSamagriTransaction();
+    bool IsAllowedReceiptList = CheckValidation.IsAllowedReceiptList();
+    bool IsAllowedMandirVoucher = CheckValidation.IsAllowedMandirVoucher();
+    bool IsAllowedAccountTransaction = CheckValidation.IsAllowedAccountTransaction();
+    bool IsAllowedReportList = CheckValidation.IsAllowedReportList();
+    bool IsAllowedMandirList = CheckValidation.IsAllowedMandirList();
+    bool IsAllowedApplicationUser = CheckValidation.IsAllowedApplicationUser();
+    bool IsAllowedConfiguration = CheckValidation.IsAllowedConfiguration();
 }
 <!DOCTYPE html>
 <html>
@@ -37,10 +46,9 @@
 
 </head>
 <body>
-    @{
-
-        string myIP = HttpContext.Current.Request.UserHostAddress;
-    }
+    @*@{
+            string myIP = HttpContext.Current.Request.UserHostAddress;
+        }*@
     <div class="page-wrapper">
         <!-- HEADER DESKTOP-->
         <header class="header-desktop3 d-none d-lg-block">
@@ -54,149 +62,107 @@
                     </div>
                     <div class="header__navbar">
                         <ul class="list-unstyled">
-                            @*<li>
-                                    <a href="/Darshan/DarshanTime">
-                                        <i class="fas fa-bell"></i>
-                                        <span class="bot-line"></span>દર્શન
+                            @if (IsAllowedSamagriTransaction)
+                            {
+                                <li>
+                                    <a href="/SamagriTransaction/SamagriTransaction">
+                                        <i class="fas fa-tasks"></i>
+                                        <span class="bot-line"></span>ભંડાર લેવડ દેવડ
                                     </a>
                                 </li>
+                            }
+                            @if (IsAllowedReceiptList)
+                            {
                                 <li>
-                                    <a href="/Manorath/Manorath">
-                                        <i class="fas fa-gift"></i>
-                                        <span class="bot-line"></span>મનોરથ
+                                    <a href="/Receipt/ReceiptList">
+                                        <i class="fas fa-file-text"></i>
+                                        <span class="bot-line"></span>ભેટ
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="/Samagri/Samagri">
-                                        <i class="fas fa-circle"></i>
-                                        <span class="bot-line"></span>સામગ્રી
-                                    </a>
-                                </li>*@
-                            <li>
-                                <a href="/SamagriTransaction/SamagriTransaction">
-                                    <i class="fas fa-tasks"></i>
-                                    <span class="bot-line"></span>ભંડાર લેવડ દેવડ
-                                </a>
-                            </li>
-                            @*<li class="has-sub">
+                            }
+
+                            @if (IsAllowedMandirVoucher || IsAllowedAccountTransaction)
+                            {
+                                <li class="has-sub">
                                     <a href="#">
-                                        <i class="fas fa-briefcase"></i>
-                                        <span class="bot-line"></span>ભંડાર
+                                        <i class="zmdi zmdi-money-box"></i>
+                                        <span class="bot-line"></span>નાણકીય વ્યવહાર
                                     </a>
                                     <ul class="header3-sub-list list-unstyled">
-                                        <li>
-                                            <a href="/Bhandar/Bhandar">
-                                                <i class="fas fa-briefcase"></i>
-                                                <span class="bot-line"></span>ભંડાર
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/Supplier/Supplier">
-                                                <i class="fas fa-briefcase"></i>
-                                                <span class="bot-line"></span>વિક્રેતા (Supplier)
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/UnitMeasurement/UnitMeasurement">
-                                                <i class="fas fa-briefcase"></i>
-                                                <span class="bot-line"></span>માપન એકમ (Unit Of Measurement)
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/BhandarCategory/BhandarCategory">
-                                                <i class="fas fa-briefcase"></i>
-                                                <span class="bot-line"></span>ભંડાર શ્રેણીઓ (Bhandar Category)
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/SamagriTransaction/SamagriTransaction">
-                                                <i class="fas fa-briefcase"></i>
-                                                <span class="bot-line"></span>ભંડાર લેવડ દેવડ
-                                            </a>
-                                        </li>
+                                        @if (IsAllowedMandirVoucher)
+                                        {
+                                            <li>
+                                                <a href="/MandirVoucher/MandirVoucher">
+                                                    <i class="zmdi zmdi-money-box"></i>
+                                                    <span class="bot-line"></span>મંદિર ખર્ચપત્ર (Mandir Voucher)
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (IsAllowedAccountTransaction)
+                                        {
+                                            <li>
+                                                <a href="/AccountTransaction/AccountTransaction">
+                                                    <i class="zmdi zmdi-money-box"></i>
+                                                    <span class="bot-line"></span>લેવડદેવડ (Adjust Transaction)
+                                                </a>
+                                            </li>
+                                        }
                                     </ul>
-                                </li>*@
-                            <li>
-                                <a href="/Receipt/ReceiptList">
-                                    <i class="fas fa-file-text"></i>
-                                    <span class="bot-line"></span>ભેટ
-                                </a>
-                            </li>
-                            <li class="has-sub">
-                                <a href="#">
-                                    <i class="zmdi zmdi-money-box"></i>
-                                    <span class="bot-line"></span>નાણકીય વ્યવહાર
-                                </a>
-                                <ul class="header3-sub-list list-unstyled">
-                                    <li>
-                                        <a href="/MandirVoucher/MandirVoucher">
-                                            <i class="zmdi zmdi-money-box"></i>
-                                            <span class="bot-line"></span>મંદિર ખર્ચપત્ર (Mandir Voucher)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/AccountTransaction/AccountTransaction">
-                                            <i class="zmdi zmdi-money-box"></i>
-                                            <span class="bot-line"></span>લેવડદેવડ (Adjust Transaction)
-                                        </a>
-                                    </li>
-                                    @*<li>
-                                            <a href="/AccountHead/AccountHead">
-                                                <i class="zmdi zmdi-money-box"></i>
-                                                <span class="bot-line"></span>ખાતા (Account Head)
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="/AccountGroup/AccountGroup">
-                                                <i class="zmdi zmdi-money-box"></i>
-                                                <span class="bot-line"></span>Account Group
-                                            </a>
-                                        </li>*@
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="/Report/ReportList">
-                                    <i class="fas fa-file-text"></i>
-                                    <span class="bot-line"></span>Reports
-                                </a>
-                            </li>
+                                </li>
+                            }
+                            @if (IsAllowedReportList)
+                            {
+                                <li>
+                                    <a href="/Report/ReportList">
+                                        <i class="fas fa-file-text"></i>
+                                        <span class="bot-line"></span>Reports
+                                    </a>
+                                </li>
+                            }
                         </ul>
                     </div>
                     <div class="header__tool">
-                        <div class="header-button-item js-item-menu">
-                            <i class="zmdi zmdi-settings"></i>
-                            <div class="setting-dropdown js-dropdown">
-                                <div class="account-dropdown__body">
-                                    <div class="account-dropdown__item">
-                                        <a href="/ApplicationUser/ApplicationUserList">
-                                            <i class="zmdi zmdi-account"></i>Application User
-                                        </a>
-                                    </div>
-                                    <div class="account-dropdown__item">
-                                        <a href="/Mandir/MandirList">
-                                            <i class="fa fa-flag"></i>Mandir
-                                        </a>
-                                    </div>
+                        @if (IsAllowedMandirList || IsAllowedApplicationUser || IsAllowedConfiguration)
+                        {
+                            <div class="header-button-item js-item-menu">
+
+                                <i class="zmdi zmdi-settings"></i>
+                                <div class="setting-dropdown js-dropdown">
+                                    @if (IsAllowedMandirList || IsAllowedApplicationUser)
+                                    {
+                                        <div class="account-dropdown__body">
+                                            @if (IsAllowedApplicationUser)
+                                            {
+                                                <div class="account-dropdown__item">
+                                                    <a href="/ApplicationUser/ApplicationUserList">
+                                                        <i class="zmdi zmdi-account"></i>Application User
+                                                    </a>
+                                                </div>
+                                            }
+                                            @if (IsAllowedMandirList)
+                                            {
+                                                <div class="account-dropdown__item">
+                                                    <a href="/Mandir/MandirList">
+                                                        <i class="fa fa-flag"></i>Mandir
+                                                    </a>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                    @if (IsAllowedConfiguration)
+                                    {
+                                        <div class="account-dropdown__body">
+                                            <div class="account-dropdown__item">
+                                                <a href="/Configuration/Configuration">
+                                                    <i class="zmdi zmdi-settings"></i>Configuration
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
-                                <div class="account-dropdown__body">
-                                    @*<div class="account-dropdown__item">
-                                        <a href="/Report/ReportList">
-                                            <i class="zmdi zmdi-money-box"></i>Reports
-                                        </a>
-                                    </div>*@
-                                    <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-email"></i>Email Log
-                                        </a>
-                                    </div>
-                                    <div class="account-dropdown__item">
-                                        <a href="/Configuration/Configuration">
-                                            <i class="zmdi zmdi-settings"></i>Configuration
-                                        </a>
-                                    </div>
-                                </div>
+
                             </div>
-                        </div>
+                        }
                         <div class="account-wrap">
                             <div class="account-item account-item--style2 clearfix js-item-menu">
                                 <div class="image">
@@ -406,8 +372,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="copyright">
-                                @*<p>© શુદ્ધાદ્વૈત પુષ્ટિમાર્ગ તૃતીયા ગૃહ - કાંકરોલી @DateTime.Now.Year. All rights reserved.</p>*@
-                                <p>© Shuddha-advaita Trutiya Gruh of Pushtimarg - Kankroli @DateTime.Now.Year. All rights reserved.</p>
+                                <p>© શુદ્ધાદ્વૈત પુષ્ટિમાર્ગ તૃતીયા ગૃહ - કાંકરોલી @DateTime.Now.Year. All rights reserved.</p>
+                                <p>@*© Shuddha-advaita Trutiya Gruh of Pushtimarg - Kankroli @DateTime.Now.Year. All rights reserved.*@</p>
                             </div>
                         </div>
                     </div>
@@ -439,7 +405,7 @@
     </script>
     <script src="~/Scripts/i18n/grid.locale-en.js"></script>
     <script src="~/Scripts/jquery.jqGrid.min.js"></script>
-    <script src="~/js/Common.js"></script>
+    <script src="~/js/Common.js?@casheCleaner"></script>
     <script src="~/Scripts/jquery.redirect.js"></script>
     <script src="~/js/date.format.js"></script>
     <!-- Main JS-->

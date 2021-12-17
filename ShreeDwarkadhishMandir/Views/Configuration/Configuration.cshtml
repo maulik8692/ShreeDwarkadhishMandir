@@ -1,6 +1,30 @@
-﻿@{
+﻿@using ShreeDwarkadhishMandir.Models;
+@{
     ViewBag.Title = "Configuration";
     string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
+
+    bool IsAllowedDarshanTime = CheckValidation.IsAllowedDarshanTime();
+    bool IsAllowedManorath = CheckValidation.IsAllowedManorath();
+    bool IsDarshanOrManorath = IsAllowedDarshanTime || IsAllowedManorath;
+
+    bool IsAllowedBhandar = CheckValidation.IsAllowedBhandar();
+    bool IsAllowedSamagri = CheckValidation.IsAllowedSamagri();
+    bool IsAllowedStore = CheckValidation.IsAllowedStore();
+    bool IsAllowedBhandarCategory = CheckValidation.IsAllowedBhandarCategory();
+    bool IsAllowedBhandarGroup = CheckValidation.IsAllowedBhandarGroup();
+    bool IsAllowedUnitConversion = CheckValidation.IsAllowedUnitConversion();
+    bool IsAllowedUnitMeasurement = CheckValidation.IsAllowedUnitMeasurement();
+    bool IsAllowedSupplier = CheckValidation.IsAllowedSupplier();
+    bool IsBhandarNSamagri = IsAllowedBhandar || IsAllowedSamagri || IsAllowedStore || IsAllowedBhandarCategory ||
+        IsAllowedBhandarGroup || IsAllowedUnitConversion || IsAllowedUnitMeasurement || IsAllowedSupplier;
+
+
+    bool IsAllowedAccountHead = CheckValidation.IsAllowedAccountHead();
+    bool IsAllowedAccountGroup = CheckValidation.IsAllowedAccountGroup();
+    bool IsAllowedAccount = IsAllowedAccountHead || IsAllowedAccountGroup;
+
+    bool IsAllowedEmailConfiguration = CheckValidation.IsAllowedEmailConfiguration();
+    bool IsAllowedReceiptConfiguration = CheckValidation.IsAllowedReceiptConfiguration();
 }
 
 <div class="row">
@@ -13,21 +37,23 @@
             <div class="default-tab">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-Darshan-tab" data-toggle="tab" href="#nav-Darshan" role="tab" aria-controls="nav-Darshan"
+                        <a class="nav-item nav-link @(IsDarshanOrManorath?"active":"")" id="nav-Darshan-tab" data-toggle="tab" href="#nav-Darshan" role="tab" aria-controls="nav-Darshan"
                            aria-selected="true">દર્શન &amp; મનોરથ</a>
-                        <a class="nav-item nav-link" id="nav-BhandarSamagri-tab" data-toggle="tab" href="#nav-BhandarSamagri" role="tab" aria-controls="nav-BhandarSamagri"
+                        <a class="nav-item nav-link @(!IsDarshanOrManorath && IsBhandarNSamagri?"active":"")" id="nav-BhandarSamagri-tab" data-toggle="tab" href="#nav-BhandarSamagri" role="tab" aria-controls="nav-BhandarSamagri"
                            aria-selected="false">ભંડાર &amp; સામગ્રી</a>
-                        <a class="nav-item nav-link" id="nav-Account-tab" data-toggle="tab" href="#nav-Account" role="tab" aria-controls="nav-Account"
+                        <a class="nav-item nav-link @(!IsDarshanOrManorath && !IsBhandarNSamagri && IsAllowedAccount?"active":"")" id="nav-Account-tab" data-toggle="tab" href="#nav-Account" role="tab" aria-controls="nav-Account"
                            aria-selected="false">નાણકીય વ્યવહાર</a>
-                        <a class="nav-item nav-link" id="nav-Configuration-tab" data-toggle="tab" href="#nav-Configuration" role="tab" aria-controls="nav-Configuration"
-                           aria-selected="true">Configuration</a>
-                        <a class="nav-item nav-link" id="nav-EmailConfiguration-tab" data-toggle="tab" href="#nav-EmailConfiguration" role="tab" aria-controls="nav-EmailConfiguration"
+                        <a class="nav-item nav-link @(!IsDarshanOrManorath 
+        && !IsBhandarNSamagri && !IsAllowedAccount && IsAllowedReceiptConfiguration?"active":"")" id="nav-Configuration-tab" data-toggle="tab" href="#nav-Configuration" role="tab" aria-controls="nav-Configuration"
+                           aria-selected="true">Receipt Configuration</a>
+                        <a class="nav-item nav-link @(!IsDarshanOrManorath 
+        && !IsBhandarNSamagri && !IsAllowedAccount && !IsAllowedReceiptConfiguration && IsAllowedEmailConfiguration?"active":"")" id="nav-EmailConfiguration-tab" data-toggle="tab" href="#nav-EmailConfiguration" role="tab" aria-controls="nav-EmailConfiguration"
                            aria-selected="false">Email Configuration</a>
 
                     </div>
                 </nav>
                 <div class="tab-content pl-3 pt-2" id="nav-tabContent">
-                    <div class="tab-pane fade  show active" id="nav-Darshan" role="tabpanel" aria-labelledby="nav-Darshan-tab">
+                    <div class="tab-pane fade @(IsDarshanOrManorath?"show active":"")" id="nav-Darshan" role="tabpanel" aria-labelledby="nav-Darshan-tab">
                         <div class="account-dropdown__item">
                             <a href="/Darshan/DarshanTime">
                                 <i class="fa fa-bell"></i>Darshan &amp; Darshan Time
@@ -39,7 +65,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="nav-BhandarSamagri" role="tabpanel" aria-labelledby="nav-BhandarSamagri-tab">
+                    <div class="tab-pane fade @(!IsDarshanOrManorath && IsBhandarNSamagri?"show active":"")" id="nav-BhandarSamagri" role="tabpanel" aria-labelledby="nav-BhandarSamagri-tab">
                         <div class="account-dropdown__item">
                             <a href="/Bhandar/Bhandar">
                                 <i class="fa fa-briefcase"></i>ભંડાર
@@ -82,7 +108,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="nav-Account" role="tabpanel" aria-labelledby="nav-Account-tab">
+                    <div class="tab-pane fade @(!IsDarshanOrManorath && !IsBhandarNSamagri && IsAllowedAccount?"show active":"")" id="nav-Account" role="tabpanel" aria-labelledby="nav-Account-tab">
                         <div class="account-dropdown__item">
                             <a href="/AccountHead/AccountHead">
                                 <i class="zmdi zmdi-money-box"></i>ખાતા (Account Head)
@@ -94,7 +120,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="nav-Configuration" role="tabpanel" aria-labelledby="nav-Configuration-tab">
+                    <div class="tab-pane fade @(!IsDarshanOrManorath && !IsBhandarNSamagri && !IsAllowedAccount && IsAllowedReceiptConfiguration?"show active":"")" id="nav-Configuration" role="tabpanel" aria-labelledby="nav-Configuration-tab">
                         <div class="card-body card-block">
                             <form action="" method="post" class="form-horizontal">
                                 <div id="ConfigurationKeys">
@@ -111,7 +137,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="nav-EmailConfiguration" role="tabpanel" aria-labelledby="nav-EmailConfiguration-tab">
+                    <div class="tab-pane fade @(!IsDarshanOrManorath && !IsBhandarNSamagri && !IsAllowedAccount && !IsAllowedReceiptConfiguration && IsAllowedEmailConfiguration?"show active":"")" id="nav-EmailConfiguration" role="tabpanel" aria-labelledby="nav-EmailConfiguration-tab">
                         <div class="card-body card-block">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="row form-group">

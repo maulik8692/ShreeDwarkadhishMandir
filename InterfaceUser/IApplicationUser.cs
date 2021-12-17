@@ -1,4 +1,6 @@
-﻿namespace InterfaceMiddleLayer
+﻿using System.Collections.Generic;
+
+namespace InterfaceMiddleLayer
 {
     public interface IApplicationUser
     {
@@ -15,6 +17,8 @@
         int CreatedBy { get; set; }
         string MandirName { get; set; }
         bool IsDefaultRecord { get; set; }
+
+        List<IPageModule> PageRights { get; set; }
         void Validate();
     }
 }

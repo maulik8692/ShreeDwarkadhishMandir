@@ -274,7 +274,7 @@ function BindSamagriDetailDropdown() {
     var filterResult = []
     if (typeof BhandarForDropdown !== "undefined") {
         filterResult = BhandarForDropdown.filter(function (i, n) {
-            return i.IsActive === true && i.IsBhandar === true;
+            return i.IsActive === true && i.GroupType === 3;
         })
     }
 

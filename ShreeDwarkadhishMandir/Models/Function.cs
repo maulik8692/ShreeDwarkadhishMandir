@@ -43,7 +43,6 @@ namespace ShreeDwarkadhishMandir
 
             //Add the Cookie to Browser.
             HttpContext.Current.Response.Cookies.Add(httpCookie);
-            
         }
 
         public static string ReadCookie(string keyname)
@@ -53,7 +52,6 @@ namespace ShreeDwarkadhishMandir
 
             //If Cookie exists fetch its value.
             return httpCookie != null ? httpCookie.Value.Split('=')[1] : string.Empty;
-
         }
 
         public static void RemoveCookie(string keyname)
@@ -67,7 +65,7 @@ namespace ShreeDwarkadhishMandir
                 httpCookie.Expires = DateTime.Now.AddDays(-1);
 
                 //Update the Cookie in Browser.
-                HttpContext.Current.Response.Cookies.Add(httpCookie); 
+                HttpContext.Current.Response.Cookies.Add(httpCookie);
             }
         }
     }

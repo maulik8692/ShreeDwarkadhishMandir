@@ -22,6 +22,15 @@ namespace ShreeDwarkadhishMandir.Controllers
         // GET: Padhramani
         public ActionResult Padhramani()
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedPadhramani())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View();
         }
 
@@ -161,6 +170,15 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult PadhramaniRequest()
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedPadhramaniRequest())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View();
         }
     }

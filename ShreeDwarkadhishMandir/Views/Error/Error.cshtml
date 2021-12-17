@@ -1,13 +1,22 @@
-﻿
+﻿@using CommonLayer;
 @{
     ViewBag.Title = "Error";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
+
+    string statusCode = HttpContext.Current.Session["statusCode"].IsNull() ? "" : HttpContext.Current.Session["statusCode"].ToString();
+    string errorlineNo = HttpContext.Current.Session["errorlineNo"].IsNull() ? "" : HttpContext.Current.Session["errorlineNo"].ToString();
+    string errormsg = HttpContext.Current.Session["errormsg"].IsNull() ? "" : HttpContext.Current.Session["errormsg"].ToString();
+    string extype = HttpContext.Current.Session["extype"].IsNull() ? "" : HttpContext.Current.Session["extype"].ToString();
+    string exurl = HttpContext.Current.Session["exurl"].IsNull() ? "" : HttpContext.Current.Session["exurl"].ToString();
 }
 
 <h2>Error</h2>
 
 
-@Session["statusCode"]
-@Session["errorlineNo"]
-@Session["errormsg"]
-@Session["extype"]
-@Session["exurl"]
+@statusCode
+@errorlineNo
+@errormsg
+@extype
+@exurl
+
+<script src="~/js/HideProgress.js?@casheCleaner"></script>

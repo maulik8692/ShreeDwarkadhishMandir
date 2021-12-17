@@ -38,14 +38,14 @@ namespace ShreeDwarkadhishMandir.Controllers
                 applicationUser.Password = applicationUser.Password.EncryptString(appConfigurations.FirstOrDefault().KeyValue, 128);
 
                 IRepository<ApplicationUserBase> applicationUserdal = FactoryDalLayer<IRepository<ApplicationUserBase>>.Create("AuthenticationUser");
-                List<ApplicationUserBase> authenticatedUser= applicationUserdal.Search(applicationUser);
+                List<ApplicationUserBase> authenticatedUser = applicationUserdal.Search(applicationUser);
 
-                if (authenticatedUser.FirstOrDefault()==null || authenticatedUser.FirstOrDefault().Id==0)
+                if (authenticatedUser.FirstOrDefault() == null || authenticatedUser.FirstOrDefault().Id == 0)
                 {
                     throw new Exception("The username or password you entered is incorrect.");
                 }
 
-                Function.SetLoginCookie(authenticatedUser.FirstOrDefault());
+                Function.SetLoginCookie(authenticatedUser.First());
                 return Json(authenticatedUser, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

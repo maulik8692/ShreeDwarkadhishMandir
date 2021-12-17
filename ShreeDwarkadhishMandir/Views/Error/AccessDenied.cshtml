@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Access Denied";
+    string casheCleaner = DateTime.Now.ToString("ddMMyyyyhhmmss");
+}
+<div class="PaddingTop PaddingLeft PaddingRight" >
+    <div class="PaddingTop PaddingLeft PaddingRight text-center">
+        <h3 style="color:#393667">We are sorry...</h3>
+        <h5 style="color:#393667" class="m-t-5 m-b-5">The page you are trying to access has restricted access.</h5>
+        <h5 style="color:#393667">Please refer to you system administrator.</h5>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <img src="~/images/access_denied.png" />
+    </div>
+</div>
+<script src="~/js/HideProgress.js?@casheCleaner"></script>

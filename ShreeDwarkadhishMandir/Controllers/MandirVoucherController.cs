@@ -17,6 +17,15 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult MandirVoucher()
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedMandirVoucher())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View();
         }
 
@@ -97,6 +106,10 @@ namespace ShreeDwarkadhishMandir.Controllers
             if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
             {
                 return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedCreateMandirVoucher())
+            {
+                return RedirectToAction("AccessDenied", "Error");
             }
 
             return View();

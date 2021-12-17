@@ -226,5 +226,9 @@
     <Build Include="dbo\Stored Procedures\GetUserDropdown.sql" />
     <Build Include="dbo\Functions\GeneralUnitConversion.sql" />
     <Build Include="dbo\Stored Procedures\BhandarTransactionDetailReport.sql" />
+    <Build Include="dbo\Tables\PageRoleNRights.sql" />
+    <Build Include="dbo\Tables\PageModule.sql" />
+    <Build Include="dbo\Functions\GetDefaultPageRights.sql" />
+    <Build Include="dbo\Stored Procedures\GetUserPageRights.sql" />
   </ItemGroup>
 </Project>

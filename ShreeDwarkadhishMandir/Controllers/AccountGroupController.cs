@@ -17,6 +17,15 @@ namespace ShreeDwarkadhishMandir.Controllers
         // GET: AccountGroup
         public ActionResult AccountGroup()
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedAccountGroup())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View();
         }
 
@@ -70,6 +79,15 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult CreateAccountGroup()
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedCreateAccountGroup())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View();
         }
 

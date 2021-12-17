@@ -22,29 +22,29 @@ namespace ShreeDwarkadhishMandir
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            //Exception ex = Server.GetLastError();
-            
+            Exception ex = Server.GetLastError();
+
             //Log.Write(ex);
 
             int statusCode = 404;
-            //if (ex is HttpException)
-            //{
-            //    statusCode = ((HttpException)ex).GetHttpCode();
-            //}
+            if (ex is HttpException)
+            {
+                statusCode = ((HttpException)ex).GetHttpCode();
+            }
 
-            //if (ex.IsNotNull())
-            //{
-            //    string errorlineNo = ex.StackTrace.Substring(ex.StackTrace.Length - 7, 7);
-            //    string errormsg = ex.GetType().Name.ToString();
-            //    string extype = ex.GetType().ToString();
-            //    string exurl = HttpContext.Current.Request.Url.ToString();
+            if (ex.IsNotNull())
+            {
+                string errorlineNo = ex.StackTrace.Substring(ex.StackTrace.Length - 7, 7);
+                string errormsg = ex.GetType().Name.ToString();
+                string extype = ex.GetType().ToString();
+                string exurl = HttpContext.Current.Request.Url.ToString();
 
-            //    Session["statusCode"] = statusCode;
-            //    Session["errorlineNo"] = errorlineNo;
-            //    Session["errormsg"] = errormsg;
-            //    Session["extype"] = extype;
-            //    Session["exurl"] = exurl; 
-            //}
+                System.Web.HttpContext.Current.Session["statusCode"] = statusCode;
+                System.Web.HttpContext.Current.Session["errorlineNo"] = errorlineNo;
+                System.Web.HttpContext.Current.Session["errormsg"] = errormsg;
+                System.Web.HttpContext.Current.Session["extype"] = extype;
+                System.Web.HttpContext.Current.Session["exurl"] = exurl;
+            }
 
             //Server.ClearError();
             Response.Redirect("/Error/Error");

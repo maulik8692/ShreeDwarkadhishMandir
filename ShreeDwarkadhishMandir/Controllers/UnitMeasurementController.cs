@@ -22,6 +22,15 @@ namespace ShreeDwarkadhishMandir.Controllers
         // GET: UnitMeasurement
         public ActionResult UnitMeasurement()
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedUnitMeasurement())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View();
         }
 
@@ -95,6 +104,10 @@ namespace ShreeDwarkadhishMandir.Controllers
             if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
             {
                 return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedCreateUnitMeasurement())
+            {
+                return RedirectToAction("AccessDenied", "Error");
             }
 
             return View();

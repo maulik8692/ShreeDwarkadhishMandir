@@ -23,6 +23,15 @@ namespace ShreeDwarkadhishMandir.Controllers
         // GET: Supplier
         public ActionResult Supplier()
         {
+            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedSupplier())
+            {
+                return RedirectToAction("AccessDenied", "Error");
+            }
+
             return View();
         }
 
@@ -103,6 +112,10 @@ namespace ShreeDwarkadhishMandir.Controllers
             if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
             {
                 return RedirectToAction("Login", "Login");
+            }
+            else if (!CheckValidation.IsAllowedCreatesupplier())
+            {
+                return RedirectToAction("AccessDenied", "Error");
             }
 
             return View();
