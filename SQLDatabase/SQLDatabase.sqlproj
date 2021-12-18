@@ -63,6 +63,8 @@
     <Folder Include="dbo\Views\" />
     <Folder Include="dbo\Functions\" />
     <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="Scripts" />
+    <Folder Include="PublishProfile\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Countries.sql" />
@@ -230,5 +232,49 @@
     <Build Include="dbo\Tables\PageModule.sql" />
     <Build Include="dbo\Functions\GetDefaultPageRights.sql" />
     <Build Include="dbo\Stored Procedures\GetUserPageRights.sql" />
+    <None Include="Scripts\PageRoleNRights.sql" />
+    <None Include="Scripts\Payment.sql" />
+    <None Include="Scripts\ReceiptNoCounter.sql" />
+    <None Include="Scripts\ServiceStatus.sql" />
+    <None Include="Scripts\States.sql" />
+    <None Include="Scripts\Store.sql" />
+    <None Include="Scripts\Supplier.sql" />
+    <None Include="Scripts\UnitConversion.sql" />
+    <None Include="Scripts\UnitOfMeasurement.sql" />
+    <None Include="Scripts\UserType.sql">
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+    </None>
+    <None Include="Scripts\Villages_1_100000.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\Voucher.sql" />
+    <None Include="Scripts\AccountGroup.sql" />
+    <None Include="Scripts\AccountHead.sql" />
+    <None Include="Scripts\AppConfiguration.sql" />
+    <None Include="Scripts\ApplicationUser.sql" />
+    <None Include="Scripts\BhandarCategory.sql" />
+    <None Include="Scripts\BhandarGroup.sql" />
+    <None Include="Scripts\BhandarTransactionCode.sql" />
+    <None Include="Scripts\Cities.sql" />
+    <None Include="Scripts\Countries.sql" />
+    <None Include="Scripts\DarshanMaster.sql" />
+    <None Include="Scripts\DefaultGroups.sql" />
+    <None Include="Scripts\EmailConfiguration.sql" />
+    <None Include="Scripts\EmailTemplate.sql" />
+    <None Include="Scripts\Mandir.sql" />
+    <None Include="Scripts\Manorath.sql" />
+    <None Include="Scripts\Occupation.sql" />
+    <None Include="Scripts\PageModule.sql" />
+    <None Include="Scripts\Villages_100001_200000.sql" />
+    <None Include="Scripts\Villages_200001_300000.sql" />
+    <None Include="Scripts\Villages_300001_400000.sql" />
+    <None Include="Scripts\Villages_400001_500000.sql" />
+    <None Include="Scripts\Villages_500001_600000.sql" />
+    <None Include="Scripts\Villages_700001_800000.sql" />
+    <None Include="Scripts\Villages_800001_849073.sql" />
+    <None Include="Scripts\Villages_600001_700000.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Script.PostPublish.sql" />
   </ItemGroup>
 </Project>
