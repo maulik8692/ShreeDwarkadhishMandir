@@ -49,9 +49,24 @@ INSERT INTO [dbo].[ApplicationUser]
            ,@CreatedBy
 		   ) 
 
+		   INSERT INTO [dbo].[PageRoleNRights]
+           ([UserId]
+           ,[UserTypeId]
+           ,[PageId]
+           ,[IsAllowed],CreatedBy)
+			select 
+			AU.Id as UserId, 
+			AU.UserTypeId,
+			PM.Id as PageId,
+			case when PR.PageId is null then 0 else 1 end as PageAllow ,1
+			from 
+			ApplicationUser as AU
+			join PageModule as PM on AU.Id =@@IDENTITY
+			left join GetDefaultPageRights() as PR on PR.PageId=PM.Id and PR.UserTypeId=1
+			--and AU.UserTypeId=PR.UserTypeId
+
 END
 else
-
 BEGIN
 
 UPDATE [dbo].[ApplicationUser]
@@ -66,7 +81,5 @@ UPDATE [dbo].[ApplicationUser]
  WHERE Id=@Id
 
 END
-
-
 
 END
