@@ -12,16 +12,13 @@ using System.Web.Mvc;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class AccountTransactionController : Controller
     {
         // GET: AccountTransaction
         public ActionResult AccountTransaction()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedAccountTransaction())
+            if (!CheckValidation.IsAllowedAccountTransaction())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

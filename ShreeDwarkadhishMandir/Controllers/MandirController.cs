@@ -12,16 +12,13 @@ using System.Web.Mvc;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class MandirController : Controller
     {
         // GET: Mandir
         public ActionResult Mandir()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedMandir())
+            if (!CheckValidation.IsAllowedMandir())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -31,11 +28,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult MandirList()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedMandirList())
+            if (!CheckValidation.IsAllowedMandirList())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

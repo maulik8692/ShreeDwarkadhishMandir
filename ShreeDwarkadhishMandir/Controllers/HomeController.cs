@@ -13,15 +13,11 @@ using System.Web.Mvc;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-
             return View();
         }
 

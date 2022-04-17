@@ -17,16 +17,13 @@ using ShreeDwarkadhishMandir.Models;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class VaishnavController : Controller
     {
         // GET: Vaishnav
         public ActionResult Vaishnav(string id = "")
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedVaishnav())
+            if (!CheckValidation.IsAllowedVaishnav())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -126,11 +123,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult VaishnavJan()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedVaishnavJan())
+            if (!CheckValidation.IsAllowedVaishnavJan())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

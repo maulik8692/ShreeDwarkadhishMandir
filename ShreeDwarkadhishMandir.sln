@@ -27,6 +27,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SQLDatabase", "SQLDatabase\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumLayer", "EnumLayer\EnumLayer.csproj", "{BF56CEE1-A9C2-42B8-945E-BEC4ED24CA07}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThermalReceiptPrinter", "ThermalReceiptPrinter\ThermalReceiptPrinter.csproj", "{329222E4-5091-4166-82FA-0A541DAA73F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{BF56CEE1-A9C2-42B8-945E-BEC4ED24CA07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF56CEE1-A9C2-42B8-945E-BEC4ED24CA07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF56CEE1-A9C2-42B8-945E-BEC4ED24CA07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{329222E4-5091-4166-82FA-0A541DAA73F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{329222E4-5091-4166-82FA-0A541DAA73F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{329222E4-5091-4166-82FA-0A541DAA73F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{329222E4-5091-4166-82FA-0A541DAA73F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

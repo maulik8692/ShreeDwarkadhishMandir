@@ -12,16 +12,13 @@ using System.Web.Mvc;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class UnitConversionController : Controller
     {
         // GET: UnitConversion
         public ActionResult UnitConversion()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedUnitConversion())
+            if (!CheckValidation.IsAllowedUnitConversion())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -60,11 +57,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult CreateUnitConversion()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedCreateUnitConversion())
+            if (!CheckValidation.IsAllowedCreateUnitConversion())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

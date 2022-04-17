@@ -18,16 +18,13 @@ using static EnumLayer.ProcedureEnum;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class SupplierController : Controller
     {
         // GET: Supplier
         public ActionResult Supplier()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedSupplier())
+            if (!CheckValidation.IsAllowedSupplier())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -109,11 +106,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult CreateSupplier()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedCreatesupplier())
+            if (!CheckValidation.IsAllowedCreatesupplier())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

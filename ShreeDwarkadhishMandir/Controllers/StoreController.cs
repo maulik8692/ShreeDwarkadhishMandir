@@ -12,16 +12,13 @@ using System.Web.Mvc;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class StoreController : Controller
     {
         // GET: Store
         public ActionResult Store()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedStore())
+            if (!CheckValidation.IsAllowedStore())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -59,11 +56,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult CreateStore()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedCreateStore())
+            if (!CheckValidation.IsAllowedCreateStore())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

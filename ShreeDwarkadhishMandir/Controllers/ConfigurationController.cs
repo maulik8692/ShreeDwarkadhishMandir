@@ -17,6 +17,7 @@ using ShreeDwarkadhishMandir.Models;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class ConfigurationController : Controller
     {
         public ActionResult GetCountryAll()
@@ -97,11 +98,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult Configuration()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedConfiguration())
+            if (!CheckValidation.IsAllowedConfiguration())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

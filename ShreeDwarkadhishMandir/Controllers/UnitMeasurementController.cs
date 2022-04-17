@@ -17,16 +17,13 @@ using ShreeDwarkadhishMandir.Models;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class UnitMeasurementController : Controller
     {
         // GET: UnitMeasurement
         public ActionResult UnitMeasurement()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedUnitMeasurement())
+            if (!CheckValidation.IsAllowedUnitMeasurement())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -101,11 +98,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult CreateUnitMeasurement()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedCreateUnitMeasurement())
+            if (!CheckValidation.IsAllowedCreateUnitMeasurement())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

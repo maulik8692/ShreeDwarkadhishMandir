@@ -13,16 +13,13 @@ using static EnumLayer.BhandarTransactionCodeEnum;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class BhandarController : Controller
     {
         // GET: Bhandar
         public ActionResult Bhandar()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedBhandar())
+            if (!CheckValidation.IsAllowedBhandar())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -85,11 +82,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult CreateBhandar()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedCreateBhandar())
+            if (!CheckValidation.IsAllowedCreateBhandar())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

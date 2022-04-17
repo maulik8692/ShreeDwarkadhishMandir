@@ -12,16 +12,13 @@ using System.Web.Mvc;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class AccountGroupController : Controller
     {
         // GET: AccountGroup
         public ActionResult AccountGroup()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedAccountGroup())
+            if (!CheckValidation.IsAllowedAccountGroup())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -79,11 +76,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult CreateAccountGroup()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedCreateAccountGroup())
+            if (!CheckValidation.IsAllowedCreateAccountGroup())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

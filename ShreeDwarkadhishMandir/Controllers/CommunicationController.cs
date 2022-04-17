@@ -12,20 +12,12 @@ using System.Web.Mvc;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class CommunicationController : Controller
     {
         // GET: Communication
         public ActionResult Communication()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            //else if (!CheckValidation.IsAllowedCreateBhandarGroup())
-            //{
-            //    return RedirectToAction("AccessDenied", "Error");
-            //}
-
             return View();
         }
 

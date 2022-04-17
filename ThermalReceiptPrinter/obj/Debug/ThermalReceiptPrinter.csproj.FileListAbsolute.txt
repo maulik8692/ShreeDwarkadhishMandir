@@ -1,0 +1,6 @@
+D:\Mandir\Github\Source\ShreeDwarkadhishMandir\ThermalReceiptPrinter\obj\Debug\ThermalReceiptPrinter.csprojAssemblyReference.cache
+D:\Mandir\Github\Source\ShreeDwarkadhishMandir\ThermalReceiptPrinter\obj\Debug\ThermalReceiptPrinter.csproj.CoreCompileInputs.cache
+D:\Mandir\Github\Source\ShreeDwarkadhishMandir\ThermalReceiptPrinter\bin\Debug\ThermalReceiptPrinter.dll
+D:\Mandir\Github\Source\ShreeDwarkadhishMandir\ThermalReceiptPrinter\bin\Debug\ThermalReceiptPrinter.pdb
+D:\Mandir\Github\Source\ShreeDwarkadhishMandir\ThermalReceiptPrinter\obj\Debug\ThermalReceiptPrinter.dll
+D:\Mandir\Github\Source\ShreeDwarkadhishMandir\ThermalReceiptPrinter\obj\Debug\ThermalReceiptPrinter.pdb

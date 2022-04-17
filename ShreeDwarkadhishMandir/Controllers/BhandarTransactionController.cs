@@ -12,16 +12,12 @@ using System.Web.Mvc;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class BhandarTransactionController : Controller
     {
         // GET: BhandarTransaction
         public ActionResult AdjustBhandar()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-
             return View();
         }
 

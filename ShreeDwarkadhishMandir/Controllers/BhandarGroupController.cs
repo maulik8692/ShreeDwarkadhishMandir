@@ -12,16 +12,13 @@ using System.Web.Mvc;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class BhandarGroupController : Controller
     {
         // GET: BhandarGroup
         public ActionResult BhandarGroup()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedBhandarGroup())
+            if (!CheckValidation.IsAllowedBhandarGroup())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -31,11 +28,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult CreateBhandarGroup()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedCreateBhandarGroup())
+            if (!CheckValidation.IsAllowedCreateBhandarGroup())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

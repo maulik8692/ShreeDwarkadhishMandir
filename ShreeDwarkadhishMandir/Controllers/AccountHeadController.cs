@@ -13,16 +13,13 @@ using static EnumLayer.ProcedureEnum;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class AccountHeadController : Controller
     {
         // GET: AccountHead
         public ActionResult CreateAccountHead()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedCreateAccountHead())
+            if (!CheckValidation.IsAllowedCreateAccountHead())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -32,11 +29,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult AccountHead()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedAccountHead())
+            if (!CheckValidation.IsAllowedAccountHead())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

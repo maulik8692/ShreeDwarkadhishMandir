@@ -12,16 +12,13 @@ using System.Web.Mvc;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class ApplicationUserController : Controller
     {
         // GET: ApplicationUser
         public ActionResult ApplicationUser()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedApplicationUser())
+            if (!CheckValidation.IsAllowedApplicationUser())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -31,11 +28,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult ApplicationUserList()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedApplicationUserList())
+            if (!CheckValidation.IsAllowedApplicationUserList())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

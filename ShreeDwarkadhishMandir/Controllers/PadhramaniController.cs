@@ -17,16 +17,13 @@ using ShreeDwarkadhishMandir.Models;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class PadhramaniController : Controller
     {
         // GET: Padhramani
         public ActionResult Padhramani()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedPadhramani())
+            if (!CheckValidation.IsAllowedPadhramani())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -170,11 +167,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult PadhramaniRequest()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedPadhramaniRequest())
+            if (!CheckValidation.IsAllowedPadhramaniRequest())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

@@ -18,16 +18,13 @@ using ShreeDwarkadhishMandir.Models;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class SamagriController : Controller
     {
         // GET: Samagri
         public ActionResult Samagri()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedSamagri())
+            if (!CheckValidation.IsAllowedSamagri())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -70,11 +67,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult CreateSamagri()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedCreateSamagri())
+            if (!CheckValidation.IsAllowedCreateSamagri())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

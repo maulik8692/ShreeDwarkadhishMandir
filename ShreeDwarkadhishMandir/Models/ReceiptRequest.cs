@@ -48,5 +48,10 @@ namespace ShreeDwarkadhishMandir.Models
         public string ManorathTithiPaksh { get; set; }
         public string ManorathTithi { get; set; }
         public string Description { get; set; }
+
+        void Print()
+        {
+
+        }
     }
 }

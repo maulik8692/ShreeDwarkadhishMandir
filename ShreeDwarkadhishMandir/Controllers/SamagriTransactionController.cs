@@ -14,16 +14,13 @@ using static EnumLayer.BhandarTransactionCodeEnum;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class SamagriTransactionController : Controller
     {
         // GET: SamagriTransaction
         public ActionResult SamagriTransaction()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedSamagriTransaction())
+            if (!CheckValidation.IsAllowedSamagriTransaction())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -33,11 +30,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult Issue()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedIssue())
+            if (!CheckValidation.IsAllowedIssue())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -76,11 +69,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult IssueForSamagri()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedIssueForSamagri())
+            if (!CheckValidation.IsAllowedIssueForSamagri())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -119,11 +108,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult Scrapped()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedScrapped())
+            if (!CheckValidation.IsAllowedScrapped())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -162,11 +147,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult SoldOut()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedSoldOut())
+            if (!CheckValidation.IsAllowedSoldOut())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -205,11 +186,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult Purchase()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedPurchase())
+            if (!CheckValidation.IsAllowedPurchase())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -248,11 +225,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult Donation()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedDonation())
+            if (!CheckValidation.IsAllowedDonation())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -292,11 +265,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult Complementary()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedComplementary())
+            if (!CheckValidation.IsAllowedComplementary())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -335,11 +304,7 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult Nek()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedNek())
+            if (!CheckValidation.IsAllowedNek())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }

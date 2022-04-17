@@ -13,16 +13,13 @@ using System.Web.Mvc;
 
 namespace ShreeDwarkadhishMandir.Controllers
 {
+    [AuthorizationFilter.UserAuthorization]
     public class ReceiptController : Controller
     {
         // GET: Receipt
         public ActionResult Receipt()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedCreateReceipt())
+            if (!CheckValidation.IsAllowedCreateReceipt())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
@@ -113,11 +110,6 @@ namespace ShreeDwarkadhishMandir.Controllers
 
         public ActionResult ReceiptDetail()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-
             return View();
         }
 
@@ -140,13 +132,28 @@ namespace ShreeDwarkadhishMandir.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult ReceiptThermalDetail(ReceiptRequest receiptRequest)
+        {
+            try
+            {
+                IReceipt IReceipt = Factory<IReceipt>.Create("Receipt");
+                IReceipt.Id = receiptRequest.Id;
+
+                IRepository<IReceipt> dal = FactoryDalLayer<IRepository<IReceipt>>.Create("Receipt");
+                IReceipt IReceiptResponse = dal.GetDetail(IReceipt);
+
+                return Json(string.Empty, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Log.Write(ex);
+                return new HttpStatusCodeResult(410, ex.Message);
+            }
+        }
         public ActionResult ReceiptList()
         {
-            if (Function.ReadCookie(CookiesKey.AuthenticatedId).ToInt() == 0)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            else if (!CheckValidation.IsAllowedReceiptList())
+            if (!CheckValidation.IsAllowedReceiptList())
             {
                 return RedirectToAction("AccessDenied", "Error");
             }
