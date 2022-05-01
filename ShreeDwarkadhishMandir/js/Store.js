@@ -57,5 +57,5 @@ function BhandarBalance(cellvalue, options, rowObject) {
 
 function EditBhandar(cellvalue, options, rowObject) {
 
-    return "<div><a href=/Store/CreateStore?Id=" + rowObject.Id + "><i class='fa fa-edit'></i></a></div>";
+    return "<div><a href=/Store/CreateStore?Id=" + rowObject.Id + "><i style='font-size: 1.2em; color:#ffab00 !important;' class='las la-pencil-alt'></i></a></div>";
 }

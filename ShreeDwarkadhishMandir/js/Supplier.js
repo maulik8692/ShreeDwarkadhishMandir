@@ -53,5 +53,5 @@ function SetStyle() {
 
 function EditSupplier(cellvalue, options, rowObject) {
     
-    return "<div><a href=/Supplier/CreateSupplier?Id=" + rowObject.SupplierId + "><i class='fa fa-edit'></i></a></div>";
+    return "<div><a href=/Supplier/CreateSupplier?Id=" + rowObject.SupplierId + "><i style='font-size: 1.2em; color:#ffab00 !important;' class='las la-pencil-alt'></i></a></div>";
 }

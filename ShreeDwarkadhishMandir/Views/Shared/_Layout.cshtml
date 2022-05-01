@@ -20,6 +20,7 @@
 
     <link href="~/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="~/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="~/vendor/line-awesome-1.3.0/css/line-awesome.min.css" rel="stylesheet" media="all"/>
     <link href="~/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="~/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
     <link href="~/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
@@ -66,7 +67,7 @@
                             {
                                 <li>
                                     <a href="/SamagriTransaction/SamagriTransaction">
-                                        <i class="fas fa-tasks"></i>
+                                        <i class="las la-store-alt"></i>
                                         <span class="bot-line"></span>ભંડાર લેવડ દેવડ
                                     </a>
                                 </li>
@@ -75,7 +76,7 @@
                             {
                                 <li>
                                     <a href="/Receipt/ReceiptList">
-                                        <i class="fas fa-file-text"></i>
+                                        <i class="las la-receipt"></i>
                                         <span class="bot-line"></span>ભેટ
                                     </a>
                                 </li>
@@ -85,7 +86,7 @@
                             {
                                 <li class="has-sub">
                                     <a href="#">
-                                        <i class="zmdi zmdi-money-box"></i>
+                                        <i class="las la-rupee-sign"></i>
                                         <span class="bot-line"></span>નાણકીય વ્યવહાર
                                     </a>
                                     <ul class="header3-sub-list list-unstyled">
@@ -93,7 +94,7 @@
                                         {
                                             <li>
                                                 <a href="/MandirVoucher/MandirVoucher">
-                                                    <i class="zmdi zmdi-money-box"></i>
+                                                    <i class="las la-file-alt"></i>
                                                     <span class="bot-line"></span>મંદિર ખર્ચપત્ર (Mandir Voucher)
                                                 </a>
                                             </li>
@@ -102,7 +103,7 @@
                                         {
                                             <li>
                                                 <a href="/AccountTransaction/AccountTransaction">
-                                                    <i class="zmdi zmdi-money-box"></i>
+                                                    <i class="las la-exchange-alt"></i>
                                                     <span class="bot-line"></span>લેવડદેવડ (Adjust Transaction)
                                                 </a>
                                             </li>
@@ -114,7 +115,7 @@
                             {
                                 <li>
                                     <a href="/Report/ReportList">
-                                        <i class="fas fa-file-text"></i>
+                                        <i class="las la-file"></i>
                                         <span class="bot-line"></span>Reports
                                     </a>
                                 </li>
@@ -126,7 +127,7 @@
                         {
                             <div class="header-button-item js-item-menu">
 
-                                <i class="zmdi zmdi-settings"></i>
+                                <i class="las la-cog"></i>
                                 <div class="setting-dropdown js-dropdown">
                                     @if (IsAllowedMandirList || IsAllowedApplicationUser)
                                     {
@@ -135,7 +136,7 @@
                                             {
                                                 <div class="account-dropdown__item">
                                                     <a href="/ApplicationUser/ApplicationUserList">
-                                                        <i class="zmdi zmdi-account"></i>Application User
+                                                        <i class="las la-user-alt"></i>Application User
                                                     </a>
                                                 </div>
                                             }
@@ -143,7 +144,7 @@
                                             {
                                                 <div class="account-dropdown__item">
                                                     <a href="/Mandir/MandirList">
-                                                        <i class="fa fa-flag"></i>Mandir
+                                                        <i class="las la-om"></i>Mandir
                                                     </a>
                                                 </div>
                                             }
@@ -352,7 +353,7 @@
         <!-- PAGE CONTENT-->
         <div class="page-content--bgf7">
             <!-- WELCOME-->
-            <section class="welcome p-t-10">
+            <section class="welcome p-t-10 display-none">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">

@@ -4322,8 +4322,13 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 .card-header {
     padding: .75rem 1.25rem;
     margin-bottom: 0;
-    background-color: rgba(0,0,0,.03);
-    border-bottom: 1px solid rgba(0,0,0,.125)
+    margin: -1px;
+    color: #FFF;
+    text-align: center;
+    background-color: #f70848;
+    box-shadow: 0px 2px 5px 0px rgb(0 0 0 / 70%);
+    /*background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125)*/
 }
 
     .card-header:first-child {
@@ -5337,19 +5342,23 @@ button.close {
     -ms-flex-pack: justify;
     justify-content: space-between;
     padding: 1rem;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid #000;
     border-top-left-radius: .3rem;
-    border-top-right-radius: .3rem
+    border-top-right-radius: .3rem;
+    background-color: #1c1c1c;
+    box-shadow: 0px 2px 5px 0px rgb(0 0 0 / 70%);
 }
 
     .modal-header .close {
         padding: 1rem;
+        color:#FFF;
         margin: -1rem -1rem -1rem auto
     }
 
 .modal-title {
     margin-bottom: 0;
-    line-height: 1.5
+    line-height: 1.5;
+    color:#FFF;
 }
 
 .modal-body {
@@ -8911,7 +8920,7 @@ a.text-warning:focus, a.text-warning:hover {
 }
 
 .text-danger {
-    color: #dc3545 !important
+    color: #ff006f !important
 }
 
 a.text-danger:focus, a.text-danger:hover {

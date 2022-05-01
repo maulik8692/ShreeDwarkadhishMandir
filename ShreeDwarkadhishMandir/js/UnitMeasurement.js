@@ -52,5 +52,5 @@ function SetStyle() {
 }
 
 function EditUnitMeasurement(cellvalue, options, rowObject) {
-    return "<div><a href=/UnitMeasurement/CreateUnitMeasurement?Id=" + rowObject.Id + "><i class='fa fa-edit'></i></a></div>";
+    return "<div><a href=/UnitMeasurement/CreateUnitMeasurement?Id=" + rowObject.Id + "><i style='font-size: 1.2em; color:#ffab00 !important;' class='las la-pencil-alt'></i></a></div>";
 }

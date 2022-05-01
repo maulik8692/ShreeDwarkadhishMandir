@@ -1005,9 +1005,10 @@ body .ui-tooltip {
     .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
         /*border: 1px solid #c5c5c5;*/
         /*background: #f6f6f6;*/
-        background-image: -moz-linear-gradient(90deg, #ff2300 0%, #FF7600 100%);
+        /* background-image: -moz-linear-gradient(90deg, #ff2300 0%, #FF7600 100%);
         background-image: -webkit-linear-gradient(90deg, #ff2300 0%, #FF7600 100%);
-        background-image: -ms-linear-gradient(90deg, #ff2300 0%, #FF7600 100%);
+        background-image: -ms-linear-gradient(90deg, #ff2300 0%, #FF7600 100%);*/
+        background-color: #f70848 !important;
         font-weight: normal;
         color: #FFFFFF
     }
@@ -1034,10 +1035,10 @@ body .ui-tooltip {
 }
 
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
-    border: 1px solid #003eff;
-    background: #007fff;
+    border: 1px solid #003eff !important;
+    background: #007fff !important;
     font-weight: normal;
-    color: #fff
+    color: #fff;
 }
 
     .ui-icon-background, .ui-state-active .ui-icon-background {
@@ -1051,9 +1052,9 @@ body .ui-tooltip {
     }
 
 .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
-    border: 1px solid #dad55e;
-    background: #fffa90;
-    color: #777620
+    border: 1px solid #ffffff !important;
+    background: #ffd800 !important;
+    color: #ffffff !important;
 }
 
 .ui-state-checked {

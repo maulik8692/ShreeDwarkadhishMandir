@@ -115,13 +115,13 @@ function DisplayNek(cellvalue, options, rowObject) {
 
 function EditReceipt(cellvalue, options, rowObject) {
     return "<div><a target='_blank' href=/Receipt/ReceiptDetail?Id=" + rowObject.Id +
-        "><i class='fa fa-eye'></i></a></div>";
+        "><i class='las la-print'></i></a></div>";
 }
 
 function AddSamagri(cellvalue, options, rowObject) {
     if (rowObject.PendingSamagri === false) {
         return "<div id='SamagriToReceipt_" + rowObject.Id + "'><div onclick='AddSamagriToReceipt(" + rowObject.Id +
-            ");' data-toggle='modal' data-target='#staticModal'><i class='fa fa-plus-square'></i></div></div>";
+            ");' data-toggle='modal' data-target='#staticModal'><i class='las la-plus listAdd'></i></div></div>";
     } else {
         return "<div id='SamagriToReceipt_" + rowObject.Id + "'><div onclick='AddSamagriToReceipt(" + rowObject.Id +
             ");'</div></div>";

@@ -54,7 +54,7 @@ function SetStyle() {
 
 function editoperation(cellvalue, options, rowObject) {
     if (rowObject.IsEditable === true) {
-        return "<div><a href=/AccountHead/CreateAccountHead?Id=" + rowObject.Id + "><i class='fa fa-edit'></i></a></div>";
+        return "<div><a href=/AccountHead/CreateAccountHead?Id=" + rowObject.Id + "><i style='font-size: 1.2em; color:#ffab00 !important;' class='las la-pencil-alt'></i></a></div>";
     }
     else {
         return '';

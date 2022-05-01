@@ -78,10 +78,10 @@ function SetStyle() {
 
 function ActiveFormatter(cellvalue, options, rowObject) {
     if (rowObject.IsActive === true) {
-        return "<div style='text-align:center;' class='form-check checkbox disabled'><label><input type='checkbox' checked disabled></label></div >";
+        return "<div style='text-align:center;' class='form-check checkbox disabled'><i style='color:#00d25b !important;font-size: 1.2em;' class='las la-check-double'></i></div >";
     }
     else {
-        return "<div style='text-align:center;' class='form-check checkbox disabled'><label><input type='checkbox' disabled></label></div >";;
+        return "<div style='text-align:center;' class='form-check checkbox disabled'><i style='color:#e72c66 !important;font-size: 1.2em;' class='las la-ban'></i></div >";;
     }
 }
 
@@ -94,5 +94,5 @@ function EmailOperation(cellvalue, options, rowObject) {
 }
 
 function editoperation(cellvalue, options, rowObject) {
-    return "<div><a href=/Vaishnav/Vaishnav?Id=" + rowObject.EncryptedId + "><i class='fa fa-edit'></i></a></div>";
+    return "<div><a href=/Vaishnav/Vaishnav?Id=" + rowObject.EncryptedId + "><i style='font-size: 1.2em; color:#ffab00 !important;' class='las la-pencil-alt'></i></a></div>";
 }
