@@ -25,7 +25,7 @@ function PageEvents() {
 
     $("#Bhandar").change(function () {
         detailRequest.BhandarId = parseInt(this.value);
-        debugger;
+        
         selectedbhandar = BhandarList[BhandarList.findIndex(item => item.Id === detailRequest.BhandarId)];
         if (typeof selectedbhandar !== "undefined" && selectedbhandar !== null && selectedbhandar.bhandarId !== 0) {
             $("#CurrentBalance").val(selectedbhandar.Balance.toFixed(5) + ' ' + selectedbhandar.UnitAbbreviation);
@@ -233,7 +233,7 @@ function GetUnitMeasurement() {
                     });
                 }
 
-                debugger;
+                
 
                 $("#UnitOfMeasurement").val(selectedbhandar.UnitId).trigger('change.select2');
 
@@ -331,7 +331,7 @@ function SaveItem() {
     var StoreId = $('#Store').val() !== "undefined" ? parseInt($('#Store').val()) : 0
     var BhandarId = $('#Bhandar').val() !== "undefined" ? parseInt($('#Bhandar').val()) : 0;
     var Quantity = $('#StockTransactionQuantity').val() !== "undefined" ? parseFloat($('#StockTransactionQuantity').val().replace(/,/g, '')) : 0;
-    debugger;
+    
     var unitId = $('#UnitOfMeasurement').val() !== "undefined" ? parseInt($('#UnitOfMeasurement').val()) : 0;
     var added = false;
     $.map(transactionDetails, function (e, i) {

@@ -96,7 +96,7 @@ function SaveForm() {
     purchaseRequest.ChequeNumber = $('#ChequeNumber').val();
     purchaseRequest.ChequeDate = $('#ChequeDate').val();
     purchaseRequest.ChequeStatus = $('#ChequeStatus').val();
-    debugger;
+    
     $.ajax({
         url: "/SamagriTransaction/Purchase",
         data: JSON.stringify(purchaseRequest),

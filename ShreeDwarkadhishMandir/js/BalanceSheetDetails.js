@@ -49,7 +49,7 @@ function LoadBalanceSheet() {
 
                     for (var j = 0; j < subGrouped.length; j++) {
 
-                        annexure += '<div class="bradius7 bgWhite row m-t-10">'
+                        annexure += '<div class="bradius7 bgWhite row m-t-10 w-100">'
                         if (subGrouped.length > 1) {
                             annexure += '<div class="col-md-6 col-lg-12 p-t-10 text-center">' +
                                     '<h5 class="m-t-10">' + subGrouped[j].AccountGroup + '</h5><hr>' +

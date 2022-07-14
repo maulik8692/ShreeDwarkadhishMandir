@@ -67,7 +67,7 @@
                             {
                                 <li>
                                     <a href="/SamagriTransaction/SamagriTransaction">
-                                        <i class="las la-store-alt"></i>
+                                        <i class="las la-store-alt danger_Color"></i>
                                         <span class="bot-line"></span>ભંડાર લેવડ દેવડ
                                     </a>
                                 </li>
@@ -76,7 +76,7 @@
                             {
                                 <li>
                                     <a href="/Receipt/ReceiptList">
-                                        <i class="las la-receipt"></i>
+                                        <i class="las la-receipt warning_Color"></i>
                                         <span class="bot-line"></span>ભેટ
                                     </a>
                                 </li>
@@ -86,7 +86,7 @@
                             {
                                 <li class="has-sub">
                                     <a href="#">
-                                        <i class="las la-rupee-sign"></i>
+                                        <i class="las la-rupee-sign danger_Color"></i>
                                         <span class="bot-line"></span>નાણકીય વ્યવહાર
                                     </a>
                                     <ul class="header3-sub-list list-unstyled">
@@ -115,7 +115,7 @@
                             {
                                 <li>
                                     <a href="/Report/ReportList">
-                                        <i class="las la-file"></i>
+                                        <i class="las la-file warning_Color"></i>
                                         <span class="bot-line"></span>Reports
                                     </a>
                                 </li>
@@ -127,7 +127,7 @@
                         {
                             <div class="header-button-item js-item-menu">
 
-                                <i class="las la-cog"></i>
+                                <i class="las la-cog danger_Color"></i>
                                 <div class="setting-dropdown js-dropdown">
                                     @if (IsAllowedMandirList || IsAllowedApplicationUser)
                                     {
@@ -136,7 +136,7 @@
                                             {
                                                 <div class="account-dropdown__item">
                                                     <a href="/ApplicationUser/ApplicationUserList">
-                                                        <i class="las la-user-alt"></i>Application User
+                                                        <i class="las la-user-alt warning_Color"></i>Application User
                                                     </a>
                                                 </div>
                                             }
@@ -144,7 +144,7 @@
                                             {
                                                 <div class="account-dropdown__item">
                                                     <a href="/Mandir/MandirList">
-                                                        <i class="las la-om"></i>Mandir
+                                                        <i class="las la-om danger_Color"></i>Mandir
                                                     </a>
                                                 </div>
                                             }
@@ -155,7 +155,7 @@
                                         <div class="account-dropdown__body">
                                             <div class="account-dropdown__item">
                                                 <a href="/Configuration/Configuration">
-                                                    <i class="zmdi zmdi-settings"></i>Configuration
+                                                    <i class="la la-cogs purple_color"></i>Configuration
                                                 </a>
                                             </div>
                                         </div>
@@ -166,9 +166,9 @@
                         }
                         <div class="account-wrap">
                             <div class="account-item account-item--style2 clearfix js-item-menu">
-                                <div class="image">
+                                @*<div class="image">
                                     <img src="~/images/icon/avatar-01.jpg" alt="@Function.ReadCookie(CookiesKey.AuthenticatedDisplayName)" />
-                                </div>
+                                </div>*@
                                 <div class="content">
                                     <a class="js-acc-btn" href="#">@Function.ReadCookie(CookiesKey.AuthenticatedDisplayName)</a>
                                 </div>
@@ -176,7 +176,7 @@
                                     <div class="info clearfix">
                                         <div class="image">
                                             <a href="#">
-                                                <img src="~/images/icon/avatar-01.jpg" alt="@Function.ReadCookie(CookiesKey.AuthenticatedDisplayName)" />
+                                                <img src="~/images/Logo.png" style="height:65px;" alt="@Function.ReadCookie(CookiesKey.AuthenticatedDisplayName)" />
                                             </a>
                                         </div>
                                         <div class="content">
@@ -198,9 +198,9 @@
                                                 </a>
                                             </div>
                                         </div>*@
-                                    <div class="account-dropdown__footer">
-                                        <a href="\Login\Login">
-                                            <i class="zmdi zmdi-power"></i>Logout
+                                    <div class="account-dropdown__footer dark_purpul_BG">
+                                        <a href="\Login\Login" class="white">
+                                            <i class="las la-sign-out-alt danger_Color"></i>Logout
                                         </a>
                                     </div>
                                 </div>
@@ -340,7 +340,7 @@
                                 </div>
                                 <div class="account-dropdown__footer">
                                     <a href="\Login\Login">
-                                        <i class="zmdi zmdi-power"></i>Logout
+                                        <i class="las la-sign-out-alt warning_Color"></i>Logout
                                     </a>
                                 </div>
                             </div>

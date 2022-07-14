@@ -349,7 +349,7 @@ function SaveForm(allowprint) {
         contentType: "application/json; charset=utf-8",
         success: function (jsondata) {
             if (jsondata !== null) {
-                debugger;
+                
                 if (allowprint) {
 
                     var url = '/Receipt/ReceiptDetail?Id=' + jsondata.Id;

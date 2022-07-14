@@ -182,6 +182,7 @@
     <Compile Include="Models\MandirVoucherRequest.cs" />
     <Compile Include="Models\ManorathRequest.cs" />
     <Compile Include="Models\PadhramaniJsonRequest.cs" />
+    <Compile Include="Models\ReceiptReportRequest.cs" />
     <Compile Include="Models\ReceiptRequest.cs" />
     <Compile Include="Models\SamagriDetailRequest.cs" />
     <Compile Include="Models\SamagriRequest.cs" />
@@ -625,6 +626,14 @@
     <Content Include="images\access_denied.png" />
     <Content Include="images\background.jpg" />
     <Content Include="images\background1.jpg" />
+    <Content Include="images\Darshan\Bhog.jpg" />
+    <Content Include="images\Darshan\Gwal.jpg" />
+    <Content Include="images\Darshan\Mangla.jpg" />
+    <Content Include="images\Darshan\Rajbhog.jpg" />
+    <Content Include="images\Darshan\Sandhya Aarti.jpg" />
+    <Content Include="images\Darshan\Shayan.jpg" />
+    <Content Include="images\Darshan\Shringar.jpg" />
+    <Content Include="images\Darshan\Uthapan.jpg" />
     <Content Include="images\Icon.png" />
     <Content Include="images\icon\avatar-01.jpg" />
     <Content Include="images\Logo.png" />
@@ -2871,6 +2880,7 @@
     <Content Include="vendor\line-awesome-1.3.0\scss\_screen-reader.scss" />
     <Content Include="vendor\line-awesome-1.3.0\scss\_stacked.scss" />
     <Content Include="vendor\line-awesome-1.3.0\scss\_variables.scss" />
+    <Content Include="Views\Report\BhandarSummaryReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

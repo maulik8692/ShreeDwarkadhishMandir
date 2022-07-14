@@ -196,7 +196,7 @@ function AccountHeadDropdown(configuration) {
         dataType: "json",
         success: function (jsondata) {
             $("#" + accountHeadDropdownId).empty();
-            debugger;
+            
             $("<option />", {
                 val: 0,
                 text: 'Please Default Manorath Vaishnav Account Id'

@@ -62,7 +62,7 @@ function SaveForm() {
     var issueRequest = {}
     issueRequest.Description = $("#Description").val();
     issueRequest.ItemDetails = transactionDetails;
-    debugger;
+    
     $.ajax({
         url: "/SamagriTransaction/Issue",
         data: JSON.stringify(issueRequest),
@@ -202,7 +202,7 @@ function GetUnitMeasurement() {
                     });
                 }
 
-                debugger;
+                
 
                 $("#UnitOfMeasurement").val(selectedbhandar.UnitId).trigger('change.select2');
 
@@ -301,7 +301,7 @@ function SaveItem() {
     var StoreToId = $('#StoreTo').val() !== "undefined" ? parseInt($('#StoreTo').val()) : 0;
     var BhandarId = $('#Bhandar').val() !== "undefined" ? parseInt($('#Bhandar').val()) : 0;
     var Quantity = $('#StockTransactionQuantity').val() !== "undefined" ? parseFloat($('#StockTransactionQuantity').val().replace(/,/g, '')) : 0;
-    debugger;
+    
     var unitId = $('#UnitOfMeasurement').val() !== "undefined" ? parseInt($('#UnitOfMeasurement').val()) : 0;
     var added = false;
     $.map(transactionDetails, function (e, i) {

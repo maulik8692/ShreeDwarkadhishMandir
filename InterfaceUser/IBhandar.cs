@@ -34,6 +34,8 @@ namespace InterfaceMiddleLayer
         int GroupType { get; set; }
         bool IsSamagriCreated { get; set; }
         int StoreId { get; set; }
+        string StoreName { get; set; }
+
         void Validate();
 
     }

@@ -91,7 +91,29 @@ namespace AdoDotNetDal
 
         protected override List<IBhandar> GetReportCommand<T>(T anyObject)
         {
-            throw new NotImplementedException();
+            //IBhandar supplierRequest = anyObject as IBhandar;
+
+            cmd.CommandText = "GetBhandarReport";
+            cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.Parameters.AddWithValue("@PageNumber", supplierRequest.PageNumber);
+            //cmd.Parameters.AddWithValue("@PageSize", supplierRequest.PageSize);
+            //cmd.Parameters.AddWithValue("@Name", supplierRequest.Name);
+            SqlDataReader dr = null;
+            dr = cmd.ExecuteReader();
+
+            List<IBhandar> bhandars = new List<IBhandar>();
+            while (dr.Read())
+            {
+                IBhandar bhandar = Factory<IBhandar>.Create("Bhandar");
+                bhandar.Name = dr["Name"].ToString();
+                bhandar.Balance = dr["Balance"].ToDecimal();
+                bhandar.CategoryName = dr["CategoryName"].ToString();
+                bhandar.UnitAbbreviation = dr["UnitAbbreviation"].ToString();
+                bhandar.StoreName = dr["StoreName"].ToString();
+                bhandars.Add(bhandar);
+            }
+
+            return bhandars;
         }
 
         protected override void SaveCommand(IBhandar anyType)

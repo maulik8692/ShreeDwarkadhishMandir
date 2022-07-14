@@ -99,7 +99,7 @@ function GetDetail() {
 function SetStyle() {
     $('.HeaderButton').hide();
 
-    $('#Receipt').setGridWidth($('#divReceipt').width());
+    $('#Receipt').setGridWidth($('#divReceipt').width() - 4);
 }
 
 function ManorathDate(cellvalue, options, rowObject) {

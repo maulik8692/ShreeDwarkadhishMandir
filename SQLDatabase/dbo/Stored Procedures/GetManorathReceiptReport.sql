@@ -4,7 +4,7 @@
 -- Description: <Description,,GetManorathReceiptReport>      
 -- GetManorathReceiptReport 1,'20-Jul-2019','20-Jul-2019',null,null,0,0,0      
 -- =============================================      
-CREATE PROCEDURE [dbo].[GetManorathReceiptReport]      
+CREATE PROCEDURE dbo.GetManorathReceiptReport      
  @MandirId int       
  ,@FromDate datetime=null      
  ,@ToDate datetime=null      
@@ -29,7 +29,7 @@ BEGIN
   ,isnull(MR.Email,'') as Email      
   ,case isnull(MR.MobileNo,'') when '+91 ' then ''       
   else isnull(MR.MobileNo,'')  end as MobileNo      
-  ,MR.ManorathDate      
+  ,FORMAT(MR.ManorathDate,'MM/dd/yyyy hh:mm:ss tt') ManorathDate
   ,MR.CreatedBy      
   ,U.DisplayName      
   from ManorathReceipt as MR      

@@ -81,9 +81,11 @@
     <Content Include="Templates\EmailTemplate.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\Receipt.html" />
     <Content Include="Templates\ReceiptTemplate1.html" />
     <Content Include="Templates\ReceiptTemplate2.html" />
     <Content Include="Templates\ReceiptTemplate3.html" />
+    <Content Include="Templates\Registration.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

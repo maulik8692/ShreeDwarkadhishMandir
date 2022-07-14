@@ -44,7 +44,8 @@ function LoadDarshan() {
 
     var reportParamObj = new Object();
 
-    reportParamObj.darshanDate = today.toShortFormat();
+    reportParamObj.darshanDate = today.format('dd-mmm-yyyy');
+
     $.ajax({
         url: "/Darshan/GetDarshanTime",
         data: JSON.stringify(reportParamObj),
@@ -59,7 +60,13 @@ function LoadDarshan() {
                     fixedHeader: true,
                     "data": jsondata,
                     "columns": [
-                        { "data": "DarshanName", "title": "Darshan", "className": "dt-body-left" },
+                        {
+                            "data": "DarshanName", "title": "Darshan",
+                            render: function (data, type, row) {
+                                return '<img src="\\images\\Darshan\\' + data + '.jpg" style="max-width: 30%;"></img><br/>' + data
+                            },
+                            "className": "dt-body-left"
+                        },
                         {
                             data: "FromTime",
                             title: "FromTime",
@@ -70,11 +77,12 @@ function LoadDarshan() {
                                 var ampm = hours >= 12 ? 'PM' : 'AM';
                                 hours = hours % 12;
                                 hours = hours ? hours : 12; // the hour '0' should be '12'
+                                hours = hours < 10 ? '0' + hours : hours;
                                 minutes = minutes < 10 ? '0' + minutes : minutes;
                                 var strTime = hours + ':' + minutes + ' ' + ampm;
                                 return strTime;
                             },
-                            className: "dt-body-Center"
+                            className: "dt-body-left"
                         },
                         {
                             data: "ToTime",
@@ -88,11 +96,12 @@ function LoadDarshan() {
                                 var ampm = hours >= 12 ? 'PM' : 'AM';
                                 hours = hours % 12;
                                 hours = hours ? hours : 12; // the hour '0' should be '12'
+                                hours = hours < 10 ? '0' + hours : hours;
                                 minutes = minutes < 10 ? '0' + minutes : minutes;
                                 var strTime = hours + ':' + minutes + ' ' + ampm;
                                 return strTime;
                             },
-                            className: "dt-body-Center"
+                            className: "dt-body-left"
                         },
 
                         { "data": "AdditionalNote", "title": "Additional Note", "className": "dt-body-left" },
@@ -132,10 +141,11 @@ function DashboardData() {
         contentType: "application/json; charset=utf-8",
         success: function (jsondata) {
             if (jsondata !== null) {
-                $('#Bhet').html(jsondata.Bhet)
+                
+                $('#Bhet').html(jsondata.Bhet.toFixed(2))
                 $('#Vaishnavs').html(jsondata.Vaishnavs)
                 $('#Manorath').html(jsondata.Manorath)
-                $('#Balance').html('₹ '+jsondata.Balance)
+                $('#Balance').html('₹ ' + jsondata.Balance.toFixed(2))
             }
 
             LoadDarshan();
@@ -161,6 +171,8 @@ function LoadManorathReceiptReport() {
         CreatedBy: 0,
         MandirId: 0
     };
+
+    
 
     $.ajax({
         url: "/Report/GetManorathReceiptReport",

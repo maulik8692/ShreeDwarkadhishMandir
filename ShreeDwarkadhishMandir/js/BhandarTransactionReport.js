@@ -55,7 +55,7 @@ function LoadTransactionReport() {
         success: function (jsondata) {
 
             if (jsondata !== null) {
-                debugger;
+                
                 $('#divSamagriTransaction').html('');
                 var grouped = _.chain(jsondata).groupBy("BhandarName").map(function (offers, BhandarName) {
                     // Optionally remove product_id from each record
@@ -217,7 +217,7 @@ function LoadTransactionReport() {
 
                         //card
                         header += '</div>'
-                        debugger;
+                        
                         $('#divSamagriTransaction').append(header);
                     }
                 }

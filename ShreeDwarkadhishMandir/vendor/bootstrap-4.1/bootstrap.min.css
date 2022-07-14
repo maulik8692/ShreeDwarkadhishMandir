@@ -152,7 +152,7 @@ sup {
 }
 
 a {
-    color: #007bff;
+    color: #ff7600;
     text-decoration: none;
     background-color: transparent;
     -webkit-text-decoration-skip: objects
@@ -1647,7 +1647,7 @@ pre {
 
     .table td, .table th {
         padding: .75rem;
-        vertical-align: top;
+        /*vertical-align: top;*/
         border-top: 1px solid #dee2e6
     }
 

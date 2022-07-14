@@ -1403,7 +1403,7 @@ i.fa {
         }
 
     .account-item > .content {
-        margin-left: 45px;
+        /*margin-left: 45px;*/
         padding: 9px 0;
         padding-left: 12px;
     }
@@ -2822,7 +2822,7 @@ i.fa {
 
 @media (max-width: 1570px) and (min-width: 992px) {
     .header__tool .header-button-item {
-        margin-right: 20px;
+        margin-right: 10px;
     }
 }
 
@@ -4543,7 +4543,7 @@ i.fa {
     font-size: 14px;
     color: #808080;
     vertical-align: middle;
-    padding: 25px 40px;
+    padding: 15px 40px;
     padding-right: 10px;
     border: none;
 }
@@ -14733,6 +14733,10 @@ i.fa {
     color: #FFF !important;
 }
 
+.blue_color {
+    color: #0090e7 !important;
+}
+
 .danger_Color {
     color: #fc424a !important;
 }
@@ -14755,6 +14759,14 @@ i.fa {
 
 .yellowColor {
     color: #ffc107 !important;
+}
+
+.white {
+    color: #FFF !important;
+}
+.dark_purpul_BG {
+    background-color: #7f074e !important;
+    
 }
 
 .short {

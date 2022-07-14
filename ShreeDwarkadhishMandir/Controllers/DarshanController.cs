@@ -34,10 +34,36 @@ namespace ShreeDwarkadhishMandir.Controllers
 
             if (darshanDate.IsNotNullString())
             {
-                dateTime = Convert.ToDateTime(darshanDate);
+                dateTime = darshanDate.ToDateTime("dd-MMM-yyyy");
             }
 
             List<IDarshan> darshan = dal.Search(dateTime);
+
+            return Json(darshan, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetDarshanTime(string sidx, string sord, int page, int rows, string darshanDate)
+        {
+            IRepository<IDarshan> dal = FactoryDalLayer<IRepository<IDarshan>>.Create("Darshan");
+            DateTime? dateTime = null;
+
+            if (darshanDate.IsNotNullString())
+            {
+                dateTime = darshanDate.ToDateTime("dd-MMM-yyyy");
+            }
+            else
+            {
+                dateTime = DateTime.Now;
+            }
+
+            List<IDarshan> darshan = dal.Search(dateTime);
+
+            JqGridResponse<IDarshan> jsonData = new JqGridResponse<IDarshan>();
+            jsonData.total = 1;
+            jsonData.page = 1;
+            jsonData.records = darshan.IsNotNullList() ? darshan.Count : 1;
+            jsonData.rows = darshan;
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
 
             return Json(darshan, JsonRequestBehavior.AllowGet);
         }

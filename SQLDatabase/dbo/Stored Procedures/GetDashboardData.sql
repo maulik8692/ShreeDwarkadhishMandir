@@ -4,7 +4,7 @@
 -- Description:	<Description,,>
 -- GetDashboardData 1
 -- =============================================
-CREATE PROCEDURE [dbo].[GetDashboardData]
+CREATE PROCEDURE dbo.GetDashboardData
 	@MandirId int
 AS
 BEGIN
@@ -26,11 +26,9 @@ BEGIN
 	--Inner join AccountHead as A on A.Id= M.ManorathAccountId and A.MandirId=@MandirId
 	where cast(MR.ManorathDate as date) = CAST(GETDATE() as date) --and A.AccountTypeId in (4,5)
 
-	--select @Balance= SUM(AT.Credit)-SUm(AT.debit) 
-	--from AccountTransaction as AT
-	--inner join AccountHead as AH on AH.Id=AT.AccountId 
-	--where AT.IsDeleted=0
-	----and AH.AccountTypeId between 1 and 6
+	select @Balance= ABS(SUM(AH.BalanceAmount)) 
+	from AccountHead as AH where
+	(AH.IsCashOnHand=1 OR AH.IsBankAccount=1) AND AH.IsDeleted=0
 	
 	select Isnull(@Vaishnav,0) as Vaishnavs,
 		   Isnull(@Manorath,0) as Manorath,

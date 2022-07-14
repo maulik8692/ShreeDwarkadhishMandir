@@ -55,7 +55,7 @@ namespace ShreeDwarkadhishMandir.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetManorathReceiptReport(ReceiptRequest receiptRequest)
+        public ActionResult GetManorathReceiptReport(ReceiptReportRequest receiptRequest)
         {
             try
             {
@@ -230,6 +230,21 @@ namespace ShreeDwarkadhishMandir.Controllers
                 IRepository<IBhandarTransaction> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandarTransaction>>.Create("BhandarTransaction");
                 BhandarTransactionResponse =  dalBhandarTransaction.GetReport(request);
                 return Json(BhandarTransactionResponse, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Log.Write(ex);
+                return new HttpStatusCodeResult(410, ex.Message);
+            }
+        }
+
+        public ActionResult BhandarSummaryReport()
+        {
+            try
+            {
+                IRepository<IBhandar> dalBhandarTransaction = FactoryDalLayer<IRepository<IBhandar>>.Create("Bhandar");
+                List<IBhandar> BhandarReportResponse = dalBhandarTransaction.GetReport("");
+                return View(BhandarReportResponse);
             }
             catch (Exception ex)
             {

@@ -25,7 +25,7 @@ function PageEvents() {
 
     $("#Bhandar").change(function () {
         detailRequest.BhandarId = parseInt(this.value);
-        debugger;
+        
         selectedbhandar = BhandarList[BhandarList.findIndex(item => item.Id === detailRequest.BhandarId)];
         if (typeof selectedbhandar !== "undefined" && selectedbhandar !== null && selectedbhandar.bhandarId !== 0) {
             $("#CurrentBalance").val(selectedbhandar.Balance.toFixed(5) + ' ' + selectedbhandar.UnitAbbreviation);
@@ -184,7 +184,7 @@ function GetUnitMeasurement() {
                     });
                 }
 
-                debugger;
+                
 
                 $("#UnitOfMeasurement").val(selectedbhandar.UnitId).trigger('change.select2');
 
